@@ -1,0 +1,105 @@
+\stepcounter{lecture}
+\setcounter{lecture}{4}
+
+\pagebreak
+
+\sektion{Differentiation}
+\label{sub:differentiation}
+
+\subsektion{Differentiability}\vspace*{5pt}
+
+\begin{definition}
+$f$ is \emph{differentiable} at $a$ iff $\lim_{x\to a} \left|\frac{f(x)-f(a)}{x-a}-f'(a)\right|$ exists, i.e.
+\[\forall \epsilon > 0,~\exists \delta > 0\text{ such that } 0<|x-a| < \delta \implies \left|\frac{f(x)-f(a)}{x-a}-f'(a)\right| < \epsilon.\]	
+\end{definition}
+
+
+
+
+\begin{theorem}	
+$f$ differentiable at $a\in \RR \implies $ cts at $a$.
+\end{theorem}
+\begin{proof}[Proof (1.)] If $f$ is differentiable at $a$ then
+	\[\begin{aligned}\forall \epsilon >0~ \exists \delta  > 0 \text{ such that } 0 < |x-a| < \delta &\implies \left|\frac{f(x) - f(a)}{x-a} - f'(a)\right| < \epsilon \\ 
+	&\implies |f(x) - f(a)| < |x-a|(|f'(a)| + \epsilon).	
+\end{aligned}
+\] 
+	Fix $\epsilon > 0$, set $\delta = \epsilon$. Then \[0 < |x-a| < \delta \implies  |f(x) - f(a)| < \epsilon(|f'(a)| + \epsilon) = k\epsilon\] (also true for $x = a \implies |f(x) - f(a)| = 0$.)
+\end{proof}
+\begin{proof}[Proof (2.)]
+Note that $f(x) = f(a) + (x-a)\frac{f(x) -f(a)}{x-a}$, $x \neq a$. Taking  $\lim_{x\to a}$  \[\lim_{x\to a}f(x) = f(a) + 0.f'(a) \implies f \text{ cts at } a\qedhere\]\end{proof}\vspace*{5pt}
+
+\subsektion{Rolle's Theorem}\vspace*{5pt}
+
+
+\begin{theorem}[Rolle's Theorem]
+	$f:[a,b] \to \RR$ cts on $[a,b]$, differentiable on $(a,b)$ such that $f(a) = f(b)$. Then $\exists c \in (a,b)$ such that $f'(c) = 0$.
+\end{theorem}
+\begin{proof}~
+\begin{enumerate}
+\item[Case 1.] $f$ is constant on $[a,b]$. Then set $c = \frac{a+b}{2},$ so $f'(c) = \lim_{x\to c}\frac{f(x) - f(c)}{x-c} = 0$.
+\item[Case 2.] $f$ takes values $< f(a)$. Then replace $f$ by $-f$ and consider Case 3.
+\item[Case 3.] $f$ takes values $> f(a)$. Therefore sup $\{f(x): x \in [a,b]\} > f(a)$ by EVT is realised by some $c \in (a,b)$. Now $f'(c) = \lim_{x\to c} \frac{f(x) - f(c)}{x-c}$. Consider\\ 
+
+ \[x > c,~f(x) \leq f(c) \implies \frac{f(x) - f(c)}{x-c} \leq 0 \implies \lim_{x \to c^{+}} \frac{f(x) - f(c)}{x-c} \leq 0\]
+ \[x < c,~f(x) \leq f(c) \implies \frac{f(x) - f(c)}{x-c} \geq 0 \implies \lim_{x \to c^{-}} \frac{f(x) - f(c)}{x-c} \geq 0 \] 
+ Hence  $\dfrac{f(x) - f(c)}{x-c} = 0$.\qedhere 
+\end{enumerate}
+	
+\end{proof}\vspace*{5pt}
+
+\subsektion{Mean Value Theorem}\vspace*{5pt}
+
+
+\begin{theorem}[Mean Value Theorem]
+If $f:[a,b] \to \RR$ is cts on $[a,b]$ and differentiable on $(a,b)$, then $\exists c \in (a,b)$ such that $f'(c) = \dfrac{f(b) - f(a)}{b-a}$.
+\end{theorem}
+\begin{proof}
+Let $g(x) = f(x) - \dfrac{f(b) - f(a)}{b-a}(x-a)$, which is cts on $[a,b]$ and diff'ble on $(a,b)$. $g(a) = f(a) = g(b)$. By Rolle's Theorem
+\[\exists c \in (a,b)\text{ such that }g'(c) = 0 \implies g'(c) = f'(c) - \dfrac{f(b) - f(a)}{b-a}.\qedhere\]	
+\end{proof}~
+
+\subsektion{Rules for Differentiation}\vspace*{5pt}
+
+\begin{theorem}[Product Rule] $f,g : \RR \to \RR$ differentiable at $a \in \RR$. Then $fg$ is differentiable at $a$ with $(fg)'(a) = f'(a)g(a) + f(a)g'(a)$
+\end{theorem}
+\begin{proof}
+\[\begin{aligned}
+	\frac{f(x)g(x) - f(a)g(a)}{x-a} &= \frac{(f(x)-f(a))g(x) + (g(x) - g(a))f(a)}{x-a} \\ 
+	&= g(x) \frac{f(x)-f(a)}{x-a} + f(a)\frac{g(x)-g(a)}{x-a}
+\end{aligned}
+\]
+Taking $\lim_{x\to a} \implies (fg)'(a) = g(a)f'(a) + f(a)g'(a)$ by cty of $g$ and algebra of limits.
+\end{proof}\vspace*{5pt}
+
+\begin{theorem}[Chain Rule] $g: \RR \to \RR$ diff'ble at $a \in \RR$, $f: \RR \to \RR$ diff'ble at $g(a) \in \RR$, then $f \circ g$ diff'ble at $a$ with $(f\circ g)'(a) =f'(g(a))g'(a)$
+\end{theorem}
+\begin{proof}
+Define $F(g) = \begin{cases}
+ 	\frac{f(y)-f(b)}{g-b} ~y \neq b\\
+ 	f'(g) ~~ y = b
+ \end{cases}$
+ with $b = g(a)$. \vspace*{5pt}\\$f$ is diff'ble at $b \implies \lim_{y \to b} F(y) \to f'(b) = F(b)$. Hence $F$ is cts at $b$. $g$ is diff'ble at $a \implies$ cts at $a \implies F \circ g$ is cts at $a \implies F(g(x)) \to F(g(a)) = f'(b)$ as $x \to a$. Then\vspace*{5pt}:\\
+ $(f \circ g)'(a) = \lim_{x \to a} \frac{f(g(x)) - f(g(a))}{x-a} = F(g(x))\frac{g(x) - g(a)}{x-a} = f'(b)g'(a) = f'(g(a))g'(a)$.
+\end{proof}\vspace*{5pt}
+
+\begin{theorem}
+	If $f:\RR \to \RR$ is diff'ble at $a\in \RR$ with $f'(a) \neq 0$ and $f$ is bijective with inverse $g = f^{-1}$, then $g$ is diff'ble at $b = f(a)$ with $g'(b) = \frac{1}{f'(g(b))} = \frac{1}{f'(a)}.$
+\end{theorem}
+\begin{proof}
+\textit{Lemma:} $f'(a) \neq 0 \implies \exists \delta > 0$ such that $f(x) \neq f(a)$ for $x \in (a-\delta,a + \delta)\backslash\{0\}$.  \\
+
+\noindent So $\frac{g(y)-g(b)}{y-b} = \frac{x-a}{f(x) - f(a)} = 1/\frac{f(x)-f(a)}{x-a}$ with $x = g(y),~y \neq b$. As $y \to b$, $g(y) \to g(b) = a$ since $f$ diff'ble at $a \implies f$ cts at $a \implies g$ cts at $b \implies x \to a \implies$ RHS $\to \frac{1}{f'(a)}$.	
+\end{proof}~\\
+
+
+
+  \begin{center}
+  \textsf{\textbf{- End of Analysis I -}}	
+  \end{center}
+  
+  \stepcounter{lecture}
+\setcounter{lecture}{1}
+  
+  
+  

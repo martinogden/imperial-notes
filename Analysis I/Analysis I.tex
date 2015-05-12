@@ -1,0 +1,95 @@
+\documentclass[twoside]{scrartcl}
+
+\usepackage[blacklinks]{drangreport}
+% \usepackage[caecilia]{drangreport}
+
+\usepackage{stmaryrd}
+
+\usepackage{awlc-algebra}
+ \newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\usepackage{pgfplots}
+%Nice end of Proof Symbol
+\usepackage{marvosym}
+\renewcommand{\qedsymbol}{\Rectsteel} 
+
+\newcommand*{\cont}{%
+  \mathsf{X}\mkern-8.5mu\mathsf{X}%
+}
+\renewcommand{\thempfootnote}{$\dagger$}
+
+\title{Analysis I}
+
+\let\Im\relax
+\DeclareMathOperator*{\Im}{Im}
+
+\newcommand{\herm}[1]{\overline{#1}^\Trans}
+
+\DeclareMathOperator*{\ch}{ch}
+\renewcommand{\chi}{\textstyle\ch}
+
+\begin{document}
+
+\NotesTitle{1st}{Spring 2015}{Analysis I}{Prof.~R.}{Thomas}
+{
+
+%\setcounter{equation}{-1}
+%\begin{theorem}
+%$\forall$ lecture notes,  $\exists$ typos.
+%\end{theorem}
+%\begin{corollary}
+%Don't rely on this. Send comments / corrections to \url{kb514@ic.ac.uk}	
+%\end{corollary}\vspace*{10pt}
+
+
+
+%*If you're bored with a clicker question filled lecture, \texttt{piguy.org/clicker} lets you mass send votes - it's quite fun to watch a confused professor.\\
+
+
+\section*{Syllabus}  
+
+\textit{A rigorous treatment of the concept of a limit, as applied to sequences, series and functions.}
+
+\subsubsection*{Sequences} Real and complex sequences. Convergence, divergence and divergence to infinity. Sums and products of convergent sequences. The Sandwich Test. Sub-sequences, monotonic sequences, Bolzano-Weierstrass Theorem. Cauchy sequences and the general principle of convergence.
+
+\subsubsection*{Series} Real and complex series. Convergent and absolutely convergent series. The Comparison Test for non-negative series and for absolutely convergent series. The Alternating Series Test.  Rearranging absolutely convergent series. Radius of convergence of power series. The exponential series.
+
+\subsubsection*{Continuity} Limits and continuity of real and complex functions. Left and right limits and continuity. Maxima
+and minima of real valued continuous functions on a closed interval. Inverse Function Theorem for
+strictly monotonic real functions on an interval. 
+
+\subsubsection*{Differentiability} An introduction to differentiability: definitions, examples, left and right derivative.
+
+\subsection*{Appropriate books}
+
+{\shortskip
+
+K.~G.~ Binmore, \textit{Mathematical Analysis, A Straightforward Approach} (Cambridge University Press).\\
+
+W. Rudin, \textit{Principles of Mathematical Analysis} (McGraw-Hill) (not recommended as an introduction)  
+}
+
+%\subsection*{Course Remarks}
+%I typed-up the main bits during Easter as revision, and finished the rest over summer; it became quite apparent what he said was true - this stuff is  \emph{really} trivial in the scheme of things - so don't worry if Analysis first seems difficult; it's literally just messing with: 
+%\begin{enumerate}
+%\item $(a_n) \to a \iff \forall \epsilon > 0,~\exists N \in \mathbb{N} \text{ s.t. } |a_n - a| < \epsilon,~ \forall n \geq N$
+%\item $\sum_{n=1}^{\infty} a_n = A \iff (s_n) = \sum_{k=1}^n a_k \to A$ 
+%\item $f$ is continuous at $a \iff \forall \epsilon > 0,~\exists \delta > 0 \text{ s.t. } |x-a| < \delta \implies |f(x) - f(a)| < \epsilon$
+
+%$\iff \exists \lim_{x \to a}f \iff \exists b: \forall \epsilon > 0,~\exists \delta > 0 \text{ s.t. } 0<|x-a| < \delta \implies |f(x) - b| < \epsilon $
+%\item $f$ is differentiable at $a \iff \exists \lim_{x\to a} \frac{f(x) - f(a)}{x-a}$
+%\end{enumerate}
+
+}
+
+
+
+
+
+\TableofContents
+\input{Chap1.tex}
+\input{Chap2.tex}		% Vector spaces
+\input{Chap3.tex}		% Endomorhisms
+\input{Chap4.tex}		% Endomorhisms
+
+
+\end{document}

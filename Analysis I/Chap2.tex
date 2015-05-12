@@ -1,0 +1,242 @@
+%!TEX root = linear-algebra.tex
+\stepcounter{lecture}
+\setcounter{lecture}{2}
+
+\pagebreak
+
+\sektion{Series}
+\label{sub:series}
+
+\subsektion{Convergence of Series}~
+
+\begin{definition}
+$\sum a_n = A \in \mathbb{R}$ if and only if the partial sums converge, so \\[-0.3cm]\[\forall \epsilon > 0,~\exists N \in \mathbb{N} \text{ such that } \forall n \geq N,~ \left|\sum_{k=1}^n a_k-A\right| < \epsilon\]
+\end{definition}
+
+
+\begin{theorem}
+$\sum a_n \to a \implies a_n \to 0$	
+\end{theorem}
+\begin{proof}
+$\forall \epsilon >0,~\exists N \in\mathbb{N} \text{ s.t. }\left|\sum_{i=1}^{n}a_i - a\right| < \epsilon \text{ and } \left|\sum_{i=1}^{n+1}a_i - a\right| < \epsilon$
+\[\implies |a_{n+1} - a| \leq \left|\sum_{i=1}^{n}a_i - a\right| + \left|\sum_{i=1}^{n+1}a_i - a\right|  < 2\epsilon \]
+\end{proof}\vspace*{5pt}
+
+\begin{theorem}
+$(S_n)$ bounded and $a_n \geq 0 \implies \sum a_n$ convergent.
+\end{theorem}
+\begin{proof}
+	Let $a = $ sup $S_n$. $\forall \epsilon > 0~ \exists N \in \mathbb{N} \text{ such that }S_n \in (a-\epsilon,a)$
+	\[a_n \geq 0 \implies \forall n\geq N~ S_n \geq S_N \implies |S_n - a| < \epsilon\qedhere\]
+\end{proof}\vspace*{5pt}
+
+
+\subsektion{Tests for convergence}\lecturemarker{5}{5 Oct}
+\vspace*{10pt}
+
+\begin{theorem}[Comparison I]
+If $0 \leq a_n \leq b_n$ and $\sum_{n=1}^{\infty} b_n$ converges, then $\sum_{n=1}^{\infty} a_n$ converges.	 (and $0 \leq \sum_{n=1}^{\infty}a_n \leq \sum_{n=1}^{\infty}b_n$)
+\end{theorem}
+
+\begin{proof}
+Call the partial sums $A_n$, $B_n$ respectively. Then
+\[0 \leq A_n \leq B_n \leq \sum_{i=1}^{\infty} b_i = \lim_{n\to \infty}B_n\]	
+
+So $A_n$ is bounded and monotonically increasing $\implies$ convergent. 
+\end{proof}\vspace*{10pt}
+
+
+\begin{proposition}
+Suppose $a_n \geq 0 ~\forall n$. Then $\sum_{n=1}^{\infty} a_n$ converges iff $S_N = \sum_{n=1}^{N}a_N$ is bounded above and $\sum_{n=1}^{\infty} a_n$ diverges to $\infty$ (i.e. $S_n \to +\infty$ as $N \to \infty$) iff $S_N = \sum_{n=1}^{N} a_n$ is an unbounded sequence. 
+\end{proposition}
+
+\begin{proof}
+$a_n \geq 0 \iff (S_n)$ is monotonic increasing. So $(S_n)$ bounded $\iff$ convergent.
+
+$S_N$ unbounded $\iff \forall R>0,~ \exists N \in \N$ such that $\forall n \geq N,~ S_n > R \iff S_n \to +\infty$. 
+\end{proof}\vspace*{10pt}
+
+\begin{example}
+$\sum_{n=1}^{\infty} \frac{1}{n^{\alpha}},~ \alpha > 1$ is convergent.
+\begin{proof}
+(Trick!) Arrange the partial sum as follows:
+\[\begin{aligned}
+1 + \frac{1}{2^\alpha} + \frac{1}{3^\alpha} + \dots  = 1 + \left(\frac{1}{2^\alpha} + \frac{1}{3^\alpha}\right) &+ \left(\frac{1}{4^\alpha} + \dots +\frac{1}{7^\alpha}\right)  \\ 
+&+ \left(\frac{1}{8^\alpha} + \dots + \frac{1}{15^\alpha}\right) \\
+&+ \left(\frac{1}{16^\alpha} + \dots + \frac{1}{31^\alpha}\right) \\
+&+ \dots  \end{aligned}\]
+Note that the $k$th bracketed term:
+\[\left(\frac{1}{(2^k)^\alpha} + \dots +\frac{1}{(2^{k+1}-1)^\alpha}\right ) \leq \frac{1}{2^{k\alpha}} + \dots + \frac{1}{2^{k\alpha}} = \frac{2^k}{2^{k\alpha}} = \frac{1}{2^{k(\alpha-1)}}\]
+
+So any partial sum is less than some finite sum of these bracketed terms, i.e. for some sufficiently large $N$: \[ S_N < \sum_{k=0}^{N} \frac{1}{2^{k(\alpha -1)}} = \frac{1-\frac{1}{2^{(N+1)(\alpha -1)}}}{1-\frac{1}{2^{(\alpha-1)}}} \leq \frac{1}{1-\frac{1}{2^{\alpha-1}}}\] because $\alpha >1$, so $\left|\frac{1}{2^{\alpha-1}}\right| < 1$, so denominator $>0$. 
+
+So partial sums are bounded above $\implies$ convergent. 
+\end{proof}	
+\end{example}~
+
+\begin{definition}
+Say that the series $\sum_{n=1}^{\infty}a_n$ is \emph{absolutely convergent} if and only if the series $\sum_{n=1}^{\infty} |a_n|$ is convergent	
+\end{definition}~
+
+\begin{example}
+$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$ is \emph{not} absolutely convergent, but it is convergent.
+
+
+\textit{Rough Working.} $1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \dots = (1-\frac{1}{2}) + (\frac{1}{3} - \frac{1}{4}) + (\frac{1}{5} -\frac{1}{6}) + \dots$, the $k$th bracket $\frac{1}{2k-1} - \frac{1}{2k} = \frac{1}{2k(2k-1)}$. This is positive and $\leq \frac{1}{2k(2k-2)} = \frac{1/4}{k(k-1)}$, seen earlier sum of these is convergent.
+
+So cancellation between consecutive terms is enough to make series converge by comparison with $\sum \frac{1}{k(k-1)}$.
+
+\begin{proof}
+Fix $\epsilon >0.$ Then use 2 things\begin{enumerate}
+\item[(1)] $\sum \frac{1}{2k(2k-1)}$	is convergent
+\item[(2)] $\frac{(-1)^{n+1}}{n}\to 0$
+\end{enumerate}
+By (1) $\exists N_1$ such that $\forall n \geq N_1,~ \sum_{n=1}^{\infty} \frac{1}{k(k-1)} < \epsilon$
+
+(2) $\exists N_2$ such that $\forall n \geq N_2,~ \left|\frac{(-1)^{n+1}}{n}\right| < \epsilon$
+
+Set $N =$ max$(N_1,N_2)$. Then $\forall n \geq N$, we have:
+\[S_n = \left(1-\frac{1}{2}\right) + \left(\frac{1}{3} - \frac{1}{4}\right) + \dots \left(\frac{1}{2j-1} - \frac{1}{2j} \right) + \delta = \sum_{k=1}^{j} \frac{1}{2k(2k-1)} + \delta\] 
+where $\delta = \begin{cases}
+ 	\frac{(-1)^{n+1}}{n} & \text{ if } n \text{ is odd.}\\
+ 	0 & \text{ if } n \text{ is even.}
+ \end{cases}
+$ $~~\left(j = \lfloor \frac{n}{2} \rfloor\right)$   $j = \begin{cases}
+ 	\frac{n-1}{2} & \text{ if } n \text{ is odd.}\\
+ 	\frac{n}{2} & \text{ if } n \text{ is even.}
+ \end{cases}
+$
+\[\implies S_n = \sum_{k=1}^{\infty} \frac{1}{2k(2k-1)} - \sum_{k=\lfloor \frac{n}{2} \rfloor + 1}^{\infty} \frac{1}{2k(2k-1)} + \delta\]
+\[\text{So } \left|S_n - \sum_{k=1}^{\infty} \frac{1}{2k(2k-1)} \right| \leq \sum_{k=\lfloor \frac{n}{2} \rfloor + 1}^{\infty} \frac{1}{2k(2k-1)} + \frac{1}{n} < \epsilon + \epsilon\] for all $n \geq 2N$ (so that $\lfloor \frac{n}{2} \rfloor + 1 >N$) 
+\end{proof}
+\end{example}\vspace*{10pt}
+
+\begin{theorem}
+	If $(a_n)$ is absolutely convergent, then it is convergent.
+\end{theorem}
+
+\begin{proof}
+Let $S_n = \sum_{i=1}^{n} |a_i|$, $\sigma+n = \sum_{i=1}^n a_i$ be the partial sums.
+
+We're assuming that $S_n$ converges. Therefore $S_n$ is Cauchy: \[ \forall \epsilon >0~ \exists N_{\epsilon}\text{ such that }n > m \geq N_{\epsilon} \implies |S_n - S_m| < \epsilon \iff |a_{m+1} + \dots + |a_n| < \epsilon\]
+
+i.e. the terms in the tail of the series contribute little to the sum 
+
+$\implies |a_{m+1} + \dots + a_n| < \epsilon$ by the triangle inequality $\implies |\sigma_n - \sigma_m| < \epsilon \implies (\sigma_n)$ is Cauchy $\implies \sum a_i$ is convergent.
+\end{proof}~
+
+\begin{example}
+$\sum_{n=1}^{\infty} z_n$ is convergent for $|z| < 1$, divergent for $|z| \geq 1$
+\begin{proof}
+$\sum_{n=1}^{\infty} z_n$ is absolutely convergent because we showed that $\sum_{n=1}^{\infty} |z|^n$ converges to $\frac{1}{1 - |z|}$ for $|z| < 1$	
+
+For $|z| \geq 1$, the individual terms $z^n$ have $|z^n| \geq 1$, so $z^n \not\to 0$, so $\sum z^n$ divergent.
+\end{proof}
+\end{example}
+
+\textbf{Beware.} Do not rearrange series and sum them in a different order unless you can prove the result is the same.\\
+
+
+\begin{theorem}[Comparison II - Sandwich Test]
+	Suppose $c_m \leq a_n \leq b_n$ and $\sum c_n,~\sum b_n$ are both convergent. Then $\sum a_n$ is convergent.
+\end{theorem}
+\begin{proof}
+Use Cauchy. $\forall \epsilon >0,~ \exists N \in \N$ such that $\forall n,m > N$
+\[\left|\sum_{i=m+1}^n b_i\right| < \epsilon,~\left|\sum_{i=m+1}^n c_i\right| < \epsilon\] since the partial sums of $b_i,~c_i$ are Cauchy. Therefore
+\[-\epsilon <\sum_{i=m+1}^n c_i \leq \sum_{i=m+1}^n a_i \leq \sum_{i=m+1}^n b_i < \epsilon   \]
+\[\implies \left|\sum_{i=1}^{n} a_i - \sum_{i=1}^m a_i\right| < \epsilon \implies \left(\sum_{i=1}^{n} a_i \right) \text{ is Cauchy.} \qedhere\]
+\end{proof}\vspace*{10pt}
+
+
+\begin{theorem}[Comparison III]
+If $\frac{a_n}{b_n}\to l \in \R$ then $\sum b_n$ absolutely convergent $\implies \sum a_n$ is absolutely convergent.
+\end{theorem}
+\begin{proof}
+Pick $\epsilon = 1$, then $\exists N \in \N$ such that $\forall n \geq N$:
+\[\left|\frac{a_n}{b_n} - l \right| < 1 \implies \left|\frac{a_n}{b_n}\right| < |l| + 1 \implies |a_n| < (|l| + 1)|b_n|\]
+So now by the comparison test $\sum_{n \geq N} |b_n|$ convergent $\implies \sum_{n \geq N} |a_n|$ convergent $\implies \sum_{n\geq 1} |a_n|$ convergent. 	
+\end{proof}\vspace*{10pt}
+\pagebreak
+
+\begin{theorem}[Alternating Series Test.]
+Given an alternating sequence $a_n$ where $a_{2n} \geq 0$, $a_{2n+1} \leq 0~ \forall n$. Then $|a_n|$ monotonic decreasing to $0 \implies \sum a_n$ convergent
+\end{theorem}
+
+\begin{proof}
+Write $a_n = (-1)^nb_n,~b_n\geq 0 ~\forall n	$. Consider the partial sums $S_n = \sum_{i=1}^{n} (-1)^nb_n$.\\
+
+\noindent  Observe that: \begin{enumerate}
+ \item[(1)]$S_i \leq S_{2n}~\forall i \geq 2n$
+ \item[(2)]$S_i \geq S_{2n+1}~\forall i\geq 2n+1$
+ \end{enumerate}
+ Since if $i=2j$ is even, then
+  \[\begin{aligned}
+	S_{2j} &= S_{2n} + a_{2n+1} + \dots + a_{2j}\\ 
+	&= S_{2n} + \underbrace{(-b_{2n+1} + b_{2n+2})}_{\leq 0} + \dots + \underbrace{(-b_{2j-1} + b_{2j})}_{\leq 0} \leq S_2n
+\end{aligned}
+\]
+ 
+  If $i= 2j+1$ is odd, then similarly:
+   \[\begin{aligned}
+	S_{2j} = S_{2n} + \underbrace{(-b_{2n+1} + b_{2n+2})}_{\leq 0} + \dots + \underbrace{(-b_{2j-1} + b_{2j})}_{\leq 0} - b_{2j+1} \leq S_2n
+\end{aligned}
+\]
+  
+\noindent So now $\forall \epsilon >0,~ \exists N \in \mathbb{N}$ such that $\forall n \geq N,~|b_n| < \epsilon$. So $\forall n,m\geq 2n$, we have: \[S_{2N+1} \leq S_n,~S_m \leq S_{2N}\] 
+ \[\text{So } |S_n - S_m| \leq |S_{2N+1} - S_{2N}| = b_{2n+1} < \epsilon \qedhere\]
+\end{proof}~
+
+
+\begin{theorem}[Ratio Test]
+If $a_n$ is a sequence such that $\left|\frac{a_{n+1}}{a_n}\right| \to r < 1$, then $\sum a_n$ is absolutely convergent.	
+\end{theorem}
+\begin{proof}
+Fix $\epsilon = \frac{1-r}{2} > 0$. Then $\exists N \in \mathbb{N}$ such that $\forall n \geq N$
+\[\left|\frac{a_{n+1}}{a_n} - r\right| < \epsilon \implies |a_{n+1}| < (r + \epsilon)|a_n|\]
+Set $\alpha := r + \epsilon = \frac{1 + r}{2} < 1$. 
+
+Inductively
+\[|a_{N+m}| < \alpha|a_{N+m-1}| < \dots < \alpha^m|a_N|\]	
+So $\forall k \geq N$ \[|a_k| <  \alpha^{k-N}|a_N| = C\alpha^k\]
+
+Then \[C\sum_{k=N}^{n} \alpha^k = \frac{C(\alpha^N-\alpha^n)}{1-\alpha} \to \frac{C'}{1-\alpha} \text{ as } n \to \infty \text{, since } \alpha < 1\]
+
+So by the comparison test $\sum_{k\geq N} |a_k|$ is convergent $\implies \sum_{k\geq 1} |a_k|$ is convergent
+\end{proof}
+
+
+\begin{theorem}[Root Test]
+If $\lim_{n\to \infty} |a_n|^{1/n} = r < 1$, then $\sum a_n$ is absolutely convergent.	
+\end{theorem}
+\begin{proof}
+Fix $\epsilon = \frac{1-r}{2} > 0$. Then $\exists N \in \mathbb{N}$ such that $\forall n \geq N$
+\[\left||a_n|^{1/n} - r\right| < \epsilon \implies |a_n|^{1/n} < r + \epsilon\]
+Set $\alpha := r + \epsilon = \frac{1 + r}{2} < 1$, so that $|a_n| < \alpha^n$. Then
+\[ \sum_{k=1}^n\alpha^k = \frac{\alpha(1-\alpha^n)}{1-\alpha}  \to \frac{\alpha}{1-\alpha} \text{ as } n \to \infty \text{ since } \alpha < 1\]
+
+So by the comparison test $\sum_{k\geq 1} |a_k|$ is convergent.
+\end{proof}
+
+
+
+\subsektion{$*$Re-arrangement of Series$*$}
+
+
+\subsektion{Cauchy Product}\vspace*{5pt}
+
+\begin{theorem}(Cauchy Product) $\sum |a_n| \to a$ and $\sum |b_n| \to b$, then: $\sum |c_n| \to ab$ with $c_n = \sum_{i=0}^n a_ib_{n-i}$.
+	
+\end{theorem}
+\noindent \textit{Proof.}
+See handout on blackboard. No need to reproduce in exam. \\
+
+\subsektion{Radius of Convergence}\vspace*{5pt}
+\begin{theorem}[Radius of Convergence] For $\sum a_n z^n$, $\exists R \in [0,\infty]$ such that $|z| < R \implies $ absolute convergence 
+\end{theorem}
+\begin{proof}
+Define $R =$ sup $S = \{|z| : a_nz^n \to 0\}$	 or $R = \infty$ if the set is empty. Suppose $|z| < R$. $|z|$ not an upperbound for $S \implies \exists w$ such that $|w| > |z|$ and $a_nw^n \to 0.$ Then \[|a_nz^n| = |a_nw^n|\left|\frac{z}{w}\right|^n \leq A\left|\frac{z}{w}\right|^n\] Since $\left|\frac{z}{w}\right| < 1 \implies \sum|a_nz^n|$ cvgt. Similarly $|z| >R  \implies$ $\sum |a_nz^n|$ divergent. 
+\end{proof}
+
+
+
+\pagebreak

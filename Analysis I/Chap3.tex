@@ -1,0 +1,176 @@
+\stepcounter{lecture}
+\setcounter{lecture}{3}
+
+\pagebreak
+
+\sektion{Continuity}
+\label{sub:series}
+
+\subsektion{Continuity and Limits}
+
+\begin{definition}
+	Given a function $f: \R \to \R$, we say that $f$ is \emph{continuous at $a \in \R$} if and only if 
+	\[\forall \epsilon >0, ~\exists \delta >0 \text{ such that } |x-a| < \delta \implies |f(x) - f(a)| < \epsilon \]
+\end{definition}
+
+So $\delta$ depends on $a, \epsilon$. ``Once $x$ is close to $a$, then $f(x)$ is close to $f(a)$''.
+
+More precisely: ``However close (i.e. within $\epsilon$) I want $f(x)$ to be to $f(a)$, I can arrange it by taking $x$ close (i.e. within $\delta$) to $a$''.\\
+
+Equivalently: $\forall \epsilon > 0,~ \exists \delta >0 \text{ such that } |f(x) - f(a)| < \epsilon ~ \forall x \text{ with } |x-a| < \delta$\\
+
+Or: $\forall \epsilon > 0, ~ \exists \delta > 0 \text{ such that } f(a- \delta, a + \delta) \subseteq (f(a)- \epsilon, f(a) + \epsilon)$
+
+Where $S\subseteq R$ then $f(S)$ is the set $\{f(x):x \in S\}$\\
+
+Or: $\forall \epsilon,~\exists \delta >0 \text{ such that } f^{-1}(f(a) - \epsilon, f(a) + \epsilon) \supseteq (a - \delta, a + \delta)$
+
+Where $f: A \to B \subset T$ then $f^{-1}(T) = \{a \in A:f(a) \in T\}$ [Don't need $f^{-1}$ to exist !!]\\
+
+
+\begin{example}
+\[f(x) = \begin{cases}
+ 0 & x \leq 0 \\
+ 1 & x > 0	
+ \end{cases}
+\]	 Then $f$ is not continuous at $x = 0$
+
+\begin{proof}
+Take $\epsilon = 1$ (or $0 < \epsilon < 1$). Then if $f$ is continuous at $x = 0$ we know that $\exists \delta > 0$ such that $|f(x) - f(0)| < 1~ \forall x \in (0 - \delta, 0 + \delta)~(*)$. In particular, take $x = \delta/2$ to find that $|1-0| < 1$ by 	$(*)$.
+\end{proof}
+\end{example}
+
+``Jump discontinuity'' is another type of discontinuity, 
+
+\vspace*{100pt}
+
+\begin{example}
+\[f(x) = \begin{cases}
+ \sin(\frac{1}{x}) & x \neq 0\\
+ r & x = 0	
+ \end{cases}
+\] Then $f$ is discontinuous at $x = 0$ (for any $r$).	
+
+\emph{Idea of proof}: If $f$ is continuous at $x = 0$, then $f(x) \in (r-\epsilon, r + \epsilon)$ is close to $f(0) = r$ for $x \in (- \delta, \delta).$ In particular, $f(x)$ and $f(y)$ are close to each other (within $2\epsilon$). But $f(x)$ could be $+1$ and $f(y)$ could be $-1$, $\cont$.
+\begin{proof}
+Fix $\epsilon \in (0,1]$. If $f$ is continuous at $0$, then $\exists \delta > 0$ such that $|f(x) - f(0)| < \epsilon~\forall x \in (\delta,\delta)$. In particular, $\forall x,y \in (-\delta, \delta), |f(x) - f(y)| < 2\epsilon \leq 2$, by the triangle inequality. 
+
+Now choose $n \in \mathbb{N}$, $n > \frac{1}{\delta}$. Then take $x = \frac{1}{(4n+1)\pi/2} \in (0,\delta)$, $y = \frac{1}{(4n+3)\pi/2} \in (0,\delta)$. Then 
+\[|\sin(1/x) - \sin(1/y)| = |1 - (-1)| = 2 ~\cont\qedhere\]
+\end{proof}
+
+\end{example}~
+
+
+\begin{theorem}
+$f,g: \RR \to \RR$ cts at $a \in \RR \implies (f + g)$ cts at $a$.
+\end{theorem}
+\begin{proof}
+	Fix $\epsilon >0.$ \[\exists \delta_1 >0 \text{ such that }|x-a| < \delta_1 \implies |f(x) - f(a)| < \epsilon\] and\[\exists \delta_2 >0 \text{ such that }|x-a| < \delta_1 \implies |g(x) - g(a)| < \epsilon\]
+	 Set $\delta =$ min$\{\delta_1,\delta_2\}.$ Then $\forall x$ such that $|x-a| < \delta:$
+	\[|(f+g)(x) - (f+g)(a)| \leq |f(x) - f(a)| + |g(x) - g(a)| < 2\epsilon\qedhere\]
+\end{proof}\vspace*{5pt}
+
+\begin{theorem}
+$f,g: \RR \to \RR$ cts at $a \in \RR \implies (fg)$ cts at $a$.	
+\end{theorem}
+\begin{proof}
+	Take $\epsilon = 1$. $\exists \delta_1 > 0$ such that $|x-a| < \delta_1 \implies g(x) < 1 + g(a)$. \\
+	Fix $\epsilon >0, \exists \delta_2 >0$ such that $|x-a| < \delta_1 \implies |f(x) - f(a)| < \epsilon$ and $\exists \delta_3 > 0$ such that $|x-a| < \delta_2 \implies |g(x) - g(a)| < \epsilon$.\vspace*{5pt}\\ Set $\delta =$ min$\{\delta_1,\delta_2,\delta_3\}.$ Then $\forall x$ such that $|x_a| < \delta$: \\
+	$|f(x)g(x) - f(a)g(a)| \leq |g(x)||f(x) - f(a)| + |f(a)||g(x) - g(a)| < k\epsilon$.
+\end{proof}\vspace*{5pt}
+
+
+\begin{theorem}
+	$f:\RR \to \RR$ cts at $a \in \RR$, $g:\RR \to \RR$ cts at $f(a) \in \RR$, then $g \circ f$ cts at $a$
+\end{theorem}
+\begin{proof}
+Fix $\epsilon >0.~ \exists \delta > 0$ s.t. $|g - f(a)| < \delta \implies |g(y) - g(f(a))| < \epsilon$.\\
+Also $\exists \eta > 0$ such that $|x-a| < \eta \implies |f(x) - f(a)| < \delta$.\\
+
+\noindent Hence $|x-a| < \eta \implies |f(x) - f(a)| < \delta \implies |g(f(x)) - g(f(a))| < \epsilon.$
+\end{proof}\vspace*{5pt}
+
+\begin{theorem}
+	$f: \RR \to \RR$ is cts at $a \in \RR$ iff $\forall$ sequences $x_n \to a$, $f(x_n) \to f(a)$
+\end{theorem}
+\begin{proof}
+If $f$ is cts at $a$, fix $\epsilon >0$. $\exists \delta > 0$ such that $|x-a| < \delta \implies |f(x) - f(a)| < \epsilon$. Now $x_n \to a$, so $\exists N \in \mathbb{N}$ such that $n \geq N \implies |x_n - a| < \delta \implies |f(x_n) - f(a)| < \epsilon$.\\
+
+\noindent Suppose $f$ is not cts at $a\in \RR$ for contradiction. Then $\exists \epsilon >0$ such that $\forall \delta >0,~\exists x \in (a-\delta,a+\delta)$ such that $|f(x) -f(a)| \geq \epsilon.$ Set $\delta = \frac{1}{n}$. $\exists x_n \in (a - \frac{1}{n},a + \frac{1}{n})$ such that $|f(x_n) - f(a)| \geq \epsilon$. So $|x_n-a| < \frac{1}{n}~\forall n \implies x_n \to a$. But $f(x_n) \not\implies f(a)$, a contradiction.  
+\end{proof}~
+
+
+\begin{theorem}
+$f:[a,b] \to \RR$ cts $\implies f$ is bounded.	
+\end{theorem}
+\begin{proof}[Proof (1.)]
+Suppose for contradiction $f$ is unbounded. Then $\forall N \in \mathbb{N}$, $N$ is not an unpperbound, so $\exists x_N \in [a,b]$ such that $|f(x_n)| > N$.\\
+By BW Theorem, exists cvgt subsequence, $y_i := x_{N(i)}, y_i \to y \in [a,b]$. With $|f(y_i)| = |f(x_{N(i)} > N(i) \geq i ~(*)$. Fix $\epsilon =1$, then $\exists \delta > 0$ such that $\forall x \in (y-\delta, y + \delta): |f(x) - f(y)| < 1 \implies |f(x)| < |f(y)| +1.$ Since $y_i \to y$, $\exists N$ such that $\forall n \geq N~ |y_n - y| < \delta \implies y_n \in (y-\delta, y + \delta) \implies |f(y_n)| < |f(y)| + 1.$ By $(*)$, $n \leq |f(y_n)| < |f(y)| + 1~ \forall n \geq N$, contradicting the Archimedean Axiom.
+	
+\end{proof}\vspace*{5pt}
+
+\begin{proof}[Proof (2.)]
+	Suppose for contradiction $f$ is unbounded. Then $\forall N \in \mathbb{N}$, $N$ is not an unpperbound, so $\exists x_N \in [a,b]$ such that $|f(x_n)| > N$.\\
+By BW Theorem, exists cvgt subsequence, $y_i := x_{N(i)}, y_i \to y \in [a,b]$. With $|f(y_i)| = |f(x_{N(i)} > N(i) \geq i ~(*)$. \\ 
+$f$ is cts at $y \implies f(y_i) \to f(y)$, contradicting $(*)$.  
+\end{proof}\vspace*{5pt}
+
+
+
+\subsektion{Intermediate Value Theorem}
+
+
+
+\begin{theorem}[Intermediate Value Theorem] If $f: [a,b] \to \RR$ cts, $c \in (f(a),f(b)),$ then $\exists x \in [a,b]$ such that $f(x) = c$
+	
+\end{theorem}
+\begin{proof}
+Consider $S_c = \{y \in [a,b] : f(y) \leq c\}$. Define $x:=$ sup$S_c$ ($S_c \neq \emptyset$ since $a \in S_c$ and bounded above by $b$ so sup exists)\\
+\textbf{Claim: $f(x) = c$}. \textit{Proof:} \begin{enumerate}
+ \item Suppose $f(x) < c$. Take $\epsilon = c-f(x) > 0$. $f$ is cts at $x$, so $\exists \delta > 0$ such that $\forall y \in (x,x+\delta) \cap [a,b], ~|f(y) - f(x)| < \epsilon$. Hence $f(y) < f(x) + \epsilon = c$. So $y\in S_c \implies x \neq$ sup$S_c$.
+ \item 	Suppose $f(x) > c$. Take $\epsilon = f(x)-c > 0$. $f$ is cts at $x$, so $\exists \delta > 0$ such that $\forall y \in (x-\delta,x) \cap [a,b], ~|f(y) - f(x)| < \epsilon$. Hence $f(y) > f(x) - \epsilon = c \implies x- \delta$ is an upperbound for $S_c$, so $x \neq$ sup$S_c$. \qedhere
+ \end{enumerate}
+\end{proof}\vspace*{5pt}
+
+\subsektion{Extreme Value Theorem}\vspace*{5pt}
+\begin{theorem}[Extreme Value Theorem] $f: [a,b] \to \RR$ cts $\implies f$ bounded and attains its bounds.
+\end{theorem}
+
+\begin{proof}[Proof (1.)]
+	By boundedness theorem, $\exists \displaystyle{\text{sup}_{x \in [a,b]}} f(x) = s$. Suppose for contradiction $\not \exists c \in [a,b]$ such that $f(x) = s$. Then $s-f(x) > 0 ~\forall x \in [a,b],$ so $g(x) = \frac{1}{s-f(x)}: [a,b] \to \RR$ is well defined and cts. So $g(x)$ is bounded by $M > 0 \implies \frac{1}{s-f(x)} \leq M \implies f(x) \leq s - \frac{1}{M}$, so $s \neq$ sup$f(x)$, a contradiction.
+\end{proof}\vspace*{5pt}
+\begin{proof}[Proof (2.)]
+	$\exists$ a sequence $x_n \in [a,b]$ such that $f(x) \to  \displaystyle{\text{sup}_{x \in [a,b]}} f(x) = s$. BW Theorem $\implies$ exists subsequence $y_i := x_{N(i)}$ such that $y_i \to c \in [a,b].$ $f$ is cts $\implies f(y_i) \to f(x)$. Since $f(y_i) \to s$, by uniqueness of limits, $f(c) = s$.
+	\end{proof}\vspace*{5pt}
+
+
+\begin{theorem}
+$f:\RR \to \RR$ is bijective and cts $\implies f$ is strictly monotoinc	
+\end{theorem}
+\begin{proof}
+Fix any interval $[a,b] \subseteq \RR$. $f$ is bijective, so $f(a) \neq f(b)$, w.l.o.g. $f(b) > f(a).$ Suppose for contradiction $\exists c \in (a,b)$ such that $f(c) \not\in (f(a),f(b)).$ w.l.o.g. take $f(c) > f(b)$. Then fix $d \in (f(b),f(c))$. By IVT: $f|_{[a,c]}, ~\exists x \in (a,c)$ such that $f(x) = d$. Also  $f|_{[c,b]}, ~\exists y \in (c,b)$ such that $f(y) = d$.\\
+But $x \neq y$, a contradiction since $f$ is injective. Hence $\forall c \leq b$,$f(x) \leq f(b)$. $f$ injective $\implies f(c) < f(b)$. 
+\end{proof}\vspace*{5pt}
+
+\subsektion{Inverse Function Theorem}\vspace*{5pt}
+
+\begin{theorem}
+	$f: \RR \to \RR$ bijective and cts $\implies f^{-1}: \RR \to \RR$ cts.
+\end{theorem}
+\begin{proof}
+By Theorem 3.8, $f$ is strictly monotonic, w.l.o.g. strictly increasing. Fix $y_0 \in \RR$. Let $f^{-1}(y_0) = x_0 \in \RR$. Fix $\epsilon > 0$.\\ Set $\delta =$ min$\{f(x_0 + \epsilon) - y_0, y_0 - f(x_0 - \epsilon)\}$. Then $|y -  y_0| < \delta \implies y \in (y_0 -\delta, y_0 + \delta) \subseteq (f(x_0 - \epsilon), f(x_0 + \epsilon))$. Applying $f^{-1}$ preserves order $\implies f^{-1}(y) \in (x_0 - \epsilon, x_0 + \epsilon\implies |f^{-1}(y) - f^{-1}(y_0)| < \epsilon$.  	
+\end{proof}\vspace*{5pt}
+
+
+\begin{theorem}
+	$f:\RR^n \to \RR^m$ is cts at $\mathbf{a} = (a_1,\dots,a_n)$ if and only if $f_i:\RR^n \to \RR$ is cts at $a_i~\forall i$. (With $f = (f_1,\dots,f_m)$).
+\end{theorem}
+\begin{proof}
+	Fix $\epsilon >0.$ Then $f$ is cts at $\mathbf{a} \implies \exists \delta >0 $ such that $|\mathbf{x} - \mathbf{a}| < \delta  \implies |f(\mathbf{x}) - f(\mathbf{a}) < \epsilon ~(*)$. Since $|f(\mathbf{x}) - f(\mathbf{a})| = \sqrt{\sum_{j=1}^m (f_j(\mathbf{x}) - f_j(\mathbf{a}))^2} \geq \sqrt{(f)i(\mathbf{x}) - f_i(\mathbf{a}))}^2 = |f_i(\mathbf{x} - f_i(\mathbf{a})|$, $(*) \implies |f_i(\mathbf{x}) - f(\mathbf{a})| < \epsilon$.\\
+	
+	Suppose $f_i$ cts at $a_i~\forall i$. Fix $\epsilon > 0$. Then $\exists \delta_i > 0$ such that $|\mathbf{x} - \mathbf{a}| < \delta_i \implies |f_i(\mathbf{x}) - f_i(\mathbf{a})| < \epsilon$. Set $\delta =$ min$\{(\delta_i\} >0$, so that $|\mathbf{x} - \mathbf{a}| < \delta \implies |f_i(\mathbf{x}) - f_i(\mathbf{a})| < \epsilon ~\forall i \implies |f(\mathbf{x}) - f(\mathbf{a})| = \sqrt{\sum_{i=1}^m (f_i(\mathbf{x}) - f_i(\mathbf{a}))^2} \leq \sqrt{\sum_{i=1}^m \epsilon^2} = \sqrt{m}.\epsilon$
+\end{proof}
+
+
+

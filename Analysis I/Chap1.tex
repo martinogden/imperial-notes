@@ -1,0 +1,418 @@
+\stepcounter{lecture}
+
+\pagebreak
+\setcounter{section}{-1}
+
+\setcounter{lecture}{0}
+
+\sektion{Preliminaries}
+\lecturemarker{1}{5 Oct}
+
+
+M1F stuff:
+
+\begin{itemize}
+\item $\forall - \text{ for any, \textbf{fix any}, for all, every...}$
+\item $\exists - \text{ there exists}$
+\item $\mathbb{N} = \{1,2,3,\dots\}$ 
+\end{itemize}
+
+\begin{theorem}[Triangle Inequality]
+(See Question Sheet 1)
+	\[|a+b| \leq |a| + |b|\]
+\end{theorem}
+
+\begin{corollary}
+\[\left||a| - |b|\right|\leq |a-b|	\]
+\end{corollary}
+\begin{proof}
+\[
+\begin{aligned}
+|a-b| < \epsilon &\iff b-\epsilon < a < b + \epsilon\\
+&\iff a \in (b-\epsilon, b+\epsilon)\\
+&\iff b \in (a-\epsilon, a+\epsilon)	\\
+&\implies \left||a| - |b|\right|< \epsilon
+\end{aligned} \] 
+\end{proof}
+
+Lots of other versions, see Question Sheet 1 - \emph{don't try to memorise them!}\\
+
+
+
+\begin{clicker}
+Fix $a \in \mathbb{R}$. What does the statement 
+\[\forall \epsilon >0,~|x-a|<\epsilon ~(*)\]
+mean for the number $x$? 
+
+\textbf{Answer:} $x = a$. 
+\begin{proof}
+Assume $x \neq a$. Take $\epsilon := \frac{1}{2}|x-a| > 0$. Then $(*)$ does not hold.	
+\end{proof}
+
+\end{clicker}
+
+
+
+
+
+
+
+\stepcounter{lecture}
+\setcounter{lecture}{1}
+
+\sektion{Sequences}
+\lecturemarker{2}{5 Oct}
+\label{sub:sequences}
+
+A sequence $(a_n)_{n\geq 1}$ of real (or complex, etc.) numbers is an infinite list of numbers $a_1,~a_2,~a_3,\dots$ all in $\mathbb{R}$ (or $\mathbb{C}$, etc.) Formally:\\
+
+\begin{definition}
+	A \emph{sequence} is a function $a:\mathbb{N} \to \mathbb{R}$
+\end{definition}
+
+\textbf{Notation:} We let $a_n \in \mathbb{R}$ denote $a(n)$ for $n \in \mathbb{N}$. The data $(a_n)_{n=1,2,\dots}$ is equivalent to the function $a:\mathbb{N} \to \mathbb{R}$ because a function $a$ is determined by its values $a_n$ over all $n \in \mathbb{N}$. 
+
+We will denote $a$ by $a_1,~a_2,\dots$ or $(a_n)_{n\in\mathbb{N}}$ or $(a_n)_{n\geq 1}$ or even just $(a_n)$.
+
+\begin{remark}
+$a_i$'s could be repeated, so $(a_n)$ is \emph{not} equivalent to the set $\{a_n : n \in \mathbb{N}\}\subset \mathbb{R}$. E.g. $(a_n) = 1,~0,~1,~0,\dots$ is different from $(b_n) = 1,~0,~0,~1,~0,~0,~1,\dots$	
+\end{remark}
+
+We can describe a sequence in may ways, e.g. formula for $a_n$ as above $a_n = \frac{1-(-1)^n}{2}$, or a recursion e.g. $c_1 = 1 = c_2$, $c_n = c_{n-1} + c_{n-2}$ for $n\geq 3$, or a summation (see next section) e.g. $d_n = \sum_{i=1}^n \frac{1}{i} = 1 + \frac{1}{2} + \frac{1}{3} + \dots +\frac{1}{n}$.
+
+\subsektion{Convergence of Sequences}
+We want to \emph{rigorously} define $a_n \to a \in \mathbb{R}$, or ``$a_n$ converges to $a$ as $n \to \infty$" or ``$a$ is the limit of $(a_n)$". 
+
+Idea: $a_n$ should get closer and closer to $a$. Not necessarily monotonically, e.g.:
+\[a_n = 
+\begin{cases}
+\frac{1}{n} & n \text{ odd}\\
+\frac{1}{2n} & n \text{ even}	
+\end{cases}
+\hspace*{20pt}\text{ we want } a_n \to 0\]
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle,
+     x label style={at={(axis description cs:0.95,-0.15)}},
+     y label style={at={(axis description cs:-0.1,0.9)}},
+    xlabel={$n$},
+    ylabel={$a_n$},
+    ticks=none,
+  ymin = 0,
+  ymax = 0.4,
+  xmin = 1,
+  xmax = 10,
+  width=10cm,height=5cm]
+   \addplot[samples at={3,5,7,9}, only marks, mark=x, mark size=3pt]{1/x};
+    \addplot[samples at={2,4,6,8},only marks,mark=x,mark size=3pt]{(1/(2*x))};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+Also notice that $\frac{1}{n}$ gets closer and closer to $-1$! So we want to say instead that $a_n$ gets \emph{as close as we like to $a$}. We will measure this with $\epsilon >0$. We phrase ``$a_n$ gets \emph{arbitrarily} close to $a$" by ``$a_n$ gets to within $\epsilon$ of $a$ for \emph{any} $\epsilon >0$".\\
+
+\begin{definition}[Mestel]
+	$u_n \to u$ if $\forall n$ sufficiently large, $|u_n - u|$ is \emph{arbitrarily small.} 
+	
+Define a real number $b \in \mathbb{R}$ to be arbitrarily small if it is smaller than any $\epsilon >0$ i.e. $\forall \epsilon >0,~|b| < \epsilon$.
+\end{definition}
+
+Definition Mestel says that once $n$ is large enough, $|u_n - u|$ is less than every $\epsilon >0$, i..e it's zero, i.e. $u_n = u$. We want to \emph{reverse} the order of specifying $n$ and $\epsilon$. 
+
+i.e. we want to say that to get \emph{arbitrarily close to the limit $a$} (i.e. $|a_n - a| < \epsilon$), we need to go sufficiently far down the sequence. Then if I change $\epsilon >0$ to be smaller, I simply go further down the sequence to get within $\epsilon$ of $a$. \\
+
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+ axis line style={red},
+axis lines=middle,
+     x label style={at={(axis description cs:1.05,0.33)}},
+     y label style={at={(axis description cs:-0.1,1.1)}},
+    xlabel={\small $n$},
+    ylabel={$a_n \to 0$},
+  ymin = -0.4,
+  ymax = 0.7,
+  xmin = 1,
+  xmax = 20,
+    ytick = {0.3,0.12},
+   yticklabels={$\epsilon_1$,$\epsilon_2$},
+   xtick = 0,
+  width=12cm,height=8cm]
+   \addplot[samples at={2,...,20}, only marks, mark=x, mark size=2pt,  mark options={red},]{1/x};
+   \draw (axis cs:20,0.3) -- (axis cs:0,0.3);
+      \draw (axis cs:20,0.12) -- (axis cs:0,0.12);
+     \draw (axis cs:20,-.1) -- (axis cs:4,-.1) node at (axis cs:10,-0.15){\small $n$ suff. large for $|a_n - 0| < \epsilon_1$};
+          \draw (axis cs:4,-.06) -- (axis cs:4,-.1);
+          \draw (axis cs:20,-.06) -- (axis cs:20,-.1);
+          \draw (axis cs:20,-.25) -- (axis cs:9,-.25) node at (axis cs:15,-0.3){\small $n$ suff. large for $|a_n - 0| < \epsilon_2$};
+           \draw (axis cs:9,-.2) -- (axis cs:9,-.25);
+          \draw (axis cs:20,-.2) -- (axis cs:20,-.25);
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+There will not be a ``$n$ sufficiently large" that works for all $\epsilon$ at once! (unless $a_n = a$ eventually.)
+
+But for \emph{any} (fixed) $\epsilon>0$ we want there to be an $n$ sufficiently large such that $|a_n - a| < \epsilon$. So we change ``$\exists n$ such that $\forall \epsilon$" to ``$\forall \epsilon,~\exists n.$". \emph{This allows $n$ to depend on $\epsilon$.}~\\
+
+\begin{definition}[Nestel]
+	$a_n \to a$ if $\forall \epsilon >0,~\exists n \in \mathbb{N}$ such that $|a_n - a| < \epsilon$. 
+\end{definition}
+
+e.g. 
+\[
+a_n = \begin{cases}
+ 0 & n\text{ even}\\
+ 1 & n\text{ odd}	
+ \end{cases}
+ \text{ satisfies } a_n \to 0 \text{ according to Prof. Nestel.}
+\]
+
+We want to modify this to say eventually $|a_n - a| < \epsilon$ \emph{and it stays there!}\\
+
+\lecturemarker{3}{5 Oct}
+
+\begin{definition}[Actual Convergence]
+We say that $a_n \to a$ iff 
+\[\forall \epsilon >0,~\exists N \in \mathbb{N} \text{ such that } ``n \geq N \implies |a_n - a| < \epsilon"\]	
+\end{definition}
+
+This says that \emph{however close} ($\forall \epsilon>0$) I want to get to the limit $a$, there's a point in the sequence ($\exists N \in \mathbb{N}$) beyond which ($n \geq N$) my $a_n$ is indeed that close to the limit $a$ ($|a_n - a| <\epsilon$).\\ 
+
+\begin{remark}
+$N$ depends on $\epsilon$! $N = N(\epsilon)$	
+\end{remark}
+
+Equivalently:
+\[\forall \epsilon >0,~ \exists N \in \mathbb{N} \text{ such that} ``\forall n \geq N,~|a_n -a|<\epsilon"\]
+or equivalently
+\[\forall \epsilon >0,~\exists N_\epsilon\in\mathbb{N} \text{ such that } |a_n - a| < \epsilon,~\forall n \geq N_\epsilon\]
+
+\begin{clicker}Given a sequence of real numbers $(a_n)_{n\geq 1}$. Conisder 
+\[\boxed{\forall n \geq 1,~\exists \epsilon >0 \text{ such that } |a_n|< \epsilon}\]
+This means? 
+
+\textbf{Answer:} It always holds. \begin{proof}
+ Fix any $n \in \mathbb{N}$. Take $\epsilon = |a_n| + 1$. 	
+ \end{proof}
+ 
+What about
+ \[\boxed{\exists \epsilon >0 \text{ such that } \forall n \geq 1,~|a_n| < \epsilon} \]
+ 
+ \textbf{Answer:} $(a_n)$ is bounded.
+ 
+ 
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+ axis line style={red},
+axis lines=middle,
+     x label style={at={(axis description cs:1.05,0.4)}},
+     y label style={at={(axis description cs:-0.1,1.1)}},
+    xlabel={\small $n$},
+    ylabel={$a_n$},
+  ymin = -0.4,
+  ymax = 0.4,
+  xmin = 1,
+  xmax = 10,
+     ytick = {0.3, -.3},
+   yticklabels={$\epsilon$,$-\epsilon$},
+   xtick = 0,
+  width=10cm,height=5cm]
+   \addplot[samples at={5,7,9}, only marks, mark=x,  mark options={red}, mark size=3pt]{(-1)^x*1/x};
+    \addplot[samples at={2,3,4,6,8},only marks, mark options={red},mark=x,mark size=3pt]{(1/(2*x))};
+       \draw (axis cs:20,0.3) -- (axis cs:0,0.3);
+      \draw (axis cs:20,-0.3) -- (axis cs:0,-0.3);
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+  \begin{proof}
+$\iff a_n \in (-\epsilon,\epsilon)~ \forall n \iff |a_n|$ is bounded by $\epsilon$. \end{proof}
+
+\end{clicker}~
+
+\begin{definition}
+If $a_n$ does not converge to $a$ for any $a\in \mathbb{R}$, we say that $a_n$ \emph{diverges.}
+\end{definition}~
+
+\begin{example}
+I claim that $\frac{1}{n} \to 0$ as $n \to \infty$
+
+\textit{Rough working:} Fix $\epsilon >0$. I want to find $N \in \mathbb{N}$ such that $|a_n - a| = |\frac{1}{n} - 0| = \frac{1}{n} < \epsilon$ for all $n \geq N$. 
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+ axis line style={red},
+axis lines=middle,
+     x label style={at={(axis description cs:1.05,0.1)}},
+     y label style={at={(axis description cs:-0.1,1.1)}},
+    xlabel={\small $n$},
+    ylabel={$a_n$},
+  ymin = -0.1,
+  ymax = 0.4,
+  xmin = 1,
+  xmax = 10,
+     ytick = {0.15},
+   yticklabels={$\epsilon$},
+   xtick = 0,
+  width=10cm,height=5cm]
+   \addplot[samples at={5,7,9}, only marks, mark=x,  mark options={red}, mark size=3pt]{(-1)^x*1/x};
+    \addplot[samples at={2,3,4,6,8},only marks, mark options={red},mark=x,mark size=3pt]{(1/(2*x))};
+       \draw (axis cs:20,0.15) -- (axis cs:0,0.15);
+        \draw (axis cs:4,0.12) -- (axis cs:4,-0.1) node at (axis cs:4.2,-0.05) {$N$};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+Since $a_n = \frac{1}{n}$ is monotonic, it is \emph{sufficient} to ensure that $\frac{1}{N} < \epsilon \iff N > \frac{1}{\epsilon}$ (This \emph{implies} $\frac{1}{n} \leq \frac{1}{N} < \epsilon,~\forall n \geq N$).
+
+\begin{proof}
+Fix $\epsilon >0$. %\footnote[0]{Get used to this phrase - it appears in these notes 56 times! Supposedly the shortest maths joke is ``Fix $\epsilon < 0$" - it's not very funny.} 
+ Pick any $N \in \mathbb{N}$ such that $N > \frac{1}{\epsilon}$. (This is the Archimedean axiom of $\mathbb{R}$. Notice $N$ depends on $\epsilon$!!). Then $n \geq N \implies |\frac{1}{n}-0| = \frac{1}{n} \leq \frac{1}{N} < \epsilon$.
+\end{proof}
+
+
+\end{example}
+
+
+\textbf{Method to prove $a_n \to a$}
+\begin{enumerate}
+\item[(I)] Fix $\epsilon > 0$
+\item[(II)] Calculate $|a_n - a|$
+\item[(II$'$)] Find a good estimate $|a_n - a| < b_n$
+\item[(III)] Try to solve $a_n - a < b_n < \epsilon ~~(*)$
+\item[(IV)] Find $N \in \mathbb{N}$ s.t. $(*)$ holds whenever $n \geq N$
+\item[(V)] Put everything together into a logical proof (usually involves rewriting everything in reverse order - see examples below)
+\end{enumerate}~
+
+\begin{example}
+I claim that $\frac{1}{n} \to 0$ as $n \to \infty$
+
+\textit{Rough working:} Fix $\epsilon >0$. I want to find $N \in \mathbb{N}$ such that $|a_n - a| = |\frac{1}{n} - 0| = \frac{1}{n} < \epsilon$ for all $n \geq N$. 
+
+
+Since $a_n = \frac{1}{n}$ is monotonic, it is \emph{sufficient} to ensure that $\frac{1}{N} < \epsilon \iff N > \frac{1}{\epsilon}$ (This \emph{implies} $\frac{1}{n} \leq \frac{1}{N} < \epsilon,~\forall n \geq N$).
+
+\begin{proof}
+Fix $\epsilon >0$. %\footnote[0]{Get used to this phrase - it appears in these notes 56 times! Supposedly the shortest maths joke is ``Fix $\epsilon < 0$" - it's not very funny.} 
+ Pick any $N \in \mathbb{N}$ such that $N > \frac{1}{\epsilon}$. (This is the Archimedean axiom of $\mathbb{R}$. Notice $N$ depends on $\epsilon$!!). Then $n \geq N \implies |\frac{1}{n}-0| = \frac{1}{n} \leq \frac{1}{N} < \epsilon$.
+\end{proof}
+
+
+\end{example}~
+
+
+
+\lecturemarker{4}{5 Oct}
+We can also define limits for \emph{complex sequences}.\\
+
+\begin{definition}
+$a_n \in \mathbb{C},~\forall n \geq 1$. We say $a_n \to a \in \mathbb{C}$ iff
+\[\forall \epsilon >0,~\exists N \in \mathbb{N} \text{ such that } n \geq N \implies |a_n - a| < \epsilon\]	
+
+(i.e. $\sqrt{\Re(a_n-a)^2 + \frak{I}(a_n-a)^2} < \epsilon$) 
+
+This is equivalent (see problem sheet!) to $(\frak{R}a_n) \to \frak{a}$ \emph{and} $(\frak{I}a_n) \to \frak{I}a$
+\end{definition}~
+
+\begin{example}
+I claim that $\frac{1}{n} \to 0$ as $n \to \infty$
+
+\textit{Rough working:} Fix $\epsilon >0$. I want to find $N \in \mathbb{N}$ such that $|a_n - a| = |\frac{1}{n} - 0| = \frac{1}{n} < \epsilon$ for all $n \geq N$. 
+
+
+Since $a_n = \frac{1}{n}$ is monotonic, it is \emph{sufficient} to ensure that $\frac{1}{N} < \epsilon \iff N > \frac{1}{\epsilon}$ (This \emph{implies} $\frac{1}{n} \leq \frac{1}{N} < \epsilon,~\forall n \geq N$).
+
+\begin{proof}
+Fix $\epsilon >0$. %\footnote[0]{Get used to this phrase - it appears in these notes 56 times! Supposedly the shortest maths joke is ``Fix $\epsilon < 0$" - it's not very funny.} 
+ Pick any $N \in \mathbb{N}$ such that $N > \frac{1}{\epsilon}$. (This is the Archimedean axiom of $\mathbb{R}$. Notice $N$ depends on $\epsilon$!!). Then $n \geq N \implies |\frac{1}{n}-0| = \frac{1}{n} \leq \frac{1}{N} < \epsilon$.
+\end{proof}
+
+
+\end{example}~
+
+
+\begin{theorem}
+Convergence $\implies$ Bounded	
+\end{theorem}
+\begin{proof}
+Fix $\epsilon =1$. Then $(a_n)$ is bounded by max$\{a_1,a_2,\dots,a_{N-1},a+1\}$.
+\end{proof}
+
+\begin{theorem}
+Monotonic and Bounded $\implies$ Convergent	
+\end{theorem}
+
+\begin{proof}
+Set $a =$ sup $a_n$. $\forall \epsilon >0,~ \exists N \in \mathbb{N}$ such that $a_N\in (a-\epsilon,a)$.\\ Monotonic so \[\forall n \geq N,~a_n\geq a_N \implies |a_n - a| < \epsilon\qedhere\]	
+\end{proof}\vspace*{5pt}
+
+\begin{theorem}(Algebra of Limits)
+$a_n \to a$ and $b_n \to b$ then:\begin{enumerate}
+\item $a_n+b_n \to a+b$
+\item $a_nb_n \to ab$
+\item $\frac{a_n}{b_n} \to \frac{a}{b} ~(b \neq 0)$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$\forall \epsilon > 0,~ \exists N_1 \in \mathbb{N}$ such that $\forall n\geq N_1,~ |a_n	 - a| < \epsilon$ and $\exists N_2 \in \mathbb{N}$ such that $\forall n \geq N_2,~ |b_n - b| < \epsilon$. Set $N =$ max$\{N_1,N_2\}$ Then:\\
+
+\noindent 1. $|(a_n + b_n) - (a+b)| \leq |a_n -a| + |b_n -b| < 2 \epsilon $\\
+2. $|a_nb_n| \leq |a_n-a||b_n| + |b_n-b||a| < k\epsilon$\vspace*{5pt}\\
+3. $|\frac{a_n}{b_n} - \frac{a}{b}| \leq \frac{|a_n - a||b|}{|b||b_n|} + \frac{|b_n-b||a|}{|b||b_n|} < k \epsilon \qedhere $ 
+\end{proof}~
+
+
+\subsektion{Cauchy Sequences}~
+\begin{definition}
+	A sequence is Cauchy iff
+	\[\forall \epsilon >0,~\exists N \in \mathbb{N} \text{ s.t. } \forall n,m \geq N,~ |a_n - a_m| < \epsilon\]
+\end{definition}
+
+\begin{theorem}	
+Convergence $\implies$ Cauchy
+\end{theorem}
+\begin{proof}
+$\forall \epsilon > 0,~ \exists N_1 \in \mathbb{N}$ such that $\forall n\geq N_1,~ |a_n	 - a| < \epsilon$ and $\exists N_2 \in \mathbb{N}$ such that $\forall n \geq N_2,~ |a_m - a| < \epsilon$.\\ Set $N =$ max$\{N_1,N_2\}, \forall n,m \geq N: |a_n - a_m| \leq |a_n - a| + |a_m - a| < 2\epsilon$.
+\end{proof}\vspace*{5pt}
+
+\begin{theorem}
+Cauchy $\implies$ Convergence	
+\end{theorem}
+\begin{proof}[Proof (1.)]
+	Fix $\epsilon >0.~ \exists N \in \mathbb{N}$ such that $\forall n,m \geq N:$\\$ a_m \in (a_n - \frac{\epsilon}{2},a_n + \frac{\epsilon}{2}) \implies a_n - \frac{\epsilon}{2} < a_m < a_n + \frac{\epsilon}{2}$.\\ 
+	 Set $b_i :=$ sup $\{a_m : m \geq i \geq N\} \implies  a_n - \frac{\epsilon}{2} < b_i \leq  a_n + \frac{\epsilon}{2}$.\\ Set $a:=$ inf $\{b_i : i \geq N\} \implies  a_n - \frac{\epsilon}{2} \leq a \leq a_n + \frac{\epsilon}{2} $\\ $\implies |a_n - a| \leq \frac{\epsilon}{2} < \epsilon.$
+\end{proof}
+\begin{proof}[Proof (2.)]
+	Bounded by $\{a_1,\dots,a_{N-1},a_{N+1}\}$ so by BW Theorem, exists a convergent subsequence $a_k \to a$:\\ $\forall \epsilon >0, ~\exists N_1 \in \mathbb{N}$ such that $\forall n \geq N_1,~|a_k - a| < \epsilon$ and $\exists N_2 \in \mathbb{N}$ such that $\forall n \geq N_2,~ |a_n - a_k| < \epsilon$.\\ Set $N =$ max $\{N_1,N_2\},\forall n,k \geq N$: $|a_n - a| \leq |a_n - a_k| + |a_k - a| < 2\epsilon$. 
+\end{proof}~\\
+
+\subsektion{Subsequences}~
+
+\begin{theorem}[Bolzano-Weierstrass]
+Bounded $\implies$ Convergent Subsequence 
+\end{theorem}
+\begin{proof}[Proof (1.)]
+If finitely many peak points, we can set $y_i:= x_{N(i)}~\forall i \in \mathbb{N}$ such that $\forall i > j,~ N(i)> N(j)$ and $x_{N(i)} > x_{N(j)}$. So $y_i$ is monotonic increasing $\implies$ convergent.\\
+
+If infinitely many peak points, we can set $y_i:= x_{N(i)}~\forall i \in \mathbb{N}$ such that $\forall i > j,~ N(i)> N(j)$ and $x_{N(i)} < x_{N(j)}$. So $y_i$ is monotonic decreasing $\implies$ convergent.
+\end{proof}\vspace*{5pt}
+
+\begin{proof}[Proof (2.)]
+	Definte the subsequence of $a_n$, $a_n(i)$ to be the set of points $a_n \in [A_i,B_i] \subseteq [A_j,B_j]~ \forall i > j$, where $[A_i]$ is the interval defined: \begin{itemize}
+ \item$[A_0,B_0] = [-R,R]$, with $R$ being the bounds of $a_n$.
+ \item	$[A_i,B_i]$ is one of the sets $[A_{i-1},\frac{A_{i-1},B{i-1}}{2}]$ or $[\frac{A_{i-1},B{i-1}}{2},B{i-1}]$ which contains infinitely many points. 
+ \end{itemize}
+ Then our convergent subsequence is $(b_{i})_{i \in \mathbb{N}}= a_{n_{i-1}(i)}$, valid since $n_{i}(i+1) > n_{i-1}(i)~ \forall i \in \mathbb{N}$. \textbf{Claim:} $(b_i)$ is convergent.\\
+ 
+  \textit{Proof.} Fix $\epsilon >0$. Take $N_{\epsilon} > \frac{2R}{\epsilon}$, so that $\frac{2R}{2^{N_{\epsilon}}} < \frac{2R}{N_{\epsilon}} < \epsilon$. Then $\forall i, j \geq N_{\epsilon}~ |b_i - b_j| < \frac{2R}{2^{N_{\epsilon}}} < \epsilon$ since $b_i,b_j \in [A_{N_{\epsilon}},B_{N_{\epsilon}}] \implies (b_i)$ Cauchy $\implies$ convergent.
+	\end{proof}\vspace*{5pt}
+	
+
