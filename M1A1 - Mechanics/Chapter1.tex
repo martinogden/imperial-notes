@@ -1,0 +1,250 @@
+%!TEX root = linear-algebra.tex
+\stepcounter{lecture}
+\setcounter{lecture}{1}
+\pagebreak
+\sektion{Kinematics}
+
+
+\lecturemarker{1}{5 Oct}
+
+\setcounter{page}{4}
+
+What we are after is an \emph{equation of motion} to find the position of an object for all times. Ingredients to an equation of motion:\begin{enumerate}
+\item[1)] Kinematics - Description of motion 
+\item[2)] Kinetics - Newton's laws
+\item[3)] Mathematical Description of Forces - Describe forces in terms of kinematic quantities
+\end{enumerate}
+
+
+\subsektion{Cartesian Coordinates} % (fold)
+\label{sub:sets}
+
+
+
+For a point particle there are three key kinematic quantities.\begin{enumerate}
+\item[1.] Positon: $\vec{r}(t)$
+\item[2.] Velocity: $\vec{v}(t)$
+\item[3.] Acceleration: $\vec{a}(t)$
+
+In general, $\vec{r}(t),~\vec{v}(t),~\vec{a}(t) \in \mathbb{R}^3$. 
+\end{enumerate}\vspace*{5pt}
+
+We can use different coordinate systems to describe our quantities:
+\begin{enumerate}
+\item Cartesian
+\item Polar
+\item Intrinsic	
+\end{enumerate}
+
+Consider the path of a particle through space:
+
+\vspace*{100pt}
+
+\begin{definition} We write the \emph{position} at time $t$ as
+\[\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + z(t)\hat{k}\]
+We can also write this as
+\[[\vec{r}(t)] = \left[\begin{smallmatrix}
+x(t)\\ y(t) \\ z(t)	
+\end{smallmatrix}
+ \right]\text{ so, } \hat{i} =  \left[\begin{smallmatrix}
+1\\0\\0
+\end{smallmatrix}
+ \right],~ \hat{j} =  \left[\begin{smallmatrix}
+0\\j\\0
+\end{smallmatrix}
+ \right],~ \hat{k} =  \left[\begin{smallmatrix}
+0\\0\\1
+\end{smallmatrix}
+ \right]\]
+ \textit{Magnitude of $\vec{r}$} \[r = |\vec{r}| = \sqrt{x^2 + y^2 + z^2}\]
+$r$ is the distance from the origin.
+ 
+ \textit{Direction of $\vec{r}$} \[\hat{r} = \vec{r}/r = \frac{x}{r}\hat{i} + \frac{y}{r}\hat{j} + \frac{z}{r}\hat{k}\]
+  \end{definition}
+  
+ So, we can write 
+ \[\vec{r} = r(t)\hat{r}(t)\]
+ This is the starting point for polar coordinates.\\
+
+  \lecturemarker{2}{5 Oct}
+ \textbf{Last Time:}
+ \vspace*{100pt}
+
+
+
+Position: 
+\[\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + z(t)\hat{k}\]
+At $\Delta t$ later
+\[\vec{r}(t + \Delta t) = x(t + \Delta t)\hat{i} + y(t + \Delta t)\hat{j} + z(t + \Delta t)\hat{k}\]
+
+\begin{definition}
+Define $\Delta \vec{r} = \vec{r}(t + \Delta t) - \vec{r}(t)$
+
+Define the \emph{velocity} of the particle at time $t$
+\[\vec{v}(t) = \lim_{\Delta t \to 0} \frac{\Delta \vec{r}}{\Delta t} = \frac{\mathrm{d}\vec{r}}{\mathrm{d}t}\]
+\end{definition}
+
+Since $\hat{i},\hat{j},\hat{k}$ are constant in time
+\[\begin{aligned}
+	\vec{v}(t) = \frac{\mathrm{d}}{\mathrm{d}t}(\vec{r}(t)) &= \frac{\mathrm{d}}{\mathrm{d}t}(x \hat{i} + y\hat{j} + z\hat{k})\\
+	&= \frac{\mathrm{d}x}{\mathrm{d}t}\hat{i} + \frac{\mathrm{d}y}{\mathrm{d}t}\hat{j} + \frac{\mathrm{d}z}{\mathrm{d}t}\hat{k}
+\end{aligned}
+\]
+Writing $\dfrac{\mathrm{d}f}{\mathrm{d}t} \equiv \dot{f}$, \[\vec{v}(t) = \dot{x}\hat{i} + \dot{y}\hat{j} + \dot{z}\hat{k} = v_x\hat{i} + v_y\hat{j} + v_z\hat{k}\]
+
+\begin{definition}
+\[v = |\vec{v}| = [v_x^2 + v_y^2 + v_z^2]^{1/2}\]
+is the magnitude of the velocity or \emph{speed} of the particle.
+
+Thus, the \emph{direction} of motion is 
+\[\hat{v} = \vec{v}/v,~ |\hat{v}| = 1\]
+$\hat{v}$ is also the unit tangent to the path.
+
+Define the \emph{acceleration}
+\[\vec{a}(t) = \frac{d\vec{v}}{dt} = \frac{d^2\vec{r}}{dt^2} = \ddot{x}\hat{i} + \ddot{y}\hat{j} + \ddot{z}\hat{k}\]
+\end{definition}
+
+$\vec{a}(t)$ tells us how the velocity is changing at time $t$. 
+
+Recall that we can write 
+\[\vec{v} = v(t)\hat{v}(t), \text{ then } \vec{a} = \]
+
+\subsektion{Polar Coodinates}
+\pagebreak
+
+
+\subsektion{Intrinsic Coordinates}
+
+\lecturemarker{7}{5 Oct}
+
+Coordinates that are intrinsic to the path of our particle. We know the path!
+\vspace*{120pt}
+
+Distance travelled between $t$ and $t + \Delta t$
+:
+\[\Delta s = |\Delta \vec{r}| = \left|[x(t + \Delta t) - x(t)]\hat{i} + [y(t + \Delta t) - y(t)]\hat{j} + [z(t + \Delta t) - z(t)]\hat{k}\right|\]
+For $\Delta t << 1$: 
+\[x(t + \Delta t) = x(t) + \Delta t \frac{dx}{dt} + \cal{O}(\Delta t^2)\]
+Doing the same for our other components:
+\[\Delta s = \underbrace{\left|\frac{dx}{dt}\hat{i} + \frac{dy}{dt}\hat{j} + \frac{dz}{dt}\hat{k}\right|}_{\vec{v}}\Delta t + \cal{O}(\Delta t^2)\]
+
+Thus,
+\[\frac{\Delta s}{\Delta t} = v + \cal{O}(\Delta t)\]
+Taking $\lim \Delta t \to 0$
+\[\boxed{\frac{ds}{dt} = v = \dot{s} \implies s(t) = \int_0^t v(t')\,dt'}\]
+Both $t$ and $s$ are ways of parametrizing our curve (path). Instead of writing $\vec{r}(t)$, we can write $\vec{r}(s)$. \\
+
+\begin{definition} $s$ is what we call the \emph{arc length}. 
+
+$\displaystyle{\vec{v} = \frac{d\vec{r}}{dt} = \frac{d\vec{r}}{ds}\frac{ds}{dt}}$. But $\displaystyle{\frac{ds}{dt} = v}$. So, $\displaystyle{\frac{d\vec{r}}{ds} = \hat{v}}$, the unit tangent at evert point $s$. Thus
+\[\vec{v}(s) = \dot{s}\hat{v}\]
+
+Also \[\begin{aligned}
+	\vec{a} = \frac{d\vec{v}}{dt} = \frac{d}{dt}\left(\dot{s}~ \frac{d\vec{r}}{ds}\right) = \ddot{s}\frac{\d\vec{r}}{ds} + \dot{s}\frac{d}{dt}\left(\frac{d\vec{r}}{ds}\right) &= \ddot{s}\hat{v} + \dot{s}\frac{d^2\vec{r}}{ds^2}\frac{ds}{dt}
+\end{aligned}
+\]
+
+So
+\[\vec{a}(s) = \ddot{s}\hat{v} + \dot{s}^2\frac{d^2\vec{r}}{ds^2} = \ddot{s}\hat{v} + \kappa \dot{s}^2\hat{n}\]
+Writing $\displaystyle{\frac{d^2\vec{r}}{ds^2} = \kappa \hat{n}}$, where $\displaystyle{\kappa =\left|\frac{d^2\vec{r}}{ds^2}\right| }$, $\hat{n} = \displaystyle{\frac{1}{\kappa}\frac{d^2\vec{r}}{ds^2}}$.
+\end{definition}
+
+It turns out that $\kappa$ is the curvature of the path. What about $\hat{n}$?
+
+Recall: $|\hat{v}| = 1$. So $\frac{d}{ds}(\hat{v}\cdot\hat{v} = 1) \implies 2\hat{v}\cdot\frac{d\hat{v}}{ds} = 0 \implies 2\kappa(\hat{v}\cdot\hat{n}) = 0$
+
+So, if $\kappa \neq 0$, then $\hat{v}\cdot \hat{n} = 0$. Thus $\hat{n}$ is the unit normal to the path.\\
+
+Tangential component of the acceleration $a_t = \vec{a}\cdot\hat{v} = \ddot{s}$
+
+Normal component of the acceleration $a_n = \vec{a}\cdot\hat{n} = \kappa \dot{s}^2$, where $\kappa \approx 1/R$
+\vspace*{100pt}
+
+Key things to note: $\hat{v}, \hat{n}, \kappa$ depend only on the path. Knowing $\vec{r}(s)$, we can find these 	quantities. 
+
+$\dot{s}$ and $\ddot{s}$ depend on how the particle is moving along the path.\\
+
+
+\begin{example}[Circular Motion]~\\
+
+\textbf{Cartesian:}
+$\vec{r}(t) = R\sin(\omega t)\hat{i} + R\cos(\omega t)\hat{j}$.
+Differentiating finds $\vec{v}(t)$ and $\vec{a}(t)$.\\
+
+\textbf{Polars:} 
+$r = R$ and $\theta = \frac{\pi}{2} \omega t \implies \dot{r} = \ddot{r} = 0$ and $ \dot{\theta} = -\omega,~\ddot{\theta} = 0$. So 
+
+\[\begin{aligned}
+	\vec{r} &= R\hat{r}\\
+ \vec{v} &= \dot{r}\hat{r} + r\dot{\theta}\hat{\theta} = -R\omega\hat{\theta}\\
+\vec{a} &= (\ddot{r} - r\dot{\theta}^2)\hat{r} + (2\dot{r}\dot{\theta} + r\ddot{\theta})\hat{\theta} = -R\omega^2\hat{r}
+\end{aligned}
+\]~
+
+\textbf{Intrinsic:} ($s(0) = 0$) The speed is given by $v = R\omega = \dot{s} \implies \ddot{s} = 0$. Integrate to find $s$
+\[s = R\omega t \implies t= \frac{s}{R\omega}\]
+Substitute this into our expression for $\vec{r}(t)$
+\[\vec{r}(s) = R\sin(s/R)\hat{i} + R\cos(s/R)\hat{j}\]
+
+$\implies \hat{v} = \dfrac{d\vec{r}}{ds} = \cos(s/R)\hat{i} - \sin(s/R)\hat{j}$,
+$~~\dfrac{d^2\vec{r}}{ds^2} = -\dfrac{1}{R}[\sin(s/R)\hat{i} + \cos(s/R)\hat{j}]$
+
+$\implies \kappa = \left|\dfrac{d^2\vec{r}}{ds^2} \right| = \dfrac{1}{R}$, $\hat{n} = -\sin(s/R)\hat{i} - \cos(s/R)\hat{j}$
+
+\[\begin{aligned}
+\vec{v}(s) &= R\omega \hat{v}\\
+\vec{a}(s) &= \ddot{s}\hat{v} + \kappa \dot{s}^2\hat{n} = \frac{1}{R}(R\omega)^2\hat{n} = R\omega^2\hat{n}
+\end{aligned}
+\]
+\end{example}
+
+
+\begin{example}[Helical Path]\lecturemarker{8}{5 Oct}
+	\[\vec{r}(s) = b\cos(ks)\hat{i} + b\sin(ks)\hat{j} + s\sqrt{1-b^2k^2}\hat{k}\]
+	
+	Tangent:
+	\[\vec{v} = \frac{d\vec{r}}{ds} = -bk\sin(ks)\hat{i} + bk\cos(ks)\hat{j} + \sqrt{1-b^2k^2}\hat{k}\]~
+	
+	Curvature and Normal:
+	\[\frac{d^2\vec{r}}{ds^2} = -bk^2\cos(ks)\hat{i} -bk^2 \sin(ks)\hat{j}\]
+	\[\kappa =\left|\frac{d^2\vec{r}}{ds^2}\right| = bk^2,~ \hat{n} =  -\cos(ks)\hat{i} -\sin(ks)\hat{j}\]
+	
+Take $s = ct$ ($c >0$) $ \implies \dot{s} =c,~ \ddot{s} = 0$. Thus
+\[\vec{v} = c\hat{v},~\vec{a} = c^2bk^2\hat{n}\]	
+\end{example}
+
+Take the case where our path lies in the $xy-$plane and we know $y(x)$
+\vspace*{100pt}
+
+Then $ds^2 = dx^2 + dy^2$. Since $dy = \frac{dy}{dx}dx \implies ds^2 = (1 + (\frac{dy}{dx})^2 )dx^2$
+\[\implies \frac{ds}{dx} = \sqrt{1 + y'^2}\]
+\[s(x) = \int_{x_0}^x (1 + y'^2)^{1/2}dx\]
+
+Highlights that $s$ just depends on the path. 
+
+
+Position $\vec{r}(x) = x\hat{i} + y(x)\hat{j}$
+
+Tangent to the path
+\[\hat{v} = \frac{d\vec{r}}{ds} = \frac{d\vec{r}}{dx}\frac{dx}{ds} = \frac{d\vec{r}}{dx}\left(\frac{ds}{dx}\right)^{-1}\]
+\[\frac{d\vec{r}}{dx} = \hat{i} + y'\hat{j},~~\left(\frac{ds}{dx}\right)^{-1} = [1 + y'^2]^{-1/2}\]
+\[\implies \hat{v} = [1+y'2]^{-1/2}[\hat{i} + y'\hat{j}]\]
+
+Curvature and Normal
+\[\frac{d^2\vec{r}}{ds^2} = \frac{d}{dx}\left(\frac{d\vec{r}}{ds}\right)\left(\frac{ds}{dx}\right)^{-1} = \left(\frac{d}{dx}\left(\frac{d\vec{r}}{ds}\right)\frac{dx}{ds}\right)\]
+\[\frac{d}{dx}\frac{d\vec{r}}{ds} = \frac{d\hat{v}}{dx} = -\frac{1}{2}[1+y'^2]^{-3/2} \times (2y'y'')\times [\hat{i} + y'\hat{j}] + [1 + y'^2]^{-1/2}y''\hat{j}\]~
+
+
+\begin{example}
+$y = x^2,~y' = 2x,~ y'' = 2$
+
+\[\frac{ds}{dx} = [1 + y'^2]^{1/2}\]	
+\end{example}
+
+
+
+
+
+
+
+

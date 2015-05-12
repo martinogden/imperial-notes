@@ -1,0 +1,359 @@
+%!TEX root = linear-algebra.tex
+\stepcounter{lecture}
+\setcounter{lecture}{7}
+
+
+\sektion{Systems of Particles}
+\lecturemarker{26}{22 Oct}
+
+\begin{definition}
+\begin{itemize}
+\item N: Total number of particles
+\item $\vec{r}_i$: Position of particle $i$
+\item $\vec{v}_i$: Velocity of particle $i$
+\item $\vec{F}_i$: Force on particle $i$
+ \item $m_i$: Mass of particle $i$
+\end{itemize}	
+\end{definition}
+
+\vspace*{60pt}
+
+Consider the average motion of the system:
+
+\begin{definition}
+\emph{Centre of Mass}, $\vec{r}_{cm}$:
+\[\vec{r}_{cm} = \frac{\sum_{i=1}^Nm_i\vec{r}_i}{\sum_{i=1}^Nm_i} =\frac{\sum_{i=1}^Nm_i\vec{r}_i}{M}  \]
+Where $M = \sum_{i=1}^Nm_i$ is the \emph{total mass}. 	
+\end{definition}
+
+\subsubsektion{Momentum}
+
+The total momentum $\vec{p}$ is
+\[\begin{aligned}\vec{p} = \sum_i\vec{p}_i = \sum_im_i\vec{v}_i &= \sum_i m_i\frac{d\vec{r}_i}{dt} \\
+ &= \frac{d}{dt}(\sum_i m_i\vec{r}_i) \\
+ &= \frac{d}{dt}(M\vec{r}_{cm}) \\
+ &= M\frac{d\vec{r}_{cm}}{dt} = M\vec{v}_{cm}
+\end{aligned}
+\]
+
+Where $\vec{v}_{cm}$ is the velocity of the centre of mass.
+
+
+\[\vec{F}_i = \vec{F}_i^{EXT} + \sum_{j=1}^N \vec{F}_{ij}\]
+where $\vec{F}_i^{EXT}$ is the external forces on particle $i$, $\vec{F}_{ij}$ is the force on $i$ due to $j$
+\begin{example}
+\vspace*{45pt}
+
+Here $\vec{F}_{gi}$(Force due to gravity on $i$) is the only external force on $i \implies \vec{F}_i^{EXT} = \vec{F}_{gi}$
+	
+\end{example}
+
+Note that
+\begin{enumerate}
+\item $\vec{F}_{ii} = \vec{0}$
+\item $\vec{F}_{ij} = -\vec{F}_{ji}$ By Newton's Third Law
+\end{enumerate}
+
+\begin{theorem}[Newton's Second Law for a System]
+The external force is equal to the rate of change of momentum of the centre of mass
+	\[M\frac{d\vec{v}_{cm}}{dt} = \vec{F}^{EXT}\]
+	Where the total external force on the system $\vec{F}^{EXT} = \sum_i\vec{F}_i^{EXT}$.
+\end{theorem}
+\begin{proof}
+
+For particle $i$, \[\dfrac{d\vec{p}_i}{dt} = \vec{F}_i = \vec{F}_i^{EXT} + \sum_{j=1}^N\vec{F}_{ij}\] 
+\[\implies \sum_i \dfrac{d\vec{p}_i}{dt} = \sum_i\vec{F}_i = \sum_i\vec{F}_i^{EXT} + \sum_i\sum_j\vec{F}_{ij} \]
+Due to Newton's Third Law $\sum_i\sum_j\vec{F}_{ij} = \vec{0}$. We are then left with 
+\[\begin{aligned}\sum_i\dfrac{d\vec{p}_i}{dt} &= \sum_i\vec{F}_i^{EXT}\\
+\implies \dfrac{d}{dt}(\sum_i \vec{p}_i) &= \vec{F}^{EXT}\end{aligned}
+\]
+\[\implies M\frac{d\vec{v}_{cm}}{dt} = \vec{F}^{EXT}\qedhere\]
+\end{proof}
+
+\begin{enumerate}
+\item If there is no external forces then 
+\[M \frac{d\vec{v}_{cm}}{dt} = 0 = \frac{d\vec{p}}{dt}\]
+(The conservation of momentum)
+\item	If there are external forces then the centre of mass moves as though it were a point particle of mass $m$ subject to force $\vec{F}^{EXT}$
+\end{enumerate}
+
+
+\subsektion{Two Body Problems}
+\vspace*{50pt}
+
+$\vec{F}_1 = m_1g \hat{i} + \vec{F}_{12}$
+
+$\vec{F}_2 = m_2g \hat{i} + \vec{F}_{21}$
+
+The total external force:
+\[\vec{F}^{EXT} = m_1g\hat{i} + m_2g\hat{i} = Mg\hat{i} ~(M = m_1 + m+2)\]
+Thus
+\[M\frac{d\vec{v}_{cm}}{dt} = Mg\hat{i} \implies \frac{d\vec{v}_{cm}}{dt} = g\hat{i}\]
+
+For two body problems this is half of the information.
+
+\begin{equation}
+m_1\frac{d^2\vec{r}_1}{dt^2} = \vec{F}_1^{EXT} + \vec{F}_{12}	
+\end{equation}
+
+\begin{equation}
+m_2\frac{d^2\vec{r}_2}{dt^2} = \vec{F}_2^{EXT} + \vec{F}_{21}	
+\end{equation}
+Calling $\dfrac{m_1\vec{r}_1 + m_2\vec{r}_2}{m_1 + m_2}$, and adding the equations
+\setlength{\jot}{10pt}
+\[\begin{aligned}m_1\frac{d^2\vec{r}_1}{dt^2} + m_2\frac{d^2\vec{r}_2}{dt^2} &= \vec{F}_1^{EXT} + \vec{F}_{2}^{EXT}\\
+M \frac{d}{dt}\left(\frac{m_1\vec{v}_1 + m_2\vec{v}_2}{M}\right) &=  \vec{F}_1^{EXT} + \vec{F}_{2}^{EXT}\\
+M\frac{d\vec{v}_{cm}}{dt} &=  \vec{F}_1^{EXT} + \vec{F}_{2}^{EXT}
+\end{aligned}\]
+
+\lecturemarker{27}{22 Oct}
+Consider: $m_2 \times (7.4) - m_1\times(7.3)$
+\[m_1m_2\frac{d^2}{dt^2}(\vec{r}_1-\vec{r}_2) = m_2\vec{F}_1^{EXT} + m_1\vec{F}_2^{EXT} + m_2\vec{F}_{12} - m_1\vec{F}_{21}\]
+Call $\vec{r}_{12} = (\vec{r}_1 - \vec{r}_2)$. Since $\vec{F}_{12} = -\vec{F}_{21}$
+\[m_1m_2\frac{d^2\vec{r}_{12}}{dt^2} = m_2\vec{F}_1^{EXT} + m_1\vec{F}_2^{EXT} + (m_1 + m_2)\vec{F}_{12}\]
+Divide through by $M$
+\[\frac{m_1m_2}{M}\frac{d^2\vec{r}_{12}}{dt^2} = \frac{m_2\vec{F}_1^{EXT} + m_1\vec{F}_2^{EXT}}{M} + \vec{F}_{12}\]
+\begin{definition} Introduce $\mu = \dfrac{m_1m_2}{M}$, the \emph{reduced mass}.
+\end{definition}
+Then for our two body system we have:
+\begin{equation}
+M\frac{d\vec{v}_{cm}}{dt} =  \vec{F}_1^{EXT} + \vec{F}_{2}^{EXT}
+\end{equation}
+\begin{equation}
+\mu\frac{d^2\vec{r}_{12}}{dt^2} = \frac{m_2\vec{F}_1^{EXT} + m_1\vec{F}_2^{EXT}}{M} + \vec{F}_{12}
+\end{equation}~
+
+If $\vec{F}_1^{EXT} = \vec{F}^{EXT}_2 = 0$, then $M\dfrac{d\vec{v}_{cm}}{dt} = 0$, and $\mu\dfrac{d^2\vec{r}_{12}}{dt^2}  = \vec{F}_{12}$.
+
+If $\vec{F}_1^{EXT} = -m_1g\hat{j}$ and $\vec{F}^{EXT}_2 = -m_2g\hat{j}0$, then $M\dfrac{d\vec{v}_{cm}}{dt} = -Mg\hat{j}$, and $\mu\dfrac{d^2\vec{r}_{12}}{dt^2}  = \vec{F}_{12}$.
+
+
+
+\begin{example}[Spring]
+\vspace*{50pt}
+
+Speing has a spring constant $k$ and equilibrium lnegth $l$. 
+\[\vec{F}_{12} = -k(x_1 - x_2 - l)\hat{i}\]
+
+Initially $x_1(0) = k,~ \dot{x}_1 = v_0$. $x_2(0) = \dot{x}_2(0) = 0$.
+
+$\vec{F}_{12}$ is the only force in the $\hat{i}$ direction. No external forces in the $\hat{i}$ direction. 
+\[\implies M\ddot{x}_{cm} = 0 \implies \dot{x}_{cm} = C\]
+We can find $C$ using the conservation of momentum
+\[\vec{p} = m\dot{x}_1 + m\dot{x}_2 = M\dot{x}_{cm}\]
+At $t = 0, \dot{x}_1 = v_0$ and $\dot{x}_2 = 0$. Then $p = mv_0$. Since $M = 2m$:
+\[\dot{x}_{cm} = v_0/2\]
+
+For $x_{12} = x_1 - x_2$
+\[\mu = \frac{m_1m_2}{m_1 + m_2} = \frac{m^2}{2m} = \frac{m}{2}\]
+\[\vec{F}_{12} = -k(x_1 - x_2 - l) = -k(x_{12} - l)\]
+
+Using the equation for $\vec{r}_{12}$
+\[\begin{aligned}\mu\ddot{x}_{12} &= \vec{F}_{12}\\
+\frac{m}{2}\ddot{x}_{12} &= -k(x_{12} - l)\\
+\ddot{x}_{12} + \frac{2k}{m}x_{12} &= \frac{2kl}{m}	
+\end{aligned}
+\]
+
+The general solution is 
+\[x_{12} = A\cos\omega t + B\sin\omega t + l\]
+where $\omega^2 = \frac{2k}{m}$. 
+
+From our initial conditions $x_{12}(0) = x_1(0) - x_2(0) = l$ and $\dot{x}_{12} = v_0$. 
+\[\implies A = 0,~B = v_0/\omega\]Thus
+\[x_{12} = \frac{v_0}{\omega}\sin\omega t + l\]
+\[\dot{x}_{12} = v_0\cos\omega t\]
+
+We can show that (in general)
+\[\vec{r}_1 = \vec{r}_{cm} + \vec{m_2}{M}\vec{r}_{12}\]
+\[\vec{r}_2 = \vec{r}_{cm} + \vec{m_1}{M}\vec{r}_{12}\]
+
+Thus
+\[x_1 = x_{cm} + \frac{1}{2}x_{12}\]
+\[\dot{x}_1 = \dot{x}_{cm} + \frac{1}{2}\dot{x}_{12} = \frac{v_0}{2} + \frac{1}{2}v_0\cos\omega t = \frac{v_0}{2}(1+\cos\omega t)\]
+Similarly 
+\[\dot{x}_2 =  \frac{v_0}{2}(1 - \cos\omega t)\]
+This is a push-me-pull-you system.
+\end{example}
+
+\emph{What about more than two particles?}\\
+
+\begin{definition}[Centre of Mass Coordinates]
+\[\vec{R}_i = \vec{r}_i - \vec{r}_{cm}\]	
+This is the position of particle $i$ relative to the position of the centre of mass
+\end{definition}
+
+\[\sum_im_i\vec{R}_i = \underbrace{\sum_im_i\vec{r}_i}_{M\vec{r}_{cm}}- \vec{r}_{cm}\underbrace{\sum_im_i}_{M} = 0\]
+
+
+
+
+
+
+
+
+\subsubsektion{Kinetic Energy}
+\lecturemarker{28}{22 Oct}
+\[T = \sum_i \frac{1}{2}m_iv_i^2\]
+We can write $\vec{v}_i = \vec{v}_{cm} + \dfrac{d\vec{R}_i}{dt},~\vec{u}_i = \dfrac{d\vec{R}_i}{dt}$, so $\vec{v}_i = \vec{v}_{cm} + \vec{u}_i$
+
+\[\begin{aligned}T &= \sum_i \frac{1}{2}m_i(\vec{v}_{cm}+\vec{u}_i) \cdot(\vec{v}_{cm}+\vec{u}_i)\\
+&= \sum_i \frac{1}{2}[v_{cm}^2 + 2\vec{u}_i\cdot\vec{v}_{cm} + u_i^2\\
+&= 	\frac{1}{2}v_{cm}^2\sum_i m_i + \vec{v}_{cm}\cdot\sum_im_i\vec{u}_i + \frac{1}{2}\sum_im_iu_i^2\\
+&= \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}\sum_im_iu_i^2 + \vec{v}_{cm}\cdot\sum_im_i\vec{u}_i
+\end{aligned}
+\]
+Consider $\sum_i m_i\vec{u}_i = \sum_im_i\dfrac{d\vec{R}_i}{dt} = \dfrac{d}{dt}(\sum_i m_i\vec{R}_i) = 0$. Then 
+\begin{equation}\boxed{T = \frac{1}{2}Mv_{cm}^2 + \sum_i\frac{1}{2}m_iu_i^2}\end{equation}
+
+\subsektion{Angular Momentum}
+
+\[\vec{J} = \vec{r} \times \vec{p} = \vec{r} \times m\vec{v}\]
+For central forces where the motion was restricted to a plane $\vec{J} = mh\hat{k} =$ constant vector. 
+
+\emph{What causes $\vec{J}$ to change?}
+
+\[\begin{aligned}\frac{d\vec{J}}{dt} &= \frac{d\vec{r}}{dt} \times m \vec{v} + \vec{r}\times \frac{d\vec{v}}{dt}\\ &= m\cancelto{0}{[\vec{v} \times \vec{v}]} + \vec{r} \times \vec{F} = \vec{\tau}\end{aligned}
+\]
+
+\begin{definition}
+$\vec{\tau} = \vec{r} \times \vec{F}$ is the \emph{Torque} or the \emph{Moment}. 
+\vspace*{50pt}
+\begin{itemize}
+\item $\vec{\tau}$ is in the direction out of the screen
+\item $|\vec{\tau}| = |\vec{F}||\vec{r}|\sin\phi$ 	
+\end{itemize}
+\end{definition}
+
+For central forces 
+\vspace*{50pt}
+
+Since $\phi = 0 \implies \vec{\tau} = 0$. 
+
+For a system, the total angular momentum
+\[\vec{J} = \sum_{i}\vec{J}_i = \sum_i\vec{r}_i \times m_i \vec{v}_i\]
+\[\implies \vec{\tau} = \frac{d\vec{J}}{dt} = \sum_i\dfrac{d\vec{J}_i}{dt} = \sum_i\vec{r}_i\times\vec{F}_i\]
+Write $\vec{F}_i = \vec{F}_i^{EXT} + \sum_j\vec{F}_{ij}$. Then we have
+\begin{equation} \vec{\tau} \frac{d\vec{J}}{dt} = \sum_i\vec{r}_i\times\vec{F}_i^{EXT} + \sum_i\sum_j\vec{r}_i\times\vec{F}_{ij}\end{equation}
+
+
+\begin{theorem}[Conservation of Angular Momentum for a System]
+If there is no net torque, the angular momentum is conserved.
+\end{theorem}
+
+\begin{proof}[Proof (for two body system)]
+
+Suppose we have two particles. Then the double sum is 
+\[\vec{r}_1 \times\vec{F}_{12} +\vec{r}_2 \times\vec{F}_{21} \]
+
+By Newton's Third Law $\vec{F}_{12} = -\vec{F}_{21}$. Thus
+\[\vec{r}_1 \times\vec{F}_{12} +\vec{r}_2 \times\vec{F}_{21} = (\vec{r}_1 - \vec{r}_2) \times \vec{F}_{12}\]
+
+If $\vec{F}_{12}$ is parallel to $\vec{r}_1 - \vec{r}_2$, then $(\vec{r}_1 - \vec{r}_2) \times \vec{F}_{12} = 0$. 
+
+This is the case if $\vec{F}_{12}$ is a central force, i.e. no torque. 
+
+Thus if $\vec{F}_{ij}$ is a central force for all $i$ and $j$. Then 
+\[\sum_i\sum_j \vec{r}_i \times \vec{F}_{ij} = \vec{0}\]
+
+Then 
+\[\frac{d\vec{J}}{dt} = \sum_i\vec{r}_i \times \vec{F}_i^{EXT} = \vec{\tau}^{EXT}\]
+where $\vec{\tau}^{EXT}$ is the total external torque on the system.
+
+So if $\vec{\tau}^{EXT} = \vec{0}$ then $\dfrac{d\vec{J}}{dt} = \vec{0}$, hence the angular momentum is conserved.
+\end{proof}
+
+\begin{example}
+\vspace*{50pt}
+
+Each particle has mass $m$. Each mass has velocity $\vec{v}_i = \vec{\omega} \times \vec{r}_i$, with $\vec{\omega} = \omega\hat{k}$	
+
+The angular momentum of particle $i$ is:
+\[\vec{J}_i = \vec{r}_i \times m_i\vec{v}_i = m[\vec{r}_i \times (\vec{\omega} \times \vec{r}_i)]\]
+
+Recall that $\vec{A} \times (\vec{B} \times \vec{C}) = (\vec{A}\cdot\vec{C})\vec{B} - (\vec{A}\cdot\vec{B})\vec{C}$
+\[\vec{r}_i \times (\vec{\omega} \times \vec{r}_i) = (\vec{r}_i \cdot \vec{r}_i)\vec{\omega} - \cancelto{0}{(\vec{r}_i \cdot \vec{\omega})}\vec{r}_i = r^2\omega\hat{k}\]
+
+Thus 
+\[\vec{J}_i = mr^2\omega\hat{k}\]
+\[\implies \vec{J} = \sum_i \vec{J}_i = 4mr^2\omega\hat{k} = 2ml^2\omega\hat{k}\]
+
+Suppose that 
+\vspace*{50pt}
+
+$\vec{v}_i = \vec{\omega} \times \vec{r}_i \longrightarrow \vec{v}_i = \vec{\Omega} \times\vec{r}_i$. What's $\vec{\Omega}$?
+
+Single the configuration changed to to internal, central forces, $\dfrac{d\vec{J}}{dt} = 0$
+
+For our new configuration
+\[\vec{J}_i = 2m[\vec{r}_i \times (\vec{\Omega} \times \vec{r}_i)] = 2mr_i^2\Omega\hat{k} = \frac{ml^2\Omega}{2}\hat{k}\]
+The total angular momentum
+\[\vec{J} = 2\vec{J}_i = ml^2\Omega\hat{k}\]
+
+Since $\dfrac{d\vec{J}}{dt} = 0 \implies \vec{J}_{before} = \vec{J}_{after}$
+
+\[\implies 2ml^2\omega\hat{k}= ml^2\Omega\hat{k}\]
+\[\implies \Omega = 2\omega\]
+
+The angular speed doubles as a result of the change. 
+\end{example}~\\
+
+\subsubsektion{Centre of Mass Coordinates}
+\lecturemarker{29}{22 Oct}
+
+\[\vec{r}_i = \vec{r}_{cm} + \vec{R}_i\]
+\[\vec{v}_i = \vec{v}_{cm} + \vec{u}_i,~\left(\vec{u}_i = \frac{d\vec{R}_i}{dt}\right)\]
+Thus
+\[\begin{aligned}
+\vec{J} &= \sum_i (\vec{r}_{cm} + \vec{R}_i) \times m_i(\vec{v}_{cm} + \vec{u}_i)\\
+&= \sum_i \vec{r}_{cm} \times m_i\vec{v}_{cm} + \sum_i \vec{r}_{cm} \times m_i\vec{u}_i + \sum_i \vec{R}_i \times m_i\vec{v}_{cm} + \sum_i \vec{R}_i \times m_i\vec{u}_i\\
+&= \vec{r}_{cm}\times \vec{v}_{cm}(\sum_i m_i) + \vec{r}_{cm} \times (\sum_i m_i\vec{u}_i) + (\sum_im_iR_i)\times\vec{v}_{cm} + \sum_iR_i\times m_i\vec{u}_i
+\end{aligned}
+\]
+
+We know that $\sum_i m_i = M$, $\sum_i m_i\vec{R}_i = \sum_i m_i \vec{u}_i = 0$. Thus
+\[\vec{J} = \vec{r}_{cm} \times M\vec{v}_{cm} + \sum_i\vec{R}_i\times m_i\vec{u}_i\]
+
+%Contribution to centre of mass, and motion relative to centre of mass.
+Call $\vec{J}_{cm} = \sum_i \vec{R}_i \times m_i\vec{u}_i$
+
+Recall that 
+\[\frac{d\vec{J}}{dt} = \sum_i \vec{r}_i \times \vec{F}_i^{EXT} (= \vec{\tau}^{EXT})\]
+Since $\vec{r}_i = \vec{r}_{cm} + \vec{R}_i$
+\[\begin{aligned} \frac{d\vec{J}}{dt} &= = \sum_i \vec{r}_{cm} \times \vec{F}_i^{EXT}\\
+&= \vec{r}_{cm} \times \vec{F}^{EXT} + \sum_i\vec{R}_i\times\vec{F}_i^{EXT}
+\end{aligned}
+\]
+
+We can show (P.S. 4 Problem 9)
+\[\frac{d\vec{J}_{cm}}{dt} = \sum_i\vec{R}_i\times\vec{F}_i^{EXT}\]
+Call
+\[\vec{\tau}_{cm}^{EXT} = \sum_i\vec{R}_i \times \vec{F}_i^{EXT}\]
+
+\subsubsektion{Complete Picture}
+\begin{enumerate}
+\item Momentum: \[\vec{p} = M\vec{v}_{cm}\]
+\[\frac{d\vec{p}}{dt} =  M\frac{d\vec{v}_{cm}}{dt} = \vec{F}^{EXT}\]
+\item Angular Momentum: \[\vec{J} = \vec{r}_{cm} \times M\vec{v}_{cm} + \vec{J}_{cm}\]
+\[\vec{J}_{cm} = \sum_i\vec{R}_i \times m_i\vec{u}_i\]
+\[\frac{d\vec{J}}{dt} = \vec{r}_{cm} \times \vec{F}^{EXT} + \vec{\tau}_{cm}^{EXT}\]
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

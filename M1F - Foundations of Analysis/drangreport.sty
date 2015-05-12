@@ -1,0 +1,539 @@
+\NeedsTeXFormat{LaTeX2e}[1996/06/01]
+\ProvidesPackage{drangreport}[2012/10/24 v1.2 alexwlchan]
+\typeout{Package: `drangreport'}
+
+% Items that must be customized for your company and computer are denoted
+% with a *****CUSTOMIZE***** comment.
+
+% We start by loading a large number of packages
+
+
+
+% Include some useful standard packages
+\RequirePackage{ifthen,graphicx,float,color,hyperref}
+\hypersetup{colorlinks=true}
+\usepackage[small]{caption}
+
+% Get the nice d-bend symbol for warnings
+\RequirePackage{manfnt}
+
+% Defines a counter to keep track of lecture numbers
+% Introduced early because it conflicts with amsmath, iirc
+\newcounter{lecture}
+
+% Define a set of useful symbols
+\RequirePackage{amsmath,drangsymbols,units,commath}
+
+% Include a package I stole from Jakob Schiotz
+\RequirePackage{tweaklist}
+
+% Defines the dcases environment
+\RequirePackage{mathtools}
+
+% Used for the boxes around theorems and similar
+% \RequirePackage{framed}
+
+% For annotations in draft files
+% \RequirePackage{todonotes}
+
+% Includes the table decorations that I like
+\RequirePackage{booktabs,multirow,eukdate}
+
+% Package for font handling
+% \RequirePackage{mathspec}
+
+% Items for handling options
+\newcounter{fontset}
+\newcommand{\titlefamily}{}
+\newcommand{\authorlength}{2in}
+\newcommand{\logolength}{1in}
+
+% This should have the full pathname to your company logo. See also the
+% showlogo command below. You may need to fiddle with the scale factor to
+% get the logo to fit in the available space.
+% *****CUSTOMIZE*****
+\newcommand{\showlogo}{%
+  \centering\hspace{.25in}
+  \includegraphics[scale=.65]
+  {/Users/alexwlchan/Dropbox/BATS/bat-large.pdf}
+}
+
+% An option to the package determines the font set we're going to use.
+% The default is the Computer Modern set (fontset 0), which is like
+% standard LaTeX. The other three options are:
+%
+%   "times" (fontset 1)
+%     serif:      Caecilia
+%     sans serif: Proxima Nova (used for section headings and titles)
+%     typewriter: Courier
+%     math:       Mathematica
+%
+%   "palatino" (fontset 2)
+%     serif:      Lyon
+%     san serif:  Proxima Nova (used for section headings and titles)
+%     typewriter: Consolas for BBEdit
+%     math:       The standard LaTeX set (with Lyon numerals and text)
+%	  greek:	  Gentium Basic
+%
+%   "timesopt" (fontset 3)
+%     sans serif: Optima (used for section headings and titles)
+%     typewriter: Courier
+%     math:       Mathematica
+%
+%	"hivizviz" (fontset 4)
+%	  sans serif: FS Me
+%
+% Obviously, these fonts must be available to your LaTeX system for these options to work.
+%
+
+% Another option to the package determines whether the (company) logo
+% appears on the title page. By default, the logo does not appear.
+% *****CUSTOMIZE*****
+\DeclareOption{logo}{%
+  % \renewcommand{\showlogo}{%
+  %     \centering\hspace{.25in}
+  % 	\includegraphics[scale=.65]
+  % 	{/Users/alexwlchan/Dropbox/BATS/bat-large.pdf}
+  %   }%
+  \renewcommand{\authorlength}{2in}%
+  \renewcommand{\logolength}{1in}%
+}
+\DeclareOption{nologo}{%
+  \renewcommand{\showlogo}{}%
+  \renewcommand{\authorlength}{2.75in}%
+  \renewcommand{\logolength}{.25in}%
+}
+
+% Uses roman numerals (i), (ii), (iii) for numbered lists by default,
+% which I prefer
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+% An option to make links black for printing
+\DeclareOption{blacklinks}{
+  \hypersetup{colorlinks=false}
+}
+
+% Change the headings pagestyle to show the title if it's an article.
+% See Kopka & Daly C.3.2 and article.cls.
+\ifthenelse{\boolean{@twoside}}{%
+  \renewcommand{\ps@headings}{%
+    \renewcommand*{\@oddfoot}{}%
+    \renewcommand*{\@evenfoot}{}%
+	\renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{{{\sectitle}} $\vert$ 
+		\bfseries{\thepage}}} %
+	\renewcommand*{\@evenhead}{\footnotesize\sffamily{{\bfseries{\thepage}} $\vert$ {{\@shorttitle}} \hfill}} %
+    % \renewcommand*{\@oddhead}{\normalfont\normalsize\hfill\thepage}%
+    % \renewcommand*{\@evenhead}{\normalfont\normalsize\thepage\hfill{\itshape\MakeUppercase{\@shorttitle}}}%
+  }%
+}{%
+  \renewcommand{\ps@headings}{%
+    \renewcommand*{\@oddfoot}{}%
+    \renewcommand*{\@evenfoot}{}%
+    % \renewcommand*{\@oddhead}{\normalfont\normalsize{\itshape\MakeUppercase{\@shorttitle}}\hfill\thepage}%
+	\renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{{{\@shorttitle}} $\vert$ \bfseries{\thepage}}}
+    \renewcommand*{\@evenhead}{\@oddhead}%
+  }%
+}
+
+% An option for my examples sheets, which sets up slightly
+% different numbering styles and different page headings
+\DeclareOption{examples}{%
+
+  % Options for the exam package
+%  \renewcommand{\thequestion}{\em\arabic{question}}
+  %\renewcommand{\solutiontitle}{\em}
+  %\unframedsolutions
+  %\renewcommand{\questionshook}{\em}
+
+  \renewcommand{\labelenumi}{\bfseries\sffamily{\arabic{enumi}.}}
+  \renewcommand{\labelenumii}{(\roman{enumii})}
+  \renewcommand{\labelenumiii}{(\alph{enumiii})}
+  \ifthenelse{\boolean{@twoside}}{%
+    \renewcommand{\ps@headings}{%
+      \renewcommand*{\@oddfoot}{}%
+      \renewcommand*{\@evenfoot}{}%
+  	\renewcommand*{\@oddhead}{\hfill \footnotesize\sffamily{\@shorttitle~$\vert$ {\bfseries{\thepage}}}} %
+  	\renewcommand*{\@evenhead}{\footnotesize\sffamily{{\bfseries{\thepage}} $\vert$ \@shorttitle} \hfill} %
+      % \renewcommand*{\@oddhead}{\normalfont\normalsize\hfill\thepage}%
+      % \renewcommand*{\@evenhead}{\normalfont\normalsize\thepage\hfill{\itshape\MakeUppercase{\@shorttitle}}}%
+    }%
+  }{%
+    \renewcommand{\ps@headings}{%
+      \renewcommand*{\@oddfoot}{}%
+      \renewcommand*{\@evenfoot}{}%
+      % \renewcommand*{\@oddhead}{\normalfont\normalsize{\itshape\MakeUppercase{\@shorttitle}}\hfill\thepage}%
+  	  \renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{\@shorttitle~$\vert$ \bfseries{\thepage}}} %
+      \renewcommand*{\@evenhead}{\footnotesize\sffamily{{\bfseries{\thepage}}}} %
+    }%
+  }
+}
+
+
+
+\ExecuteOptions{nologo}
+\ProcessOptions
+
+% Handle the fontset option.
+
+% Set the side margins to 1.25 in. See Kopka & Daly C.3.1.
+% Placed before font options are executed to allow for wider
+% customisation in the font options.
+\newlength{\uni@sidemargin}
+\setlength{\uni@sidemargin}{1.25in}
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-2\uni@sidemargin}
+\setlength{\oddsidemargin}{\uni@sidemargin}
+\addtolength{\oddsidemargin}{-1in}%         to account for TeX's automatic 1in
+\setlength{\evensidemargin}{\oddsidemargin}
+
+
+%
+
+% No extra space after sentence ends.
+% \frenchspacing
+\raggedbottom
+%
+% We're going to have a half-line space between each paragraph and
+% no paragraph indentation.
+\setlength{\parskip}{.7\baselineskip}
+\setlength{\parindent}{0pt}
+%
+%
+%
+% Make sure it doesn't screw up the table of contents
+\newcommand{\TableofContents}{
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+\thispagestyle{empty}
+\tableofcontents
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\parindent}{0pt}}
+%
+% This ensures that I don't get a page number in the central footer of the titlepage
+\newcommand{\MakeTitle}{
+\maketitle
+\thispagestyle{empty}}
+%
+% The spacing between list items will be the same as the spacing
+% between paragraphs.
+\renewcommand{\enumhook}{\setlength{\topsep}{0pt}%
+  \setlength{\itemsep}{0pt}%
+  \setlength{\parsep}{\parskip}}
+\renewcommand{\itemhook}{\setlength{\topsep}{0pt}%
+  \setlength{\itemsep}{0pt}%
+  \setlength{\parsep}{\parskip}}
+%
+% Change the chapter fonts to sans serif (if the class has chapters). 
+\@ifundefined{@makechapterhead}{}
+{\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \normalfont\titlefamily\bfseries\LARGE \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \LARGE \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+\renewcommand{\@makeschapterhead}[1]{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \titlefamily\LARGE\bfseries  #1\par\nobreak
+    \vskip 40\p@
+  }}}%
+%
+% Change the (sub)section and (sub)paragraph fonts to sans serif. See
+% Kopka & Daly C.3.3.
+\renewcommand{\section}{\@startsection{section}{1}%
+  {0pt}%                            indent
+  {-3.75ex plus -1ex minus -.2ex}%   pre-skip, next par not indented)
+  {2.0ex plus .2ex}%                post-skip
+  {\normalfont\titlefamily\sffamily\bfseries\LARGE}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}%
+  {0pt}%                            indent
+  {-2.5ex plus -1ex minus -.2ex}%  pre-skip, next par not indented)
+  {1.25ex plus .2ex}%                post-skip
+  {\normalfont\titlefamily\sffamily\bfseries\Large}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}%
+  {0pt}%                            indent
+  {-1.25ex plus -1ex minus -.2ex}%  pre-skip, next par not indented)
+  {.5ex plus .2ex}%                post-skip
+  {\normalfont\titlefamily\sffamily\bfseries\large}}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}%
+  {0pt}%                            indent
+  {-1.25ex plus -1ex minus -.2ex}%  pre-skip, next par not indented)
+  {-1em}%                           post-skip, run-in w/ 1 em space
+  {\normalfont\titlefamily  \bfseries\normalsize}}
+\renewcommand{\subparagraph}{\@startsection{subparagraph}{5}%
+  {0pt}%                            indent
+  {1.25ex plus 1ex minus .2ex}%  pre-skip, next par not indented)
+  {-1em}%                           post-skip, run-in w/ 1 em
+  {\normalfont\titlefamily\itshape\normalsize}}
+%
+% Change the contents and list fonts. Use the chapter font if the
+% document has chapters, otherwise use the section font. These are
+% taken directly from the article and report classes, with only the
+% font stuff changed.
+%
+% Set the header .5in from top of paper, the footer .5in from bottom
+% of paper, and the top & bottom body margins at 1in. See Kopka &
+% Daly C.3.1.
+\newlength{\uni@hfmargin}
+\setlength{\uni@hfmargin}{.5in}
+\setlength{\headheight}{12bp}%      enough for 1 line of text
+\setlength{\headsep}{24bp}%         \headheight + \headsep = 36bp = .5in
+\setlength{\footskip}{36bp}%        .5 in
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-2in}%    1in at top + 1in at bottom
+\setlength{\topmargin}{\uni@hfmargin}
+\addtolength{\topmargin}{-1in}%     to account for TeX's automatic 1in
+%
+% Create a \@shorttitle variable for the heading. If not defined by the
+% user, with the \shorttitle command, it will default to \@title.
+\newcommand{\@shorttitle}{\@title}
+\newcommand{\shorttitle}[1]{\renewcommand{\@shorttitle}{#1}}
+%
+% I am the default author.
+% *****CUSTOMIZE*****
+\renewcommand{\@author}{Alex Chan}
+%
+% Add a \client command that is similar to \author.
+\newcommand{\client}[1]{\newcommand{\@client}{#1}}
+%
+%
+% Use headings for most pages
+\pagestyle{headings}
+%
+% Redefine \maketitle to use san serif fonts, display the company logo
+% (when on a separate title page), and display the \@author and (when on
+% a separate title page) \@client as centered tables.
+\ifthenelse{\boolean{@titlepage}}{
+  \renewcommand{\maketitle}{
+    \renewcommand{\and}
+      {\end{tabular} \begin{tabular}[t]{c}\vspace{.5ex}\\}
+    \begin{titlepage}
+      \begin{center}
+        \begin{tabular}[t]{p{8cm}}
+          \parbox[c][1in][c]{5in}{\hfill}\\
+          \parbox[c][2in][c]{5in}
+            {\centering\normalfont\titlefamily\bfseries\Huge\@title} \\
+			{\centering\normalfont\titlefamily\bfseries\Large\@subtitle} \\
+          \begin{minipage}[c][\authorlength][c]{5in}
+            {\begin{center}%
+              \normalfont\normalsize%
+              a report by\par\vspace{1ex}%
+              \begin{tabular}[t]{c}
+                \vspace{.5ex}\\
+                \@author
+              \end{tabular}%
+            \end{center}}%
+           \end{minipage}\\
+          \parbox[c][\logolength][c]{5in}
+            {\showlogo}\\
+          \begin{minipage}[c][2in][c]{5in}
+            \@ifundefined{@client}{}
+            {\centering\normalfont\normalsize%
+              submitted to\\
+              \begin{tabular}[t]{c}
+                \vspace{.5ex}\\
+                \@client
+              \end{tabular}}
+            \end{minipage}\\
+          \parbox[c][1in][c]{5in}
+            {\centering\normalfont\normalsize\@date}
+        \end{tabular}
+      \end{center}
+    \end{titlepage}
+    % for the first text page of an article
+    % add .5in + 0pt space at the top of the page
+    %\@ifundefined{@makechapterhead}{\vspace*{0pt}}{}%
+    %\thispagestyle{plain}%    no header
+  }
+}{% This is for for when there is no title page
+  \renewcommand{\maketitle}{
+    \renewcommand{\and}
+     {\end{tabular} \begin{tabular}[t]{c}\vspace{.5ex}\\}
+    \begin{center}
+      \begin{tabular}[t]{c}
+        \parbox[c][1in][c]{5in}
+          {\centering\normalfont\titlefamily\bfseries\Huge\@title} \\
+		  {\centering\normalfont\titlefamily\bfseries\Large\@subtitle} \\
+        \begin{minipage}{5in}
+          \begin{center}
+            \normalfont\normalsize%
+            \begin{tabular}[t]{c}
+              \vspace{.5ex}\\
+              \@author
+            \end{tabular}
+          \end{center}
+        \end{minipage}
+        \vspace{.25in}\\
+        \@date\\
+        \vspace{.125in}\\
+        \parbox[c][\logolength][c]{5in}
+          {\showlogo}\\
+      \end{tabular}
+    \end{center}
+    \thispagestyle{empty}%      no header on 1st page
+  }
+}
+%
+% The \pagedrop command adds 0.5in to the top. Should be used for the
+% first page of text if there's a title page.
+% Also for first page of TOC, etc.
+\newcommand{\pagedrop}{%
+  \@ifundefined{@makechapterhead}{\vspace*{0pt}}{}% 0.5in + 0pt
+}
+%
+% Add a \signatures command that places the authors' names after a closing
+% line. Provides space above the names for signatures.
+\newcommand{\signatures}[1]{%
+  % make a local change to \and to provide spacing and signature lines
+  \renewcommand{\and}{%
+    \end{tabular*}\hspace{0pt}%
+    \begin{tabular*}{3in}[t]{l}
+      \vspace{.5in}\\
+      \rule{2.5in}{.5bp}\\}
+  \par%
+  \vspace{.25in}%                        separation from the body of the text
+  \begin{minipage}{6in}%
+    \flushleft\normalfont\normalsize#1\par
+    \setlength{\tabcolsep}{0pt}%       to keep left side at margin
+    \begin{tabular*}{3in}[t]{l}
+      \vspace{.5in}\\
+      \rule{2.5in}{.5bp}\\
+      \@author
+    \end{tabular*}
+  \end{minipage}
+}
+%
+% Add a \mysignature command that places my signature and name after a
+% closing line.
+% *****CUSTOMIZE*****
+\newcommand{\mysignature}[1]{%
+  \par%
+  \vspace{.25in}%                       separation from the body of the text
+  \flushleft\normalfont\normalsize#1\par
+  \hspace{-.1in}\includegraphics{/Users/drang/graphics/sig.pdf}\\
+  \vspace{-.3in}\rule{2.5in}{.5bp}\\
+  Alex Chan
+}
+%
+% Define a float for plates. These are taken directly from the
+% article.cls and report.cls definitions for the figure environment
+% with the word "figure" replaced with "plate," "lof" with "lop,"
+% and the ftype set to 4 instead of 1.
+\@ifundefined{@makechapterhead}
+{ \newcounter{plate}
+  \renewcommand \theplate {\@arabic\c@plate}
+  \def\fps@plate{tbp}
+  \def\ftype@plate{4}
+  \def\ext@plate{lop}
+  \def\fnum@plate{\platename\nobreakspace\theplate}
+  \newenvironment{plate}
+                 {\@float{plate}}
+                 {\end@float}
+  \newenvironment{plate*}
+                 {\@dblfloat{plate}}
+                 {\end@dblfloat}
+  \newcommand\listofplates{%
+      \section*{\listplatename}%
+        \@mkboth{\MakeUppercase\listplatename}%
+                {\MakeUppercase\listplatename}%
+      \@starttoc{lop}%
+      }
+  \newcommand*\l@plate{\@dottedtocline{1}{1.5em}{2.3em}}
+  \newcommand\listplatename{List of Plates}
+  \newcommand\platename{Plate}
+}
+{ \newcounter{plate}[chapter]
+  \renewcommand \theplate
+       {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@plate}
+  \def\fps@plate{tbp}
+  \def\ftype@plate{4}
+  \def\ext@plate{lop}
+  \def\fnum@plate{\platename\nobreakspace\theplate}
+  \newenvironment{plate}
+                 {\@float{plate}}
+                 {\end@float}
+  \newenvironment{plate*}
+                 {\@dblfloat{plate}}
+                 {\end@dblfloat}
+  \newcommand\listofplates{%
+      \if@twocolumn
+        \@restonecoltrue\onecolumn
+      \else
+        \@restonecolfalse
+      \fi
+      \chapter*{\listplatename}%
+        \@mkboth{\MakeUppercase\listplatename}%
+                {\MakeUppercase\listplatename}%
+      \@starttoc{lop}%
+      \if@restonecol\twocolumn\fi
+      }
+  \newcommand*\l@plate{\@dottedtocline{1}{1.5em}{2.3em}}
+  \newcommand\listplatename{List of Plates}
+  \newcommand\platename{Plate}
+}
+%
+% All of my stuff for keeping track of lectures
+\makeatletter
+\def\sektion{\@ifnextchar[{\@with}{\@without}}
+\def\@with[#1]#2{\cleardoublepage \section[#1]{#2} \gdef\sectitle{#1}
+             \setcounter{footnote}{0}}
+\def\@without#1{\cleardoublepage \section{#1} \gdef\sectitle{#1}
+             \setcounter{footnote}{0}}
+\makeatother
+
+\newcommand{\sektionu}[1]{\cleardoublepage \section*{#1} \gdef\sectitle{#1}
+						  \addcontentsline{toc}{section}{#1}
+						  \setcounter{footnote}{0}}
+\newcommand{\subsektion}[1]{\subsection*{#1}
+							\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsekktion}[2]{\subsection*{#2}
+							 \addcontentsline{toc}{subsection}{#1}}
+\newcommand\sectitle{}		% This is the empty section title, before any section title is set
+\setcounter{lecture}{0}
+%
+\renewcommand{\thelecture}{\arabic{lecture}}
+\renewcommand{\theequation}{\thelecture.\arabic{equation}}
+%
+% Make the equation counter reset each lecture
+\makeatletter
+	\@addtoreset{equation}{lecture}
+\makeatother
+%
+% drangreport gets all upset if I don't put this right at the end
+%
+\RequirePackage[color,all]{xy}	% Include XY-pic
+	\SelectTips{cm}{10}		% Use the nicer arrowheads
+	\everyxy={<2.5em,0em>:}	% Sets the scale I like
+	\xyoption{web}			% Include the lattice feature, I don't know why it isn't loaded already
+%
+
+%
+% \RequirePackage{pgf,tikz}
+% \usetikzlibrary{arrows,
+% 				automata,
+% 				positioning,
+% 				decorations.markings,
+% 				shapes.arrows,
+% 				patterns,
+% 				decorations.pathmorphing,
+% 				calc}
+% \tikzset{
+%     state/.style={
+%            rectangle,
+%            rounded corners,
+%            draw=black, very thick,
+%            minimum height=2em,
+%            inner sep=2pt,
+%            text centered,
+%            },
+% }
+
+\newcommand{\shortskip}{\setlength{\parskip}{2pt}}

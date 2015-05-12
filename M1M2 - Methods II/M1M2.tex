@@ -1,0 +1,82 @@
+\documentclass[twoside]{scrartcl}
+
+\usepackage[blacklinks]{drangreport}
+% \usepackage[caecilia]{drangreport}
+
+\usepackage{stmaryrd}
+
+\usepackage{awlc-algebra}
+\usepackage[makeroom]{cancel}
+\newcommand{\verteq}{\rotatebox{90}{$\,=$}}
+\newcommand{\vertequiv}{\rotatebox{90}{$\,\equiv$}}
+\newcommand{\equalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
+\newcommand{\equivto}[2]{\underset{\scriptstyle\overset{\mkern4mu\vertequiv}{#2}}{#1}}
+
+
+%Nice end of Proof Symbol
+\usepackage{marvosym}
+\renewcommand{\qedsymbol}{\Rectsteel} 
+
+
+\title{Methods II}
+
+\let\Im\relax
+\DeclareMathOperator*{\Im}{Im}
+
+\newcommand{\herm}[1]{\overline{#1}^\Trans}
+
+\DeclareMathOperator*{\ch}{ch}
+\renewcommand{\chi}{\textstyle\ch}
+
+\begin{document}
+
+\NotesTitle{}{Spring 2015}{Mathematical Methods II}{Prof.~M.}{Barahona}
+{
+{\Large\bfseries\sffamily{Syllabus}}
+
+\textit{This course continues and extends the techniques introduced in M1M1, with further differential equations and partial differentiation. There are brief introductions to difference equations, curve fitting and scaling, together with a variety of applications of integration.}
+
+\begin{itemize}
+\item First and second order differential equations.
+\item Homogeneous and inhomogeneous linear differential equations.
+\item Systems of linear differential equations – matrix solution.
+\item Phase plane analysis: Qualitative analysis of solutions of differential equations and stability.
+\item Bifurcation of first order non-linear differential equations.
+\item Partial differentiation: Definitions, implicit partial differentiation, total differential, change of variables.
+\item Functions of two variables: Taylor’s theorem, stationary pointe and their classification, contours.
+\item Vector calculus: Definitions and physical meaning of grad, div, curl.
+\item Applications of partial differentiation: Optimisation and Lagrange multipliers.
+\item Applications of integration – area under curves, arc length, surface area and volume of revolution; double integrals – geometry, mass, moments of inertia; simple triple integrals.
+\end{itemize}
+
+\subsection*{Appropriate books}
+
+For the first part of the course on Introduction to Ordinary Differential Equations:
+
+{\shortskip 
+W.~E.~Boyce. \emph{Elementary differential equations and boundary value problems}, Wiley.
+
+M.~Braun, \emph{Differential equations and their applications}, Springer Verlag.
+
+F. Diacu, \emph{An introduction to differential equations}, Freeman
+
+R. Redheffer, \emph{Differential equations: theory and applications}, Jones and Bartlett.\\
+
+
+For the section on qualitative analysis of nonlinear ODEs, the first few chapters of this:
+
+
+S.H. Strogatz, \emph{Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry and Engineering}, Westview Press\\
+
+
+For the second part of the course on Introduction to multivariate calculus, another book:
+
+H.M. Schey, \emph{Div, grad, curl and all that}, Norton and Company
+}}
+
+\TableofContents
+
+\input{Chapter1}		
+\input{Chapter2.tex}	
+
+\end{document}

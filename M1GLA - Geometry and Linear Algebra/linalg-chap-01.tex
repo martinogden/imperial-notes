@@ -1,0 +1,164 @@
+%!TEX root = linear-algebra.tex
+\stepcounter{lecture}
+\setcounter{lecture}{1}
+ \section{Vectors in $\R^2$}
+
+ $\R =$ the set of real numbers. \marginpar{\footnotesize \textit{Lecture 1 14/10} } This has the properties of being:\begin{itemize}
+\item Commutative: $ab = ba$
+\item Associative: $a+(b+c) = (a+b) + c	$
+\item Distributive: $c(a+b) = ca + cb$
+\item If $a<b,~b>0$ then $ca < cb$
+\end{itemize}
+
+$\R^2 = $ the set of ordered pairs $(a,b)$ where $a,b \in \R$ i.e. $(a,b) \neq (b,a)$ in general. Elements of $\R^2$ are \emph{points}, or \emph{vectors}. $\mathbf{0} = (0,0) = $ origin of $\R^2$. A \emph{scalar} is an element of $\R$.\\
+
+Properties:\begin{enumerate}
+\item Addition (sum): $(a,b) + (a',b') = (a+a',b+b')$%picture
+\item Scalar Multiplication: If $\lambda = \R~ (a,b) \in \R^2$, then $\lambda \cdot (a,b) = (\lambda a,\lambda b)$. $v \in \R^2 \implies \lambda v \in \R^2$.	
+\end{enumerate}
+\textit{Exercise:} Check $\lambda(v_1+v_2) = \lambda v_1 + \lambda v_2$ where $\lambda \in \R,~ v_1,v_2 \in \R^2$\\
+
+\noindent \textbf{Lines in $\R^2$.} $L$ is a \emph{line in $\R^2$}\index{Line in $RR^2$} if $\exists u, v \in \R^2~ v \neq 0$ with $L = \{u + \lambda v ~|~ \lambda \in \R\}$. If $u = (a_1,b_1),~v = (a_2,b_2)$ then $L = \{(a_1 + \lambda b_1, a_2 + \lambda b_2) ~|~ \lambda \in \R\}$. \\ %picture really needed for example
+
+\textit{Examples:} $x$ line $\{(0,0) + \lambda(1,0) ~|~ \lambda \in \R\}$, $y$ line $\{(0,0) + \lambda (0,1) ~|~ \lambda \in \R\}$. $L = \{x+y = 1\} = \{(1,0) + \lambda(-1,1) ~|~ \lambda \in \R\}.$ Note that $v$ is the vector for which $L$ is parallel to. We check from the components $x = 1 + (-1) \lambda = 1 - \lambda$. $y = 0 + 1 \cdot \lambda = \lambda$. So $x + y = 1$.\\
+
+\noindent Assume $L, M$ are two lines in $\R^2$, with $L = \{ u = \lambda v ~|~ \lambda \in \R\}$ and $v \neq 0$, $M = \{a + \mu b ~|~ \mu \in \R\}$ and $b \neq 0$.
+
+\pagebreak
+
+\noindent \textbf{Proposition.} The two lines are the same ($L = M$) if and only if the following holds:\begin{enumerate}
+\item $v = \alpha b$ for some $\alpha \in \R$
+\item $L \cap M \neq \emptyset$ ($L$ and $M$ have a point in common) 	
+\end{enumerate}
+\begin{proof}
+($\implies$) Assume that $L= M$. We know that $u \in L \implies u \in M \implies u = a + \mu b$ for some $\mu \in \R$. Also $u + v = L ~(\lambda = v) \implies u + v \in M \implies u + v = a + \mu_1b$ for some $\mu_1 \in \R \implies v = (a+\mu _1b) - (a-\mu b) = (\mu _1 - \mu )b = \alpha b$. Since $L=m$, surely $L \cap M = \emptyset$.\\
+
+($\impliedby$) Assume $v = \alpha b \implies L = \{u + \lambda \alpha b ~|~ \lambda \in \R\}$. We also know that $L \cap M \neq \emptyset \implies \exists c \in L \cap M \implies c \in L \implies c = u + \lambda_0\alpha b$, for some $\lambda_0 \in \R.$ Then also $c \in M \implies c = a + \mu b$, for some $\mu \in \R \implies u + \lambda_0 \alpha b = a + \mu b \implies u = a + \mu b - \lambda_0\alpha b = a + (\mu - \lambda_0\alpha)b ~(*)$. \\
+
+By $(*)$, a point inside $L = u + \lambda \alpha b = a + (\mu - \lambda_0 \alpha) b + \lambda \alpha b = a + (\mu - \lambda_0 \alpha  + \lambda \alpha)b \in M$. Hence any point in $L$ is inside $M$, so $L \subseteq M$. Similarly by symmetry $M \subseteq L \implies L = M$.
+\end{proof}
+
+\sektion{Matrices}
+\subsektion{Inverses}
+\noindent \textbf{Theorem 5.1.} Let $A$ be a square matrix. If there exists a square matrix $B$ such that $AB = I$ then this $B$ is unique and satisfies $BA = I$.
+\begin{proof}
+(Also gives a method for finding this $B$!)\\	Let $X$ be the square matrix with unknown entires. We want to solve the equation $AX = I$. The entires of $X$ are $x_{ij}$. We have $n^2$ unknowns and $n^2$ equations. We record this as follows: $(A ~|~ I)$, a $n \times 2n$ matrix.\\
+
+This is $n$ systems of linear equations in $n$ variables, e.g. for each column of $I$ we have the following system:
+
+\[A\left(\begin{smallmatrix}
+x_{1j}\\x_{2j}\\ \vdots \\ x_{nj}	
+\end{smallmatrix}
+\right)= \text{ the } j\text{th column of } I = \left(\begin{smallmatrix}
+0\\ \vdots \\ 1 \\ 0 \\ \vdots \\ 0
+\end{smallmatrix}\right)  \addtag
+\] 
+
+All these $n$ systems have the same co-efficient matrix $A$, so we solve them using the same process. Apply reduction to echelon form. Perform elementary row operations on the matrix $(A ~|~ I)$
+
+\[(A_{ech} ~|~ I) =\left(
+    \begin{array}{ccccc |}
+    1    &       &    &     & \\ \cline{1-1}
+    \bord & 1       &    &  \scalebox{1.5}{*}   & \\ \cline{2-2}
+          & \bord    & 1     &    & \\ \cline{3-3}
+       ~\scalebox{1.5}{$0$}   &  & \bord & 1     &  \\ \cline{4-5}
+          &          &       &  &  \\ %\cline{5-5}
+  \end{array} ~~D \right) \]
+
+\noindent \textbf{Claim:} The matrix on the LHS cannot have any rows made entirely of zeros.
+\begin{proof}[Proof of Claim]
+Remember that $D$ is obtained by row operations from $I$. We know that two matrices that are obtained from each other by row operations define equivalent linear systems. This means that the linear system $I(y_1,\dots,y_n) = 0$ has the same solutions as $D(y_1,\dots,y_n) = 0$. But $(0,\dots,0)$ is the only solution to this. Now if $D$ has an all zero row, the system $D(y_1,\dots,y_n) = 0$ has free variables, hence infinitely many solutions. This contradiction proves that $D$ does not have an all zero row. 
+\end{proof}
+
+Therefore there is a non-zero entry in the bottom row of $D$. Say this entry is in the $j$th column. Then the system (1.1) has no solutions (follows from the echelon form method). Therefore, if the matrix on the left has a bottom row made of zeros, then $AX = I$ has no solutions. So $A$ has on right inverse. It remains to consider the case when the matrix on the left has no all-zero rows:
+
+\[(A_{ech} ~|~ I) =\left(
+    \begin{array}{ccccc |}
+    1    &       &    &     & \\ 
+  & 1       &    &  \scalebox{1.5}{*}   & \\ 
+          &    & \ddots     &    & \\ 
+       ~\scalebox{1.5}{$0$}   &  &  & 1     &  \\ 
+  \end{array} ~~D \right) \]
+  
+ Perform more elementary row operations to clear the entries above the main diagonal (This is possible because all diagonal entries equal $1$). After this step, we obtain: 
+\[(I~|~ E) =\left(
+    \begin{array}{ccccc |}
+    1    &       &    &     & \\ 
+  & 1       &    &  \scalebox{1.5}{$0$}   & \\ 
+          &    & \ddots     &    & \\ 
+       ~\scalebox{1.5}{$0$}   &  &  & 1     &  \\ 
+  \end{array} ~~E \right) \]
+  
+  Since row operations don't change the solution of our linear system, we have $IX = E$. Hence $E$ is a unique solution of the system $AX = I$, i.e. $AE = I$. We've proven that if the right inverse exists it can be obtained by the procedure, and it is unique.\\
+  
+   \noindent Finally we now prove that $EA = I$:\\
+ 
+   Consider the equation $EY = I$, where $Y = (y_{ij})$ is a square matrix with unknown entires $y_{ij}$.  Reverse row operations from the first part of the proof to so $(E ~|~ I) \mapsto (I ~|~ A)$.  $EY = I$ is equivalent to $IY = A$, that is $Y = A$. Therefore $EA = I$. 
+\end{proof}~\\
+
+Finding inverses of $2 \times 2$ matrices is easy: 
+
+\[A = \begin{pmatrix}
+ a & b \\ c & d	
+ \end{pmatrix} \text{, consider }
+B= \begin{pmatrix}
+ d & -b \\ -c & a	
+ \end{pmatrix}
+\]
+Then \[
+AB = \begin{pmatrix}
+ a & b \\ c & d	
+ \end{pmatrix} \begin{pmatrix}
+ d & -b \\ -c & a	
+ \end{pmatrix} = \begin{pmatrix}
+ ad -bc & 0\\ 0 & ad-bc	
+ \end{pmatrix} = (ad -bc)I
+\]
+
+\begin{enumerate}
+\item[Case 1.] $(ad -bc)$ is non-zero. Then\[
+\frac{1}{ad-bc}\begin{pmatrix}
+d & -b \\ -c & a	
+\end{pmatrix}
+\text{ is the inverse of } A
+\]	
+\item[Case 2.] $ad -bc = 0$. In this case $AB = 0$. Then the inverse does not exist (If $CA = I$, then $C(AB) = (CA)B = IB = B.$ If $A$ is non-zero then $B$ is non-zero, so we get a contradiction for $0 = B$.) Hence $A$ is not invertible. 
+\end{enumerate}
+
+
+\subsektion{Determinants}
+\noindent \textbf{Corollary 6.4.} If $A'$ is obtained from $A$ by row operations, then det$(A') \neq 0$ if and only if det$(A) \neq 0$.
+\begin{proof}
+A direct consequence of Proposition 6.3.	
+\end{proof}\vspace*{10pt}
+
+\noindent \textbf{Theorem 6.5.} Let $A$ be a $3 \times 3$ matrix. Then $A^{-1}$ exists if and only if det$(A) \neq 0$.
+\begin{proof}
+Recall that $A$ can be reduced to echelon form by row operations. Let $A'$ be the matrix in echelon form to which $A$ reduces. Then det$(A')\neq 0 \iff$ det$(A) \neq 0$. Hence we are in Case 2 (If $A'$ has an all zero-row then we expand in this row and det$(A') = 0$.) In Case 2, $A'$ can be reduced to $I$ by further row operations. By Theorem 5.1, $A$ is invertible.\\
+
+We  \marginpar{\footnotesize \textit{Lecture 13 11/11} } need to prove that if $A^{-1}$ exists, then det$(A) \neq 0$. Indeed, if $A^{-1}$ exists, then the echelon form of $A$ has no all-zero rows. Then $A$ can be reduced to $I$ by row operations. Row operations can only multiply det by a non-zero number, and they can be reversed. Therefore, det $(A) \neq 0$.	
+\end{proof}\vspace*{10pt}
+
+\noindent \textit{Remark.} For any square matrices $A$ and $B$ of the same size det$(AB) =$ det$(A)$det$(B)$. If $A^{-1}$ exists, then $AA^{-1} = I$, so det$(A)$det$(A^{-1}) = 1$. Hence det$(A) \neq 0$ if $A^{-1}$ exists.\\
+
+\noindent \textit{Final Comment.} If $A$ is a square matrix, then $Ax = 0$ has non-zero solutions if and only if det$(A) = 0$. (Indeed if $Ax = 0$ has a non-zero solution, then it has at least two distinct solutions, so it has infinitely many solutions. Then $A^{-1}$ does't exist, and det$(A) = 0$). 
+
+\pagebreak
+
+\subsektion{Eigenvalues and Eigenvectors}
+
+\noindent \textbf{Definition.} Let $A$ be a $n \times n$ matrix. Then a non-zero vector, $v$, is called an \emph{eigenvector}\index{Eigenvector} of $A$ if $Av = \lambda v$ for some $\lambda \in \R$. In this case $\lambda$ is called an \emph{eigenvalue}\index{Eigenvalue} of $A$ corresponding to the eigenvector $v$.\\
+
+\noindent \textit{Remarks.} A scalar multiple of an eigenvector is also an eigenvector with the same eigenvalue.\\
+
+\noindent \textbf{Example.} \\
+
+\noindent \textbf{Definition.} The determinant of $tI - A$ is called the \emph{characteristic polynomial}\index{Characteristic Polynomial} of $A$ (For us $n = 3,$ or $n=2$). For example\\
+
+\noindent \textbf{Proposition 7.1.} Let $A$ be a $2 \times 2$ or $3 \times 3$ matrix. Then the eigenvalues of $A$ are the roots of the characteristic polynomial of $A$, i.e. every eigenvalue $\lambda$ satisfies det$(\lambda I - A) = 0$. The eigenvectors of $A$ with eigenvalue $\lambda$ are non-zero solutions of the system of linear equations $(\lambda I - A)v = 0$.
+
+\begin{proof}
+The real numbers $\lambda$ for which det$(\lambda I - A) = 0$ are by definition the roots of the characteristic polynomial of $A$. Hence $v$ is a non-zero solution of $(\lambda I - A)v = 0$.	
+\end{proof}
+
+

@@ -1,0 +1,75 @@
+\NeedsTeXFormat{LaTeX2e}[1996/06/01]
+\ProvidesPackage{awlc-algebra}[2013/02/03 alexwlchan]
+\typeout{Package: `awlc-algebra'}
+
+% Various operators and functions
+
+\DeclareMathOperator{\Tr}{tr} % trace
+\newcommand{\trace}{\Tr}
+\newcommand{\Trace}{\Tr}
+
+\DeclareMathOperator{\diag}{diag}
+
+\DeclareMathOperator*{\rank}{rank}
+\DeclareMathOperator*{\sgn}{sgn} % signature
+\DeclareMathOperator*{\hcf}{hcf}
+\DeclareMathOperator*{\lcm}{lcm}
+\DeclareMathOperator*{\adj}{adj} % adjoint
+\newcommand{\Trans}{T} % transpose
+\DeclareMathOperator{\Res}{Res} % Residue?
+\DeclareMathOperator*{\rk}{rk} % rank
+\DeclareMathOperator*{\Billio}{Bil}
+\newcommand{\Bil}{\textstyle\Billio} % bilinear forms
+\DeclareMathOperator*{\Char}{char} % characteristic
+\DeclareMathOperator*{\sign}{sign} % sign
+
+% Names of different groups
+\DeclareMathOperator{\Sym}{Sym} % symmetric group
+\DeclareMathOperator{\GL}{GL} % general linear
+\DeclareMathOperator{\SL}{SL} % special linear
+\DeclareMathOperator{\SO}{SO} % special orthogonal
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\End}{End} % endomorphisms
+\DeclareMathOperator{\Isom}{Isom} % Isometries
+\DeclareMathOperator{\Lin}{\cal{L}} % Linear maps
+\DeclareMathOperator{\Gr}{Gr} % Graussmanian
+\DeclareMathOperator{\PSL}{PSL} % Projective special linear group
+\DeclareMathOperator{\PGL}{PGL} % Projective general linear group
+
+% Group operators
+\DeclareMathOperator*{\stab}{stab}
+\DeclareMathOperator*{\ccl}{ccl}
+\DeclareMathOperator*{\orb}{orb}
+
+% The slightly hacky optional arguments for Orb and Stab are taken from
+% http://www.hanskalabs.net/posts/latex-newcommand-optional-argument/
+
+\def\Orb#1{\def\tempa{#1}\futurelet\next\Orb@i}% Save first argument
+\def\Orb@i{\ifx\next\bgroup\expandafter\Orb@ii\else\expandafter\Orb@end\fi}%Check brace
+\def\Orb@ii#1{\textstyle\orb_{#1}(\tempa)}%Two args
+\def\Orb@end{\orb(\tempa)}%Single args
+
+\def\Stab#1{\def\tempa{#1}\futurelet\next\Stab@i}% Save first argument
+\def\Stab@i{\ifx\next\bgroup\expandafter\Stab@ii\else\expandafter\Stab@end\fi}%Check brace
+\def\Stab@ii#1{\textstyle\stab_{#1}(\tempa)}%Two args
+\def\Stab@end{\stab(\tempa)}%Single args
+
+\def\CCL#1{\def\tempa{#1}\futurelet\next\CCL@i}% Save first argument
+\def\CCL@i{\ifx\next\bgroup\expandafter\CCL@ii\else\expandafter\CCL@end\fi}%Check brace
+\def\CCL@ii#1{\textstyle\ccl_{#1}(\tempa)}%Two args
+\def\CCL@end{\ccl(\tempa)}%Single args
+
+\def\Centra#1{\def\tempa{#1}\futurelet\next\Centra@i}% Save first argument
+\def\Centra@i{\ifx\next\bgroup\expandafter\Centra@ii\else\expandafter\Centra@end\fi}%Check brace
+\def\Centra@ii#1{\cal{Z}_{#1}(\tempa)}%Two args
+\def\Centra@end{\cal{Z}(\tempa)}%Single args
+
+% Some more group operators
+\newcommand{\Centre}[1]{\cal{Z}(#1)}
+\newcommand{\centra}{\cal{Z}}
+
+\let\cent\relax
+\DeclareMathOperator*{\centraliser}{C}
+\DeclareMathOperator*{\normaliser}{N}
+
+\DeclareMathOperator*{\centre}{Z} %\cal{Z}

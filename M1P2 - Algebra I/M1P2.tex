@@ -1,0 +1,122 @@
+\documentclass[twoside]{scrartcl}
+
+\usepackage[blacklinks]{drangreport}
+% \usepackage[caecilia]{drangreport}
+
+\usepackage{stmaryrd}
+
+\usepackage{awlc-algebra}
+\newcommand*{\bord}{\multicolumn{1}{c|}{}}
+
+%Nice end of Proof Symbol
+\usepackage{marvosym}
+\renewcommand{\qedsymbol}{\Rectsteel} 
+
+\usepackage{array}
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+\usepackage{tkz-euclide,tikz}
+\usetkzobj{all}
+
+\def\n{5}
+\def\m{4}
+
+
+\newcommand*{\Range}{%
+  \mathsf{X}\mkern-9mu\mathsf{X}%
+}
+
+\newcommand*{\Rangey}{%
+  \mathsf{Y}\mkern-9mu\mathsf{Y}%
+}
+
+
+
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\usepackage{wrapfig}
+\usepackage{permute}
+
+%Smaller Column Vectors
+\makeatletter
+\newcommand{\Spvek}[2][r]{%
+  \gdef\@VORNE{1}
+  \left(\hskip-\arraycolsep%
+    \begin{array}{#1}\vekSp@lten{#2}\end{array}%
+  \hskip-\arraycolsep\right)}
+
+\def\vekSp@lten#1{\xvekSp@lten#1;vekL@stLine;}
+\def\vekL@stLine{vekL@stLine}
+\def\xvekSp@lten#1;{\def\temp{#1}%
+  \ifx\temp\vekL@stLine
+  \else
+    \ifnum\@VORNE=1\gdef\@VORNE{0}
+    \else\@arraycr\fi%
+    #1%
+    \expandafter\xvekSp@lten
+  \fi}
+\makeatother
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+
+\title{Algebra I}
+
+\let\Im\relax
+\DeclareMathOperator*{\Im}{Im}
+
+\newcommand{\herm}[1]{\overline{#1}^\Trans}
+
+\DeclareMathOperator*{\ch}{ch}
+\renewcommand{\chi}{\textstyle\ch}
+
+\begin{document}
+
+\NotesTitle{1st}{Spring 2015}{Algebra I}{Prof.~J.}{Britnell}
+{
+
+
+{\Large\bfseries\sffamily{Syllabus}}
+
+\textit{Introductions to three topics in abstract algebra: The theory of vector spaces and linear
+transformations, the theory of groups and the theory of rings.}
+
+
+\begin{itemize}
+\item Vector spaces: Linear maps, rank-nullity theorem, connections with linear equations and matrices.
+
+\item Groups: Axioms, examples. Cyclic groups, dihedral groups, symmetric groups. Lagrange’s  theorem and applications.
+
+\item Rings: Polynomial rings, rings of the form Z[$\sqrt{d}$]. Euclid’s algorithm for certain rings. Uniqueness of factorisation for these rings. Applications to Diophantine Equations.
+\end{itemize}
+
+\subsection*{Appropriate books}
+
+{\shortskip
+J.~Fraleigh and R.~Beauregard, \emph{Linear Algebra}
+
+S.~Lipschutz and M.~Lipson, \emph{Linear Algebra}
+
+J.~B.~Fraleigh, \emph{A First Course in Abstract Algebra}
+
+R.~Allenby, \emph{Rings, Fields and Groups}
+
+I.~N.~Herstein, \emph{Topics in Algebra}
+}}
+
+\TableofContents
+
+\input{M1P2-Chap1.tex}		% Vector spaces
+\input{M1P2-Chap2.tex}		% Endomorhisms
+\input{M1P2-Chap3.tex}		% Endomorhisms
+%\input{linalg-chap-03.tex}
+
+\end{document}

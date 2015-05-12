@@ -1,0 +1,624 @@
+%!TEX root = linear-algebra.tex
+\stepcounter{lecture}
+\setcounter{lecture}{5}
+\sektion{Bilinear forms}
+
+\lecturemarker{17}{12 Nov}
+\begin{definition}
+	Let $V$ be a vector space over $\F$. A \emph{bilinear form} on $V$ is a multilinear form $V\times V\to\F$; that is, $\psi:V\times V\to\F$ such that %
+	\begin{align*}
+		\psi(v, a_1 w_1 + a_2 w_2) &= a_1\,\psi(v,w_1) + a_2\,\psi(v,w_2) \\
+		\psi(a_1 v_1 + a_2 v_2, w) &= a_1\,\psi(v_1,w) + a_2\,\psi(v_2,w).
+	\end{align*}
+\end{definition}
+
+\begin{examples}
+\mbox{}
+\begin{enumerate}
+	\item $V=\Fn$, $\psi\left( (x_1,\ldots,x_n),(y_1,\ldots,y_n) \right) = \sum_{i=1}^n x_i\,y_i$, which is the dot product of $\F=\Rn$. %
+	\item $V=\Fn$, $A\in\Mat_n(\F)$. Define $\psi(v,w)=v^\Trans Aw$. This is bilinear.
+	
+	(i) is the special case when $A=I$. Another special case is $A=0$, which is also a bilinear form. %
+	\item Take $V=C([0,1])$, the set of continuous functions on $[0,1]$. Then
+	\begin{equation*}
+		(f,g) \mapsto \int_0^1 f(t)\,g(t) \dif{t}
+	\end{equation*}
+	is bilinear.
+\end{enumerate}
+\end{examples}
+
+\begin{definition}
+	The set of bilinear forms of $V$ is denoted %
+	\begin{equation*}
+		\Bil(V) = \left\{\psi:V\times V\to\F \text{ bilinear}\right\}
+	\end{equation*}
+\end{definition}
+
+\begin{exercise}
+	If $g\in\GL(V)$, $\psi\in\Bil(V)$, then $g\psi:(v,w) \mapsto \psi(g^{-1} v, g^{-1} w)$ is a bilinear form. Show this defines a group action of $\GL(V)$ on $\Bil(V)$. % with $\GL(V) \times \Bil(V) \to \Bil(V)$. 
+	\emph{In particular, show that $h(g\psi) = (hg)\psi$, and you'll see why the inverse is in the definition of $g\psi$.}
+\end{exercise}
+
+\begin{definition}
+	We say that $\psi,\varphi\in\Bil(V)$ are \emph{isomorphic} if there is some $g\in\GL(V)$ such that $\varphi=g\psi$; that is, if they are in the same orbit. %
+\end{definition}
+
+Q: What are the orbits of $\GL(V)$ on $\Bil(V)$; that is, what are the isomorphism classes of bilinear forms?
+
+Compare with:
+\begin{itemize}
+	\item $\Lin(V,W)/\GL(V)\times\GL(W) \leftrightarrow \left\{i\iN \mid 0\leq i\leq \min(\dim V,\dim W)\right\}$ with $\varphi\mapsto \rk\varphi$. Here $(g,h)\circ\varphi = h\varphi g^{-1}$. %
+	\item $\Lin(V,V)/\GL(V) \leftrightarrow \text{JNF}$. Here $g\circ\varphi=g\varphi g^{-1}$ and we require $\F$ algebraically closed. %
+	\item $\Bil(V)/\GL(V) \leftrightarrow ??$,  with $(g\circ\psi)(v,w) = \psi(g^{-1}v, g^{-1} w)$. %
+\end{itemize}
+First, let's express this in matrix form. Let $v_1,\ldots,v_n$ be a basis for $V$, where $V$ is a finite dimensional vector space over $\F$, and $\psi\in\Bil(V)$. Then
+\begin{equation*}
+	\textstyle \psi\left( \sum_i x_i \, v_i, \sum_j y_j \, v_j \right) = \sum_{i,j} x_i \, y_j \,\psi(v_i,v_j) %
+\end{equation*}
+So if we define a matrix $A$ by $A=(a_{ij})$, $a_{ij} = \psi(v_i,v_j)$, then we say that $A$ is the matrix of the bilinear form with respect to the basis $v_1,\ldots,v_n$.
+
+In other words, the  isomorphism $V \xrightarrow[\theta]{\sim} \Fn$ induces an isomorphism $\Bil(V)\isomto \Mat_n\F$,  $\psi\mapsto a_{ij} = \psi(v_i,v_j)$.
+
+Now, let $v_1\p,\ldots,v_n\p$ be another basis, with $v_j\p = \sum_i p_{ij} \, v_i$. Then
+\begin{equation*}
+	\psi(v_a\p,v_b\p) = \textstyle \psi\left(\sum_i p_{ia} \, v_i, \sum_j p_{jb} \, v_j \right) %
+	= \sum_{i,j} p_{ia}\,\psi(v_i,v_j) \,p_{jb}
+	= \left( P^\Trans AP \right)_{ab}
+\end{equation*}
+So if $P$ is the matrix of the linear map $g^{-1}:V\to V$, then the matrix of $g\psi=\psi(g^{-1} (\cdot), g^{-1} (\cdot))$ is $P^\Trans AP$.
+
+So the concrete version of our question ``what are the orbits $\Bil(V)/\GL(V)$'' is ``what are the orbits of $\GL_n$ on $\Mat_n(\F)$ for this action?''
+
+\begin{definition}
+	Suppose $Q$ acts on $A$ by $QAQ^\Trans$. We say that $A$ and $B$ are \emph{congruent} if $B=QAQ^\Trans$ for some $Q\in\GL_n$. %
+\end{definition}
+
+We want to understand when two matrices are congruent.
+
+Recall that if $P,Q \in\GL_n$, then $\rank(PAQ) = \rank(A)$. Hence taking $Q = P^\Trans$, we get $\rank(PAP^\Trans) = \rank A$, and so the following definition makes sense:
+
+\begin{definition}
+	If $\psi \in\Bil(V)$, then the \emph{rank} of $\psi$, denoted $\text{rank}\, \psi$ or $\text{rk}\,\psi$ is the rank of the matrix of $\psi$ with respect to some (and hence any) basis of $V$. %
+\end{definition}
+
+We will see later how to give a basis independent definition of the rank.
+
+\begin{definition}
+	A form $\psi\in\Bil(V)$ is %
+	\begin{itemize}
+		\shortskip
+		\item \emph{symmetric} if $\psi(v,w)=\psi(w,v)$ for all $v,w\in V$. In terms of the matrix $A$ of $\psi$, this is requiring $A^\Trans=A$. %
+		\item \emph{anti-symmetric} if $\psi(v,v)=0$ for all $v\in V$, which implies $\psi(v,w) = -\psi(w,v)$ for all $v,w\in V$. In terms of the matrix,  $A^\Trans=-A$. %
+	\end{itemize}
+\end{definition}
+
+From now on, we assume that $\Char\F\neq 2$, so $1+1=2\neq 0$ and $1/2$ exists.
+
+Given $\psi$, put
+\begin{align*}
+	\psi^+(v,w) &= \tf{1}{2}\left[ \psi(v,w) + \psi(w,v) \right] \\
+	\psi^-(v,w) &= \tf{1}{2}\left[ \psi(v,w) - \psi(w,v) \right],
+\end{align*}
+which splits a form into symmetric and anti-symmetric components, and $\psi=\psi^+ +\psi^-$.
+
+Observe that if $\psi$ is symmetric or anti-symmetric, then so is $g\psi = \psi(g^{-1}(\cdot), g^{-1}(\cdot))$, or in matrix form, $A$ is symmetric or anti-symmetric if and only if $PAP^\Trans$ is, since $(PAP^\Trans)^\Trans = PA^\Trans P^\Trans$.
+
+So to understand $\Bil(V)/\GL(V)$, we will first understand the simpler question of classifying symmetric and anti-symmetric forms. Set
+\begin{gather*}
+	\textstyle\Bil^\varepsilon(V) = \left\{\psi\in\Bil(V) \mid \psi(v,w) = \varepsilon\,\psi(w,v)\;\forall v,w\in V\right\} \qquad \varepsilon=\pm\,1. %
+\end{gather*}
+So $\Bil^+(V)$ is the symmetric forms, and $\Bil^-$ is the antisymmetric forms.
+
+So our simpler question is to ask, ``What is $\Bil^\varepsilon(V)/\GL(V)$?''
+
+Hard exercise: Once you've finished revising the course, go and classify $\Bil(V)/GL(V)$.
+
+\subsection{Symmetric forms} % (fold)
+\label{sub:symmetric_forms}
+
+Let $V$ be a finite dimensional vector space over $\F$ and $\Char\F\neq 2$. If $\psi\in\Bil^+(V)$ is a symmetric form, then define $Q:V\to\F$ as
+\begin{equation*}
+	Q(v) = Q_\psi(v) = \psi(v,v).
+\end{equation*}
+We have
+\begin{align*}
+	Q(u+v)
+		&= \psi(u+v,u+v) \\
+		&= \psi(u,u) + \psi(v,v) + \psi(u,v) + \psi(v,u) \\
+		&= Q(u) + Q(v) + \psi(u,v) + \psi(v,u) \\
+	Q(\lambda u)
+		&= \psi(\lambda u, \lambda u) \\
+		&= \lambda^2 \,\psi(u,u) \\
+		&= \lambda^2 \, Q(u).
+\end{align*}
+
+\begin{definition}
+	A \emph{quadratic form} on $V$ is a function $Q:V\to\F$ such that %
+	\begin{enumerate}
+		\shortskip
+		\item $Q(\lambda v) = \lambda^2 Q(v)$;
+		\item Set $\psi_Q(u,v) = \tf{1}{2}\left[ Q(u+v) - Q(u) - Q(v) \right]$; then $\psi_Q:V\times V \to \F$ is bilinear. %
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma} The map
+	$\Bil^+(V) \to \left\{\text{quadratic forms on } V\right\}$,
+$\psi \mapsto Q_\psi$ is a bijection; $Q\mapsto \psi_Q$ is its inverse. %
+\end{lemma}
+
+\begin{proof}
+	Clear. We just note that %
+	\begin{align*}
+		\psi_Q(v,v)
+		&= \tf{1}{2}\left( Q(2v) - 2\,Q(v) \right) \\
+		&= \tf{1}{2}\left( 4\,Q(v) - 2\,Q(v) \right) = Q(v),
+	\end{align*}
+	as $Q(\lambda u) = \lambda^2 Q(u)$.
+\end{proof}
+
+\vspace{3pt}
+
+\begin{remark}
+	If $v_1,\ldots,v_n$ is a basis of $V$ with $\psi(v_i,v_j) = a_{ij}$, then
+	\begin{equation*}
+		\textstyle Q\left( \sum x_i v_i \right) = \sum a_{ij} x_i x_j = x^\Trans Ax, %
+	\end{equation*}
+	that is, a quadratic form is a homogeneous polynomial of degree 2 in the variables $x_1,\ldots,x_n$. %
+\end{remark}
+
+\begin{theorem}
+	Let $V$ be a finite dimensional vector space over $\F$ and $\psi\in\Bil^+(V)$ a symmetric bilinear form. Then there is some basis $v_1,\ldots,v_n$ of $V$ such that $\psi(v_i,v_j)=0$ if $i\neq j$. That is, we can choose a basis so that the matrix of $\psi$ is diagonal. %
+\end{theorem}
+
+\begin{proof}
+	Induct on $\dim V$. Now $\dim V=1$ is clear. It is also clear if $\psi(v,w) = 0 $ for all $v,w \in V$.%
+
+	So assume otherwise. Then there exists a $w \in V$ such that $\psi(w,w)\neq 0$. (As if $\psi(w,w)=0$ for all $w\in V$; that is, $Q(w)=0$ for all $w\in V$, then by the lemma, $\psi(v,w)=0$ for all $v,w\in V$.) %
+
+\bigskip
+
+To continue, we need some notation. For an arbitrary $\psi\in\Bil(V)$, $U\leq V$, define
+\begin{equation*}
+	U^\perp = \left\{v\in V : \psi(u,v) = 0 \text{ for all } u\in U\right\}.
+\end{equation*}
+
+\begin{claim}
+	$\left\langle w \right\rangle \oplus \left\langle w \right\rangle^\perp = V$ is a direct sum. %
+\end{claim}
+
+%\begin{proof}
+
+	[Proof of claim] As $\psi(w,w)\neq 0$, $w\not\in\left\langle w \right\rangle^\perp$, so $\left\langle w \right\rangle\cap\left\langle w \right\rangle^\perp = 0$, and the sum is direct. %
+	
+	Now we must show $\left\langle w \right\rangle + \left\langle w \right\rangle^\perp = V$. %
+	
+	Let $v\in V$. Consider $v-\lambda w$. We want to find a $\lambda$ such that $v-\lambda w\in\left\langle w \right\rangle^\perp$, as then $v=\lambda w+\left( v-\lambda w \right)$ shows $v\in\left\langle w \right\rangle+\left\langle w \right\rangle^\perp$. %
+
+	But $v-\lambda w\in\left\langle w \right\rangle^\perp \iff \psi(w,v-\lambda w) = 0 \iff \psi(w,v) = \lambda\,\psi(w,w)$; that is, set %
+	\begin{equation*}
+		\lambda = \f{\psi(w,v)}{\psi(w,w)}.
+		\lecturemarker{18}{14 Nov}
+	\end{equation*}
+	Now let $W=\left\langle w \right\rangle^\perp$, and $\psi\p = \psi\mid_W: W \times W \to \F$ the restriction of $\psi$. This is symmetric bilinear, so by induction there is some basis $v_2,\ldots,v_n$ of $W$ such that $\psi(v_i,v_j) = \lambda_i \, \delta_{ij}$ for $\lambda_i \iF$. %
+
+	Hence, as $\psi(w,v_i) = \psi(v_i,w) = 0$ if $i\geq 2$, put $v_1=w$ and we get that with respect to the basis $v_1,\ldots,v_n$, the matrix of $\psi$ is %
+	\begin{equation*}
+		\mat{\psi(w,w) & & & 0 \\ & \lambda_2 \\ & & \ddots \\ 0 & & & \lambda_n}. \qedhere
+	\end{equation*}
+\end{proof}
+
+\emph{Warning.} The diagonal entries are not determined by $\psi$, for example, consider
+\begin{equation*}
+	\mat{a_1 \\ & \ddots \\ & & a_n}
+	\mat{\lambda_1 \\ & \ddots \\ & & \lambda_n}
+	\mat{a_1 \\ & \ddots \\ & & a_n}^\Trans
+	=
+	\mat{a_1^2 \, \lambda_1 \\ & \ddots \\ & & a_n^2 \, \lambda_n},
+\end{equation*}
+that is, rescaling the basis element $v_i$ to $a_i v_i$ changes $Q(a_i v_i) = a_i^2\,Q(v_i)$.
+	
+Also, we can reorder our basis -- equivalently, take $P=P(w)$, the permutation matrix of $w\in S_n$, and note $P^\Trans=P(w^{-1})$, so
+\begin{equation*}
+	P(w)\,A\,P(w)^\Trans = P(w)\,A\,P(w)^{-1}.
+\end{equation*}
+Furthermore, it's not obvious that more complicated things can't happen, for example,
+\begin{equation*}
+	P \mat{2 \\ & 3} P^\Trans = \mat{5 \\ & 30} \text{ if } P = \mat{1 & -3 \\ 1 & 2}. %
+\end{equation*}
+%	Then we're done.
+
+\begin{corollary}
+	Let $V$ be a finite dimensional vector space over $\F$, and suppose $\F$ is algebraically closed (such as  $\F=\C$). Then %
+	\begin{equation*}
+		\textstyle\Bil^+(V)/\GL(V) \isomto \left\{i : 0\leq i\leq \dim V\right\},
+	\end{equation*}
+	under the isomorphism taking $\psi\mapsto\rk\psi$.
+\end{corollary}
+
+\begin{proof}
+	By the above, we can reorder and rescale so the matrix looks like %
+	\begin{equation*}
+		\mat{1 \\ & \ddots \\ & & 1 \\ & & & 0 \\ & & & & \ddots \\ & & & & & 0}
+	\end{equation*}
+	as $\sqrt{\lambda_i}$\, is always in $\F$.
+	
+		\pagebreak
+	
+	That is, there exists a basis of $Q$ such that
+	\begin{equation*}
+		Q\left( \sum_{i=1}^n x_i\,v_i \right) = \sum_{i=1}^r x_i^2,
+	\end{equation*}
+	where $r=\rk Q\leq n$.
+
+	Now let $\F=\R$, and $\psi:V\times V\to\R$ be bilinear symmetric. %
+	
+	By the theorem, there is some basis $v_1,\ldots,v_n$ such that $\phi(v_i,v_j)=\lambda_i\,\delta_{ij}$. Replace $v_i$ by $v_i/\sqrt{\left\vert \lambda_i \right\vert}$ if $\lambda_i\neq 0$ and reorder the basis, we get $\psi$ is represented by the matrix %
+	\begin{equation*}
+		\mat{I_p \\ & -I_q \\ & & 0},
+	\end{equation*}
+	for $p,q\geq 0$, that is, with respect to this basis
+	\begin{equation*}
+		Q\left( \sum_{i=1}^n x_i\,v_i \right) = \sum_{i=1}^p x_i^2 - \sum_{i=p+1}^{p+q} x_i^2.
+	\end{equation*}
+\end{proof}
+
+Note that $\rk\psi = p+q$.
+
+\begin{definition}
+	The \emph{signature} of $\psi$ is $\sign \psi=p-q$. 
+\end{definition}
+
+We need to show this is well defined, and not an artefact of the basis chosen.
+
+\begin{theorem}
+	[Sylvester's law of inertia] The signature does not depend on the choice of basis; that is, if $\psi$ is represented by %
+	\begin{equation*}
+		\mat{I_p \\ & -I_q \\ & & 0} \text{ wrt } v_1,\ldots,v_n \text{ and by }
+		\mat{I_p\p \\ & -I_q\p \\ & & 0} \text{ wrt } w_1,\ldots,w_n,
+	\end{equation*}
+	then $p=p\p$ and $q=q\p$.
+\end{theorem}
+
+\emph{Warning.} In general, $\Tr(P^\Trans AP) \neq \Tr(A)$, so we can't prove it that way.
+
+	\vspace{3pt}
+
+\begin{definition}
+	Let $Q:V\to\R$ be a quadratic form on $V$,  where $V$ is a vector space over $\R$, and $U\leq V$.
+
+	We say $Q$ is \emph{positive semi-definite on $U$} if for all $u\in U$, $Q(u)\geq 0$. Further, if $Q(u)=0 \iff u=0$, then we say that $Q$ is \emph{positive definite} on $U$. %
+	
+	If $U=V$, then we just say that $Q$ is positive (semi) definite.
+
+	We define negative (semi) definite to mean $-Q$ is positive (semi) definite. %
+\end{definition}
+
+	\pagebreak
+
+\begin{proof}
+	[Proof of theorem] Let $P=\left\langle v_1,\ldots,v_p \right\rangle$. So if $v=\sum_{i=1}^p \lambda_i v_i \in P$, $Q(v)=\sum_i \lambda_i^2 v_i^2 \geq 0$, and $Q(v)=0 \iff v=0$, so $Q$ is positive definite on $P$. %
+	
+	Let $U=\left\langle v_{p+1},\ldots,v_{p+q},\ldots,v_n \right\rangle$, so $Q$ is negative semi-definite on $U$. And now let $P\p$ be any positive definite subspace. %
+	
+	Now we claim that $P\p\cap U=\{0\}$.
+	
+	Consider: if $v\in P\p$, then $Q(v)\geq 0$; if $v\in U$, $Q(u)\leq 0$. So if $v\in P\p\cap U$, then $Q(v)=0$. But $P\p$ is positive definite, so $v=0$. Hence %
+	\begin{equation*}
+		\dim P\p+\dim U = \dim(P\p+U) \leq \dim V = n,
+	\end{equation*}
+	and so
+	\begin{equation*}
+		\dim P\p \leq  \dim V - \dim U = \dim P,
+	\end{equation*}
+	that is, $p$ is the maximum dimension of any positive definite subspace, and hence $p\p=p$. Similarly, $q$ is the maximum dimension of any negative definite subspace, so $q\p=q$. %
+\end{proof}
+
+Note that $(p,q)$ determine $(\rk,\sign)$, and conversely, $p=\f{1}{2}\left( \rk+\sign \right)$ and $q=\f{1}{2}\left( \rk-\sign \right)$. So we now have
+\begin{equation*}
+	\Bil^+(\Rn)/\GL_n(\R)
+	\to \left\{(p,q) : p,q\geq 0, p+q\leq n \right\} \isomto \{(\rk,\sgn)\}.
+\end{equation*}
+
+\vspace{-12pt}
+
+\begin{example}
+	Let $V=\R^2$, and $Q\disp{x_1 \choose x_2} = x_1^2-x_2^2$. %
+	
+	Consider the line $L_\lambda = \left\langle e_1+\lambda e_2 \right\rangle$, $Q{1 \choose \lambda} = 1-\lambda^2$, so this is positive definite if $\left\vert \lambda \right\vert<1$, and negative definite if $\left\vert \lambda \right\vert>1$. %
+	
+	In particular, $p=q=1$, but there are many choices of positive and negative definite subspaces of maximal dimension. (Recall that lines in $\R^2$ are 
+parameterised by points on the circle $\R\cup\{\infty\}$).
+\end{example}
+
+\begin{example}
+	Compute the rank and signature of %
+	\begin{equation*}
+		Q(x,y,z) = x^2+y^2 + 2z^2 + 2xy +2 xz - 2yz.
+	\end{equation*}
+	Note the matrix $A$ of $Q$ is
+	\begin{equation*}
+		\mat{1 & 1 & 1 \\ 1 & 1 & -1 \\ 1 & -1 & 2},
+		\text{ that is }
+		Q\mat{x \\ y \\ z} = \mat{x & y & z} A \mat{x \\ y \\ z}.
+	\end{equation*}
+	(Recall that we for an arbitrary quadratic form $Q$, its matrix $A$ is given by
+	\begin{equation*}
+		\textstyle Q\left( \sum_i x_i \, v_i \right)
+		= \sum_{i,j} a_{ij}\,x_i\,x_j
+		= \sum_i a_{ii}\,x_i^2
+		+ \sum_{i<j} 2a_{ij} \,x_i\,x_j.
+	\end{equation*}
+	which is why the off-diagonal terms halved!)
+
+	We could apply the method in the proof of the theorem: begin by finding $w\iR^3$ such that $Q(w)\neq 0$. Take $w=e_1=(1,0,0)$. Now find $\left\langle w \right\rangle^\perp$. To do this, we seek $\lambda$ such that $e_2+\lambda e_1 \in \left\langle e_1 \right\rangle^\perp$. But $Q(e_1,e_2+\lambda e_1)=0$ implies $\lambda=-1$. Similarly we find  $e_3-e_1 \in \left\langle e_1 \right\rangle^\perp$, so $\left\langle e_1 \right\rangle^\perp = \left\langle e_2-e_1, e_3-e_1 \right\rangle$. Now continue with $Q\mid \left\langle e_1 \right\rangle^\perp$, and so on. %
+	
+		\pagebreak
+
+	Here is a nicer way of writing this same computation: row and column reduce $A$: %
+	
+	First, $R2 \mapsto R2-R1$ and $C2 \mapsto C2-C1$. In matrix form: %
+	\begin{align*}
+		\left( I-E_{21} \right) A \left( I-E_{12} \right)
+		= \mat{1 & 0 & 1 \\ 0 & 0 & -2 \\ 1 & -2 & 2}
+		% & \longrightlsquigarrow
+	\end{align*}
+	Next $R3 \mapsto R3 - R1$ and $C3 \mapsto C3-C1$, giving
+	\begin{equation*}
+		\mat{1 \\ & 0 & -2 \\  & -2 & 1}.
+	\end{equation*}
+	Then swap $R2$, $R3$, and  $C2$, $C3$, giving
+	\begin{equation*}
+		\mat{1 \\ & 1 & -2 \\ & -2 & 0}.
+	\end{equation*}
+	Then $R3 \mapsto R3+2\,R2$ and $C3 \mapsto C3 + 2\,C2$, giving
+	\begin{equation*}
+		\mat{1 \\ & 1 \\ & & -4}.
+	\end{equation*}
+	Finally, rescale the last basis vector, giving
+	\begin{equation*}
+		\mat{1 \\ & 1 \\ & & -1}.
+	\end{equation*}
+	That is, if we put
+	\begin{equation*}
+		P=\left( I-E_{12} \right)\left( I-E_{13} \right)P((2\;3)) \left( I-2\,E_{23} \right)\mat{ 1 \\ & 1 \\ & & \tf{1}{2}},
+	\end{equation*}
+	then
+	\begin{equation*}
+		P^\Trans AP = \mat{1 \\ & 1 \\ & & -1}.
+	\end{equation*}
+	Method 2: we could just try to complete the square
+	\begin{equation*}
+		Q(x,y,z) = \left( x+y+z \right)^2 + z^2 - 4yz = \left( x+y+z \right)^2 + \left( z-2y \right)^2 - 4y^2
+	\end{equation*}
+	% $\rk=3$, $\sign=1=\underset{=p}{2} - \underset{=q}{1}$
+\end{example}
+
+\vspace{6pt}
+
+\begin{remark}
+	We will see in Chapter~6 that $\sign(A)$ is the number of positive eigenvalues minus the number of negative eigenvalues, so we could also compute it by computing the characteristic polynomial of $A$. %
+\end{remark}
+
+% subsection symmetric_forms (end)
+
+	\pagebreak
+
+\subsection{Anti-symmetric forms} % (fold)
+\label{sub:antisymmetric_forms}
+
+We begin with a basis independent meaning of the rank of an arbitrary bilinear form.
+\begin{proposition}
+	Let $V$ be a finite dimensional vector space over $\F$. Then
+	\begin{equation*}
+		\rk\psi = \dim V - \dim V^\perp = \dim V - \dim {}^\perp\! V,
+	\end{equation*}
+	where $V^\perp = \left\{v\in V: \psi(V,v) = 0 \right\}$ and ${}^\perp V = \left\{v\in V:\psi(v,V) = 0\right\}$. %
+\end{proposition}
+
+\begin{proof}
+	\lecturemarker{19}{16 Nov}
+	Define a linear map $\Bil(V) \to \Lin(V,V^*)$, $\psi\mapsto\psi_L$ with $\psi_L(v)(w) = \psi(v,w)$. First we check that this is well-defined: $\psi(v,\cdot)$ linear implies $\psi_L(v) \in V^*$, and $\psi(\cdot,w)$ linear implies $\psi_L(\lambda v + \lambda\p v\p) = \lambda\,\psi_L(v) + \lambda\p\,\psi_L(v\p)$; that is, $\psi_L$ is linear, and $\psi_L\in \Lin(V,V^*)$. %
+	
+	It is clear that the map is injective (as $\psi\not\equiv 0$ implies there are some $v,w$ such that $\psi(v,w)\neq 0$, and so $\psi_L(v)(w)\neq 0$) and hence an isomorphism, as $\Bil(V)$ and $\Lin(V,V^*)$ are both vector spaces of dimension $\left( \dim V \right)^2$. %
+	
+	Let $v_1,\ldots,v_n $ be a basis of $V$, and $v_1^*,\ldots,v_n^*$ be the dual basis of $V^*$; that is, $v_i^*(v_j) = \delta_{ij}$. Let $A=(a_{ij})$ be the matrix of $\psi_L$ with respect to these bases; that is, %
+	\begin{equation*}
+		\psi_L(v_j) = \sum_i a_{ij} \, v_i^*. \tag{$*$}
+	\end{equation*}
+	Apply both sides of $(*)$, to $v_i$, and we have
+	\begin{equation*}
+		\psi(v_j,v_i) = \psi_L(v_j,v_i) = a_{ij}.
+	\end{equation*}
+	So the matrix of $\psi$ with respect to the basis $v_i$ is just $A^\Trans$.
+	
+	\begin{exercise}
+		Define $\psi_R\in \Lin(V,V^*)$ by $\psi_R(v)(w) = \psi(w,v)$. Show the matrix of $\psi_R$ is the matrix of $\psi$ (which we've just seen is the transpose of the matrix of $\psi_L$). %
+	\end{exercise}
+	
+	Now we have
+	\begin{equation*}
+		\rk A = \dim \Im(\psi_L:V \to V^*) = \dim V - \dim\ker\psi_L
+	\end{equation*}
+	and
+	\begin{equation*}
+		\ker \psi_L = \left\{v\in V: \psi(v,V) = 0\right\} = {}^\perp V.
+	\end{equation*}
+	But also
+	\begin{equation*}
+		\rk A = \rk A^\Trans = \dim\Im(\psi_R:V \to V^*) = \dim V - \dim\ker\psi_R,
+	\end{equation*}
+	and $\ker\psi_R = V^\perp$.
+\end{proof}
+
+\begin{definition}
+	A form $\psi\in\Bil(V)$ is \emph{non-degenerate} if any of the following equivalent conditions hold: %
+	\begin{itemize}
+		\shortskip
+		\item $V^\perp = \,^\perp V = \{0\}$;
+		\item $\rk\psi=\dim V$;
+		\item $\psi_L:V\to V^*$ taking $v\mapsto \psi(v,\cdot)$ is an isomorphism;
+		\item $\psi_R:V\to V^*$ taking $v\mapsto \psi(\cdot,v)$ is an isomorphism;
+		\item for all $v\in V\backslash\{0\}$, there is some $w\in V$ such that $\psi(v,w)\neq 0$; that is, a non-degenerate bilinear form gives an isomorphism between $V$ and $V^*$. %
+	\end{itemize}
+\end{definition}
+
+	\pagebreak
+
+\begin{proposition}
+	Let $W\leq V$ and $\psi\in\Bil(V)$. Then %
+	\begin{equation*}
+		\dim W + \dim W^\perp - \dim(W\cap \,^\perp V) = \dim V.
+	\end{equation*}
+\end{proposition}
+
+\begin{proof}
+	Consider the map $V\to W^*$ taking $v\mapsto\psi(\cdot,v)$. (When we write $\psi(\cdot,v):W\to\F$, we mean the map $w\mapsto\psi(w,v)$.) The kernel is %
+	\begin{equation*}
+		\ker = \left\{v\in V : \psi(v,w)=0 \;\forall w\in W\right\} = W^\perp,
+	\end{equation*}
+	so the rank-nullity theorem gives
+	\begin{equation*}
+		\dim V = \dim W^\perp + \dim\Im.
+	\end{equation*}
+	So what is the image? Recall that
+	\begin{equation*}
+		\dim \Im(\theta:V\to W^*)
+		= \dim\Im(\theta^*:W = W^{**} \to V^*)
+		= \dim W - \dim\ker\theta^*.
+	\end{equation*}
+	But 
+	\begin{equation*}
+		\theta^*(w) = \psi(w,\cdot):V\to\F,
+	\end{equation*}
+	and so $\theta^*(w)=0$ if and only if $w\in{}^\perp V$; that is, $\ker\theta^* = W \cap {}^\perp V$, proving the proposition. %
+\end{proof}
+
+\begin{remark}
+	If you are comfortable with the notion of a quotient vector space, consider instead the map  $V \to (W/W\cap{}^\perp V)^*$, $v\mapsto \psi(\cdot,v)$ and show it is well-defined, surjective and has $W^\perp$ as the kernel. %
+	%Also show that  $V/V^\perp$ naturally carries a non-degenerate bilinear form. %
+\end{remark}
+
+\begin{example}
+	If $V=\R^2$, and $Q\mat{x_1 \\ x_2} = x_1^2 - x_2^2$, then $A=\mat{1 \\ & -1}$. %
+	
+	Then if $W=\left\langle \mat{1 \\ 1} \right\rangle$, $W^\perp=W$ and the proposition says $1+1-0=2$. %
+	
+	Or if we let $V=\C^2$, $Q\mat{x_1 \\ x_2} = x_1^2 + x_2^2$ , so $A = \mat{1 \\ & 1}$, and set $W=\left\langle \mat{1 \\ i} \right\rangle$ then $W=W^\perp$. %
+\end{example}
+
+\begin{corollary}
+	$\eval[1]{\psi}_W:W\times W\to\F$ is non-degenerate if and only if $V=W\oplus W^\perp$. %
+\end{corollary}
+
+\begin{proof}
+	($\Leftarrow$) $\eval[1]{\psi}_W$ is non-degenerate means that for all $w\in W\backslash\{0\}$, there is some $w\p\in W$ such that $\psi(w,w\p)\neq 0$, so if $w\in W^\perp \cap W$, $w\neq 0$, then for all $w\p \in W$, $\psi(w,w\p)=0$, a contradiction, and so $W\cap W^\perp = \{0\}$. Now %
+	\begin{equation*}
+		\dim(W+W^\perp) = \dim W + \dim W^\perp \geq \dim V,
+	\end{equation*}
+	by the proposition, so $W+W^\perp=V$ (and also $\psi$ is non-degenerate on all of $V$ clearly).
+	
+	($\Rightarrow$) Clear by our earlier remarks that $W\cap W^\perp=0$ if and only if $\eval[1]{\psi}_W$ is non-degenerate. %
+\end{proof}
+
+\newcommand{\arrmat}[1]{\fbox{$\begin{array}{cc} #1 \end{array}$}}
+\newcommand{\arrrmat}[1]{\fbox{$\begin{array}{ccc} #1 \end{array}$}}
+
+	\pagebreak
+
+\begin{theorem}
+	Let $\psi\in\Bil^-(V)$ be an \emph{anti}-symmetric bilinear form. Then there is some basis $v_1,\ldots,v_n$ of $V$ such that the matrix of $\psi$ is %
+	\begin{equation*}
+		\mat{
+			\arrmat{0 & 1 \\ -1 & 0} & & & & & & 0 \\
+			& \arrmat{0 & 1 \\ -1 & 0} \\
+			& & \ddots \\
+			& & & \arrmat{0 & 1 \\ -1 & 0} \\
+			& & & & 0 \\
+			& & & & & \ddots \\
+			0 & & & & & & 0
+		}
+	\end{equation*}
+	In particular, $\rk\psi$ is \emph{even}! ($\F$ is arbitrary.)
+\end{theorem}
+
+\begin{remark}
+	If $\psi\in\Bil^\pm(V)$, then $W^\perp={}^\perp W$ for all $W\leq V$. %
+\end{remark}
+
+\begin{proof}
+	We induct on $\rk\psi$, if $\rk\psi=0$, then $\psi=0$ and we're done. %
+	
+	Otherwise, there are some $v_1,v_2\in V$ such that $\psi(v_1,v_2)\neq 0$. If $v_2=\lambda v_1$ then $\psi(v_1,\lambda v_2) = \lambda\,\psi(v_1,v_1)=0$, as $\psi$ is anti-symmetric; so $v_1,v_2$ are linearly independent. Change $v_2$ to $v_2/\psi(v_1,v_2)$. %
+	
+	So now $\psi(v_1,v_2)=1$. Put $W=\left\langle v_1,v_2 \right\rangle$, then $\eval[1]{\psi}_W$ has matrix \arrmat{0 & 1 \\ -1 & 0}\,, which is non-degenerate, so the corollary gives $V=W\oplus W^\perp$. And now induction gives the basis of $W^\perp$, $v_3,\ldots,v_n$, of the correct form, and $v_1,\ldots,v_n$ is our basis. %
+\end{proof}
+
+\vspace{3pt}
+
+So we've shown that there is an isomorphism
+\begin{equation*}
+	\Bil^-(V)/\GL(V) \isomto \left\{2i : 0\leq i \leq \f{1}{2}\dim V\right\}. %
+\end{equation*}
+taking $\psi\mapsto\rk\psi$.
+
+\vspace{3pt}
+
+\begin{remark}
+	A non-degenerate anti-symmetric form  $\psi$ is usually called a \emph{symplectic form}.	
+
+	Let $\psi\in\Bil^-(V)$ be non-degenerate, $\rk\psi=n = \dim V$ (even!). Put $L=\left\langle v_1,v_3,v_5,\ldots \right\rangle$, with $v_1,\ldots,v_n$ as above, and then $L^\perp=L$. Such a subspace is called \emph{Lagrangian}. %
+	
+	If $U\leq L$, then $U^\perp\geq L^\perp = L$, and so $U\subseteq U^\perp$. Such a subspace is called \emph{isotropic}. %
+\end{remark}
+
+	\pagebreak
+
+\begin{definition}
+	If $\psi\in\Bil(V)$, then the \emph{isometries} of $\psi$ are %
+	\begin{align*}
+		\Isom\psi
+		&= \left\{g\in\GL(V) : g\psi = \psi\right\} \\
+		&= \left\{g\in\GL(V): \psi(g^{-1} v, g^{-1} w) = \psi(v,w)\;\forall v,w\in V\right\} \\ %
+		&=\left\{X\in\textstyle\GL_n(\F) : XAX^\Trans = A\right\} \text{ if } A \text{ is a matrix of } \psi. %
+	\end{align*}
+	This is a group. 
+\end{definition}
+
+\begin{exercise}
+	Show that $\Isom(g\psi) = g \Isom (\psi) \, g^{-1}$, and so isomorphism bilinear forms have isomorphic isometry groups. %
+\end{exercise}
+
+If $\psi\in\Bil^+(V)$, $\psi$ is non-degenerate, we often write $O(\psi)$, the \emph{orthogonal group of $\psi$} for the isometry group of $\psi$.
+
+\begin{example}
+	Suppose $\F=\C$. If $\psi\in\Bil^+(V)$, and $\psi$ is non-degenerate, then $\psi$ is isomorphic to the standard quadratic form, whose matrix  $A=I$, and so $\Isom\psi$ is conjugate to the group %
+	\begin{equation*}
+		\Isom(A=I) = \left\{X\in\textstyle\GL_n(\C) : XX^\Trans = I\right\} = O_n(\C),
+	\end{equation*}
+	which is what we usually call the orthogonal group.
+	
+	If $\F=\R$, then
+	\begin{equation*}
+		O_{p,q}(\R)=\left\{X \mid X\mat{I_p \\ & -I_q} X^\Trans = \mat{I_p \\ & -I_q}\right\}.
+	\end{equation*}
+	are the possible isometry groups of non-degenerate symmetric forms. %
+	
+		\pagebreak
+	
+	For any field $\F$, if $\psi\in\Bil^-(\F)$ is non-degenerate, then $\Isom\psi$ is called the \emph{symplectic group}, and it is conjugate to the group %
+	\begin{equation*}
+		\text{Sp}_{2n}(\F) = \left\{X: XJX^\Trans = J\right\},
+	\end{equation*}
+	where $J$ is the matrix given by
+	\begin{equation*}
+		J =
+		\mat{
+			\arrmat{0 & 1 \\ -1 & 0} & & & 0 \\
+			& \arrmat{0 & 1 \\ -1 & 0} \\
+			& & \ddots \\
+			0 & & & \arrmat{0 & 1 \\ -1 & 0}
+		}
+	\end{equation*}
+\end{example}
+
+% subsection antisymmetric_forms (end)
