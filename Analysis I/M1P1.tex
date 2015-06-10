@@ -1,0 +1,111 @@
+\documentclass[twoside]{scrartcl}
+
+\usepackage[blacklinks]{drangreport}
+% \usepackage[caecilia]{drangreport}
+
+\usepackage{pgfplots}
+
+%Thomas' contradiction symbol
+\newcommand*{\cont}{%
+  \mathsf{X}\mkern-8.5mu\mathsf{X}%
+}
+\renewcommand{\thempfootnote}{$\dagger$}
+
+%Change font of proof to scshape, not sure if it looks better...
+\expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+\let\oldendproof\endproof
+\renewenvironment{proof}[1][\proofname]{%
+  \oldproof[\scshape #1]%
+}{\oldendproof}
+
+
+\title{Analysis I}
+
+
+\hypersetup{pdfinfo={
+Title={Analysis I},
+Author={Karim Bacchus},
+Keywords ={Analysis I, M1P1, Lecture Notes, Imperial College, Maths},
+}}
+
+
+\begin{document}
+
+
+\NotesTitle{1st}{Spring 2015}{Analysis I}{Prof.~R.}{Thomas}
+{
+Caveat Lector: unofficial notes, \emph{not} endorsed by Imperial College.\\[0.1cm]
+Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}
+}
+{
+
+\section*{About these notes}
+
+These notes are not affiliated with Richard Thomas (or even \emph{Professor} Richard Thomas!)\\ The \LaTeX{} source is available on \texttt{github} - it would be great if someone would update changes to the courses so they'll still be useful to later years. Notes for other courses are available on \texttt{dropbox}:
+
+\begin{center}
+\begin{tabular}{l | l}
+\textbf{1st / 2nd Year} & \textbf{3rd / 4th Year}\\
+Foundations of Analysis & Galois Theory\\
+Analysis I & Algebraic Number Theory \\
+Analysis II & Analytical Number Theory \\
+Complex Analysis & Elliptic Curves  \\
+Geometry \& Linear Algebra & Modular Forms \\
+Algebra I & Algebra III \\
+Algebra II & Commutative Algebra \\
+Methods I & Lie Algebras  \\
+Methods II & Measure \& Integration  \\
+Multivariable Calculus & Functional Analysis\\
+Differential Equations & Algebraic Topology \\
+Metric Spaces \& Topology  & Differential Topology \\
+Intro to Numerical Analysis & Complexity \\
+Mechanics & General Relativity \\
+\end{tabular}
+\end{center}
+
+\begin{flushright}
+- Karim Bacchus 	
+\end{flushright}
+
+
+
+\pagebreak 
+\thispagestyle{empty}
+
+
+\section*{Syllabus}  
+
+\textit{A rigorous treatment of the concept of a limit, as applied to sequences, series and functions.}
+\begin{itemize}
+\item  Real and complex sequences. Convergence, divergence and divergence to infinity. Sums and products of convergent sequences. The Sandwich Test. Sub-sequences, monotonic sequences, Bolzano-Weierstrass Theorem. Cauchy sequences and the general principle of convergence.
+
+\item Real and complex series. Convergent and absolutely convergent series. The Comparison Test for non-negative series and for absolutely convergent series. The Alternating Series Test.  Rearranging absolutely convergent series. Radius of convergence of power series. The exponential series.
+
+\item Limits and continuity of real and complex functions. Left and right limits and continuity. Maxima
+and minima of real valued continuous functions on a closed interval. Inverse Function Theorem for
+strictly monotonic real functions on an interval. 
+
+\item  An introduction to differentiability: definitions, examples, left and right derivative.
+\end{itemize}
+\subsection*{Appropriate books}
+
+{\shortskip
+
+K.~G.~ Binmore, \textit{Mathematical Analysis, A Straightforward Approach} (Cambridge University Press).
+
+}
+
+}
+
+
+
+
+
+\TableofContents
+\input{Chap1.tex}		% Sequences
+\input{Chap2.tex}		% Series
+\input{Chap3.tex}		% Continuity
+\input{Chap4.tex}		% Differentiation
+
+
+\end{document}

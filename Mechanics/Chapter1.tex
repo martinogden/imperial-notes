@@ -3,13 +3,9 @@
 \setcounter{lecture}{1}
 \pagebreak
 \sektion{Kinematics}
-
-
-\lecturemarker{1}{5 Oct}
-
 \setcounter{page}{4}
 
-What we are after is an \emph{equation of motion} to find the position of an object for all times. Ingredients to an equation of motion:\begin{enumerate}
+What \lecturemarker{1}{5 Oct} we are after is an \emph{equation of motion} to find the position of an object for all times. Ingredients to an equation of motion:\begin{enumerate}
 \item[1)] Kinematics - Description of motion 
 \item[2)] Kinetics - Newton's laws
 \item[3)] Mathematical Description of Forces - Describe forces in terms of kinematic quantities
@@ -106,10 +102,244 @@ Define the \emph{acceleration}
 
 $\vec{a}(t)$ tells us how the velocity is changing at time $t$. 
 
-Recall that we can write 
-\[\vec{v} = v(t)\hat{v}(t), \text{ then } \vec{a} = \]
+Recall that we can write $\vec{v} = v(t)\hat{v}(t)$, then
+\[\vec{a} = \frac{d}{dt}(v\hat{v}) = \frac{dv}{dt}\hat{v} + v\frac{d\hat{v}}{dt}\]
 
-\subsektion{Polar Coodinates}
+\emph{Question from the audience} 
+\[\vec{r}(t) = r(t)\vec{r}(t)\]
+\[\vec{v} = \frac{d\vec{r}}{dt} = \frac{d}{dt}(r\vec{r}) = \frac{dr}{dt}\vec{r} + r\frac{d\hat{r}}{dt}\]
+
+What we have done: started with $\vec{r}$ and we differentiated w.r.t $t$ to find $\vec{v}$ and $\vec{a}$. 
+
+Starting with $\vec{a}$ we can integrate to find $\vec{v}$, then $\vec{r}$. 
+\[\int_{t_0}^{t} \vec{a}dt' = \int_{t_0}^{t} \frac{d\vec{v}}{dt'}\,dt' = \vec{v}(t) = \vec{v}(t_0)
+\]
+\[\implies \vec{v}(t) = \vec{v}(t_0) + \int_{t_0}^t \vec{a}\,dt'\]
+
+We can integrate this component. For example 
+\[v_x(t) = v_x(t_0) \int_{t_0}^t a_x\,dt'\]
+To determine $\vec{v}(t)$ uniquely, we need to know $\vec{v}(t_0)$ (constant vector). 
+
+Similarly
+\[\vec{r}(t) = \vec{r}(t_0) + \int_{t_0}^t \vec{v}(t')\,dt'\]
+Thus, starting with $\vec{a}(t)$, we need to know \emph{both} $\vec{r}(t_0)$ and $\vec{v}(t_0)$ to find $\vec{r}(t)$ uniquely! 
+
+What allows us to connect the mathematics to the physical world is that these quantities are measurable. \\
+
+\begin{definition}[SI Units]\begin{itemize}
+\item \emph{Time:} Measured in seconds, s
+
+\item \emph{Distance:} Measured in metres, m
+
+\item \emph{Velocity:} ``Metres per second", m/s or ms$^{-1}$
+	
+\item \emph{Accelerations}: ``Metres per second squared"", m/s$^2$ or ms$^{-2}$
+\end{itemize}
+\end{definition}
+
+\begin{example}
+	Near the surface of the earth, the acceleration due to gravity is constant!
+	\[g = 9.8ms^{-2}\]
+	Suppose: an object is dropped \emph{from rest} at height $h$ above the ground. Find $\vec{r}(t)$:
+	\vspace*{-5pt}
+	\begin{center}
+	\begin{tikzpicture}[
+    media/.style={font={\footnotesize\sffamily}},
+    wave/.style={
+        decorate,decoration={snake,post length=1.4mm,amplitude=2mm,
+        segment length=2mm},thick},
+    interface/.style={
+        % The border decoration is a path replacing decorator. 
+        % For the interface style we want to draw the original path.
+        % The postaction option is therefore used to ensure that the
+        % border decoration is drawn *after* the original path.
+        postaction={draw,decorate,decoration={border,angle=-45,
+                    amplitude=0.3cm,segment length=2mm}}},
+    ]
+    % Round rectangle
+    \fill[gray!10,rounded corners] (-4,-1) rectangle (4,0);
+    % Interface
+    \draw[blue,line width=.5pt,interface](-4,0)--(4,0);
+
+    % Vertical dashed line
+    \draw[dashed,gray](0,0)--(0,2);
+    
+        % Vertical dashed line
+    \draw[|-|](1,0.05)--(1,2) node[midway,fill=white]{$h$};
+    
+        % Coordinates system
+    \draw[<->,line width=1pt] (-1,1) node[above]{$\hat{i}$}-|(-2,2) node[left]{$\hat{j}$};
+
+    % Media names
+    \path[media] (-3,-.6) node {Ground};
+
+    % $x$ axis
+    \filldraw[fill=white,line width=1pt](0,2)circle(.12cm);
+
+\end{tikzpicture}
+	\end{center}
+
+	Align the coordinates such that $\hat{j}$ points upwards. We know that $\vec{a} = -g\hat{j}$. No motion in other directions. Problem is 1D!. 
+	
+	We know initially ($t=0$) that $y(0) = h \implies v_y(0) = 0$. Integrate twice: \[y(t) = h - \frac{1}{2}gt^2\]
+
+\end{example}~
+
+  \lecturemarker{3}{5 Oct}
+\textbf{Recap:} 
+
+
+
+
+
+\begin{example}[Projectile]
+	
+\begin{center}
+	\begin{tikzpicture}[
+    media/.style={font={\footnotesize\sffamily}},
+    wave/.style={
+        decorate,decoration={snake,post length=1.4mm,amplitude=2mm,
+        segment length=2mm},thick},
+    interface/.style={
+        % The border decoration is a path replacing decorator. 
+        % For the interface style we want to draw the original path.
+        % The postaction option is therefore used to ensure that the
+        % border decoration is drawn *after* the original path.
+        postaction={draw,decorate,decoration={border,angle=-45,
+                    amplitude=0.3cm,segment length=2mm}}},
+    ]
+    % Round rectangle
+    \fill[gray!10,rounded corners] (-5,-1) rectangle (4,0);
+    
+    % Interface
+    %\draw[blue,line width=.5pt,interface](-5,0)--(4,0);
+
+    % Vertical dashed line
+    %\draw[gray](-3,0)--(-3,2);
+    
+    % Coordinates system
+    \draw[->,line width=1pt] (-3,0) --(4,0) node[above]{$x$};
+    \draw[->,line width=1pt] (-3,0) --(-3,2) node[right]{$y$};
+    
+    % Coordinates system
+    \draw[<->,line width=1pt] (-4,1) node[above]{$\hat{i}$}-|(-5,2) node[left]{$\hat{j}$};
+    
+        % Coordinates system
+    \draw[->,line width=1pt] (3,2)--(3,1.4) node[right]{$g$};
+
+        % Coordinates system
+    \draw[->,line width=1pt] (-3,0)--(-2.5,0.8) node[above]{$\vec{v}_0$};
+
+
+	 % Horizontal dashed line
+    \draw[|-|](-3,-0.5)--(3,-0.5) node[midway, fill = gray!10]{$d$};
+
+
+    % Media names
+    %\path[media] (-3,-.6) node {Ground};
+    
+    
+    \path (-3.2,0.3)++(11:1cm)node{$\alpha$};
+    \draw[-](-2.2,0)arc(20:90:.6cm);
+
+    
+    % Interface pointer
+    \draw[-latex,dashed](-3,0) to[out=60,in=120] (3,0);
+    % To-paths are really useful for drawing curved lines. The above
+    % to path is equal to:
+    %
+    % \draw[-latex,thick](3.2,0.5)node[right]{$\mathsf{S_{1,2}}$}
+    %      ..controls +(180:.2cm) and +(up:0.25cm) .. (3,0);
+    % Internally the to path is translated to a similar bezier curve,
+    % but the to path syntax hides the complexity from the user. 
+
+\end{tikzpicture}
+	\end{center}
+	
+	In this coordinate system $\vec{a} = -g\hat{j}$. Choose that $t = 0$ when the object is released. Based on this: \[\vec{r}(0) = \vec{0},~\vec{v}(0) = \vec{v}_0 = v_0\cos\alpha\hat{i} + v_0\sin\alpha\hat{j}\]
+	Integrate our acceleration to find $\vec{v}(t)$
+	\[\begin{aligned}\vec{v}(t) &= \vec{v}(0) + \int_0^t -g\hat{j}\,dt' = \vec{v}_0 -gt\hat{j} \\ 
+	&= v_0\cos\alpha\hat{i} + (v_0\sin\alpha -gt)\hat{j}
+\end{aligned}
+\]
+	Integrate our velocity to find the position
+	\[\begin{aligned}
+\vec{r}(t) &= \vec{r}(0) + 	\int_0^t \vec{v}(t)\,dt' = \vec{0} + \int_0^t\vec{v}_0 -gt'\hat{j}\,dt'\\
+&= \vec{v}_0t - \textstyle{\frac{1}{2}}t^2g\hat{j} = v_0t\cos\alpha\hat{i} + [v_0t\sin\alpha - \textstyle{\frac{1}{2}}t^2g]\hat{j}
+\end{aligned}
+\]
+
+Maximise the \emph{range} using $\alpha$ as the control parameter. Finding the time $t_H$ when the object hits the ground. $y(t_H) = 0$ where $y = \vec{r}\cdot\hat{j}$. 
+\[y = \vec{r}\cdot\hat{j}= v_0t_H\sin\alpha -\textstyle{\frac{1}{2}}t_H^2g = 0\]
+Two values of $t_H$:
+\[t_H = 0,~ t_H = \frac{2v_0\sin\alpha}{g}\]
+
+To find the range:
+\[x(t_H) = v_0\cos\alpha\left[\frac{2v_0\sin\alpha}{g}\right] = \frac{v_0^2}{g}\sin 2\alpha\]
+
+For $0 \leq \alpha \leq \pi/2$, the range is maximum for $\alpha = \pi/4$.
+\end{example}~
+
+\begin{example}[Circular Motion]
+\[\vec{r}(t) = R\sin(\Omega t)\hat{i} + R\cos(\Omega t)\hat{j}\]
+where $R, \Omega$ are positive constraints. 
+
+Distance from the origin 
+\[r = |\vec{r}| = [R^2\sin^2\Omega t + R^2\cos^2\Omega t]^{1/2} = R\]
+
+Path is a circle of radius $R$, centred at the origin. 
+
+
+Differentiate $\vec{r}(t)$ to find $\vec{v}(t) = R\Omega \cos \Omega t\hat{i} - R\Omega \sin \Omega t \hat{j}$
+
+Find the speed: $v = |\vec{v}| = R\Omega$, the speed is constant. 
+
+Clockwise or anticlockwise? 
+
+Direction of motion
+\[\hat{v}= \vec{v}/v = \cos \Omega t\hat{i} - \sin\Omega t \hat{j}\]
+At $t = 0$, $\hat{v}(0) = \hat{i}$, so it moves clockwise around the circle!
+
+Interpretation of $\Omega$:
+
+Introduce $\theta = -\Omega t + \pi/2$, $\frac{d\theta}{dt} - \Omega$. 
+
+The parameter $\Omega$ is angular speed. Differentiate our $\vec{v}(t)$ we find
+\[\begin{aligned}
+\vec{a}(t) &= -R\Omega^2 \sin[\Omega t]\hat{i} - R\Omega^2\cos[\Omega t]\hat{j}\\
+&= -\Omega^2 \vec{r}	
+\end{aligned}
+\]
+Acceleration is pointing in towards the circle. 
+\end{example}
+
+
+  \lecturemarker{4}{5 Oct}
+
+
+\subsektion{Vector Operations}  \lecturemarker{5}{5 Oct}
+
+Already we have seen vector addition and subtraction are useful:
+
+Addition: $\vec{r} = \vec{r}_C + \vec{r}_\Omega$
+
+Subtraction: velociites relative to a moving observer $\vec{v}_{A,O} = \vec{v}_A - \vec{v}_O$
+
+
+Vector Products: Vector products are also useful and do arise in describing mechanical phenomena: 
+
+\begin{enumerate}
+\item Scalar product (dot product)
+\item 
+\[\vec{A} \cdot \vec{B} = |\vec{A}||\vec{B}|\cos \theta\]
+
+	
+\end{enumerate}
+
+
+
+
+\subsektion{Polar Coordinates}
 \pagebreak
 
 

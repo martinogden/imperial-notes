@@ -1,0 +1,27 @@
+\contentsline {part}{Linear Algebra}{4}{section*.3}
+\contentsline {section}{\numberline {1}Vector Spaces}{4}{section.1}
+\contentsline {subsection}{Spanning Sets and Bases (M1GLA Review)}{4}{section*.4}
+\contentsline {subsection}{More on Subspaces}{4}{section*.5}
+\contentsline {subsection}{Rank of a Matrix}{8}{section*.6}
+\contentsline {subsection}{Linear Transformations}{12}{section*.7}
+\contentsline {subsection}{Kernels and Images}{15}{section*.8}
+\contentsline {subsection}{Matrix of Linear Transformation}{20}{section*.9}
+\contentsline {subsection}{Eigenvalues and Eigenvectors}{23}{section*.10}
+\contentsline {subsection}{Diagonalisation of Linear Transformations}{24}{section*.11}
+\contentsline {subsection}{Change of Basis}{25}{section*.12}
+\contentsline {part}{Abstract Algebra}{27}{equation.1.54}
+\contentsline {section}{\numberline {2}Group Theory}{28}{section.2}
+\contentsline {subsection}{Groups}{28}{section*.13}
+\contentsline {subsection}{Subgroups}{33}{section*.15}
+\contentsline {subsection}{Cyclic Subgroups}{35}{section*.16}
+\contentsline {subsection}{The Order of a Group Element}{36}{section*.17}
+\contentsline {subsection}{Cycles}{37}{section*.18}
+\contentsline {subsection}{Order of a Permutation}{40}{section*.19}
+\contentsline {subsection}{Lagrange's Theorem}{42}{section*.20}
+\contentsline {subsection}{Modular Arithmetic}{44}{section*.21}
+\contentsline {subsection}{Dihedral Groups}{48}{section*.22}
+\contentsline {section}{\numberline {3}Ring Theory}{51}{section.3}
+\contentsline {subsection}{Arithmetic of Rings}{54}{section*.25}
+\contentsline {subsection}{The Rings $\mathbb {Z}[\sqrt {d}]$}{56}{section*.26}
+\contentsline {subsection}{Highest Common Factor / Greatest Common Divisor}{58}{section*.27}
+\contentsline {subsection}{Unique Factorisation}{62}{section*.28}

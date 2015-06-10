@@ -3,88 +3,40 @@
 \usepackage[blacklinks]{drangreport}
 % \usepackage[caecilia]{drangreport}
 
-\usepackage{stmaryrd}
-
-\usepackage{awlc-algebra}
-\newcommand*{\bord}{\multicolumn{1}{c|}{}}
-
-%Nice end of Proof Symbol
-\usepackage{marvosym}
-\renewcommand{\qedsymbol}{\Rectsteel} 
-
-\usepackage{array}
-
-\usepackage{tikz}
-\usepackage{tikz-cd}
-
-\usepackage{tkz-euclide,tikz}
-\usetkzobj{all}
-
 \def\n{5}
 \def\m{4}
 
 
-\newcommand*{\Range}{%
-  \mathsf{X}\mkern-9mu\mathsf{X}%
-}
+\renewcommand{\theequation}{\arabic{equation}}
 
-\newcommand*{\Rangey}{%
-  \mathsf{Y}\mkern-9mu\mathsf{Y}%
-}
+%Change font of proof to scshape, not sure if it looks better...
+\expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+\let\oldendproof\endproof
+\renewenvironment{proof}[1][\proofname]{%
+  \oldproof[\scshape #1]%
+}{\oldendproof}
 
 
-
-
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
-
-\usepackage{wrapfig}
-\usepackage{permute}
-
-%Smaller Column Vectors
-\makeatletter
-\newcommand{\Spvek}[2][r]{%
-  \gdef\@VORNE{1}
-  \left(\hskip-\arraycolsep%
-    \begin{array}{#1}\vekSp@lten{#2}\end{array}%
-  \hskip-\arraycolsep\right)}
-
-\def\vekSp@lten#1{\xvekSp@lten#1;vekL@stLine;}
-\def\vekL@stLine{vekL@stLine}
-\def\xvekSp@lten#1;{\def\temp{#1}%
-  \ifx\temp\vekL@stLine
-  \else
-    \ifnum\@VORNE=1\gdef\@VORNE{0}
-    \else\@arraycr\fi%
-    #1%
-    \expandafter\xvekSp@lten
-  \fi}
-\makeatother
-
-\newenvironment{amatrix}[1]{%
-  \left(\begin{array}{@{}*{#1}{c}|c@{}}
-}{%
-  \end{array}\right)
-}
+\hypersetup{pdfinfo={
+Title={Algebra I},
+Author={Karim Bacchus},
+Keywords ={Algebra I, M1P2, Lecture Notes, Imperial College, Maths},
+}}
 
 
 \title{Algebra I}
-
-\let\Im\relax
-\DeclareMathOperator*{\Im}{Im}
-
-\newcommand{\herm}[1]{\overline{#1}^\Trans}
-
-\DeclareMathOperator*{\ch}{ch}
-\renewcommand{\chi}{\textstyle\ch}
 
 \begin{document}
 
 \NotesTitle{1st}{Spring 2015}{Algebra I}{Prof.~J.}{Britnell}
 {
+Caveat Lector: unofficial notes, \emph{not} endorsed by Imperial College.\\[0.1cm]
+Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}
+}
+{
 
 
-{\Large\bfseries\sffamily{Syllabus}}
+\subsection*{Syllabus}
 
 \textit{Introductions to three topics in abstract algebra: The theory of vector spaces and linear
 transformations, the theory of groups and the theory of rings.}
@@ -95,7 +47,7 @@ transformations, the theory of groups and the theory of rings.}
 
 \item Groups: Axioms, examples. Cyclic groups, dihedral groups, symmetric groups. Lagrange’s  theorem and applications.
 
-\item Rings: Polynomial rings, rings of the form Z[$\sqrt{d}$]. Euclid’s algorithm for certain rings. Uniqueness of factorisation for these rings. Applications to Diophantine Equations.
+\item Rings:  Polynomial rings, rings of the form Z[$\sqrt{d}$]. Euclid’s algorithm for certain rings. Uniqueness of factorisation for these rings. Applications to Diophantine Equations.
 \end{itemize}
 
 \subsection*{Appropriate books}
@@ -114,9 +66,8 @@ I.~N.~Herstein, \emph{Topics in Algebra}
 
 \TableofContents
 
-\input{M1P2-Chap1.tex}		% Vector spaces
-\input{M1P2-Chap2.tex}		% Endomorhisms
-\input{M1P2-Chap3.tex}		% Endomorhisms
-%\input{linalg-chap-03.tex}
+\input{M1P2-Chap1.tex}		% Vector Spaces
+\input{M1P2-Chap2.tex}		% Group Theory
+\input{M1P2-Chap3.tex}		% Ring Theory
 
 \end{document}

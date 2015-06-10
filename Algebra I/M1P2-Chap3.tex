@@ -1,3 +1,4 @@
+%!TEX root = M1P2.tex
 
   \sektion{Ring Theory}
  Many  \lecturemarker{24}{10/03}
@@ -95,7 +96,7 @@ Now check the group axioms:\\
 \textsc{Inverses:} Let $u \in R^{\times}$. Then $u$ has an inverse $w$ in $R$. So $uw = wu = 1$. Now $u$ is an inverse for $w$, and so $w \in R^{\times}$. Hence $u$ has an inverse in $R^{\times}$.
  \end{proof}
  
- \noindent \textit{Remarks:}\begin{enumerate}
+  \textit{Remarks:}\begin{enumerate}
 \item  The proof of Theorem 136 did not assume that $R$ is commutative.
 \item Since all units lie in $R^{\times}$, and since any inverse to a unit is itself a unit, it follows that every unit in $R$ has a \emph{unique} inverse. (since this is true in the unit group.) So we can write $u^{-1}$ for the inverse of the unit $u$.
  \end{enumerate}\vspace*{5pt}
@@ -153,7 +154,7 @@ Now check the group axioms:\\
  	Let $u$ be a unit. Suppose that $ua = 0$ for some $a \in R$. Then $u^{-1}(ua) = u^{-1}0 = 0$. So (since $u^{-1}(ua) = 1a = a$) we have $a = 0$. Hence $u$ is not a zero-divisor
  \end{proof}
  
- \noindent \textbf{Corollary 145.} Any field is an integral domain.
+  \textbf{Corollary 145.} Any field is an integral domain.
  \begin{proof}
  All non-zero elements in a field are units, and so they are not zero-divisors.  	
  \end{proof}\vspace*{10pt}
@@ -181,7 +182,7 @@ Now check the group axioms:\\
  \end{enumerate}
  \end{examples}
 
-\noindent \textit{Remark.} In an integral domain, every element is exactly one of: zero, a unit, irreducible or reducible. \\
+ \textit{Remark.} In an integral domain, every element is exactly one of: zero, a unit, irreducible or reducible. \\
 
 \begin{proposition} Let $F$ be $\Q,~\mathbb{R},~\C$ and let $f(x) \in F[x]$. Let $a \in F$. Then $f(a) = 0$ if and only if $x -a ~|~ f(x).$	
 \end{proposition}
@@ -191,14 +192,14 @@ Now check the group axioms:\\
 
 Suppose that $x-a ~|~ f(x)$. Then $f(x) = (x-a)g(x)$, for some $g(x) \in F[x]$. Now $f(a) = (a-a)g(a) = 0$. \\ \vspace*{-5pt}
 
-\noindent For the converse, suppose that $f(a) = 0$. Let $f(x) = \alpha_0 + \alpha_1x + \dots + \alpha_nx^n$, where $\alpha_0, \dots, \alpha_n \in F$. Then $f(x) - f(a) = (\alpha_0 - \alpha_0) + (\alpha_1x -  \alpha_1a) + \dots +(\alpha_nx^n - \alpha_na^n)= \alpha_1(x-a) + \alpha_2(x^2 - a^2) + \dots + \alpha_n(x^n -\alpha^n).$ \\
+ For the converse, suppose that $f(a) = 0$. Let $f(x) = \alpha_0 + \alpha_1x + \dots + \alpha_nx^n$, where $\alpha_0, \dots, \alpha_n \in F$. Then $f(x) - f(a) = (\alpha_0 - \alpha_0) + (\alpha_1x -  \alpha_1a) + \dots +(\alpha_nx^n - \alpha_na^n)= \alpha_1(x-a) + \alpha_2(x^2 - a^2) + \dots + \alpha_n(x^n -\alpha^n).$ \\
 
 Note that $x^k = a^k = (x-a)(x^{k-1}+ x^{k-2}a + \dots a^{k-1})$. So $x-a$ divides $x^k - a^k$ for all $k \in \mathbb{N}$. Hence $x-a$ divides $f(x) - f(a)$. But $f(a) = 0$ by assumption, and so $x-a$ divides $f(x)$.
 \end{proof}\vspace*{5pt}
 \begin{theorem}[Fundamental Theorem of Algebra] \index{Fundamental Theorem of Algebra} Let $f(x)\in \C[x]$ be a polynomial of degree greater than 0. Then $f(x)$ has a root in $\C$. (So there exists $a \in \C$ such that $f(a) = 0$.)	
 \end{theorem}\vspace*{10pt}
 
-\noindent \textit{Proof. }
+ \textit{Proof. }
 Next year's Complex Analysis course.	\\
 
 \begin{corollary}The irreducible elements in $\C[x]$ are the linear polynomials, $\alpha_1x + \alpha_0$, where $\alpha_1 \neq 0$.	
@@ -210,7 +211,7 @@ First show that $\alpha_1x + \alpha_0$ is irreducible. Suppose that $\alpha_1x +
 Conversely, suppose that $r(x)$ has degree $d$ greater than $1$. Then $r(x)$ has a root $a$ by the Fundamental Theorem. So $r(a) = 0$, and so $x-a$ divides $r(x)$ by Proposition 149. So $r(x) = (x-a)s(x)$ for some $s(x) \in \C[x]$. Now deg $s(x) = $ deg $r(x) -1 = d-1 > 0$, so neither $s(x)$ nor $r(x)$ are units in $\C[x]$. So $r(x)$ is reducible. 
 \end{proof}\vspace*{5pt}
 
-\noindent \textit{Exercise:} What are the irreducible elements in the ring $\mathbb{R}[x]$?\\
+ \textit{Exercise:} What are the irreducible elements in the ring $\mathbb{R}[x]$?\\
 
 \subsektion{The Rings $\Z[\sqrt{d}]$}
 
@@ -220,9 +221,9 @@ Conversely, suppose that $r(x)$ has degree $d$ greater than $1$. Then $r(x)$ has
 Check that these give binary operations on our set:\vspace*{3pt}\\ We have $(x_1 + y_1\sqrt{d}) + (x_2 + y_2\sqrt{d}) = (x_1 + x_2) + (y_1 + y_2)\sqrt{d} \in \Z[\sqrt{d}]$,\vspace*{3pt}\\
 and $(x_1 + y_1\sqrt{d})(x_2 + y_2\sqrt{d}) = (x_1x_2 + dy_1y_2) + (x_1y_2 + x_2y_1)\sqrt{d} \in \Z[\sqrt{d}]$.\\
 
-\noindent The ring axioms are left as an exercise.\\
+ The ring axioms are left as an exercise.\\
 
-\noindent \textbf{Example:} $\Z[\sqrt{-1}] = \Z[i]$ is the set $\{x + yi : x,y \in \Z\}$, the ring of \emph{Gaussian integers.}\index{Gaussian integers}\\
+ \textbf{Example:} $\Z[\sqrt{-1}] = \Z[i]$ is the set $\{x + yi : x,y \in \Z\}$, the ring of \emph{Gaussian integers.}\index{Gaussian integers}\\
 
 \begin{proposition} Let $d$ be a non-square in $\Z$. If $x_1 + y_1\sqrt{d} = x_2 + y_2\sqrt{d}$ for $x_1, x_2, y_1, y_2 \in \Z$, then $x_1 = x_2$ and $y_1 = y_2$.	
 \end{proposition}
@@ -259,9 +260,9 @@ Let $r = x + y\sqrt{d}$, and suppose that $N(r) = 0$. Then $x^2 - dy^2 = 0$, and
 (if) Let $r = x + y\sqrt{d}$, and suppose that $N(r) = \pm 1$. Let $s = x - y\sqrt{d}$. Now $rs = x^2 - dy^2 = N(r) = \pm 1$. If $N(r) = 1$ then $s$ an inverse for $r$. If $N(r) = -1$  then $-s$ is an inverse for $r$. In either case, $r$ is a unit in $\Z[\sqrt{d}]$.
 \end{proof}\vspace*{5pt}
 
-\noindent \textit{Remark.} If $d = -1$, the $\Z[\sqrt{d}] = \Z[i]$ has $4$ roots, $\pm 1, \pm i$. If $d < -1$, then $\Z[\sqrt{d}]$ has only two units, $\pm 1$. If $d > 0$ then $\Z[\sqrt{d}]$ has infinitely many units.\\
+ \textit{Remark.} If $d = -1$, the $\Z[\sqrt{d}] = \Z[i]$ has $4$ roots, $\pm 1, \pm i$. If $d < -1$, then $\Z[\sqrt{d}]$ has only two units, $\pm 1$. If $d > 0$ then $\Z[\sqrt{d}]$ has infinitely many units.\\
 
-\noindent \textit{Remark.} Elements that are irreducible in $\Z$ [primes] need not be irreducible in $\Z[\sqrt{d}]$.\\
+ \textit{Remark.} Elements that are irreducible in $\Z$ [primes] need not be irreducible in $\Z[\sqrt{d}]$.\\
 
 \begin{examples} \begin{enumerate}
  \item $3$ is not irreducible in $\Z[\sqrt{3}]$ since $3 = \sqrt{3} \times \sqrt{3}$, and $\sqrt{3}$ is not a unit.
@@ -276,7 +277,7 @@ Let $r = x + y\sqrt{d}$, and suppose that $N(r) = 0$. Then $x^2 - dy^2 = 0$, and
 \item[(ii)] If $d ~|~ a$ and $d ~|~ b$ then $d ~|~ c$ for $d \in R$.
 \end{enumerate}\end{definition}
 
-\noindent \textit{Remarks.} We do not claim that a highest common factor necessarily exists for all $a,b \in R$. There exists rings $R$ and elements $a,b$ where this doesn't happen. Where hcfs do exist, they are not usually unique. For instance if $R = \Z$, and $a = 4,~ b = 6$, then the hcfs of $a$ and $b$ are $2, -2$. \\
+ \textit{Remarks.} We do not claim that a highest common factor necessarily exists for all $a,b \in R$. There exists rings $R$ and elements $a,b$ where this doesn't happen. Where hcfs do exist, they are not usually unique. For instance if $R = \Z$, and $a = 4,~ b = 6$, then the hcfs of $a$ and $b$ are $2, -2$. \\
 
 \begin{proposition}Let $R$ be an integral domain. Let $c$ be an hcf for $a$ and $b$ in $R$. Then $d$ is a highest common factor for $a$ and $b$ if and only if $d = cu$, for some unit $u \in R$. 	
 \end{proposition}
@@ -288,26 +289,23 @@ Let $r = x + y\sqrt{d}$, and suppose that $N(r) = 0$. Then $x^2 - dy^2 = 0$, and
 \end{proof}\vspace*{10pt}
 
 
-\noindent \textit{Reminder.} Euclids   \lecturemarker{29}{20/03}
+ \textit{Reminder.} Euclids   \lecturemarker{29}{20/03}
  Lemma: If we have any two $a,b\in \Z$, with $b \neq 0$, then there exists $q$ and $r \in \Z$, with  $0 \leq r < |b|$, such that $a = qb + r$.\\
 
 
 \begin{lemma} Let $f(x)$ and $g(x)$ be polynomials with coefficients from $F,$ $(\Q,,\C)$, with $g(x) \neq 0$. There exist polynomials $q(x)$ and $r(x) \in F[x]$ such that $f(x) = q(x)g(x) + r(x)$, and either $r(x) =0$ or else deg $r(x) <$ deg $g(x)$. 	
 \end{lemma}
 
-\noindent \textbf{Example.} Take $F = \Q$, $f(x) = x^4 + x^3 + 2x + 3$ and $g(x) = x^2 -1$. Dividing $f(x)$ by $g(x)$, we get $f(x) = g(x)(x^2 + x + 1) + (3x+4)$. So here $q(x) = x^2 + x + 1$, and $r(x) = 3x + 4$. Here deg $r(x) = 1 < 2 = $ deg $g(x)$.\\
+ \textbf{Example.} Take $F = \Q$, $f(x) = x^4 + x^3 + 2x + 3$ and $g(x) = x^2 -1$. Dividing $f(x)$ by $g(x)$, we get $f(x) = g(x)(x^2 + x + 1) + (3x+4)$. So here $q(x) = x^2 + x + 1$, and $r(x) = 3x + 4$. Here deg $r(x) = 1 < 2 = $ deg $g(x)$.\\
 
 \begin{proof}[Proof of Lemma 161.]
 	Take deg $f(x) = m$ and deg $g(x) = n$. If $m < n$, take $q(x) =0$ and $r(x) = f(x)$, and this satisfies the lemma. So we will assume that $m \geq n$. Now we argue by induction on $m = $ deg $f$. The base case is $m = 0$ (and so $n = 0$ too). $f(x) = a$ and $g(x) = b$ for $a,b \in F$, with $b \neq 0$. Take $q(x) = \frac{a}{b}$, $r(x) = 0$, and this satisfies the lemma.\\  
 	\textit{Inductive step:} Assume the lemma holds for all polynomials $f(x)$ of degree $<m$. Suppose deg $f(x) = m$. Put \[f(x) = a_mx^m + \dots + a_1x + a_0 \text{ and } g(x) = b_nx^n + \dots + b_1x + b_0\] Define $f'(x) = f(x) - \frac{a_m}{b_n}x^{m-n}g(x)$. The coefficient of $x^m$ in $f'(x)$ is $0$, so deg $f'(x) < m$. So the inductive assumption applies to $f'(x)$, and so there exists $q'(x)$ and $r(x)$ such that $f'(x) = q'(x)g(x) + r(x)$, and with $r(x) = 0$ or deg $r(x) <$ deg $g(x)$.\vspace*{5pt}\\ But now $f(x) = f'(x) + \frac{a_m}{b_n}x^{m-n}g(x) = (q'(x) + \frac{a_m}{b_n}x^{m-n})g(x) + r(x).$ So take $q(x) = q'(x) + \frac{a_m}{b_n}x^{m-n}$, and this satisfies the lemma.
 \end{proof}\vspace*{5pt}
 
-\noindent \textbf{Example:} $f(x) = 3x^2 + 5x + 1$, $g(x)= 2x -1$. Calculate $q(x)$ and $r(x)$ using polynomial long division.\\
+ \textbf{Example:} $f(x) = 3x^2 + 5x + 1$, $g(x)= 2x -1$. Calculate $q(x)$ and $r(x)$ using polynomial long division:\\
 
-\textit{Polynomial division working...}\\
-%%%%%%%%%%%%%%%%%
-%%%% Working
-%%%%%%%%%%%%%%%%%
+\polylongdiv{3x^2 + 5x + 1}{2x-1}
 
 So $q(x) = \frac{3}{2}x + \frac{13}{14}, \quad r(x) = \frac{17}{4}$. \\
 %Note that leading term of quotient is a_m / b_n, f'(x) is the first remainder
@@ -320,15 +318,15 @@ We actually show that the common factors of $a$ and $b$ are the same as those of
 Conversely, suppose $d$ divides $a$ and $b$. Note that $r = a - bq$. Now $d$ divides $a$ and $bq$, so $d$ divides $a - bq = r$.	
 \end{proof}\vspace*{5pt}
 
-\noindent Propositions 161 and 162 give us a Euclidean Algorithm for polynomials. \\
+ Propositions 161 and 162 give us a Euclidean Algorithm for polynomials. \\
 
 \begin{example}[Euclidean Algorithm for polynomials.] \\$f(x) = x^3 - 2x^2 -5x + 6$, $g(x) = x^2 - 2x -3$.\\
 First find $q(x)$ and $r(x)$:\\
-\textit{ Just Division Again...}\\
+\polylongdiv{x^3 - 2x^2 -5x + 6}{x^2 - 2x -3}~
 
-\noindent We have $q(x) = x$, $r(x) = -2x + 6$. Now we look for a hcf of $g(x)$ and $r(x).$ (A ``smaller'' problem than the original.) So applying Euclid's Algorithm again, so now quotient is $-\frac{1}{2}x - \frac{1}{2} ,$ now remainder is $0$. We've shown that $r(x) = -2x + 6$ divides $g(x)$. So $r(x)$ is a hcf for $r(x)$ and $g(x)$. So $r(x)$ is also a hcf for $f(x)$ and $g(x)$ by Proposition 162.\\
+ We have $q(x) = x$, $r(x) = -2x + 6$. Now we look for a hcf of $g(x)$ and $r(x).$ (A ``smaller'' problem than the original.) So applying Euclid's Algorithm again, so now quotient is $-\frac{1}{2}x - \frac{1}{2} ,$ now remainder is $0$. We've shown that $r(x) = -2x + 6$ divides $g(x)$. So $r(x)$ is a hcf for $r(x)$ and $g(x)$. So $r(x)$ is also a hcf for $f(x)$ and $g(x)$ by Proposition 162.\\
 
-Note that $-2$ is a unit in $\Q[x]$, with inverse $-\frac{1}{2}$. So $x-3$ is another highest common factor for $f(x)$ and $g(x)$.
+N.B. $-2$ is a unit in $\Q[x]$, with inverse $-\frac{1}{2}$. So $x-3$ is another hcf for $f(x)$ \& $g(x)$.
 \end{example}
 
 
@@ -410,7 +408,9 @@ a hcf of $a = 4 + \sqrt{2}$ and $b = 2 - 2\sqrt{2}$ in $\Z[\sqrt{2}]$.\\
  So $q' = -\sqrt{2},~r' = 0$. So $r = 2-\sqrt{2}$ divices $b = 2-2\sqrt{2}$, and so $r$ is a hcf for $b$ and $r$, hence $r$ is a hcf for $a$ and $b$.
  \end{example}
  
- \noindent \textbf{Lemma 170.} [B\'{e}zout's Lemma] \index{B\'{e}zout's Lemma|idxbf} Let $R$ be a Euclidean domain. Let $a$ and $b$ be elements of $R$ and let $d$ be a hcf for $a$ and $b$. Then there exists $s,t\in R$ such that $as + bt = d$.
+ \begin{lemma} [B\'{e}zout's Lemma] \index{B\'{e}zout's Lemma|idxbf} Let $R$ be a Euclidean domain. Let $a$ and $b$ be elements of $R$ and let $d$ be a hcf for $a$ and $b$. Then there exists $s,t\in R$ such that $as + bt = d$.	
+ \end{lemma}
+
  
  \begin{proof}
  	Define $X = X_{a,b} = \{ax + by : x,y \in R\}$. So $X \subseteq R$. The ring $R$ has a Euclidean function $f$. So if $a$ and $b$ are not both $0$, then $X$ has non-zero elements. So there exists some least $n \in \mathbb{N}\cup\backslash\{0\}$ such that $f(x) = n$ for some $x \in X\backslash\{0\}.$ Let $c$ be some elements of $X \backslash\{0\}$ such that $f(c) = n$. We show that $c$ is a hcf for $a$ and $b$:\\
@@ -450,16 +450,19 @@ a hcf of $a = 4 + \sqrt{2}$ and $b = 2 - 2\sqrt{2}$ in $\Z[\sqrt{2}]$.\\
 \textit{Example:} $R = \Z$. Then every element except $0,1,-1$ can be written as a product of irreducibles (primes), unique up to sign. $30 = 2\times 3 \times 5 = (-2) \times 3 \times (-5)$.\\
 
   
-\noindent Not   \lecturemarker{32}{27/03}
+ Not   \lecturemarker{32}{27/03}
  every integral domain is a UFD. We've seen that $\Z[\sqrt{-z}]$ is not a UDF.\\
   
-  \noindent \textbf{Example 174.} In $\Z[\sqrt{-5}]$ we can factorise $6$ as $2\times 3$, and also as $(1 + \sqrt{-5})(1-\sqrt{-5})$. Are these factors irreducible?\vspace*{5pt}\\ We have $N(2) = 4$, $N(3) = 9$. $N(1 \pm \sqrt{-5}) = 6$. If $ab = 2$ or $3$ or $(1 \pm \sqrt{-5})$, and if neither $a$ nor $b$ is a unit, then $N(a)$ must be $\pm 2$ or $\pm 3$. But it is easy to check that the equations $x^2 + 5y^2 = \pm 2$ or $\pm 3$ has no solutions for $x,y \in \Z$. So all of $2,3,1\pm \sqrt{-5}$ are irreducible in $\Z[\sqrt{-5}]$. \vspace*{5pt}\\ Are the factorisations of $6$ the same ``up to units''? No, since $N(2) \neq N(1 \pm \sqrt{-5})$. So $6$ is not uniquely factorisable in $\Z[\sqrt{-5}]$\\
+\begin{example} In $\Z[\sqrt{-5}]$ we can factorise $6$ as $2\times 3$, and also as $(1 + \sqrt{-5})(1-\sqrt{-5})$. Are these factors irreducible?\vspace*{5pt}\\ We have $N(2) = 4$, $N(3) = 9$. $N(1 \pm \sqrt{-5}) = 6$. If $ab = 2$ or $3$ or $(1 \pm \sqrt{-5})$, and if neither $a$ nor $b$ is a unit, then $N(a)$ must be $\pm 2$ or $\pm 3$. But it is easy to check that the equations $x^2 + 5y^2 = \pm 2$ or $\pm 3$ has no solutions for $x,y \in \Z$. So all of $2,3,1\pm \sqrt{-5}$ are irreducible in $\Z[\sqrt{-5}]$. \vspace*{5pt}\\ Are the factorisations of $6$ the same ``up to units''? No, since $N(2) \neq N(1 \pm \sqrt{-5})$. So $6$ is not uniquely factorisable in $\Z[\sqrt{-5}]$
+	
+\end{example}
+
   
   
   \begin{theorem} Every Euclidean Domain is a Unique Factorisation Domain. %converse isn't true\\	
   \end{theorem}
 
-\noindent   \textit{Proof.} Omitted. (In Algebra II (?)) \includegraphics[width=0.05\textwidth]{al2.jpg} 
+   \textit{Proof.} Omitted. (In Algebra II (?)) \includegraphics[width=0.08\textwidth]{al2.jpg} 
 
 It follows that $\Z[\sqrt{-5}]$ is not a Euclidean Domain, by Example 174.
 
@@ -474,7 +477,7 @@ If $a$ or $b$ is $0$ or a unit, then the result is clear. So assume otherwise. S
 \begin{definition} A non-unit element, $r$, of a ring $R$ is \emph{prime}\index{Prime} if it has the property that whenever $r ~|~ab$ we have either $r~|~ a$ or $r~|~b$.	
 \end{definition}\vspace*{5pt}
 
-\noindent \textit{In any integral domain, any prime element is irreducible. Why?}
+ \textit{In any integral domain, any prime element is irreducible. Why?}
 
 If $r$ is prime, and $r = ab$, then $r ~|~ ab,$ and then $r~|~ a$ or $r~|~b$ by the prime property. Suppose $r~|~a$. Then since $a ~|~ r$, we have $r = au$ for a unit $u$. So $ab = au$, and so $a(b-u) = 0$. But $R$ is an integral domain, so $b - u =0$. Hence $b = u$, a unit.
 
@@ -506,134 +509,4 @@ In general the converse is not true - we've seen that $2$ is irreducible but not
   \end{center}
 
 
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
- 
- 
- 
- 
- 
- 
- 
- 
-
- 
- 
- 
-
- 
- 
- 
- 
-
-
-
-
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- 
-
- 
- 
- 
-
-
- 
- 
-
-
-

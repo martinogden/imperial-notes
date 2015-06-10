@@ -1,4 +1,5 @@
-%!TEX root = linear-algebra.tex
+%!TEX root = M1P2.tex
+
 \stepcounter{lecture}
 \setcounter{lecture}{1}
 \pagebreak
@@ -203,9 +204,10 @@ So a general element of $U \cap W$ is $(x,2x,-3x) = x(1,2,-3) \implies U\cap W =
 As in the proof of theorem 7, we find a basis for $U$, and $W$, each of which contain a basis for $U \cap W$. So any linearly independent subset of $U$ of size 2 is a basis for $U$, i.e. $U = \{(1,2,-3),(1,0,-1)\}$. Similarly $W = \{(1,2,-3),(1,0,1)\} $. So a spanning set for $U + W = \{(1,2,-3),(1,0,-1),(1,0,1)\}$.\\
 
 By Theorem 7, we know dim $U+W = $ dim $U + $ dim $W - $ dim $U\cap W = 2 + 2 -1 = 3.$ Hence our spanning set is a basis for $U + W$.
-\end{example}
+\end{example}~
 
-\subsektion{Rank of a Matrix}
+
+\subsektion{Rank of a Matrix}~
 
 \begin{definition}Let $A$ be an $m \times n$ matrix with entries from $F$. Define the \emph{row-span}\index{Row-Span} of $A$ by $\text{RSp}(A) = \text{Span}\{\text{rows of }A\}$. This is a subspace of $F^n$. The \emph{column-span}, $\text{CSp}(A)$ of $A$ is  $\text{Span}\{\text{columns of }A\}$, again a subspace of $F^n$.	
 
@@ -357,7 +359,7 @@ There are 3 non-zero rows in $A_{ech}$, so the row rank is 3.\\ Hence dim $W = 3
  1 & 2 & -1\\ 0 & -3 & 6\\ 0 & 0 & 0
  \end{pmatrix}\]
  
- There are two non-zero rows, so row-rank($A^T$) = 2, and so column-rank $(A)$ = 2. A basis for $\text{RSp}(A^T)$ is $\{(1,2,-1),(0,-3,6)\}$, so a basis for $\text{CSp}(A)$ is the transponse of these vectors.
+ There are two non-zero rows, so row-rank($A^T$) = 2, and so column-rank $(A)$ = 2. A basis for $\text{RSp}(A^T)$ is $\{(1,2,-1),(0,-3,6)\}$, so a basis for $\text{CSp}(A)$ is the transpose of these vectors.
  \end{example}
  
 \begin{theorem} For any matrix $A$, the row-rank of $A$ is equal to the column-rank of $A$.\end{theorem}

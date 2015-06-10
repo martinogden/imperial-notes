@@ -1,0 +1,65 @@
+\documentclass[twoside]{scrartcl}
+
+\usepackage[blacklinks]{drangreport}
+% \usepackage[caecilia]{drangreport}
+
+\usepackage{amsfonts}
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+\usepackage[makeroom]{cancel}
+
+\title{Mechanics}
+
+
+\begin{document}
+
+
+\NotesTitle{1st}{Spring 2015}{Mechanics}{Dr.~E.}{Keaveny}
+{
+Caveat Lector: unofficial notes, \emph{not} endorsed by Imperial College.\\[0.1cm]
+Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}
+}
+{
+{\Large\bfseries\sffamily{Syllabus}}
+
+\textit{This introductory course on Applied Mathematics is centred on Newtonian mechanics - the consequences of Newton’s laws. Some of the course overlaps with A-level Applied Mathematics. It includes far-reaching ideas on energy, linear and angular momentum, simple oscillatory systems and motion under central forces such as planetary motion.}
+
+\begin{itemize}
+\item \textbf{Kinematics of point particles:} Vectors and vector algebra; position, velocity, and acceleration in three dimensions; polar coordinates; intrinsic coordinates and path curvature.
+\item \textbf{Kinetics and Newton's laws:} Definition of mass, momentum, inertia, and force; Axioms, or Laws of Motion
+\item \textbf{Forces:} Gravitation; forces that constrain motion: normal force and tension; friction; forces that depend on velocity: drag forces; forces that depend on position: spring forces. 
+\item \textbf{Oscillators:} Simple, damped, and forced oscillators; amplitude and phase difference; resonance.
+\item \textbf{Energy:} Kinetic and potential energies; conservative forces; stability of and motion about fixed points; potential wells and escape; energy diagrams.
+\item \textbf{Angular momentum:} Central forces; orbital equation; effective potential.
+\item \textbf{Systems of (interacting) particles:} Two body systems; centre of mass; moment of inertia; total momentum, angular momentum, and energy for systems; variable mass systems; torque;
+\item \textbf{Rigid body motion:} Rigid body kinematics; continuous mass distributions; rigid body dynamics with rotation about a single axis
+\end{itemize}
+
+\subsection*{Appropriate books}
+
+{\shortskip
+D.~Kleppner and R.~J.~Kolenkow \emph{An Introduction to Mechanics}.
+
+G.~R.~Fowles and G.~L.~Cassiday \emph{Analytical Mechanics}.
+
+R.~Feynman \emph{The Feynman Lectures}.
+
+T.~W.~B.~Kibble and F.~H.~Berkshire \emph{Classical Mechanics}.
+
+}}
+
+\TableofContents
+
+\input{Chapter1}		% Kinematics
+\input{Chapter2}		% Newton's Laws
+\input{Chapter3}		% Forces
+\input{Chapter4}		% Oscillations
+\input{Chapter5}		% Energy
+\input{Chapter6}		% Angular Momentum
+\input{Chapter7}		% Systems of Particles
+\input{Chapter8}		% Rigid Body Motion
+
+
+\end{document}

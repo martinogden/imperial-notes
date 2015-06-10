@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}[1996/06/01]
-\ProvidesPackage{drangreport}[2012/10/24 v1.2 alexwlchan]
+\ProvidesPackage{drangreport}
 \typeout{Package: `drangreport'}
 
 % Items that must be customized for your company and computer are denoted
@@ -8,9 +8,13 @@
 % We start by loading a large number of packages
 
 
-
 % Include some useful standard packages
-\RequirePackage{ifthen,graphicx,float,color,hyperref}
+\RequirePackage{ifthen,graphicx,float,color}
+
+\RequirePackage{centernot}
+
+\RequirePackage{hyperref}
+
 \hypersetup{colorlinks=true}
 \usepackage[small]{caption}
 
@@ -22,9 +26,30 @@
 \newcounter{lecture}
 
 % Define a set of useful symbols
-\RequirePackage{amsmath,units,commath}
+\RequirePackage{amsmath,units,commath,amsthm}
+
+%Nice end of Proof Symbol
+\usepackage{marvosym}
+\renewcommand{\qedsymbol}{\Rectsteel} 
 
 
+\newcommand*{\bord}{\multicolumn{1}{c|}{}}
+
+
+
+\usepackage{tkz-euclide,tikz-cd}
+\usetkzobj{all}
+
+
+
+
+\newcommand*{\Range}{%
+  \mathsf{X}\mkern-9mu\mathsf{X}%
+}
+
+\newcommand*{\Rangey}{%
+  \mathsf{Y}\mkern-9mu\mathsf{Y}%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Last edited 26 February, 2015 K Bacchus
@@ -68,6 +93,7 @@
 
 \definecolor{grey60}{rgb}{0.7,0.7,0.7}
 
+
 \newenvironment{theorem}[1][]{%
  \refstepcounter{equation}%
   \ifstrempty{#1}%
@@ -99,10 +125,10 @@
   }
   \ifstrempty{#1}%
   {\begin{mdframed}[style=definition]
-  {\bfseries{Definition.}} % Removed ~\theequation before the full stop
+  {\bfseries{Definition.}} %~\theequation removed
   \relax}
   {\begin{mdframed}[style=definition]
-  {\bfseries{Definition}} (#1){\bfseries{.}}\relax % Removed ~\theequation before the full stop
+  {\bfseries{Definition}} (#1){\bfseries{.}}\relax  %~\theequation removed
 }}{\end{mdframed}}
 
 \newenvironment{axiom}[1][]{%
@@ -141,6 +167,12 @@
 %   {\begin{mdframed}[style=lemma]
 %   {\bfseries{Axiom~\theequation}} (#1){\bfseries{.}}\relax%
 % }}{\end{mdframed}}
+
+
+% Edit for Numbering Theorems
+\renewcommand{\theequation}{blah}
+
+
 
 \newenvironment{example}[1][]{%
  \refstepcounter{equation}%
@@ -182,6 +214,16 @@
   {\bfseries{Exercises~\theequation}} (#1){\bfseries{.}}\relax%
 }}{\end{mdframed}}
 
+\newenvironment{clicker}[1][]{%
+ \refstepcounter{equation}%
+  \ifstrempty{#1}%
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Clicker Question~\theequation.}}
+  \relax}
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Clicker Question~\theequation}} (#1){\bfseries{.}}\relax%
+}}{\end{mdframed}}
+
 \newenvironment{question}[1][]{%
  \item #1}
 
@@ -205,17 +247,21 @@
 \newtheorem{assertion}[equation]{Assertion}
 \newtheorem{lemma}[equation]{Lemma}
 \newtheorem{proposition}[equation]{Proposition}
-\newtheorem*{claim}{Claim}
+\newtheorem{proc}[equation]{Procedure}
+\newtheorem{algorithm}[equation]{Algorithm}
+\newtheorem{method}[equation]{Method}
+\newtheorem{claim}[equation]{Claim}
 
 \theoremstyle{definition}
 \newtheorem{problem}[equation]{Problem}
 
 \theoremstyle{remark}
-\newtheorem*{remark}{Remark}
+\newtheorem{remark}[equation]{Remark}
 \newtheorem*{proof*}{Proof}
-\newtheorem*{remarks}{Remarks}
+\newtheorem{remarks}[equation]{Remarks}
 \newtheorem*{note}{Note}
 \newtheorem*{notes}{Notes}
+
 
 % \newtheorem{task}{Task}
 % 
@@ -300,29 +346,38 @@
 
 \renewcommand{\d}{\dif}
 
-\newcommand{\N}{\bb{N}}
-\newcommand{\Z}{\bb{Z}}
-\newcommand{\Q}{\bb{Q}}
-\newcommand{\R}{\bb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
 \let\C\relax
-\newcommand{\C}{\bb{C}}
-\newcommand{\F}{\bb{F}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
 
-\newcommand{\Rm}{\R^m}
-\newcommand{\Rn}{\R^n}
-\newcommand{\Cn}{\C^n}
-\newcommand{\Fm}{\F^m}
-\newcommand{\Fn}{\F^n}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\let\C\relax
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
 
-\newcommand{\iN}{\in\N}
-\newcommand{\iZ}{\in\Z}
-\newcommand{\iQ}{\in\Q}
-\newcommand{\iR}{\in\R}
+
+\newcommand{\Rm}{\RR^m}
+\newcommand{\Rn}{\RR^n}
+\newcommand{\Cn}{\CC^n}
+\newcommand{\Fm}{\FF^m}
+\newcommand{\Fn}{\FF^n}
+
+\newcommand{\iN}{\in\NN}
+\newcommand{\iZ}{\in\ZZ}
+\newcommand{\iQ}{\in\QQ}
+\newcommand{\iR}{\in\RR}
 \newcommand{\iRn}{\in\Rn}
 \newcommand{\iRm}{\in\Rm}
-\newcommand{\iC}{\in\C}
+\newcommand{\iC}{\in\CC}
 \newcommand{\iCn}{\in\Cn}
-\newcommand{\iF}{\in\F}
+\newcommand{\iF}{\in\FF}
 
 \DeclareMathOperator*{\id}{id}
 \DeclareMathOperator*{\Curl}{curl}
@@ -408,7 +463,7 @@
 
 \thispagestyle{empty}
 
-\textsc{\textcolor{white}{~}}\\[1.5cm]
+\textsc{\textcolor{white}{KJB}}\\[1.5cm]
 {\large #1}\\[0.1cm] % Heading for Year
 {\large #2}\\[0.5cm] % Heading for Imperial
 {\large #3}\\[0.5cm] % Heading for Term 
@@ -427,7 +482,7 @@
 	\begin{minipage}{0.4\textwidth}
 	\begin{flushright} \large
 	\emph{#7} \\
-	#8 % Supervisor's Name
+	#8 % Lecturers Name
 	\end{flushright}
 	\end{minipage}
 	
@@ -446,7 +501,7 @@
 
 % My custom title pages for Imperial notes
 
-\newcommand{\NotesTitle}[6]{\TitlePage
+\newcommand{\NotesTitle}[7]{\TitlePage
 	    {#1 Year Mathematics}
 		{Imperial College London}
 		{#2}
@@ -455,14 +510,10 @@
 		{#4~\textsc{#5}}
 		{Humbly Typed by:}
 		{Karim \textsc{Bacchus}}		
-	    {
-	        {\ Unofficial notes, \emph{not} endorsed by Imperial College.}\\[0.1cm]
-			{\ Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}}\\[0.1cm]
-			{\ Latest version (and other notes) are at \href{https://piguy.org/maths}{\texttt{piguy.org/maths}} }
-		}
+		{#6}
 		\thispagestyle{empty}
 		
-		#6
+		#7
 		
 		\setcounter{page}{0}
 		
@@ -779,7 +830,7 @@ Printed: \today.}}
 % Placed before font options are executed to allow for wider
 % customisation in the font options.
 \newlength{\uni@sidemargin}
-\setlength{\uni@sidemargin}{1.23in}
+\setlength{\uni@sidemargin}{1.25in}
 \setlength{\textwidth}{\paperwidth}
 \addtolength{\textwidth}{-2\uni@sidemargin}
 \setlength{\oddsidemargin}{\uni@sidemargin}
@@ -1141,3 +1192,88 @@ Printed: \today.}}
 % }
 
 \newcommand{\shortskip}{\setlength{\parskip}{2pt}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Smaller Column Vectors
+\makeatletter
+\newcommand{\Spvek}[2][r]{%
+  \gdef\@VORNE{1}
+  \left(\hskip-\arraycolsep%
+    \begin{array}{#1}\vekSp@lten{#2}\end{array}%
+  \hskip-\arraycolsep\right)}
+
+\def\vekSp@lten#1{\xvekSp@lten#1;vekL@stLine;}
+\def\vekL@stLine{vekL@stLine}
+\def\xvekSp@lten#1;{\def\temp{#1}%
+  \ifx\temp\vekL@stLine
+  \else
+    \ifnum\@VORNE=1\gdef\@VORNE{0}
+    \else\@arraycr\fi%
+    #1%
+    \expandafter\xvekSp@lten
+  \fi}
+\makeatother
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+
+
+%%% POLYLONGDIV
+
+\usepackage{polynom}
+\makeatletter
+\def\pld@CF@loop#1+{%
+    \ifx\relax#1\else
+        \begingroup
+          \pld@AccuSetX11%
+          \def\pld@frac{{}{}}\let\pld@symbols\@empty\let\pld@vars\@empty
+          \pld@false
+          #1%
+          \let\pld@temp\@empty
+          \pld@AccuIfOne{}{\pld@AccuGet\pld@temp
+                            \edef\pld@temp{\noexpand\pld@R\pld@temp}}%
+           \pld@if \pld@Extend\pld@temp{\expandafter\pld@F\pld@frac}\fi
+           \expandafter\pld@CF@loop@\pld@symbols\relax\@empty
+           \expandafter\pld@CF@loop@\pld@vars\relax\@empty
+           \ifx\@empty\pld@temp
+               \def\pld@temp{\pld@R11}%
+           \fi
+          \global\let\@gtempa\pld@temp
+        \endgroup
+        \ifx\@empty\@gtempa\else
+            \pld@ExtendPoly\pld@tempoly\@gtempa
+        \fi
+        \expandafter\pld@CF@loop
+    \fi}
+\def\pld@CMAddToTempoly{%
+    \pld@AccuGet\pld@temp\edef\pld@temp{\noexpand\pld@R\pld@temp}%
+    \pld@CondenseMonomials\pld@false\pld@symbols
+    \ifx\pld@symbols\@empty \else
+        \pld@ExtendPoly\pld@temp\pld@symbols
+    \fi
+    \ifx\pld@temp\@empty \else
+        \pld@if
+            \expandafter\pld@IfSum\expandafter{\pld@temp}%
+                {\expandafter\def\expandafter\pld@temp\expandafter
+                    {\expandafter\pld@F\expandafter{\pld@temp}{}}}%
+                {}%
+        \fi
+        \pld@ExtendPoly\pld@tempoly\pld@temp
+        \pld@Extend\pld@tempoly{\pld@monom}%
+    \fi}
+\makeatother
+
+%%%%%%% PLD END
+
+
+%equals to vertical alignment thingy
+\newcommand{\verteq}{\rotatebox{90}{$\,=$}}
+\newcommand{\equalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
+
