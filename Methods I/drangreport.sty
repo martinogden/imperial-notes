@@ -1,0 +1,1016 @@
+\NeedsTeXFormat{LaTeX2e}[1996/06/01]
+\ProvidesPackage{drangreport}
+\typeout{Package: `drangreport'}
+
+% Last edited by K. Bacchus July 2015
+
+% Include some useful standard packages
+\RequirePackage{ifthen,graphicx,float,color,hyperref}
+\RequirePackage{centernot}
+\RequirePackage[dvipsnames]{xcolor}
+
+\hypersetup{colorlinks=true}
+\usepackage[small]{caption}
+
+% Get the nice d-bend symbol for warnings
+\RequirePackage{manfnt}
+
+% Defines a counter to keep track of lecture numbers
+% Introduced early because it conflicts with amsmath, iirc
+\newcounter{lecture}
+
+% Define a set of useful symbols
+\RequirePackage{amsmath,units,commath,amsthm}
+
+% My favourite end of proof symbol
+\usepackage{marvosym}
+\renewcommand{\qedsymbol}{\Rectsteel} 
+
+
+% Define bord for matrices
+\newcommand*{\bord}{\multicolumn{1}{c|}{}}
+
+%Drawing stuff
+\usepackage{tkz-euclide,tikz-cd}
+\usetkzobj{all}
+
+% Prof. McCoy's range symbols
+\newcommand*{\Range}{%
+  \mathsf{X}\mkern-9mu\mathsf{X}%
+}
+
+\newcommand*{\Rangey}{%
+  \mathsf{Y}\mkern-9mu\mathsf{Y}%
+}
+
+
+\RequirePackage{mdframed,color,tikz}
+
+\definecolor{grey60}{rgb}{0.7,0.7,0.7}
+
+
+\newenvironment{theorem}[1][]{
+ \refstepcounter{equation}
+  \ifstrempty{#1}
+  {\mdfsetup{
+    frametitle={
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=grey60]
+        {\strut Theorem~\theequation};}}
+  }
+  {\mdfsetup{
+     frametitle={
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=grey60]
+        {\strut Theorem~\theequation:~#1};}}
+   }
+   \mdfsetup{linecolor=grey60,
+   			 skipabove=1.7\parskip,skipbelow=0.5\parskip,
+             linewidth=2pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[]\relax
+   }{\end{mdframed}}
+
+\newenvironment{definition}[1][]{
+ % \refstepcounter{equation}
+  \global\mdfdefinestyle{definition}{
+  	linecolor=grey60,linewidth=5pt,
+	skipabove=0.4\parskip,skipbelow=0.4\parskip,
+  	topline=false,rightline=false,bottomline=false
+  }
+  \ifstrempty{#1}
+  {\begin{mdframed}[style=definition]
+  {\bfseries{Definition.}} %~\theequation removed
+  \relax}
+  {\begin{mdframed}[style=definition]
+  {\bfseries{Definition}} (#1){\bfseries{.}}\relax  %~\theequation removed
+}}{\end{mdframed}}
+
+\newenvironment{axiom}[1][]{
+ \refstepcounter{equation}
+  \ifstrempty{#1}
+  {\begin{mdframed}[style=definition]
+  {\bfseries{Axiom~\theequation.}}
+  \relax}
+  {\begin{mdframed}[style=definition]
+  {\bfseries{Axiom~\theequation}} (#1){\bfseries{.}}\relax
+}}{\end{mdframed}}
+
+
+\global\mdfdefinestyle{lemma}{
+	linecolor=grey60,linewidth=1.5pt,
+	skipabove=0.5\parskip,skipbelow=0.5\parskip,
+	topline=false,rightline=false,bottomline=false
+}
+
+
+% \newenvironment{axiom}[1][]{%
+%  \refstepcounter{equation}%
+%   \ifstrempty{#1}%
+%   {\begin{mdframed}[style=lemma]
+%   {\bfseries{Axiom~\theequation.}}
+%   \relax}
+%   {\begin{mdframed}[style=lemma]
+%   {\bfseries{Axiom~\theequation}} (#1){\bfseries{.}}\relax%
+% }}{\end{mdframed}}
+
+
+% Edit for Numbering Theorems
+\renewcommand{\theequation}{blah}
+
+
+
+\newenvironment{example}[1][]{%
+ \refstepcounter{equation}%
+  \ifstrempty{#1}%
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Example~\theequation.}}
+  \relax}
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Example~\theequation}} (#1){\bfseries{.}}\relax%
+}}{\end{mdframed}}
+
+\newenvironment{examples}[1][]{%
+ \refstepcounter{equation}%
+  \ifstrempty{#1}%
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Examples~\theequation.}}
+  \relax}
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Examples~\theequation}} (#1){\bfseries{.}}\relax%
+}}{\end{mdframed}}
+
+\newenvironment{exercise}[1][]{%
+ \refstepcounter{equation}%
+  \ifstrempty{#1}%
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Exercise~\theequation.}}
+  \relax}
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Exercise~\theequation}} (#1){\bfseries{.}}\relax%
+}}{\end{mdframed}}
+
+\newenvironment{exercises}[1][]{%
+ \refstepcounter{equation}%
+  \ifstrempty{#1}%
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Exercises~\theequation.}}
+  \relax}
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Exercises~\theequation}} (#1){\bfseries{.}}\relax%
+}}{\end{mdframed}}
+
+\newenvironment{clicker}[1][]{%
+ \refstepcounter{equation}%
+  \ifstrempty{#1}%
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Clicker Question~\theequation.}}
+  \relax}
+  {\begin{mdframed}[style=lemma]
+  {\bfseries{Clicker Question~\theequation}} (#1){\bfseries{.}}\relax%
+}}{\end{mdframed}}
+
+\newenvironment{question}[1][]{%
+ \item #1}
+
+% \newenvironment{proposition}[1][]{%
+%  \refstepcounter{equation}%
+%   \ifstrempty{#1}%
+%   {\begin{mdframed}[style=lemma]
+%   {\bfseries{Proposition~\theequation.}}
+%   \relax}
+%   {\begin{mdframed}[style=lemma]
+%   {\bfseries{Proposition~\theequation}} (#1){\bfseries{.}}\relax%
+% }}{\end{mdframed}}
+
+
+\RequirePackage{amsthm}
+
+\theoremstyle{plain}
+% \newtheorem{axiom}[equation]{Axiom}
+\newtheorem*{aim}{Aim}
+\newtheorem{corollary}[equation]{Corollary}
+\newtheorem{assertion}[equation]{Assertion}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{proc}[equation]{Procedure}
+\newtheorem{algorithm}[equation]{Algorithm}
+\newtheorem{method}[equation]{Method}
+\newtheorem{claim}[equation]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{problem}[equation]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem*{proof*}{Proof}
+\newtheorem{remarks}[equation]{Remarks}
+\newtheorem*{note}{Note}
+\newtheorem*{notes}{Notes}
+
+
+% \newtheorem{task}{Task}
+% 
+% \theoremstyle{definition}
+% \newtheorem*{definition}{Definition}
+% \newtheorem*{openproblem}{Open problem}
+% \newtheorem{exercise}{$\blacktriangleright$
+% 					   \hypertarget{Ex\theexercise}{Exercise}}[lecture]
+% 
+
+
+% Warnings
+\newenvironment{warning}{%
+	\vspace{-6pt}
+	\begin{trivlist} \item[] \noindent%
+	\begingroup\hangindent=2pc\hangafter=-2
+	\clubpenalty=10000%
+	\hbox to0pt{\hskip-\hangindent\dbend\hfill}\ignorespaces
+	\textit{Warning}.}%
+	{\endgraf\endgroup\end{trivlist}}
+
+\newenvironment{warnings}{%
+	\vspace{-6pt}
+	\begin{trivlist} \item[] \noindent%
+	\begingroup\hangindent=2pc\hangafter=-2
+	\clubpenalty=10000%
+	\hbox to0pt{\hskip-\hangindent\dbend\hfill}\ignorespaces
+	\textit{Warnings}.}%
+	{\endgraf\endgroup\end{trivlist}}
+
+\newcommand{\isin}{\ensuremath{\in}}
+\newcommand{\inch}{\ensuremath{{}^{\prime\prime}}}
+\newcommand{\ft}{\ensuremath{{}^\prime}}
+\newcommand{\by}{\ensuremath{\!\times\!}}
+\newcommand{\degrees}{\ensuremath{{}^\circ}}
+\newcommand{\lbin}{\ensuremath{\mathrm{lb \! \cdot \! in}}}
+\newcommand{\inlb}{\ensuremath{\mathrm{in \! \cdot \! lb}}}
+\newcommand{\kin}{\ensuremath{\mathrm{k \! \cdot \! in}}}
+\newcommand{\ink}{\ensuremath{\mathrm{in \! \cdot \! k}}}
+\newcommand{\lbft}{\ensuremath{\mathrm{lb \! \cdot \! ft}}}
+\newcommand{\ftlb}{\ensuremath{\mathrm{ft \! \cdot \! lb}}}
+\newcommand{\kft}{\ensuremath{\mathrm{k \! \cdot \! ft}}}
+\newcommand{\ftk}{\ensuremath{\mathrm{ft \! \cdot \! k}}}
+\newcommand{\Nmm}{\ensuremath{\mathrm{N \! \cdot \! mm}}}
+\newcommand{\Nm}{\ensuremath{\mathrm{N \! \cdot \! m}}}
+\newcommand{\degree}{\ensuremath{^\circ}}
+
+\newcommand{\sfrac}[2]{\ensuremath{\leavevmode\kern0em\raise.5ex
+         \hbox{\mbox{\fontsize\sf@size\z@
+                           \selectfont#1}}\kern-.05em
+         /\kern-.1em
+          \hbox{\mbox{\fontsize\sf@size\z@
+                            \selectfont#2}}}}
+
+\RequirePackage{amssymb}
+
+\newcommand{\disp}{\displaystyle}
+
+\newcommand{\dlim}{\displaystyle\lim}
+\renewcommand{\del}{\partial}
+\newcommand{\Del}{\nabla}
+
+% \newcommand{\powerset}{\MNSpowerset}
+\newcommand{\powerset}{\wp}
+
+\renewcommand{\bf}[1]{\textbf{#1}}
+\renewcommand{\sf}[1]{\ensuremath{\mathsf{#1}}}
+\renewcommand{\rm}[1]{\ensuremath{\mathrm{#1}}}
+\renewcommand{\cal}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\bb}[1]{\ensuremath{\mathbb{#1}}}
+\renewcommand{\tt}[1]{\ensuremath{\mathtt{#1}}}
+\newcommand{\mono}[1]{{\small\texttt{#1}}}
+\renewcommand{\bold}[1]{\ensuremath{\boldsymbol{#1}}}
+\renewcommand{\frak}[1]{\ensuremath{\mathfrak{#1}}}
+
+\renewcommand{\d}{\dif}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\let\C\relax
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\let\C\relax
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+
+\newcommand{\Rm}{\RR^m}
+\newcommand{\Rn}{\RR^n}
+\newcommand{\Cn}{\CC^n}
+\newcommand{\Fm}{\FF^m}
+\newcommand{\Fn}{\FF^n}
+
+\newcommand{\iN}{\in\NN}
+\newcommand{\iZ}{\in\ZZ}
+\newcommand{\iQ}{\in\QQ}
+\newcommand{\iR}{\in\RR}
+\newcommand{\iRn}{\in\Rn}
+\newcommand{\iRm}{\in\Rm}
+\newcommand{\iC}{\in\CC}
+\newcommand{\iCn}{\in\Cn}
+\newcommand{\iF}{\in\FF}
+
+\DeclareMathOperator*{\id}{id}
+\DeclareMathOperator*{\Curl}{curl}
+\DeclareMathOperator*{\Grad}{grad}
+\DeclareMathOperator*{\Div}{div}
+
+\DeclareMathOperator*{\sech}{sech}
+\DeclareMathOperator*{\cosech}{cosech}
+\DeclareMathOperator*{\cosec}{cosec}
+
+\newcommand{\grad}{\bold{\nabla}}
+\newcommand{\cross}{\times}
+
+\newcommand{\f}[2]{\frac{#1}{#2}}
+\newcommand{\df}[2]{\dfrac{#1}{#2}}
+\newcommand{\tf}[2]{\textstyle\frac{#1}{#2}}
+\newcommand{\dy}[2]{\od{#1}{#2}}
+\newcommand{\ddy}[2]{\od[2]{#1}{#2}}
+\newcommand{\pa}[2]{\pd{#1}{#2}}
+\newcommand{\pab}[3]{\md{2}{#1}{1}{#2}{1}{#3}}
+\newcommand{\ppa}[2]{\pd[2]{#1}{#2}}
+\newcommand{\mat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\vmat}[1]{\begin{vmatrix} #1 \end{vmatrix}}
+
+\newcommand{\wiki}[2]{\href{http://en.wikipedia.org/wiki/#1}{\emph{#2}}}
+\newcommand{\wikirm}[2]{\href{http://en.wikipedia.org/wiki/#1}{#2}}
+
+\newcommand{\lV}{\left\Vert}
+\newcommand{\rV}{\right\Vert}
+
+\newcommand{\lv}{\left\vert}
+\newcommand{\rv}{\right\vert}
+
+\newcommand{\vvert}[1]{\left\vert #1 \right\vert}
+
+\newcommand{\isom}{\cong}
+\newcommand{\isomto}{\xrightarrow{\sim}}
+\newcommand{\isomfrom}{\xleftarrow{\sim}}
+
+\newcommand{\surjto}{\twoheadrightarrow}
+\newcommand{\surjfrom}{\twoheadleftarrow}
+
+\newcommand{\injto}{\hookrightarrow}
+\newcommand{\injfrom}{\hookrightarrow}
+
+%\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+\DeclareMathOperator*{\erf}{erf}
+
+\newcommand{\qend}{\hfill $\blacksquare$}
+
+% Setup the matha font (from mathabx.sty)
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * matha
+      <10.95> matha10 <12> <14.4> <17.28> <20.74> <24.88> matha12
+      }{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+
+% Define a subset character from that font (from mathabx.dcl) to completely replace the \subset character, you can replace \varsubset with \subset
+\DeclareMathSymbol{\notdivides}{3}{matha}{"1F}
+\DeclareMathSymbol{\divides}{3}{matha}{"17}
+
+% Some code for the titlepage
+% This takes the format {%year}{%term}{%course name}{%lecturer_initials}{%lecturer_surname}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+% At some point I should roll these together
+
+% Major heading line 1
+% Major heading line 2
+% Minor heading
+% Title
+% Lectured by
+% Professor
+% Notes by
+% Me
+% Footer text
+\newcommand{\TitlePage}[9]
+{
+\begin{center}
+
+\thispagestyle{empty}
+
+\textsc{\textcolor{white}{}}\\[1.5cm]
+{\large #1}\\[0.1cm] % Heading for Year
+{\large #2}\\[0.5cm] % Heading for Imperial
+{\large #3}\\[0.5cm] % Heading for Term 
+	
+\HRule \\[0.4cm]
+{\huge \sffamily\bfseries #4}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+	
+	\begin{minipage}{0.4\textwidth}
+	\begin{flushleft} \large
+	\emph{#5}\\
+	#6 % Your name
+	\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+	\begin{flushright} \large
+	\emph{#7} \\
+	#8 % Lecturers Name
+	\end{flushright}
+	\end{minipage}
+	
+	\vspace*{20pt}
+	\begin{centering}
+	\includegraphics[width=0.5\textwidth]{title.jpg}~
+	\end{centering}
+	
+	\vfill
+	
+	#9 \\[0.3cm] %
+		
+	\end{center}
+	
+	\pagebreak}
+
+% My custom title pages for Imperial notes
+
+\newcommand{\NotesTitle}[7]{\TitlePage
+	    {#1 Year Mathematics}
+		{Imperial College London}
+		{#2}
+		{#3}
+		{Lectured by:}
+		{#4~\textsc{#5}}
+		{Humbly Typed by:}
+		{Karim \textsc{Bacchus}}		
+		{
+			{\ Caveat Lector: unofficial notes, \emph{not} endorsed by Imperial College.}\\[0.1cm]
+			{\ Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}.}\\[0.1cm]
+			{\ Other notes are available at \href{https://wwwf.imperial.ac.uk/~kb514}{\texttt{https://wwwf.imperial.ac.uk/$\sim$kb514}} }
+		}
+		\thispagestyle{empty}
+		
+		#6
+		
+		\setcounter{page}{0}
+		
+\newpage}
+
+\newcommand{\NotesSubTitle}[7]{\SubTitlePage
+	{1st Year Mathematics}
+		{Imperial College London}
+		{#2}
+		{{\huge \sffamily\bfseries #3}\\[0.4cm]
+	
+		{\large \sffamily\bfseries #7}}
+		{Lectured by:}
+		{#4~\textsc{#5}}
+		{Humbly typed by:}
+		{Karim \textsc{Bacchus}}
+		{
+			{\ Caveat Lector: unofficial notes, \emph{not} endorsed by Imperial College.}\\[0.1cm]
+			{\ Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}.}\\[0.1cm]
+			{\ Other notes are available at \href{https://wwwf.imperial.ac.uk/~kb514}{\texttt{https://wwwf.imperial.ac.uk/$\sim$kb514}} }
+		}
+		
+		\thispagestyle{empty}
+		
+		#6
+		
+		\setcounter{page}{0}
+		
+\newpage}
+
+\newcommand{\ExamplesTitle}[3]
+{{\LARGE\bfseries\sffamily{#1, Examples Sheet #2}}
+
+{\bfseries\sffamily{FAO: #3 \\
+From: Karim Bacchus \\
+Printed: \today.}}
+
+\thispagestyle{empty}}
+
+\usepackage{marginnote}
+\newcommand{\datemarker}[1]{\marginnote{\footnotesize{\sffamily{#1}}}}
+\newcommand{\lecturemarker}[2]{\marginnote{\footnotesize{\sffamily{Lecture #1}}}}
+
+\newcommand{\p}{^{\,\prime}}
+\newcommand{\pp}{^{\,\prime\prime}}
+\newcommand{\ppp}{^{\,\prime\prime\prime}}
+
+\newcommand{\drangarray}{\renewcommand{\arraystretch}{0.95}}
+\drangarray
+
+\DeclareMathOperator*{\RHS}{RHS}
+\DeclareMathOperator*{\LHS}{LHS}
+
+\DeclareMathOperator*{\Image}{Im}
+
+
+% Indicator functions
+\DeclareMathOperator*{\ind}{1}
+
+\usetikzlibrary{arrows, decorations.markings}
+\newcommand{\bigarrow}{\draw [decoration={markings,mark=at position 1 with {\arrow[scale=2]{>}}},
+    		   postaction={decorate},
+    		   shorten >=0.4pt]}
+
+\renewcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\DeclareMathOperator{\Norm}{N}
+
+\newcommand{\ph}{\phantom{-}}
+\newcommand{\shadeblack}{black!25}
+
+\newcommand{\qqand}{\qquad \text{and} \qquad}
+\newcommand{\qqwhere}{\qquad \text{where} \qquad}
+
+\newcommand{\lecturenotesend}{\begin{center} \mbox{} \\[1cm] {\sffamily\bfseries{End of notes}} \end{center}}
+\newcommand{\lecturenotesendshort}{\begin{center} {\sffamily\bfseries{End of notes}} \end{center}}
+
+\newcommand{\TikZ}{Ti\emph{k}Z}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% Include a package I stole from Jakob Schiotz
+\def\enumhook{}
+\def\enumhooki{}
+\def\enumhookii{}
+\def\enumhookiii{}
+\def\enumhookiv{}
+\def\itemhook{}
+\def\itemhooki{}
+\def\itemhookii{}
+\def\itemhookiii{}
+\def\itemhookiv{}
+\def\descripthook{}
+\def\enumerate{%
+  \ifnum \@enumdepth >\thr@@\@toodeep\else
+    \advance\@enumdepth\@ne
+    \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
+      \expandafter
+      \list
+        \csname label\@enumctr\endcsname
+        {\usecounter\@enumctr\def\makelabel##1{\hss\llap{##1}}%
+          \enumhook \csname enumhook\romannumeral\the\@enumdepth\endcsname}%
+  \fi}
+\def\itemize{%
+  \ifnum \@itemdepth >\thr@@\@toodeep\else
+    \advance\@itemdepth\@ne
+    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
+    \expandafter
+    \list
+      \csname\@itemitem\endcsname
+      {\def\makelabel##1{\hss\llap{##1}}%
+        \itemhook \csname itemhook\romannumeral\the\@itemdepth\endcsname}%
+  \fi}
+\renewenvironment{description}
+                 {\list{}{\labelwidth\z@ \itemindent-\leftmargin
+                          \let\makelabel\descriptionlabel\descripthook}}
+                 {\endlist}
+
+
+
+% Defines the dcases environment
+\RequirePackage{mathtools}
+
+% Used for the boxes around theorems and similar
+% \RequirePackage{framed}
+
+% For annotations in draft files
+ \RequirePackage{todonotes}
+
+% Includes the table decorations that I like
+\RequirePackage{booktabs,multirow,eukdate}
+
+% Package for font handling
+% \RequirePackage{mathspec}
+
+% Items for handling options
+\newcounter{fontset}
+\newcommand{\titlefamily}{}
+\newcommand{\authorlength}{2in}
+\newcommand{\logolength}{1in}
+
+
+% Uses roman numerals (i), (ii), (iii) for numbered lists by default,
+% which I prefer
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+% An option to make links black for printing
+\DeclareOption{blacklinks}{
+  \hypersetup{colorlinks=false}
+}
+
+
+\DeclareOption{bluelinks}{
+\hypersetup{linkcolor=Blue}
+}
+
+% Change the headings pagestyle to show the title if it's an article.
+% See Kopka & Daly C.3.2 and article.cls.
+\ifthenelse{\boolean{@twoside}}{%
+  \renewcommand{\ps@headings}{%
+    \renewcommand*{\@oddfoot}{}%
+    \renewcommand*{\@evenfoot}{}%
+	\renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{{{\sectitle}} $\vert$ 
+		\bfseries{\thepage}}} %
+	\renewcommand*{\@evenhead}{\footnotesize\sffamily{{\bfseries{\thepage}} $\vert$ {{\@shorttitle}} \hfill}} %
+    % \renewcommand*{\@oddhead}{\normalfont\normalsize\hfill\thepage}%
+    % \renewcommand*{\@evenhead}{\normalfont\normalsize\thepage\hfill{\itshape\MakeUppercase{\@shorttitle}}}%
+  }%
+}{%
+  \renewcommand{\ps@headings}{%
+    \renewcommand*{\@oddfoot}{}%
+    \renewcommand*{\@evenfoot}{}%
+    % \renewcommand*{\@oddhead}{\normalfont\normalsize{\itshape\MakeUppercase{\@shorttitle}}\hfill\thepage}%
+	\renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{{{\@shorttitle}} $\vert$ \bfseries{\thepage}}}
+    \renewcommand*{\@evenhead}{\@oddhead}%
+  }%
+}
+
+
+
+\ExecuteOptions{nologo}
+\ProcessOptions
+
+% Handle the fontset option.
+
+% Set the side margins to 1.25 in. See Kopka & Daly C.3.1.
+% Placed before font options are executed to allow for wider
+% customisation in the font options.
+\newlength{\uni@sidemargin}
+\setlength{\uni@sidemargin}{1.25in}
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-2\uni@sidemargin}
+\setlength{\oddsidemargin}{\uni@sidemargin}
+\addtolength{\oddsidemargin}{-1in}%         to account for TeX's automatic 1in
+\setlength{\evensidemargin}{\oddsidemargin}
+
+
+
+% No extra space after sentence ends.
+% \frenchspacing
+\raggedbottom
+%
+% We're going to have a half-line space between each paragraph and
+% no paragraph indentation.
+\setlength{\parskip}{.7\baselineskip}
+\setlength{\parindent}{0pt}
+%
+%
+%
+% Make sure it doesn't screw up the table of contents
+\newcommand{\TableofContents}{
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+\thispagestyle{empty}
+\tableofcontents
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\parindent}{0pt}}
+%
+% This ensures that I don't get a page number in the central footer of the titlepage
+\newcommand{\MakeTitle}{
+\maketitle
+\thispagestyle{empty}}
+%
+% The spacing between list items will be the same as the spacing
+% between paragraphs.
+\renewcommand{\enumhook}{\setlength{\topsep}{0pt}%
+  \setlength{\itemsep}{0pt}%
+  \setlength{\parsep}{\parskip}}
+\renewcommand{\itemhook}{\setlength{\topsep}{0pt}%
+  \setlength{\itemsep}{0pt}%
+  \setlength{\parsep}{\parskip}}
+%
+% Change the chapter fonts to sans serif (if the class has chapters). 
+\@ifundefined{@makechapterhead}{}
+{\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \normalfont\titlefamily\bfseries\LARGE \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \LARGE \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+\renewcommand{\@makeschapterhead}[1]{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \titlefamily\LARGE\bfseries  #1\par\nobreak
+    \vskip 40\p@
+  }}}%
+%
+% Change the (sub)section and (sub)paragraph fonts to sans serif. See
+% Kopka & Daly C.3.3.
+\renewcommand{\section}{\@startsection{section}{1}%
+  {0pt}%                            indent
+  {-3.75ex plus -1ex minus -.2ex}%   pre-skip, next par not indented)
+  {2.0ex plus .2ex}%                post-skip
+  {\normalfont\titlefamily\sffamily\bfseries\LARGE}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}%
+  {0pt}%                            indent
+  {-2.5ex plus -1ex minus -.2ex}%  pre-skip, next par not indented)
+  {1.25ex plus .2ex}%                post-skip
+  {\normalfont\titlefamily\sffamily\bfseries\Large}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}%
+  {0pt}%                            indent
+  {-1.25ex plus -1ex minus -.2ex}%  pre-skip, next par not indented)
+  {.5ex plus .2ex}%                post-skip
+  {\normalfont\titlefamily\sffamily\bfseries\large}}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}%
+  {0pt}%                            indent
+  {-1.25ex plus -1ex minus -.2ex}%  pre-skip, next par not indented)
+  {-1em}%                           post-skip, run-in w/ 1 em space
+  {\normalfont\titlefamily  \bfseries\normalsize}}
+\renewcommand{\subparagraph}{\@startsection{subparagraph}{5}%
+  {0pt}%                            indent
+  {1.25ex plus 1ex minus .2ex}%  pre-skip, next par not indented)
+  {-1em}%                           post-skip, run-in w/ 1 em
+  {\normalfont\titlefamily\itshape\normalsize}}
+%
+% Change the contents and list fonts. Use the chapter font if the
+% document has chapters, otherwise use the section font. These are
+% taken directly from the article and report classes, with only the
+% font stuff changed.
+%
+% Set the header .5in from top of paper, the footer .5in from bottom
+% of paper, and the top & bottom body margins at 1in. See Kopka &
+% Daly C.3.1.
+\newlength{\uni@hfmargin}
+\setlength{\uni@hfmargin}{.5in}
+\setlength{\headheight}{12bp}%      enough for 1 line of text
+\setlength{\headsep}{24bp}%         \headheight + \headsep = 36bp = .5in
+\setlength{\footskip}{36bp}%        .5 in
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-2in}%    1in at top + 1in at bottom
+\setlength{\topmargin}{\uni@hfmargin}
+\addtolength{\topmargin}{-1in}%     to account for TeX's automatic 1in
+%
+% Create a \@shorttitle variable for the heading. If not defined by the
+% user, with the \shorttitle command, it will default to \@title.
+\newcommand{\@shorttitle}{\@title}
+\newcommand{\shorttitle}[1]{\renewcommand{\@shorttitle}{#1}}
+%
+% I am the default author.
+% *****CUSTOMIZE*****
+\renewcommand{\@author}{Karim Bacchus}
+%
+% Add a \client command that is similar to \author.
+\newcommand{\client}[1]{\newcommand{\@client}{#1}}
+%
+%
+% Use headings for most pages
+\pagestyle{headings}
+%
+% Redefine \maketitle to use san serif fonts, display the company logo
+% (when on a separate title page), and display the \@author and (when on
+% a separate title page) \@client as centered tables.
+\ifthenelse{\boolean{@titlepage}}{
+  \renewcommand{\maketitle}{
+    \renewcommand{\and}
+      {\end{tabular} \begin{tabular}[t]{c}\vspace{.5ex}\\}
+    \begin{titlepage}
+      \begin{center}
+        \begin{tabular}[t]{p{8cm}}
+          \parbox[c][1in][c]{5in}{\hfill}\\
+          \parbox[c][2in][c]{5in}
+            {\centering\normalfont\titlefamily\bfseries\Huge\@title} \\
+			{\centering\normalfont\titlefamily\bfseries\Large\@subtitle} \\
+          \begin{minipage}[c][\authorlength][c]{5in}
+            {\begin{center}%
+              \normalfont\normalsize%
+              a report by\par\vspace{1ex}%
+              \begin{tabular}[t]{c}
+                \vspace{.5ex}\\
+                \@author
+              \end{tabular}%
+            \end{center}}%
+           \end{minipage}\\
+          \parbox[c][\logolength][c]{5in}
+            {\showlogo}\\
+          \begin{minipage}[c][2in][c]{5in}
+            \@ifundefined{@client}{}
+            {\centering\normalfont\normalsize%
+              submitted to\\
+              \begin{tabular}[t]{c}
+                \vspace{.5ex}\\
+                \@client
+              \end{tabular}}
+            \end{minipage}\\
+          \parbox[c][1in][c]{5in}
+            {\centering\normalfont\normalsize\@date}
+        \end{tabular}
+      \end{center}
+    \end{titlepage}
+    % for the first text page of an article
+    % add .5in + 0pt space at the top of the page
+    %\@ifundefined{@makechapterhead}{\vspace*{0pt}}{}%
+    %\thispagestyle{plain}%    no header
+  }
+}{% This is for for when there is no title page
+  \renewcommand{\maketitle}{
+    \renewcommand{\and}
+     {\end{tabular} \begin{tabular}[t]{c}\vspace{.5ex}\\}
+    \begin{center}
+      \begin{tabular}[t]{c}
+        \parbox[c][1in][c]{5in}
+          {\centering\normalfont\titlefamily\bfseries\Huge\@title} \\
+		  {\centering\normalfont\titlefamily\bfseries\Large\@subtitle} \\
+        \begin{minipage}{5in}
+          \begin{center}
+            \normalfont\normalsize%
+            \begin{tabular}[t]{c}
+              \vspace{.5ex}\\
+              \@author
+            \end{tabular}
+          \end{center}
+        \end{minipage}
+        \vspace{.25in}\\
+        \@date\\
+        \vspace{.125in}\\
+        \parbox[c][\logolength][c]{5in}
+          {\showlogo}\\
+      \end{tabular}
+    \end{center}
+    \thispagestyle{empty}%      no header on 1st page
+  }
+}
+
+
+% The \pagedrop command adds 0.5in to the top. Should be used for the
+% first page of text if there's a title page.
+% Also for first page of TOC, etc.
+\newcommand{\pagedrop}{%
+  \@ifundefined{@makechapterhead}{\vspace*{0pt}}{}% 0.5in + 0pt
+}
+
+
+
+% All of my stuff for keeping track of lectures
+\makeatletter
+\def\sektion{\@ifnextchar[{\@with}{\@without}}
+\def\@with[#1]#2{\pagebreak \section[#1]{#2} \gdef\sectitle{#1}
+             \setcounter{footnote}{0}}
+\def\@without#1{\pagebreak \section{#1} \gdef\sectitle{#1}
+             \setcounter{footnote}{0}\stepcounter{lecture}}
+\makeatother
+
+\newcommand{\sektionu}[1]{\cleardoublepage \section*{#1} \gdef\sectitle{#1}
+						  \addcontentsline{toc}{section}{#1}
+						  \setcounter{footnote}{0}}
+\newcommand{\subsektion}[1]{\subsection*{#1}
+							\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsekktion}[2]{\subsection*{#2}
+							 \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsektion}[1]{\subsubsection*{#1}
+							%\addcontentsline{toc}{subsubsection}{#1}
+							}
+							 
+\newcommand\sectitle{}		% This is the empty section title, before any section title is set
+\setcounter{lecture}{0}
+
+
+\renewcommand{\thelecture}{\arabic{lecture}}
+\renewcommand{\theequation}{\thelecture.\arabic{equation}}
+
+
+% Make the equation counter reset each lecture
+\makeatletter
+	\@addtoreset{equation}{lecture}
+\makeatother
+
+
+
+% drangreport gets all upset if I don't put this right at the end
+
+\RequirePackage[color,all]{xy}	% Include XY-pic
+	\SelectTips{cm}{10}		% Use the nicer arrowheads
+	\everyxy={<2.5em,0em>:}	% Sets the scale I like
+	\xyoption{web}			% Include the lattice feature, I don't know why it isn't loaded already
+
+
+
+%%% Some plotting and tikz drawing stuff... 
+
+\RequirePackage{tikz, tikz-3dplot, pgf} 
+\RequirePackage{float} 
+
+\tikzset{->/.style = {decoration={markings, mark=at position 1 with {\arrow[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{<-/.style = {decoration={markings, mark=at position 0 with {\arrowreversed[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{<->/.style = {decoration={markings, mark=at position 0 with {\arrowreversed[scale=1]{stealth}}, mark=at position 1 with {\arrow[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{->-/.style = {decoration={markings, mark=at position #1 with {\arrow[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{-<-/.style = {decoration={markings, mark=at position #1 with {\arrowreversed[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{circ/.style = {fill, circle, inner sep = 0, minimum size = 3}}
+
+ \usetikzlibrary{calc,patterns,
+                 decorations.pathmorphing,
+                 decorations.markings}
+
+
+%%% Making i, j, k hat bold
+\let\oldhat\hat
+\renewcommand{\hat}[1]{\,\oldhat{\boldsymbol{\mathbf{#1}}}}
+
+
+\newcommand{\shortskip}{\setlength{\parskip}{2pt}}
+\newcommand{\vsp}{\vspace*{5pt}}
+
+
+% A bunch of other packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Smaller Column Vectors
+\makeatletter
+\newcommand{\Spvek}[2][r]{%
+  \gdef\@VORNE{1}
+  \left(\hskip-\arraycolsep%
+    \begin{array}{#1}\vekSp@lten{#2}\end{array}%
+  \hskip-\arraycolsep\right)}
+
+\def\vekSp@lten#1{\xvekSp@lten#1;vekL@stLine;}
+\def\vekL@stLine{vekL@stLine}
+\def\xvekSp@lten#1;{\def\temp{#1}%
+  \ifx\temp\vekL@stLine
+  \else
+    \ifnum\@VORNE=1\gdef\@VORNE{0}
+    \else\@arraycr\fi%
+    #1%
+    \expandafter\xvekSp@lten
+  \fi}
+\makeatother
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+
+%%% Long division with polynomials 
+\usepackage{polynom}
+\makeatletter
+\def\pld@CF@loop#1+{%
+    \ifx\relax#1\else
+        \begingroup
+          \pld@AccuSetX11%
+          \def\pld@frac{{}{}}\let\pld@symbols\@empty\let\pld@vars\@empty
+          \pld@false
+          #1%
+          \let\pld@temp\@empty
+          \pld@AccuIfOne{}{\pld@AccuGet\pld@temp
+                            \edef\pld@temp{\noexpand\pld@R\pld@temp}}%
+           \pld@if \pld@Extend\pld@temp{\expandafter\pld@F\pld@frac}\fi
+           \expandafter\pld@CF@loop@\pld@symbols\relax\@empty
+           \expandafter\pld@CF@loop@\pld@vars\relax\@empty
+           \ifx\@empty\pld@temp
+               \def\pld@temp{\pld@R11}%
+           \fi
+          \global\let\@gtempa\pld@temp
+        \endgroup
+        \ifx\@empty\@gtempa\else
+            \pld@ExtendPoly\pld@tempoly\@gtempa
+        \fi
+        \expandafter\pld@CF@loop
+    \fi}
+\def\pld@CMAddToTempoly{%
+    \pld@AccuGet\pld@temp\edef\pld@temp{\noexpand\pld@R\pld@temp}%
+    \pld@CondenseMonomials\pld@false\pld@symbols
+    \ifx\pld@symbols\@empty \else
+        \pld@ExtendPoly\pld@temp\pld@symbols
+    \fi
+    \ifx\pld@temp\@empty \else
+        \pld@if
+            \expandafter\pld@IfSum\expandafter{\pld@temp}%
+                {\expandafter\def\expandafter\pld@temp\expandafter
+                    {\expandafter\pld@F\expandafter{\pld@temp}{}}}%
+                {}%
+        \fi
+        \pld@ExtendPoly\pld@tempoly\pld@temp
+        \pld@Extend\pld@tempoly{\pld@monom}%
+    \fi}
+\makeatother
+
+
+
+%%% Vertical equals to
+\newcommand{\verteq}{\rotatebox{90}{$\,=$}}
+\newcommand{\equalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
+

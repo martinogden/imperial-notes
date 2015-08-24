@@ -14,6 +14,7 @@
 \RequirePackage{centernot}
 
 \RequirePackage{hyperref}
+\RequirePackage[dvipsnames]{xcolor}
 
 \hypersetup{colorlinks=true}
 \usepackage[small]{caption}
@@ -510,10 +511,14 @@
 		{#4~\textsc{#5}}
 		{Humbly Typed by:}
 		{Karim \textsc{Bacchus}}		
-		{#6}
+		{
+			{\ Caveat Lector: unofficial notes, \emph{not} endorsed by Imperial College.}\\[0.1cm]
+			{\ Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}.}\\[0.1cm]
+			{\ Other notes are available at \href{https://wwwf.imperial.ac.uk/~kb514}{\texttt{https://wwwf.imperial.ac.uk/$\sim$kb514}} }
+		}
 		\thispagestyle{empty}
 		
-		#7
+		#6
 		
 		\setcounter{page}{0}
 		
@@ -762,6 +767,11 @@ Printed: \today.}}
 % An option to make links black for printing
 \DeclareOption{blacklinks}{
   \hypersetup{colorlinks=false}
+}
+
+
+\DeclareOption{bluelinks}{
+\hypersetup{linkcolor=Blue}
 }
 
 % Change the headings pagestyle to show the title if it's an article.
@@ -1137,7 +1147,7 @@ Printed: \today.}}
 \def\@with[#1]#2{\pagebreak \section[#1]{#2} \gdef\sectitle{#1}
              \setcounter{footnote}{0}}
 \def\@without#1{\pagebreak \section{#1} \gdef\sectitle{#1}
-             \setcounter{footnote}{0}}
+             \setcounter{footnote}{0}\stepcounter{lecture}}
 \makeatother
 
 \newcommand{\sektionu}[1]{\cleardoublepage \section*{#1} \gdef\sectitle{#1}

@@ -2,15 +2,13 @@
 \ProvidesPackage{drangreport}
 \typeout{Package: `drangreport'}
 
-% Items that must be customized for your company and computer are denoted
-% with a *****CUSTOMIZE***** comment.
-
-% We start by loading a large number of packages
-
-
+% Last edited by K. Bacchus July 2015
 
 % Include some useful standard packages
 \RequirePackage{ifthen,graphicx,float,color,hyperref}
+\RequirePackage{centernot}
+\RequirePackage[dvipsnames]{xcolor}
+
 \hypersetup{colorlinks=true}
 \usepackage[small]{caption}
 
@@ -24,21 +22,19 @@
 % Define a set of useful symbols
 \RequirePackage{amsmath,units,commath,amsthm}
 
-%Nice end of Proof Symbol
+% My favourite end of proof symbol
 \usepackage{marvosym}
 \renewcommand{\qedsymbol}{\Rectsteel} 
 
 
+% Define bord for matrices
 \newcommand*{\bord}{\multicolumn{1}{c|}{}}
 
-
-
+% Drawing stuff
 \usepackage{tkz-euclide,tikz-cd}
 \usetkzobj{all}
 
-
-
-
+% Prof. McCoy's range symbols
 \newcommand*{\Range}{%
   \mathsf{X}\mkern-9mu\mathsf{X}%
 }
@@ -47,79 +43,42 @@
   \mathsf{Y}\mkern-9mu\mathsf{Y}%
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Last edited 26 February, 2015 K Bacchus
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-% \begingroup
-%     \makeatletter
-%     \@for\theoremstyle:=definition,remark,plain\do{%
-%         \expandafter\g@addto@macro\csname th@\theoremstyle\endcsname{%
-%             \setlength\thm@postskip{0pt}
-%             }%
-%         }
-% \endgroup
-% 
-% % \begingroup
-% %     \makeatletter
-% %     \@for\theoremstyle:=proof\do{%
-% %         \expandafter\g@addto@macro\csname th@\theoremstyle\endcsname{%
-% %             \setlength\thm@preskip{0pt}
-% % 			\setlength\thm@postskip{0pt}
-% %             }%
-% %         }
-% % \endgroup
-% 
-% \begingroup
-%     \makeatletter
-%     \@for\theoremstyle:=remark\do{%
-%         \expandafter\g@addto@macro\csname th@\theoremstyle\endcsname{%
-%             \setlength\thm@preskip\parskip
-%             }%
-%         }
-% \endgroup
-
-% \RequirePackage{amsthm}
-% \theoremstyle{plain}
 
 \RequirePackage{mdframed,color,tikz}
 
 \definecolor{grey60}{rgb}{0.7,0.7,0.7}
 
 
-\newenvironment{theorem}[1][]{%
- \refstepcounter{equation}%
-  \ifstrempty{#1}%
-  {\mdfsetup{%
-    frametitle={%
+\newenvironment{theorem}[1][]{
+ \refstepcounter{equation}
+  \ifstrempty{#1}
+  {\mdfsetup{
+    frametitle={
        \tikz[baseline=(current bounding box.east),outer sep=0pt]
         \node[anchor=east,rectangle,fill=grey60]
         {\strut Theorem~\theequation};}}
-  }%
-  {\mdfsetup{%
-     frametitle={%
+  }
+  {\mdfsetup{
+     frametitle={
        \tikz[baseline=(current bounding box.east),outer sep=0pt]
         \node[anchor=east,rectangle,fill=grey60]
-        {\strut Theorem~\theequation:~#1};}}%
-   }%
-   \mdfsetup{linecolor=grey60,%
+        {\strut Theorem~\theequation:~#1};}}
+   }
+   \mdfsetup{linecolor=grey60,
    			 skipabove=1.7\parskip,skipbelow=0.5\parskip,
              linewidth=2pt,topline=true,
              frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
-   \begin{mdframed}[]\relax%
+   \begin{mdframed}[]\relax
    }{\end{mdframed}}
 
-\newenvironment{definition}[1][]{%
+\newenvironment{definition}[1][]{
   \refstepcounter{equation}
-  \global\mdfdefinestyle{definition}{%
-  	linecolor=grey60,linewidth=5pt,%
+  \global\mdfdefinestyle{definition}{
+  	linecolor=grey60,linewidth=5pt,
 	skipabove=0.4\parskip,skipbelow=0.4\parskip,
   	topline=false,rightline=false,bottomline=false
   }
-  \ifstrempty{#1}%
+  \ifstrempty{#1}
   {\begin{mdframed}[style=definition]
   {\bfseries{Definition~\theequation.}} %~\theequation added for Algebra
   \relax}
@@ -127,32 +86,23 @@
   {\bfseries{Definition~\theequation}} (#1){\bfseries{.}}\relax  %~\theequation added for Algebra
 }}{\end{mdframed}}
 
-\newenvironment{axiom}[1][]{%
- \refstepcounter{equation}%
-  \ifstrempty{#1}%
+\newenvironment{axiom}[1][]{
+ \refstepcounter{equation}
+  \ifstrempty{#1}
   {\begin{mdframed}[style=definition]
   {\bfseries{Axiom~\theequation.}}
   \relax}
   {\begin{mdframed}[style=definition]
-  {\bfseries{Axiom~\theequation}} (#1){\bfseries{.}}\relax%
+  {\bfseries{Axiom~\theequation}} (#1){\bfseries{.}}\relax
 }}{\end{mdframed}}
 
 
-\global\mdfdefinestyle{lemma}{%
+\global\mdfdefinestyle{lemma}{
 	linecolor=grey60,linewidth=1.5pt,
 	skipabove=0.5\parskip,skipbelow=0.5\parskip,
 	topline=false,rightline=false,bottomline=false
 }
 
-% \newenvironment{lemma}[1][]{%
-%  \refstepcounter{equation}%
-%   \ifstrempty{#1}%
-%   {\begin{mdframed}[style=lemma]
-%   {\bfseries{Lemma~\theequation.}}
-%   \relax}
-%   {\begin{mdframed}[style=lemma]
-%   {\bfseries{Lemma~\theequation}} (#1){\bfseries{.}}\relax%
-% }}{\end{mdframed}}
 
 % \newenvironment{axiom}[1][]{%
 %  \refstepcounter{equation}%
@@ -267,14 +217,6 @@
 % \newtheorem{exercise}{$\blacktriangleright$
 % 					   \hypertarget{Ex\theexercise}{Exercise}}[lecture]
 % 
-
-
-% Solutions
-% \RequirePackage{answers}
-% \Newassociation{solution}{Solution}{exSolutions}
-% \renewenvironment{Solution}[1]{%\small%
-%	\begin{trivlist} \item \textit{Solution}~#1.}{%
-%	\hspace*{\fill} $\blacksquare$\end{trivlist}}
 
 % Warnings
 \newenvironment{warning}{%
@@ -459,7 +401,7 @@
 
 \thispagestyle{empty}
 
-\textsc{\textcolor{white}{KJB}}\\[1.5cm]
+\textsc{\textcolor{white}{}}\\[1.5cm]
 {\large #1}\\[0.1cm] % Heading for Year
 {\large #2}\\[0.5cm] % Heading for Imperial
 {\large #3}\\[0.5cm] % Heading for Term 
@@ -506,10 +448,14 @@
 		{#4~\textsc{#5}}
 		{Humbly Typed by:}
 		{Karim \textsc{Bacchus}}		
-	        {#6}
+		{
+			{\ Caveat Lector: unofficial notes, \emph{not} endorsed by Imperial College.}\\[0.1cm]
+			{\ Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}.}\\[0.1cm]
+			{\ Other notes are available at \href{https://wwwf.imperial.ac.uk/~kb514}{\texttt{https://wwwf.imperial.ac.uk/$\sim$kb514}} }
+		}
 		\thispagestyle{empty}
 		
-		#7
+		#6
 		
 		\setcounter{page}{0}
 		
@@ -527,8 +473,9 @@
 		{Humbly typed by:}
 		{Karim \textsc{Bacchus}}
 		{
-			{\ Unofficial notes, \emph{not} endorsed by Imperial College.}\\[0.1cm]
-			{\ Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{kb514@ic.ac.uk}.}
+			{\ Caveat Lector: unofficial notes, \emph{not} endorsed by Imperial College.}\\[0.1cm]
+			{\ Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}.}\\[0.1cm]
+			{\ Other notes are available at \href{https://wwwf.imperial.ac.uk/~kb514}{\texttt{https://wwwf.imperial.ac.uk/$\sim$kb514}} }
 		}
 		
 		\thispagestyle{empty}
@@ -543,7 +490,7 @@
 {{\LARGE\bfseries\sffamily{#1, Examples Sheet #2}}
 
 {\bfseries\sffamily{FAO: #3 \\
-From: Alex Chan \\
+From: Karim Bacchus \\
 Printed: \today.}}
 
 \thispagestyle{empty}}
@@ -564,46 +511,6 @@ Printed: \today.}}
 
 \DeclareMathOperator*{\Image}{Im}
 
-% These two commands came from a course in Probability
-\newcommand{\glstack}{\begin{array}{c} \geq \\ \leq\end{array}}
-\newcommand{\lgstack}{\begin{array}{c} \leq \\ \geq\end{array}}
-
-\newcommand{\intinf}{\int_{-\infty}^\infty}
-
-\newcommand{\mnewline}{\\[-5pt] &}
-
-% \newcommand{\mmaticablock}[2]{
-% \renewcommand{\arraystretch}{1.3}
-% \begin{tabular}{r p{12cm}}
-% 	\mtmc In[1]:= &
-% \begin{minipage}[t]{\linewidth}
-% \begin{verbatim}
-% return [offset](\%ebp)
-% return2
-% \end{verbatim}
-% \end{minipage}
-% \end{tabular}
-% \drangarray
-% }
-
-% \newcommand{\mmaticablock}[1]{
-% \renewcommand{\arraystretch}{1.3}
-% \begin{tabular}{
-% 	>{\mtmc}{r} p{0.55cm} p{12cm}}
-% 	#1
-% \end{tabular}
-% \drangarray}
-
-% \newcommand{\mmaticablock}[1]{
-% \renewcommand{\arraystretch}{1.3}
-% \begin{tabular}{>{\begin{figure}[!h]\begin{minipage}[t]{1.0\textwidth}\vspace{0pt}\mtmc}r <{\end{minipage}\end{figure}}  >{\begin{minipage}{1.0\textwidth}} p{0.9\textwidth} <{\end{minipage}}}
-% 	#1
-% \end{tabular}
-% \drangarray}
-
-% {%
-%  \refstepcounter{catamlisting}%
-%   {{\bfseries\sffamily{Listing~\thecatamlisting.}}\relax} #1 {}}
 
 % Indicator functions
 \DeclareMathOperator*{\ind}{1}
@@ -628,9 +535,6 @@ Printed: \today.}}
 \newcommand{\TikZ}{Ti\emph{k}Z}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 
 
 
@@ -670,7 +574,6 @@ Printed: \today.}}
                  {\list{}{\labelwidth\z@ \itemindent-\leftmargin
                           \let\makelabel\descriptionlabel\descripthook}}
                  {\endlist}
-% End a package I stole from Jakob Schiotz
 
 
 
@@ -681,7 +584,7 @@ Printed: \today.}}
 % \RequirePackage{framed}
 
 % For annotations in draft files
-% \RequirePackage{todonotes}
+ \RequirePackage{todonotes}
 
 % Includes the table decorations that I like
 \RequirePackage{booktabs,multirow,eukdate}
@@ -695,61 +598,6 @@ Printed: \today.}}
 \newcommand{\authorlength}{2in}
 \newcommand{\logolength}{1in}
 
-% This should have the full pathname to your company logo. See also the
-% showlogo command below. You may need to fiddle with the scale factor to
-% get the logo to fit in the available space.
-% *****CUSTOMIZE*****
-\newcommand{\showlogo}{%
-  \centering\hspace{.25in}
-  \includegraphics[scale=.65]
-  {/Users/alexwlchan/Dropbox/BATS/bat-large.pdf}
-}
-
-% An option to the package determines the font set we're going to use.
-% The default is the Computer Modern set (fontset 0), which is like
-% standard LaTeX. The other three options are:
-%
-%   "times" (fontset 1)
-%     serif:      Caecilia
-%     sans serif: Proxima Nova (used for section headings and titles)
-%     typewriter: Courier
-%     math:       Mathematica
-%
-%   "palatino" (fontset 2)
-%     serif:      Lyon
-%     san serif:  Proxima Nova (used for section headings and titles)
-%     typewriter: Consolas for BBEdit
-%     math:       The standard LaTeX set (with Lyon numerals and text)
-%	  greek:	  Gentium Basic
-%
-%   "timesopt" (fontset 3)
-%     sans serif: Optima (used for section headings and titles)
-%     typewriter: Courier
-%     math:       Mathematica
-%
-%	"hivizviz" (fontset 4)
-%	  sans serif: FS Me
-%
-% Obviously, these fonts must be available to your LaTeX system for these options to work.
-%
-
-% Another option to the package determines whether the (company) logo
-% appears on the title page. By default, the logo does not appear.
-% *****CUSTOMIZE*****
-\DeclareOption{logo}{%
-  % \renewcommand{\showlogo}{%
-  %     \centering\hspace{.25in}
-  % 	\includegraphics[scale=.65]
-  % 	{/Users/alexwlchan/Dropbox/BATS/bat-large.pdf}
-  %   }%
-  \renewcommand{\authorlength}{2in}%
-  \renewcommand{\logolength}{1in}%
-}
-\DeclareOption{nologo}{%
-  \renewcommand{\showlogo}{}%
-  \renewcommand{\authorlength}{2.75in}%
-  \renewcommand{\logolength}{.25in}%
-}
 
 % Uses roman numerals (i), (ii), (iii) for numbered lists by default,
 % which I prefer
@@ -758,6 +606,10 @@ Printed: \today.}}
 % An option to make links black for printing
 \DeclareOption{blacklinks}{
   \hypersetup{colorlinks=false}
+}
+
+\DeclareOption{bluelinks}{
+\hypersetup{linkcolor=Blue}
 }
 
 % Change the headings pagestyle to show the title if it's an article.
@@ -782,40 +634,6 @@ Printed: \today.}}
   }%
 }
 
-% An option for my examples sheets, which sets up slightly
-% different numbering styles and different page headings
-\DeclareOption{examples}{%
-
-  % Options for the exam package
-%  \renewcommand{\thequestion}{\em\arabic{question}}
-  %\renewcommand{\solutiontitle}{\em}
-  %\unframedsolutions
-  %\renewcommand{\questionshook}{\em}
-
-  \renewcommand{\labelenumi}{\bfseries\sffamily{\arabic{enumi}.}}
-  \renewcommand{\labelenumii}{(\roman{enumii})}
-  \renewcommand{\labelenumiii}{(\alph{enumiii})}
-  \ifthenelse{\boolean{@twoside}}{%
-    \renewcommand{\ps@headings}{%
-      \renewcommand*{\@oddfoot}{}%
-      \renewcommand*{\@evenfoot}{}%
-  	\renewcommand*{\@oddhead}{\hfill \footnotesize\sffamily{\@shorttitle~$\vert$ {\bfseries{\thepage}}}} %
-  	\renewcommand*{\@evenhead}{\footnotesize\sffamily{{\bfseries{\thepage}} $\vert$ \@shorttitle} \hfill} %
-      % \renewcommand*{\@oddhead}{\normalfont\normalsize\hfill\thepage}%
-      % \renewcommand*{\@evenhead}{\normalfont\normalsize\thepage\hfill{\itshape\MakeUppercase{\@shorttitle}}}%
-    }%
-  }{%
-    \renewcommand{\ps@headings}{%
-      \renewcommand*{\@oddfoot}{}%
-      \renewcommand*{\@evenfoot}{}%
-      % \renewcommand*{\@oddhead}{\normalfont\normalsize{\itshape\MakeUppercase{\@shorttitle}}\hfill\thepage}%
-  	  \renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{\@shorttitle~$\vert$ \bfseries{\thepage}}} %
-      \renewcommand*{\@evenhead}{\footnotesize\sffamily{{\bfseries{\thepage}}}} %
-    }%
-  }
-}
-
-
 
 \ExecuteOptions{nologo}
 \ProcessOptions
@@ -834,7 +652,6 @@ Printed: \today.}}
 \setlength{\evensidemargin}{\oddsidemargin}
 
 
-%
 
 % No extra space after sentence ends.
 % \frenchspacing
@@ -946,7 +763,7 @@ Printed: \today.}}
 %
 % I am the default author.
 % *****CUSTOMIZE*****
-\renewcommand{\@author}{Alex Chan}
+\renewcommand{\@author}{Karim Bacchu}
 %
 % Add a \client command that is similar to \author.
 \newcommand{\client}[1]{\newcommand{\@client}{#1}}
@@ -1028,105 +845,18 @@ Printed: \today.}}
     \thispagestyle{empty}%      no header on 1st page
   }
 }
-%
+
+
 % The \pagedrop command adds 0.5in to the top. Should be used for the
 % first page of text if there's a title page.
 % Also for first page of TOC, etc.
 \newcommand{\pagedrop}{%
   \@ifundefined{@makechapterhead}{\vspace*{0pt}}{}% 0.5in + 0pt
 }
-%
-% Add a \signatures command that places the authors' names after a closing
-% line. Provides space above the names for signatures.
-\newcommand{\signatures}[1]{%
-  % make a local change to \and to provide spacing and signature lines
-  \renewcommand{\and}{%
-    \end{tabular*}\hspace{0pt}%
-    \begin{tabular*}{3in}[t]{l}
-      \vspace{.5in}\\
-      \rule{2.5in}{.5bp}\\}
-  \par%
-  \vspace{.25in}%                        separation from the body of the text
-  \begin{minipage}{6in}%
-    \flushleft\normalfont\normalsize#1\par
-    \setlength{\tabcolsep}{0pt}%       to keep left side at margin
-    \begin{tabular*}{3in}[t]{l}
-      \vspace{.5in}\\
-      \rule{2.5in}{.5bp}\\
-      \@author
-    \end{tabular*}
-  \end{minipage}
-}
-%
-% Add a \mysignature command that places my signature and name after a
-% closing line.
-% *****CUSTOMIZE*****
-\newcommand{\mysignature}[1]{%
-  \par%
-  \vspace{.25in}%                       separation from the body of the text
-  \flushleft\normalfont\normalsize#1\par
-  \hspace{-.1in}\includegraphics{/Users/drang/graphics/sig.pdf}\\
-  \vspace{-.3in}\rule{2.5in}{.5bp}\\
-  Alex Chan
-}
-%
-% Define a float for plates. These are taken directly from the
-% article.cls and report.cls definitions for the figure environment
-% with the word "figure" replaced with "plate," "lof" with "lop,"
-% and the ftype set to 4 instead of 1.
-\@ifundefined{@makechapterhead}
-{ \newcounter{plate}
-  \renewcommand \theplate {\@arabic\c@plate}
-  \def\fps@plate{tbp}
-  \def\ftype@plate{4}
-  \def\ext@plate{lop}
-  \def\fnum@plate{\platename\nobreakspace\theplate}
-  \newenvironment{plate}
-                 {\@float{plate}}
-                 {\end@float}
-  \newenvironment{plate*}
-                 {\@dblfloat{plate}}
-                 {\end@dblfloat}
-  \newcommand\listofplates{%
-      \section*{\listplatename}%
-        \@mkboth{\MakeUppercase\listplatename}%
-                {\MakeUppercase\listplatename}%
-      \@starttoc{lop}%
-      }
-  \newcommand*\l@plate{\@dottedtocline{1}{1.5em}{2.3em}}
-  \newcommand\listplatename{List of Plates}
-  \newcommand\platename{Plate}
-}
-{ \newcounter{plate}[chapter]
-  \renewcommand \theplate
-       {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@plate}
-  \def\fps@plate{tbp}
-  \def\ftype@plate{4}
-  \def\ext@plate{lop}
-  \def\fnum@plate{\platename\nobreakspace\theplate}
-  \newenvironment{plate}
-                 {\@float{plate}}
-                 {\end@float}
-  \newenvironment{plate*}
-                 {\@dblfloat{plate}}
-                 {\end@dblfloat}
-  \newcommand\listofplates{%
-      \if@twocolumn
-        \@restonecoltrue\onecolumn
-      \else
-        \@restonecolfalse
-      \fi
-      \chapter*{\listplatename}%
-        \@mkboth{\MakeUppercase\listplatename}%
-                {\MakeUppercase\listplatename}%
-      \@starttoc{lop}%
-      \if@restonecol\twocolumn\fi
-      }
-  \newcommand*\l@plate{\@dottedtocline{1}{1.5em}{2.3em}}
-  \newcommand\listplatename{List of Plates}
-  \newcommand\platename{Plate}
-}
-%
+
+
+
+
 % All of my stuff for keeping track of lectures
 \makeatletter
 \def\sektion{\@ifnextchar[{\@with}{\@without}}
@@ -1149,51 +879,62 @@ Printed: \today.}}
 							 
 \newcommand\sectitle{}		% This is the empty section title, before any section title is set
 \setcounter{lecture}{0}
-%
+
+
 \renewcommand{\thelecture}{\arabic{lecture}}
 \renewcommand{\theequation}{\thelecture.\arabic{equation}}
-%
+
+
 % Make the equation counter reset each lecture
 \makeatletter
 	\@addtoreset{equation}{lecture}
 \makeatother
-%
+
+
 % drangreport gets all upset if I don't put this right at the end
-%
+
 \RequirePackage[color,all]{xy}	% Include XY-pic
 	\SelectTips{cm}{10}		% Use the nicer arrowheads
 	\everyxy={<2.5em,0em>:}	% Sets the scale I like
 	\xyoption{web}			% Include the lattice feature, I don't know why it isn't loaded already
-%
 
-%
-% \RequirePackage{pgf,tikz}
-% \usetikzlibrary{arrows,
-% 				automata,
-% 				positioning,
-% 				decorations.markings,
-% 				shapes.arrows,
-% 				patterns,
-% 				decorations.pathmorphing,
-% 				calc}
-% \tikzset{
-%     state/.style={
-%            rectangle,
-%            rounded corners,
-%            draw=black, very thick,
-%            minimum height=2em,
-%            inner sep=2pt,
-%            text centered,
-%            },
-% }
+
+
+%%% Some plotting and tikz drawing stuff... 
+
+\RequirePackage{tikz, tikz-3dplot, pgf} 
+\RequirePackage{float} 
+
+\tikzset{->/.style = {decoration={markings, mark=at position 1 with {\arrow[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{<-/.style = {decoration={markings, mark=at position 0 with {\arrowreversed[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{<->/.style = {decoration={markings, mark=at position 0 with {\arrowreversed[scale=1]{stealth}}, mark=at position 1 with {\arrow[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{->-/.style = {decoration={markings, mark=at position #1 with {\arrow[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{-<-/.style = {decoration={markings, mark=at position #1 with {\arrowreversed[scale=1]{stealth}}}, postaction={decorate}}}
+
+\tikzset{circ/.style = {fill, circle, inner sep = 0, minimum size = 3}}
+
+ \usetikzlibrary{calc,patterns,
+                 decorations.pathmorphing,
+                 decorations.markings}
+
+
+%%% Making i, j, k hat bold
+\let\oldhat\hat
+\renewcommand{\hat}[1]{\,\oldhat{\boldsymbol{\mathbf{#1}}}}
+
 
 \newcommand{\shortskip}{\setlength{\parskip}{2pt}}
+\newcommand{\vsp}{\vspace*{5pt}}
 
 
-
+% A bunch of other packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Smaller Column Vectors
+%%% Smaller Column Vectors
 \makeatletter
 \newcommand{\Spvek}[2][r]{%
   \gdef\@VORNE{1}
@@ -1220,9 +961,7 @@ Printed: \today.}}
 }
 
 
-
-%%% POLYLONGDIV
-
+%%% Long division with polynomials 
 \usepackage{polynom}
 \makeatletter
 \def\pld@CF@loop#1+{%
@@ -1266,5 +1005,9 @@ Printed: \today.}}
     \fi}
 \makeatother
 
-%%%%%%% PLD END
+
+%%% Vertical equals to
+\newcommand{\verteq}{\rotatebox{90}{$\,=$}}
+\newcommand{\equalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
+
 

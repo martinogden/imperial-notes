@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}The Very Beginning}{2}{section.1}
+\contentsline {subsection}{Sets}{2}{section*.10}
+\contentsline {subsection}{Elements of Propositional Calculus}{3}{section*.11}
+\contentsline {subsection}{Mathematical Induction}{9}{section*.16}
+\contentsline {section}{\numberline {2}Number Systems}{14}{section.2}
+\contentsline {subsection}{$\mathbb {Q}$, the Rationals}{14}{section*.18}
+\contentsline {subsection}{$\mathbb {R}$, the Real Numbers}{18}{section*.20}
+\contentsline {subsection}{$\mathbb {C}$, the Complex Numbers}{23}{section*.23}
+\contentsline {subsection}{Polynomial equations}{29}{section*.28}
+\contentsline {section}{\numberline {3}Introduction to $\mathbb {N}$}{37}{section.3}
+\contentsline {subsection}{Highest Common Factor}{37}{section*.31}
+\contentsline {subsection}{The Least Common Multiple}{42}{section*.33}
+\contentsline {subsection}{Modular Arithmetic}{45}{section*.35}
+\contentsline {section}{\numberline {4}Counting}{53}{section.4}
+\contentsline {subsection}{Combinations}{53}{section*.40}
+\contentsline {subsection}{Relations}{57}{section*.44}
+\contentsline {section}{\numberline {5}Functions}{62}{section.5}
+\contentsline {subsection}{Countability}{67}{section*.46}
+\contentsline {section}{\numberline {6}Foundations of Analysis}{71}{section.6}
+\contentsline {subsection}{The Completeness Axiom}{71}{section*.47}
+\contentsline {subsection}{* Sequences and Limits *}{74}{section*.48}

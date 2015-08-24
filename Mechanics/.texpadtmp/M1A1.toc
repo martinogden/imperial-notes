@@ -1,26 +1,30 @@
 \contentsline {section}{\numberline {1}Kinematics}{4}{section.1}
-\contentsline {subsection}{Cartesian Coordinates}{4}{section*.3}
-\contentsline {subsection}{Vector Operations}{8}{section*.4}
-\contentsline {subsection}{Polar Coordinates}{8}{section*.5}
-\contentsline {subsection}{Intrinsic Coordinates}{9}{section*.6}
-\contentsline {section}{\numberline {2}Kinetics and Newtons Laws}{13}{section.2}
-\contentsline {subsection}{Newton's Laws}{13}{section*.7}
-\contentsline {section}{\numberline {3}Forces}{14}{section.3}
-\contentsline {subsection}{Gravity}{14}{section*.8}
-\contentsline {subsection}{Contraint Forces}{14}{section*.9}
-\contentsline {subsection}{Friction}{14}{section*.10}
-\contentsline {subsection}{Drag Force}{14}{section*.11}
-\contentsline {section}{\numberline {4}Oscillators}{17}{section.4}
-\contentsline {section}{\numberline {5}Energy}{18}{section.5}
-\contentsline {subsection}{Potential Wells}{20}{section*.14}
-\contentsline {subsection}{Stability}{22}{section*.17}
-\contentsline {section}{\numberline {6}Angular Momentum}{23}{section.6}
-\contentsline {subsection}{Central Forces}{23}{section*.19}
-\contentsline {subsection}{Orbital Equation}{25}{section*.21}
-\contentsline {subsection}{Effective Potential}{27}{section*.23}
-\contentsline {section}{\numberline {7}Systems of Particles}{30}{section.7}
-\contentsline {subsection}{Two Body Problems}{31}{section*.27}
-\contentsline {subsection}{Angular Momentum}{35}{section*.29}
-\contentsline {section}{\numberline {8}Rigid Body Motion}{39}{section.8}
-\contentsline {subsection}{Kinetic Energy}{40}{section*.32}
-\contentsline {subsection}{* Parallel Axis Theorem *}{40}{section*.33}
+\contentsline {subsection}{Cartesian Coordinates}{4}{section*.11}
+\contentsline {subsection}{Vector Operations}{11}{section*.12}
+\contentsline {subsection}{Polar Coordinates}{14}{section*.15}
+\contentsline {subsection}{Intrinsic Coordinates}{17}{section*.16}
+\contentsline {section}{\numberline {2}Kinetics and Newtons Laws}{23}{section.2}
+\contentsline {subsection}{Newton's Laws}{23}{section*.17}
+\contentsline {section}{\numberline {3}Forces}{25}{section.3}
+\contentsline {subsection}{Gravity}{25}{section*.18}
+\contentsline {subsection}{Contraint Forces}{27}{section*.19}
+\contentsline {subsection}{Friction}{35}{section*.21}
+\contentsline {subsection}{Drag Force}{37}{section*.22}
+\contentsline {section}{\numberline {4}Oscillators}{41}{section.4}
+\contentsline {subsection}{Spring Force}{41}{section*.25}
+\contentsline {subsection}{Damped Harmonic Oscillator}{44}{section*.26}
+\contentsline {subsection}{Forced, Damped Oscillator}{47}{section*.27}
+\contentsline {section}{\numberline {5}Energy}{50}{section.5}
+\contentsline {subsection}{Potential Wells}{52}{section*.28}
+\contentsline {subsection}{Stability}{54}{section*.31}
+\contentsline {section}{\numberline {6}Angular Momentum}{57}{section.6}
+\contentsline {subsection}{Central Forces}{57}{section*.33}
+\contentsline {subsection}{Orbital Equation}{59}{section*.35}
+\contentsline {subsection}{Kepler's Laws}{60}{section*.36}
+\contentsline {subsection}{Effective Potential}{62}{section*.37}
+\contentsline {section}{\numberline {7}Systems of Particles}{65}{section.7}
+\contentsline {subsection}{Two Body Problems}{67}{section*.41}
+\contentsline {subsection}{Angular Momentum}{70}{section*.43}
+\contentsline {section}{\numberline {8}Rigid Body Motion}{74}{section.8}
+\contentsline {subsection}{Kinetic Energy}{75}{section*.46}
+\contentsline {subsection}{* Parallel Axis Theorem *}{76}{section*.47}
