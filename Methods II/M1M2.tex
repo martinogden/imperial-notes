@@ -1,4 +1,4 @@
-\documentclass[twoside]{scrartcl}
+\documentclass[10pt]{scrartcl}
 
 %\usepackage[blacklinks]{drangreport}
  \usepackage[bluelinks]{drangreport}
@@ -8,7 +8,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[makeroom]{cancel}
+%\usepackage[makeroom]{cancel}
 \newcommand{\vertequiv}{\rotatebox{90}{$\,\equiv$}}
 \newcommand{\equivto}[2]{\underset{\scriptstyle\overset{\mkern4mu\vertequiv}{#2}}{#1}}
 %\renewcommand*\rmdefault{cmss}
@@ -22,7 +22,7 @@
 \DeclareMathOperator*{\Im}{Im}
 
 \newcommand{\herm}[1]{\overline{#1}^\Trans}
-
+\renewcommand{\l}{\lambda}
 \DeclareMathOperator*{\ch}{ch}
 \renewcommand{\chi}{\textstyle\ch}
 \usepackage{wrapfig}
@@ -35,7 +35,7 @@
 
 
 \hypersetup{pdfinfo={
-Title={Mathematical Methods II Lecture Notes},
+Title={M1M2: Mathematical Methods II Lecture Notes},
 Author={Karim Bacchus},
 Keywords ={Mathematical Methods II, M1M2, Lecture Notes, Imperial College, Maths},
 }}
@@ -43,20 +43,21 @@ Keywords ={Mathematical Methods II, M1M2, Lecture Notes, Imperial College, Maths
 
 \begin{document}
 
-\NotesTitle{1st}{Spring 2015}{Mathematical Methods II}{Prof.~M.}{Barahona}
+\NotesSubTitle{1st}{Spring 2015}{Mathematical Methods II}{Prof.~M.}{Barahona}
 {
-\section*{Syllabus}
+\subsection*{Syllabus}
 
 \textit{This course continues and extends the techniques introduced in M1M1, with further differential equations and partial differentiation.}
 
 
-\subsubsektion{Differential Equations}\vspace*{-5pt} First and second order differential equations. Homogeneous and inhomogeneous linear differential equations. Systems of linear differential equations – matrix solution. Phase Plane Analysis: Qualitative analysis of solutions of differential equations and stability. Bifurcation of first order non-linear differential equations.
-\subsubsektion{Multivariable Calculus}\vspace*{-5pt}
+\emph{Differential Equations:} First and second order differential equations. Homogeneous and inhomogeneous linear differential equations. Systems of linear differential equations – matrix solution. Phase Plane Analysis: Qualitative analysis of solutions of differential equations and stability. Bifurcation of first order non-linear differential equations.
+
+\emph{Multivariable Calculus:}
  Partial differentiation: Definitions, implicit partial differentiation, total differential, change of variables. Taylor’s theorem, stationary pointe and their classification, contours. Definitions and physical meaning of grad, div, curl.  Optimisation and Lagrange multipliers. Area under curves, arc length, surface area and volume of revolution; double integrals – geometry, mass, moments of inertia; simple triple integrals.\\
 
 \subsection*{Appropriate books}
 
-For the first part of the course on Introduction to Ordinary Differential Equations:
+For the first part of the course on Ordinary Differential Equations:
 
 {\shortskip 
 W.~E.~Boyce. \emph{Elementary differential equations and boundary value problems}, Wiley.
@@ -68,13 +69,12 @@ F. Diacu, \emph{An introduction to differential equations}, Freeman
 R. Redheffer, \emph{Differential equations: theory and applications}, Jones and Bartlett.\\
 
 
-For the section on qualitative analysis of nonlinear ODEs, the first few chapters of this:
-
+For the section on qualitative analysis of nonlinear ODEs:
 
 S.H. Strogatz, \emph{Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry and Engineering}, Westview Press\\
 
 
-For the second part of the course on Introduction to multivariate calculus, another book:
+For the second part of the course on Introduction to multivariate calculus:
 
 H.M. Schey, \emph{Div, grad, curl and all that}, Norton and Company
 }}
@@ -83,7 +83,7 @@ H.M. Schey, \emph{Div, grad, curl and all that}, Norton and Company
 \TableofContents
 
 %!TEX root = M1M2.tex
-\setcounter{page}{4}
+\setcounter{page}{3}
 
 \addcontentsline{toc}{part}{Differential Equations}{}
 
@@ -91,20 +91,15 @@ H.M. Schey, \emph{Div, grad, curl and all that}, Norton and Company
 \vspace*{5pt}
 
 
-\begin{definition}\lecturemarker{1}{5 Oct}
+For \lecturemarker{1}{5 Oct}
+this section we're only going to consider functions of one variable:
+\[f: \R \to \R \;\text{ or }\; \vec{f}: \R \to \R^n\]	
+Where $x$ is the \emph{independent variable}. 
 
-Functions of one variable:
-\[f: \R \to \R\]	
-\[\vec{f}: \R \to \R^n\]
-
-$x$ is the \emph{independent variable}. 
-\end{definition}
-
-Differentiable functions up to order $k$: 
-
+We can differentiate these functions up to order $k$ as such:
 \[
 \begin{aligned}
-  \frac{df}{dx}(x) &= \lim_{\Delta \to 0} \frac{f(x + \Delta) - f(x)}{\Delta} = g(x)\\[0.2cm]
+  \frac{df}{dx} &= \lim_{\Delta \to 0} \frac{f(x + \Delta) - f(x)}{\Delta} = g(x)\\[0.2cm]
   \frac{dg}{dx} &= \lim_{\Delta \to 0} \frac{g(x + \Delta) - g(x)}{\Delta} = \frac{d^2f}{dx^2}\\
   \vdots 
 \end{aligned}
@@ -114,16 +109,18 @@ Differentiable functions up to order $k$:
 \begin{definition}
 A \emph{differential equation} is of the form
 \[F\left(x,f(x),\frac{df}{dx},\dots,\frac{d^kf}{dx^k}\right) = 0\]
+\end{definition}
 We want to find $f(x)$ to solve the differential equation.
 
-\emph{Ordinary differential equations (ODE)} occur when $f: \R \to R$ and $f(x)$ is a function of one variable. Usually $x$ is the independent variable (sometimes $t$). 
 
-\emph{Order of the ODE} is the order of the highest derivative involved. 
+\begin{itemize}
+\item \emph{Ordinary differential equations (ODE)} occur when $f: \R \to R$ and $f(x)$ is a function of one variable. Usually $x$ is the independent variable (sometimes $t$). 
 
-\emph{Degree of the ODE} is the degree of the highest derivative.
-\end{definition}
+\item The \emph{order of the ODE} is the order of the highest derivative involved. 
+\item The \emph{degree of the ODE} is the degree of the highest derivative.
+\end{itemize}
 
-E.g. The differential equation \[F\left(x,\dfrac{dy}{dx},\dfrac{d^2y}{dx^2}\right) = \dfrac{d^2y}{dx^2} - \left(x + \dfrac{dy}{dx}\right)^{1/5} = 0\]
+e.g. The differential equation \[\dfrac{d^2y}{dx^2} - \left(x + \dfrac{dy}{dx}\right)^{1/5} = 0\]
  has order of $2$ and degree $5$.~\\ 
 
 
@@ -131,16 +128,14 @@ Sources of ODEs:\lecturemarker{2}{5 Oct}
 
 \begin{enumerate}
   \item Mechanics: 
-  \[\dfrac{dx}{dt} = v_*,\quad m\dfrac{d^2x}{dt^2} = F(t,x) \tag{Newton's Laws}\]
+  \[\dfrac{dx}{dt} = v_* \text{ or } m\dfrac{d^2x}{dt^2} = F(t,x) \tag{Newton's Laws}\]
   
   \item Population Dynamics: \[\dfrac{dx}{dt} = Kx\tag{Maltus}\]
   
   \item Chemical Reactions, e.g. Mass-action Kinetics: 
   \[A +A \xrightarrow{k_1} B,\quad  \frac{d[B]}{dt} = k_1[A]^2\]
-  \item Electrical Engineering\\
-  
-  \begin{minipage}[l]{0.5\textwidth}
-   %\begin{center} 
+  \item Electrical Engineering: For a circuit, $I_1 + I_2 = I_T$ and $V= I_1R$. 
+   \begin{center} 
      \begin{circuitikz}
       \draw (0,0)
       to[short] (0,2) % The voltage source
@@ -156,22 +151,18 @@ Sources of ODEs:\lecturemarker{2}{5 Oct}
       \draw (-1,1)
       to[short,i = $I_T$] (0,1);
    \end{circuitikz}  
-  % \end{center}  
-  \end{minipage}
-  \begin{minipage}[r]{0.3\textwidth}
-  $I_1 + I_2 = I_T$, $V= I_1R$,\\
-  
-   $C\dfrac{dV}{dt} = \dfrac{dQ}{dt} = I_2$
-  
-  \[\boxed{I_T = \frac{V}{R} + C\frac{dV}{dt}}\]
-  \end{minipage}\vspace*{5pt}
-    
+   \end{center}  
+
+Also $C\dfrac{dV}{dt} = \dfrac{dQ}{dt} = I_2$ so \[I_T = \frac{V}{R} + C\frac{dV}{dt}\]
+
 \item Economics \& Game Theory
 \end{enumerate}\vspace*{5pt}
 
-Other Types of Differential Equations:
+{Types of Differential Equations:}
 \begin{enumerate}
   \item ODE: $f: \R \to R$: \[F\left(x,f(x),\frac{df}{dx},\dots\right) = 0\]
+ 
+
   \item System of ODEs: $\vec{f}: \R \to \R^d$: 
    \[\begin{pmatrix}
 f_1(x)\\ \vdots \\ f_d(x)	
@@ -180,6 +171,7 @@ f_1(x)\\ \vdots \\ f_d(x)
  \dots	
  \end{cases}
  \]
+ 
  \item Difference Equations (Maps, Discrete Systems): $f: \ZZ \to \R$
  \item Partial Differential Equations (PDEs): $f: \R^n \to \R$
 \end{enumerate}~
@@ -197,7 +189,7 @@ $y_{PS}$ is a \emph{particular solution} if
 \[F\left(x,y_{PS},\frac{dy_{PS}}{dx},\dots,\frac{d^ky_{PS}}{dx^k}\right)= 0\]
 \end{definition}
 
-Proofs about the existence and uniqueness of the solutions are covered in M2AA1\\
+Proofs about the existence and uniqueness of the solutions are covered next year.\\
 
 \begin{definition}
 $y_{GS} = f(x; c_1,\dots,c_k)$ is the \emph{general solution	}.
@@ -211,8 +203,6 @@ This is a first order ODE $\implies \{c_1\}$, so the general solution is:
 \[x(t) = v_*t + c_1\]
 In this case, $c_1$ would be the initial position, $x_0$. 
 \end{example}
-\pagebreak 
-
 
 
 
@@ -249,7 +239,7 @@ So the 1st Order ODE is:
 \[\frac{dy}{dx} + p(x)y = q(x)\]
 
 We look for an \emph{integrating factor}, $I(x)$, to turn the equation into a separable one: 
-\[I(x)\equalto{[LHS]}{\frac{d(Iy)}{dx}} = I(x)\frac{dy}{dx} + I(x)p(x)y\]
+\[\equalto{I(x)[LHS]}{\frac{d(Iy)}{dx}} = I(x)\frac{dy}{dx} + I(x)p(x)y\]
 
 Once it's in this form, we can integrate and solve as usual: 
 \[
@@ -261,43 +251,48 @@ Once it's in this form, we can integrate and solve as usual:
 \]
 
 Finding $I(x)$: 
+\begin{align*}
+    \frac{d(Iy)}{dx} &= I\frac{dy}{dx} + y\frac{dI}{dx}\\
+    &= I\frac{dy}{dx} + Ip(x)y
+\end{align*}
 \[
 \begin{aligned}
-  \frac{d(Iy)}{dx} &= I\frac{dy}{dx} + y\frac{dI}{dx} = I\frac{dy}{dx} + Ipy\\
-  \frac{dI}{dx} &= Ip\\
-  \int \frac{dI}{I} &= \int p(x)\,dx\\
+ \implies  \frac{dI}{dx} &= Ip(x)\\[.1cm]
+  \implies \int \frac{dI}{I} &= \int p(x)\,dx\\[.1cm]
   \implies \Aboxed{I(x) &= Ke^{\int p(x)\,dx}}
 \end{aligned}
 \]
 Then our solution would be
-\[y = \frac{k}{k} e^{-\int p(x)\,dx}\cdot \int e^{\int p\,dx}q(x)\,dx + C\]~
+\[y = \cancel{\frac{k}{k}} e^{-\int p(x)\,dx}\cdot \int e^{\int p\,dx}q(x)\,dx + C\]
+Note that the $k$'s end up cancelling out, so we haven't added to the number of unknown constants in our final solution. It's a good idea to just remember the integrating factor $I(x) = e^{\int p(x)}\,dx$ rather than memorise the full solution of $y$. 
 
 \subsubsektion{Dimensionally Homogeneous Equations}
-These are equations of the form: \lecturemarker{3}{5 Oct}
+These are equations of the form: \lecturemarker{3}{20th Jan}
 \[\frac{dy}{dx} = f\left(\frac{y}{x}\right)\]
 
 We solve them by substituting in $u = \dfrac{y}{x}$, so $y = ux$:
 
 \[
+    \frac{dy}{dx} = u + x \frac{du}{dx}
+\]
+\[
 \begin{aligned}
-  \frac{dy}{dx} &= u + x \frac{du}{dx}\\
   \implies u + x\frac{du}{dx} &= f(u)\\
   \implies \int \frac{du}{-u + f(u)} &= \int \frac{dx}{x} + C
 \end{aligned}
-\]~
+\]
 
 
 \subsubsektion{Bernoulli Equation}
 
-These are equations of the form: 
-\[\frac{dy}{dx} + p(x)y = Q(x)y^n\]
-\[\frac{1}{y^n}\frac{dy}{dx} + y^{1-n}p(x) = Q(x)\]
-Substitute $u = y^{1-n}$, then:
-\[  \frac{du}{dx} = (1-n)y^{-n}\frac{dy}{dx}\]
+These are equations of the form: \[\dfrac{dy}{dx} + p(x)y = Q(x)y^n\]
+\[\implies \frac{1}{y^n}\frac{dy}{dx} + y^{1-n}p(x) = Q(x)\]
+
+Substitute $u = y^{1-n}$, then $\dfrac{du}{dx} = (1-n)y^{-n}\dfrac{dy}{dx}$, so the equation becomes
+
 \[  \frac{du}{dx} + (1-n)p(x)u = (1-n)Q(x)\]
 
 This is a 1st order linear ODE, which we can solve for $u = u(x)$ using an integrating factor. Then we solve for $y = u^{\frac{1}{1-n}}$. 
-\pagebreak 
 
 
 \subsektion{Second Order ODEs}
@@ -307,7 +302,7 @@ The implicit form of second order ODE is:
 Assume we can find the explicit form: 
 \[\frac{d^2y}{dx^2} = F\left(x,y,\frac{dy}{dx}\right)\]
 
-\textbf{Case (1): $\dfrac{d^2y}{dx^2} = f(x)$}
+\subsubsektion{Case (1) - $\dfrac{d^2y}{dx^2} = f(x)$}
 
 We solve this by double integration. Let $u = \dfrac{dy}{dx}$, then 
 \[u = \underbrace{\int f(x)\,dx}_{g(x)} + c_1\]
@@ -317,47 +312,44 @@ y &= \int g(x)\,dx + c_1x + c_2
 \end{aligned}
 \]~
 
-\begin{example}[Mechanics]
+\begin{example}[Mechanics] Writing acceleration as $\frac{d^2x}{dt^2}$
 	\[
 \begin{aligned}
-  \frac{d^2x}{dt^2} &= a(t)\\
-  \frac{dx}{dt} &= u = \int a(t)\,dt + c_1\\
-  \frac{dx}{dt} &= v(t) + c_1\\
-  x(t) &= \int v(t)\,dt + c_1t + c_2
+  \frac{d^2x}{dt^2} &= a(t)\\[.2cm]
+\implies   \frac{dx}{dt} &= u = \int a(t)\,dt + c_1\\[.2cm]
+\implies  \frac{dx}{dt} &= v(t) + c_1\\[.2cm]
+\implies   x(t) &= \int v(t)\,dt + c_1t + c_2
 \end{aligned}
 \]
-\end{example}\vspace*{5pt}
+\end{example}
 
-\textbf{Case (2): $\dfrac{d^2y}{dx^2} = f\left(x,\dfrac{dy}{dx}\right)$}
+\subsubsektion{Case (2) - $\dfrac{d^2y}{dx^2} = f\left(x,\dfrac{dy}{dx}\right)$}
 
-Let $u = \dfrac{dy}{dx}$, so $\dfrac{du}{dx} = f(x,u)$~\\~\\
+We again use the substitution $u = \dfrac{dy}{dx} \implies \dfrac{du}{dx} = f(x,u).$\\[.2cm]
 
 \begin{example}[Geometry]
 Radius of curvature: 
-\[\rho(x) = \frac{\left[1 + \left(\dfrac{dy}{dx}\right)^2\right]^{3/2}}{\dfrac{d^2y}{dx^2}}\]
+\[\rho(x) = \frac{\left[1 + \left(\frac{dy}{dx}\right)^2\right]^{3/2}}{\frac{d^2y}{dx^2}}\]
 
 Find the family of cures with constant radius of curvature: $\rho(x) = R,~\forall x$. 
 
 \[
 \begin{aligned}
-  R &= \frac{\left[1 + \left(\dfrac{dy}{dx}\right)^2\right]^{3/2}}{\dfrac{d^2y}{dx^2}}\\
-  R\frac{d^2y}{dx^2} &= \left[1 + \left(\dfrac{dy}{dx}\right)^2\right]^{3/2} = f\left(\frac{dy}{dx}\right)\\
+  R &= \frac{\left[1 + \left(\frac{dy}{dx}\right)^2\right]^{3/2}}{\frac{d^2y}{dx^2}}\\[.3cm]
+\implies   R\frac{d^2y}{dx^2} &= \left[1 + \left(\frac{dy}{dx}\right)^2\right]^{3/2} = f\left(\frac{dy}{dx}\right)\\
 \end{aligned}
 \]
 
-Let $u = \dfrac{dy}{dx}$, so we have
-
+Let $u = \dfrac{dy}{dx}$. Then we have
 \[R\frac{dy}{dx} = [1 + u^2]^{3/2}\]
 
-Separable ODE: 
-\[\int \frac{du}{(1+u^2)^{3/2}} = \frac{1}{R}\int \,dx + c_1\]
+This is a separable ODE, so we just have to rearrange and integrate: 
+\begin{align*}
+	\int \frac{du}{(1+u^2)^{3/2}} &= \frac{1}{R}\int \,dx + c_1\\[.2cm]
+	&= \left[\frac{x}{R} + c_1\right]
+\end{align*}
 
-\[\begin{rcases*}
-u = \tan t\\
-1 + u^2 = \frac{1}{\cos^2t}	
-\end{rcases*} du = \frac{dt}{\cos^2t}
-\]
-
+\textsc{Step 1:} Let $u = \tan t$, so $1 + u^2 = \frac{1}{\cos^2t}$ and $\mathrm{d}u = \frac{\mathrm{d}t}{\cos^2t}$. Then the LHS becomes
 \[
 \begin{aligned}
   \int \frac{\frac{1}{\cos^2t}\,dt}{\frac{1}{\cos^2t}} &= \int \cos t\,dt\\
@@ -367,59 +359,56 @@ u = \tan t\\
 \end{aligned}
 \]
 
-First step:
-\[\frac{u}{\sqrt{1+u^2}} = \left[\frac{x}{R}+c_1\right]\]
-Second Step:
-Let $X = \frac{x}{R} + c_1$. then 
+So we are left with
+\[\frac{u}{\sqrt{1+u^2}} = \left[\frac{x}{R}+c_1\right] \tag{$*$}\]
+\textsc{Step 2:} Now let $X = \frac{x}{R} + c_1$. Then $(*)$ becomes
 \setlength{\jot}{8pt}
 \[
 \begin{aligned}
   \frac{u^2}{1+u^2} &= X^2\\
-  u^2(1-X^2) &= X^2\\
-  \frac{dx}{R} &= dX
-\end{aligned}
+\implies   u^2(1-X^2) &= X^2\end{aligned}
 \]
 
-Thus
-
+Recall that $u = \frac{dy}{dx}$, so we have
 \setlength{\jot}{8pt}
 \[
 \begin{aligned}
-  u = \frac{X}{\sqrt{1-X^2}} &= \frac{dy}{dx}\\
-  \frac{1}{R}\frac{dy}{dx} &= \frac{X}{\sqrt{1-X^2}}
-  \end{aligned}
+  u = \frac{X}{\sqrt{1-X^2}} &= \frac{dy}{dx}
+\end{aligned}
   \]
-  
+Also  $\mathrm{d}X = \frac{\mathrm{d}x}{R}$, so 
+\[
+    \frac{1}{R}\frac{dy}{dX} = \frac{X}{\sqrt{1-X^2}}
+\]
+
 Integrating
   \[\begin{aligned}  
   \frac{1}{R}\int\,dy &= \int \frac{X\,dX}{\sqrt{1-X^2}}\\
-    \frac{1}{R}\, y &= -\sqrt{1-X^2} + c_2\\
-  \left(\frac{y}{R}-c_2\right)^2 &= 1-\left(\frac{x}{R} + c_1\right)^2
+  \implies   \frac{1}{R}\, y &= -\sqrt{1-X^2} + c_2\\
+\implies   \left(\frac{y}{R}-c_2\right)^2 &= 1-\left(\frac{x}{R} + c_1\right)^2
 \end{aligned}
 \]
 
-Letting $k_1 = Rc_1,~ k_2 = Rc_2$
+Letting $k_1 = Rc_1,~ k_2 = Rc_2$ our solution is
 \[(x-k_1)^2 + (y-k_2)^2 = R^2\]
-	
-\end{example}~
+i.e. a circle, as expected to have a constant radius of curvature.	
+\end{example}\vsp
 
-\textbf{Case (3): $\dfrac{d^2y}{dx^2} = f(y)$}
+\subsubsektion{Case (3) - $\dfrac{d^2y}{dx^2} = f(y)$} 
 
-Let $u = \dfrac{dy}{dx}$, so $\dfrac{du}{dx} = f(y)$
-\[
-  \frac{du}{dx} = \frac{du}{dy}\frac{dy}{dx} = u\frac{du}{dy} =\frac{d(u^2/2)}{dy}\]
-\[  \implies \frac{d(u^2/2)}{dy} = f(y)
-\]
+Again, we use the substitution $u = \dfrac{dy}{dx}\implies \dfrac{du}{dx} = f(y)$. Since \[\dfrac{du}{dx} = \dfrac{du}{dy}\dfrac{dy}{dx}
+  = u\dfrac{du}{dy}
+  =\dfrac{d(u^2/2)}{dy}\]the equation becomes \[\dfrac{d(u^2/2)}{dy} = f(y)\]
 
-1st Step:\[
+\textsc{1st Step:} Integrate the separable equation\[
 \begin{aligned}
   \frac{u^2}{2} &= \int f(y)\,dy + c_1\\
-  u &= u(y)
+  \implies u &= u(y)
 \end{aligned}
 \]
 This is not what we were after..\\
 
-2nd Step:
+\textsc{2nd Step:}
 \[
 \begin{aligned}
   \frac{u^2}{2} &= g(y) + c_1\\
@@ -436,7 +425,7 @@ This is not what we were after..\\
 	
 	\[m\frac{d^2x}{dt^2} = -kx\]
 	
-1st Step:
+\textsc{1st Step:}
 Let $u = \dfrac{dx}{dt}$
 \[
 \begin{aligned}
@@ -452,7 +441,7 @@ Let $u = \dfrac{dx}{dt}$
 \]
 \[\frac{m}{2}u^2 + \frac{k}{2}x^2 = mc_1 \equiv E, \text{ energy}\]
 
-2nd Step:
+\textsc{2nd Step:}
 \[
 \begin{aligned}
   u = \frac{dx}{dt} &= \sqrt{\frac{2E -kx^2}{m}}\\
@@ -465,15 +454,15 @@ Let $u = \dfrac{dx}{dt}$
 \]
 \end{example}
 
-\textbf{Case (4): $\dfrac{d^2y}{dx^2} = f\left(y,\dfrac{dy}{dx}\right)$}
+\subsubsektion{Case (4) - $\dfrac{d^2y}{dx^2} = f\left(y,\dfrac{dy}{dx}\right)$}
 
-1st Step: 
+\textsc{1st Step:}
 
 Let $u = \dfrac{dy}{dx}$, then 
 \[\frac{d(u^2)/2}{dy} = f(y,u)\]
 Find $u = u(y)$.\\
 
-2nd Step:
+\textsc{2nd Step:}
 Let $\dfrac{dy}{dx} = u(y)$. Integrate and solve:
 \[\int \frac{dy}{u(y)} = \int\,dx + c\]~
 
@@ -506,7 +495,7 @@ A linear ODE of order $k$ is:
 
 For a 1st order linear ODE, the solution is found by an Integrating Factor. 
 
-The general structure of the solution of linear ODEs are: 
+The general structure of the solution of a linear ODE is: 
 \[\frac{d}{dx}[y] = \mathcal{D}[y]\]
 
 Linearity of $\mathcal{D}$:
@@ -558,25 +547,19 @@ Solve: Find $y_{GS}(x; c_1,\dots,c_k)$. We can split the solution into two parts
 \begin{theorem}\lecturemarker{5}{5 Oct}
 The solutions to $\mathcal{L}_{\vec{\alpha}}[y]=0$ form a vector space of dimension $k$. 	
 \end{theorem}
-\textit{Proof.} See M2AA2 Multivariable Calculus. 
+\textit{Proof.} See next year. 
 
-$(\mathcal{F}, +)$ form a group:
+$(\mathcal{F}, +)$ form a group, i.e. it has the properties:
 \begin{enumerate}
-  \item Internal: $\mathcal{L}[y_1] = 0, \mathcal{L}[y_2] = 0, \mathcal{L}[y_1 + y_2] = 0$
+  \item Closure: $\mathcal{L}[y_1] = 0, \mathcal{L}[y_2] = 0, \mathcal{L}[y_1 + y_2] = 0$
   \item Associativity
-  \item Null element: $\mathcal{L}[0] = 0$
-  \item Inverses
-\end{enumerate}~
+  \item Identity element: $\mathcal{L}[0] = 0$
+  \item Inverses exist
+\end{enumerate}
 
-The groups:
-\[\begin{rcases*}(\R, +, \cdot) \\ (\mathcal{F}, +)\\	
-\end{rcases*}
-\text{ Vector Space: }(\mathcal{F},+,\dot{\R}) \]
-
-Any solution to $\mathcal{L}_{\vec{\alpha}}[y] = 0$ can be expressed as a linear combination:
-\[\sum_{i=1}^kc_iy_i(x)\]
-
-where $\left\{y_i(x)\right\}_{i=1}^k$ form a basis. 
+The groups: $(\R, +, \cdot)$ and $(\mathcal{F}, +)$ together form a vector Space: $(\mathcal{F},+,\dot{\R})$. The solutions to $\mathcal{L}_{\vec{\alpha}}[y] = 0$ can be expressed as a linear combination:
+\[y = \sum_{i=1}^kc_iy_i(x)\]
+where $\left\{y_i(x)\right\}_{i=1}^k$ form a basis. So for the complementary function:
 \[y_{CF} = y_{GS}^{(H)}(x;c_1,\dots,c_k) = \sum_{i=1}^kc_iy_i(x)\]
 
 To solve the homogenous problem we need to find $k$ solutions of the problem that are linearly independent. 
@@ -596,30 +579,26 @@ y^{(k-1)}_1 & \dots & y^{(k-1)}_k
 \end{definition}
 
 \begin{theorem}
-A set is linearly independent $\iff det(W) \neq 0$	
+A set is linearly independent $\iff \det(W) \neq 0$	
 \end{theorem}
 \begin{proof}
 
-First $det(W) \neq 0 \implies$ linear independence: 
+First $\det(W) \neq 0 \implies$ linear independence: 
 
-By contradiction. Assume our vectors are linear dependent. Then
-
- \[\exists c_i \neq 0 \mbox{ such that } \sum_{i=1}^k c_i\cdot y_i(x) = 0\]
+By contradiction. Assume our vectors are linear dependent. Then $\exists c_i \neq 0 \mbox{ such that }$
+ \[ \sum_{i=1}^k c_i\cdot y_i(x) = 0\]
  
- Taking derivative: 
+ Taking derivatives: 
  \[\begin{rcases*}
 \sum_{i=1}^k c_iy_i = 0\\
 \vdots\\
 \sum_{i=1}^k c_iy_i^{(k-1)} = 0	
 \end{rcases*} k \text{ equations}
 \]
-$\exists \vec{c} \neq 0_v$, $W(x)\vec{x} = 0_v \implies det(W) = 0$. 
 
-So by the contrapositive: $det(W) \neq 0 \implies$ linear independence. 
+$\exists \vec{c} \neq 0_v$, $W(x)\vec{x} = 0_v \implies \det(W) = 0$. So by the contrapositive: $\det(W) \neq 0 \implies$ linear independence.\\
 
-The other direction: A family of linearly independent solutions $\implies det(W) \neq 0$. 
-
-Linearly independent solutions means that we will have $k$ initial conditions: 
+We prove the other direction: A family of linearly independent solutions $\implies \det(W) \neq 0$. Linearly independent solutions means that we will have $k$ initial conditions: 
 \[\{y_0, y_0',\dots,y_0^{(k-1)}\}\]
 
 and the $k$ constant $\{c_i\}$ should be able to describe them. 
@@ -633,7 +612,7 @@ y_0^{(k-1)} = \sum_{i=1}^k c_iy_i^{(k-1)}(0)
  \end{pmatrix} \equiv \vec{y}_0	
 \]
 
-This solution $\implies det(W) \neq 0$. 
+This solution $\implies \det(W) \neq 0$. 
 \end{proof}~
 
 \begin{example}
@@ -645,24 +624,22 @@ Do $\{\sin x,\cos x\}$ form a basis?
  \sin x & \cos x\\
  \cos x & -\sin x	
  \end{pmatrix}\\
- det(W) &= -1 \neq 0
+ \det(W) &= -1 \neq 0
 \end{aligned}
 \]
 So they do form a basis.
 \end{example}
 
-\emph{Can we choose any particular integral? Is it possible to have more than one $y_{PI}$?}
+\emph{Can we choose any particular integral? Is it possible to have more than one $y_{PI}$?} Yes! There are infinitely many in fact, and any will work...
 
-$\mathcal{L}[y] = f(x)$, $\mathcal{L}[y_{CF}] = 0 \quad \{y_i\}_{i=1}^k$
+%We have $y$ and $y_{CF}$ such that $\mathcal{L}[y] = f(x)$, $\mathcal{L}[y_{CF}] = 0$ and $y_{CF} = \{y_i\}_{i=1}^k$.
 
-Is it possible to have: 
+Suppose we have two particular solutions: $y_{PI_1}$, $y_{PI_2}$. Then  $\mathcal{L}[y_{PI_1}] = f(x)$ and $ \mathcal{L}[y_{PI_2}] = f(x)$. Hence
+\[
+  \mathcal{L}\equalto{[y_{PI_1} - y_{PI_2}]}{\sum_{i=1}^ka_iy_i} = 0
+\]
 \[
 \begin{aligned}
-  &\begin{rcases*}
-  \mathcal{L}[y_{PI_1} = f(x)\\
-  \mathcal{L}[y_{PI_2} = f(x)	
-  \end{rcases*}
-  \mathcal{L}\equalto{[y_{PI_1} - y_{PI_2}]}{\sum_{i=1}^ka_iy_i} = 0\\
   &\implies y_{GS} = \sum_{i=1}^kc_iy_i + y_{PI_1}\\
   &\text{or }y_{GS} = \sum_{i=1}^kc_iy_i + y_{PI_2} = \sum_{i=1}^k(c_i+a_i)y_i
 \end{aligned}
@@ -849,13 +826,13 @@ If $\lambda_2 \neq \lambda_1 \implies \mathcal{B} = \{e^{\lambda_1x},e^{\lambda_
 
 \[y_{CF} = y^{(H)}_{GS}(x;c_1,c_2) = c_1e^{\lambda_1x}+c_2e^{\lambda_2x}\]\vspace*{5pt}
 
-\textbf{Case (i)} \lecturemarker{7}{5 Oct}
+\textsc{Case (i)} \lecturemarker{7}{5 Oct}
 \[\alpha_1^2 - 4\alpha_0\alpha_2 > 0\implies \lambda_{1,2} \iR\]
 
 As $x \to \infty$, asymptotically the solution is dominating by a positive decaying exponential. \\
 
 
-\textbf{Case (ii)}
+\textsc{Case (ii)}
 \[\alpha_1-4\alpha_0\alpha_2 < 0 \quad \left|\frac{\alpha_1^2-4\alpha_0\alpha_2}{4\alpha_2^2}\right| = \omega^2\]
 Then our solution is
 \[\lambda_{1,2} = -\frac{\alpha_1}{2\alpha_2} \pm i\omega\]
@@ -879,7 +856,7 @@ We can write our coefficients as $c_1' = A\cos\phi,~c_2' = A\sin\phi$, so our so
   \item If $\frac{\alpha_1}{\alpha_2} <0$. Exponential Growth: 
 \end{itemize}~
 
-\textbf{Case (iii)}
+\textsc{Case (iii)}
 \[\alpha_1^2 -4\alpha_0\alpha_2 = 0 \implies \lambda_1 = \lambda_2 = -\frac{\alpha_1}{2\alpha_2}\]
 
 We need to find another function to span the space of functions $\{e^{\lambda_1x},?\} = \mathcal{B}$. 
@@ -934,11 +911,11 @@ This function completes the basis, but we need to check linear independence.
 \]
 So we have a basis. 
 
-2nd Step: Find $y_{PI}$ for a given $f(x)$.\\
+\textsc{2nd Step:} Find $y_{PI}$ for a given $f(x)$.\\
 
 \begin{example}
-\[\mathcal{L}[y] = \frac{d^2y}{dx^2} - 3\frac{dy}{dx} + 2y = f(x)\]	 
-1st Step: $\mathcal{L}[y_{CF}] = 0$. Characteristic equation is 
+\[\mathcal{L}[y] = \frac{d^2y}{dx^2} - 3\frac{dy}{dx} + 2y = f(x)\]	
+\textsc{1st Step:} $\mathcal{L}[y_{CF}] = 0$. Characteristic equation is 
 \[
   \lambda^2 - 3\lambda + 2 = 0
 \]
@@ -947,7 +924,7 @@ So $\lambda_1 = 2, \lambda_2 = 1$. Then
 \[y_{CF} = c_1e^{2x} + c_2e^{x}\]
 with a basis $\mathcal{B} = \{e^{x}, e^{2x}\}$
 
-2nd Step: $f(x) = x+3$
+\textsc{2nd Step:} $f(x) = x+3$
 \[
 \begin{aligned}
   \mathrm{MUC} &= y_{PI} = bx + c\\
@@ -967,7 +944,7 @@ Then $y_{PI} = \frac{1}{2}(x+\frac{9}{2})$, so our full solution is:
 
 \[y_{GS} = y_{CF} + y_{PI} = c_1e^{2x} + c_2e^x + \frac{1}{2}\left(x+\frac{9}{2}\right)\]
 
-\end{example}~
+\end{example}\vspace*{5pt}
 
 \begin{example}\lecturemarker{8}{5 Oct}
 
@@ -1045,7 +1022,7 @@ Now $\mathcal{L} = e^{-2x}$, so
 
 \subsubsektion{Repeated Roots in general}
 
-\[\mathcal{L}[] = \left(\frac{d}{dx} -\lambda\right)\left(\frac{d}{dx} -\lambda\right)\]
+\[\mathcal{L}[~] = \left(\frac{d}{dx} -\lambda\right)\left(\frac{d}{dx} -\lambda\right)\]
 
 \[
 \begin{aligned}
@@ -1055,7 +1032,7 @@ Now $\mathcal{L} = e^{-2x}$, so
   &= A''e^{\lambda x}+A'\lambda e^{\lambda x}-\lambda A'e^{\lambda x}\\
   &= A''e^{\lambda x}
 \end{aligned}
-\]~
+\]\vspace*{5pt}
 
 \begin{example}
 \[\mathcal{L}[y] = \frac{d^2y}{dx^2}+4\frac{dy}{dx}+4y = xe^{-2x}\]	
@@ -1072,7 +1049,7 @@ $\mathcal{L}[y_{CF}] = 0$, $\mathcal{B} = \{e^{-2x},xe^{-2x}\}$
 \]
 
 We see that this leads to a part which falls in the span of $\{xe^{-2x} e^{-2x}\}$, so we can get rid of $B_1x + B_2$. Because we are looking for a $y_{PI}$ all the constants in $y_{PI}$ should not matter (so we can turn them to zero). 
-\end{example}~
+\end{example}\vspace*{5pt}
 
 \begin{theorem}
 Polynomials \& exponentials are your friends...	\end{theorem}
@@ -1160,12 +1137,12 @@ Suppose the root $\lambda_r$ is repeated $d$ times, then:
 
 \[
 \begin{aligned}
-  \mathcal{B} &= \{e^{\lambda_1x},\dots,e^{\lambda_rx},xe^{\lambda_rx},\dots,x^{d-1}e^{\lambda_rx},\dots,e^{\lambda_{k-d+1}x}\}\\
+  \mathcal{B} &= \{e^{\lambda_1x},\dots,e^{\lambda_rx},xe^{\lambda_rx},\dots,x^{d-1}e^{\lambda_rx},\dots,e^{\lambda_{k-d+1}x}\}\\[.2cm]
   y_{CF} &= c_1e^{\lambda_1x} + \dots + c_re^{\lambda_rx} + c_{r+1}xe^{\lambda_rx} + \dots 
 \end{aligned}
 \]~
 
-2nd Step: Solving the full system:
+\textsc{2nd Step:} Solving the full system:
 \[\mathcal{L}[y_{PI}] = f(x)\]
 
 If $f(x) = e^bx$, $b \not\in \{\lambda_i\}_{i=1}^k$, then
@@ -1182,7 +1159,6 @@ If $f(x) = e^{\lambda_rx}$ and $\lambda_r$ is repeated $d$ times,
 \[y_{GS} = y_{CF}(x;c_1,\dots,c_k) + y_{PI}\]
 
 Given $k$ initial conditions $\{y_0,y_0^{'},\dots,y_0^{(k-1)}\}$, we fix the $k$ constants $\{c_i\}_{i=1}^k$. 
-
 
 
 
@@ -1232,7 +1208,8 @@ We end up with a 2nd Order Linear ODE with constant coefficients.
 \implies  y(x) &= c_1\frac{1}{x} + c_2\frac{\log x}{x} + \frac{1}{16}x^3
 \end{aligned}
 \]
-\end{example}~
+\end{example}
+\pagebreak
 
 
 \begin{theorem}
@@ -1251,11 +1228,10 @@ Lots of algebra.
 
 \sektion{Systems of Linear Differential Equations}
 
-So far we've considered ODEs with one independent variable, $x$: 
+So far we've considered ODEs with one independent variable, $x$, implicit form
+\[F\left(x,y,\dfrac{dy}{dx},\dots,\dfrac{d^ky}{dx^k}\right) = 0\]
 
-Implicit form - $F\left(x,y,\dfrac{dy}{dx},\dots,\dfrac{d^ky}{dx^k}\right) = 0$
-
-Explicit form - $\dfrac{d^ky}{dx^k} = f\left(x,y,\dfrac{dy}{dx},\dots,\dfrac{d^{k-1}y}{dx^{k-1}}\right)$
+%Explicit form - $\dfrac{d^ky}{dx^k} = f\left(x,y,\dfrac{dy}{dx},\dots,\dfrac{d^{k-1}y}{dx^{k-1}}\right)$
 
 When we solve this we try to find the function $y(x) = \R \to \R$. 
 
@@ -1293,9 +1269,9 @@ Systems of ODEs are rewritten in terms of the first order derivatives by the rem
   \vdots\\
   \frac{du_{k_1-1}}{dx} &= f_1(x,\dots)
 \end{aligned}
-\]~
+\]
 
-\begin{example}
+So in general we consider: \lecturemarker{10}{Whenever}
 \[
 \text{System}
 \left\{
@@ -1331,11 +1307,10 @@ x \\ y \\ u \\ w
 \]
 
 So overall 
-\[\boxed{\frac{d\vec{x}}{dt} = \vec{f}(\vec{x}) }\]
-\end{example}~\vspace*{5pt}
+\[\boxed{\frac{d\vec{x}}{dt} = \vec{f}(\vec{x}) }\]\vspace*{5pt}
 
 
-\begin{example}[Lotka-Volterra system]\lecturemarker{10}{5 Oct}
+\begin{example}[Lotka-Volterra system]
 \[
 \begin{aligned}
   \frac{dx}{dt} &= ax - bxy = f_1(x,y)\\
@@ -1382,9 +1357,9 @@ So $\vec{y} = \begin{pmatrix}
  
  \[\begin{aligned}
  \frac{d\vec{y}}{dt} &= \underbrace{\begin{pmatrix}
- \alpha_{11} & \dots & \alpha{1n}\\
+ \alpha_{11} & \dots & \alpha_{1n}\\
  \vdots & & \vdots\\
- \alpha{n1} & \dots & \alpha{nn}	
+ \alpha_{n1} & \dots & \alpha_{nn}	
  \end{pmatrix}}_{A}\vec{y} + 
 \underbrace{\begin{pmatrix}
  g_1(t) \\ \vdots \\ g_n(t)	
@@ -1419,10 +1394,10 @@ We find the solution for the general case of systems of linear ODEs with constan
 
 by splitting the problem into two steps as before: 
 
-1st Step: Homogenous problem
+\textsc{1st Step:} Homogenous problem
 \[\mathcal{L}[\vec{y}_{GS}^{(H)}] = 0\]
 
-2nd Step: Find a Particular Integral 
+\textsc{2nd Step:} Find a Particular Integral 
 \[\mathcal{L}[\vec{y}_{PI}]= \vec{g}(t)\]
 
 Then the complete general solution will be the sum: 
@@ -1430,35 +1405,31 @@ Then the complete general solution will be the sum:
 
 \subsubsektion{$A$ is diagonalisable} 
 
-1st Step: Solving the Homogenous problem
+\textsc{1st Step:} Solving the Homogenous problem
 
 \[\mathcal{L}[\vec{y}_{CF}] = \left[\frac{d}{dt} - A\right]\vec{y}_{CF} = 0\]
 
 So 
-\[\frac{d\vec{y}_{CF}}{dt} = A\vec{y}_{CF}\]
+\[\frac{d\vec{y}_{CF}}{dt} = A\vec{y}_{CF}\tag{$*$}\]
 where $\vec{y}_{CF}(t;c_1,\dots,c_n)$\\
 
 
-Assuming $A_{n \times n}$ is diagonalisable, then 
-\[\exists V_{n \times n} \text{ such that } V^{-1}AV = \Lambda = \begin{pmatrix}
+Assuming $A_{n \times n}$ is diagonalisable, then $\exists V_{n \times n} \text{ such that }$
+\[V^{-1}AV = \Lambda = \begin{pmatrix}
  \lambda_1 & & 0 \\
  & \ddots & \\
  0 & & \lambda_n	
  \end{pmatrix}\]
 
-The Eigenvalues of $A \equiv \{\lambda_i\}_{i=1}^n$, and the eigenvectors of $A \equiv \{\vec{v}_i\}_{i=1}^n$, which are found by solving $A\vec{v}_i = \lambda_i\vec{v}_i$.
-
- Letting \[V = \begin{pmatrix}
+The Eigenvalues of $A \equiv \{\lambda_i\}_{i=1}^n$, and the eigenvectors of $A \equiv \{\vec{v}_i\}_{i=1}^n$, which are found by solving $A\vec{v}_i = \lambda_i\vec{v}_i$. Letting \[V = \begin{pmatrix}
  | & | &  & | \\
  \vec{v}_1 & \vec{v}_2 & \dots & \vec{v}_n\\
  | & | &  & | 
  \end{pmatrix}\]
-  we have to solve 
- 
+  we have to solve  $AV = V\Lambda$
  \[
 \begin{aligned}
-  AV &= V\Lambda\\
-  A(\vec{v}_1\dots \vec{v}_n) &= (\vec{v}_1\dots\vec{v}_n)\begin{pmatrix}
+  \implies A(\vec{v}_1\dots \vec{v}_n) &= (\vec{v}_1\dots\vec{v}_n)\begin{pmatrix}
  \lambda_1 & & 0 \\
  & \ddots & \\
  0 & & \lambda_n	
@@ -1466,6 +1437,825 @@ The Eigenvalues of $A \equiv \{\lambda_i\}_{i=1}^n$, and the eigenvectors of $A 
 \end{aligned}
 \]
 
+By $(*)$, $\dfrac{d\vec{y}_{CF}}{dt} = A\vec{y}_{CF}\implies V^{-1}\dfrac{d\vec{y}_{CF}}{dt} = V^{-1}A$.
+\begin{align*}
+\implies  \frac{d(V^{-1}\vec{y}_{CF})}{dt} &= [V^{-1}AV][V^{-1}\vec{y}_{CF}]
+\end{align*}
+Letting $\vec{Y} = V^{-1}\vec{y}_{CF}$
+\begin{align*}
+   \frac{d\vec{Y}}{dt} &= \Lambda \vec{Y}\\[.2cm]
+  \begin{pmatrix}
+  \frac{dY_1}{dt}\\ \vdots \\ \frac{dY_n}{dt}	
+  \end{pmatrix} &=
+ \begin{pmatrix}
+ \lambda_1 & & 0 \\
+ & \ddots & \\
+ 0 & & \lambda_n	
+ \end{pmatrix}
+ \begin{pmatrix}
+ Y_1 \\ \vdots \\ Y_n	
+ \end{pmatrix}
+\end{align*}
+I.e. 
+\begin{align*}
+  \frac{Y_1}{dt} &= \lambda_1Y_1 \implies Y_1 = e^{\lambda_1t}c_1\\
+  &\vdots\\
+    \frac{Y_n}{dt} &= \lambda_nY_n \implies Y_n = e^{\lambda_nt}c_n\\
+\end{align*}
+Thus
+\[
+  \vec{Y} = \begin{pmatrix}
+ c_1e^{\lambda_1t} \\ \vdots \\ c_ne^{\lambda_nt}	
+ \end{pmatrix}
+\]
+Getting back to $\vec{y}_{CF}$:
+\begin{align*}
+  \vec{y}_{CF} &= V\vec{Y}\\[-.2cm]
+  &= \left(\vec{v_1},\dots,\vec{v_N}\right)\begin{pmatrix}
+	 c_1e^{\lambda_1t} \\ \vdots \\ c_ne^{\lambda_nt}	
+\end{pmatrix}\\[.2cm]
+&= c_1e^{\lambda_1t}\vec{v_1} + \dots + c_ne^{\lambda_nt}\vec{v_n}\\
+&= \sum_{i=1}^n c_ie^{\lambda_it}\vec{v_i}.
+\end{align*}
+
+Recall a system of linear ODEs \lecturemarker{11}{Someday}
+\[
+  \frac{d\vec{y}}{dt} = A\vec{y} + \vec{g}(t)
+\]
+where $\vec{y}_{n \times 1} \in \R^n$, $A_{n \times n } \in \R^{n \times n}$. 
+
+Last time we solved the homogenous problem
+\[
+  \frac{d\vec{y}_{CF}}{dt} = A\vec{y}_{CF}
+\]
+and found that 
+\[
+  \vec{y}_{CF}(t) = \sum_{i=1}^m c_ie^{\lambda_it}\vec{v_i}
+\]
+where $\lambda_i$ are the eigenvalues and $\vec{v_i}$ are the eigenvectors of $A$.\\
+
+\begin{example}
+\[
+  \begin{rcases*}
+  \dfrac{dx}{dt} = -4x - 3y\\[.2cm]
+  \dfrac{dy}{dt} = 2x  +3y	
+  \end{rcases*}
+  \frac{d\vec{y}}{dt} = \begin{pmatrix}
+  -4 & -3 \\ 2 & 3	
+ \end{pmatrix}\vec{y} 
+\]
+where $\vec{y} = \begin{pmatrix}
+ x \\ y	
+ \end{pmatrix}$. We then need to find the eigenvectors and values of $A$ by solving
+\begin{align*}
+  &\qquad A\vec{v} = \lambda\vec{v}\\
+  &\implies |A -\lambda I| = 0\\
+  &\implies \begin{vmatrix}
+  -4 -\lambda & -3 \\ 2 & 3-\lambda 	
+ \end{vmatrix} = 0\\
+ &\implies (\lambda+4)(\lambda-3) + 6 = 0\\
+ &\implies \lambda^2 + \lambda - 6 = 0
+\end{align*}
+Giving $\lambda_1 =2$, $\lambda_2 = -3$. 
+
+We find the eigenvector for $\lambda_1 = 2$: $A\vec{v_1} = \lambda\vec{v_1}$, so 
+\begin{align*}
+  \begin{pmatrix}
+  -4 -2 & -3 \\ 2 & 3-2	
+  \end{pmatrix}\begin{pmatrix}
+ v_{1x} \\ v_{1y}	
+\end{pmatrix}&= 0\\
+-6v_{1x} -3v_{1y} &= 0\\
+2v_{1x} + 1v_{1y} &= 0\\[.3cm]
+\implies \vec{v_1} = \begin{pmatrix}
+ 1 \\ -2	
+ \end{pmatrix}&
+ \end{align*}
+ 
+ For $\lambda_2 = -3$, we find that $v_{2y} = -\frac{1}{3}v_{2x}$, so $
+  \vec{v_2} = \begin{pmatrix}
+ 3 \\ -1	
+ \end{pmatrix}$.
+
+Thus
+\[
+  \Lambda = \begin{pmatrix}
+ 2 & 0 \\ 0& -3	
+ \end{pmatrix}\quad 
+ V = \begin{pmatrix}
+ 1 & 3 \\ -2 & -1	
+ \end{pmatrix}
+\]
+Where $V^{-1}AV = \Lambda$. 
+
+Then the homogenous solution is 
+\[
+  \vec{y}_{CF}(t;c_1,c_2) = c_1e^{2t}\begin{pmatrix}
+1 \\ -2	
+\end{pmatrix}
++ c_2 e^{-3t}\begin{pmatrix}
+3 \\ -1	
+\end{pmatrix}
+\]
+So our complete solution is 
+\[
+  \vec{y} = \begin{pmatrix}
+ x \\ y	
+ \end{pmatrix}
+ \longrightarrow
+ \begin{cases}
+ x(t) = c_1e^{2t} + c_23e^{-3t}\\
+ y(t) = c_1(-2)e^{2t} + c_2e^{-3t}(-1)	
+ \end{cases}
+\]
+\end{example}
+
+\subsubsektion{Changing an $N$th order linear ODE to a system}
+
+\emph{Remark.} In the previous example, the system was equivalent to a 2nd order linear ODE:
+\[
+  y = -\frac{1}{3}\left(\frac{dx}{dt} + 4x\right)
+\]
+\begin{align*}
+  \frac{dy}{dt} &= -\frac{1}{3}\left(\frac{d^2x}{dt^2} + 4\frac{dx}{dt}\right)\\[.2cm]
+  &= 2x + 3 (-\textstyle{\frac{1}{3}})\left(\dfrac{dx}{dt} + 4x\right)
+\end{align*}
+Rewriting this:
+\[
+  \frac{d^2x}{dt^2} + 4\frac{dx}{dt} = -6x + 3\frac{dx}{dt} + 12x
+\]
+
+\[
+  \frac{d^2x}{dy^2} + \frac{dx}{dt} - 6x = 0
+\]
+
+When we solve this using the ansatz we get
+\[
+  \lambda^2 + \lambda - 6 = 0
+\]
+which when you solve for $\lambda$, you end up with the previous solution. These two things are equivalent. 
+
+We can also do the reverse; turn a 2nd order ODE into a system of ODEs and solve. Consider
+\[
+  \frac{d^2}{dt^2} + \eta \frac{dx}{dt} + kx = 0
+\]
+From ansatz of $e^{\lambda x}$ we would get
+\[
+  \lambda^2 + \eta \lambda + k = 0
+\]
+
+If we instead turn this into a system:
+\[
+  \begin{rcases*}
+  \frac{dx}{dt} = y\\
+  	\frac{dy}{dt} = -\eta y - kx
+  \end{rcases*}
+  \frac{d}{dt}\vec{y} = \begin{pmatrix}
+ 0 & 1 \\ -k & - \eta 	
+ \end{pmatrix}\vec{y}
+\]
+Solving the system we get 
+\begin{align*}
+  \begin{vmatrix}
+  -\lambda & 1\\ -k & -\eta - \lambda 	
+  \end{vmatrix} &= 0\\
+  \lambda(\lambda + \eta) + k &= 0\\
+  \lambda^2 + \eta\lambda + k &= 0
+\end{align*}
+
+The advantage to this approach is that doing eliminations in an $N$th order linear ODE is difficult to do by hand, but if we transform it into a system and end up with an $N \times N$ matrix $A$, then we can use MATLAB to solve the system easily.\\
+
+\begin{example}
+\[
+  \frac{d\vec{y}}{dt} = \begin{pmatrix}
+ 3 & 1\\ 2 & 2	
+ \end{pmatrix}\vec{y} + \underbrace{\begin{pmatrix}
+  -5 \\ -2
+\end{pmatrix}}_{\vec{g}(t)}
+\]
+
+\textsc{1st Step:} Our operator is
+\[
+  \mathcal{L} = \left[\frac{d}{dt} -A\right]
+\]
+We solve the homogenous problem
+\begin{align*}
+  \mathcal{L}[\vec{y}_{CF}] &= 0\\
+  \begin{vmatrix}
+  3 - \lambda & 1\\ 2 & 2 -\lambda 	
+  \end{vmatrix} &= 0\\
+  \implies \lambda^2 - 5\lambda + 4 &= 0
+\end{align*}
+This has two soltions: $\lambda_1 = 4,\, \lambda_2 = 1$. 
+
+For the eigenvectors of $\lambda_1 = 4$, we solve \[(3-4)v_{1x} + v_{1y} = 0 \implies \vec{v_1} = \begin{pmatrix}
+ 1 \\ 1	
+ \end{pmatrix}\]
+ 
+ Then for $\lambda_2 = 1$, we solve \[(3-1)v_{1x} + v_{1y} = 0 \implies \vec{v_2} = \begin{pmatrix}
+  1 \\ -2
+\end{pmatrix}\]
+
+We have now solved the homogenous problem:
+\[
+  \vec{y}_{CF} = c_e^{4t}\begin{pmatrix}
+  1 \\ 1
+\end{pmatrix} + c_2e^t
+\begin{pmatrix}
+  1 \\ -2
+\end{pmatrix}
+\]
+
+\textsc{2nd Step:}
+\[
+  \mathcal[\vec{y}_{PI}] = \begin{pmatrix}
+  -5 \\ -2
+\end{pmatrix}
+\]
+As we have a constant function, our ansatz should be some constants as well: 
+\[
+  \vec{y}_{PI} = \begin{pmatrix}
+  a \\ b
+\end{pmatrix}
+\longrightarrow \mathrm{MUC}
+\]
+\begin{align*}
+  \mathcal{L}[\vec{y}_{PI}] &= \begin{pmatrix}
+  0 \\ 0
+\end{pmatrix} - 
+\begin{pmatrix}
+  3 & 1 \\ 2 & 2
+\end{pmatrix}\begin{pmatrix}
+  a \\ b
+\end{pmatrix}= 
+\begin{pmatrix}
+  -5 \\ -2
+\end{pmatrix}
+\end{align*}
+We solve 
+\[
+  A\begin{pmatrix}
+  a \\ b
+\end{pmatrix} = 
+\begin{pmatrix}
+  5 \\ 2
+\end{pmatrix}
+\]
+Thus 
+\begin{align*}
+  \begin{rcases*}
+  3a + b = 5\\
+  2a + 2b = 2	
+  \end{rcases*}\iff 
+\begin{pmatrix}
+  a \\ b 
+\end{pmatrix} = A^{-1}
+\begin{pmatrix}
+  5 \\ 2 
+\end{pmatrix}=
+\begin{pmatrix}
+  2 \\ -1
+\end{pmatrix}
+\end{align*}
+
+Hence our complete solution is 
+\[
+  \vec{y}_{GS} =  \vec{y}_{CF} + 
+  \begin{pmatrix}
+  2\\ -1
+\end{pmatrix}
+\]
+\end{example}
+
+
+\subsubsektion{When $A$ is not diagonalisable}
+
+
+Sometimes we call a non-diagonalisable matrix $A$, a defective matrix. In this case $\not\exists V: V^{-1}AV = \Lambda$. However all matrices can be put into a form which is as close to diagonalisable as possible. 
+
+\begin{theorem}[Existence of Jordan Form]
+For all invertible matrices, $W$, there exists a $J$ such that 
+\[
+  W^{-1}AW = 
+  \begin{pmatrix}
+  \lambda & 1 & \dots & 0 \\
+  0 & \lambda & 1 \dots  & 0 \\
+   && \ddots  &\\
+  0&&&\lambda 
+\end{pmatrix} = J
+\]	
+\end{theorem}
+
+\emph{Proof.} Omitted.\\
+
+This matrix $J$ has repeated eigenvalues:
+\[
+  \frac{d\vec{y}}{dt} = A\vec{y}
+\]
+Then
+\[
+  \frac{d(W^{-1}\vec{y})}{dy} = \underbrace{W^{-1}AW}_{J}(W^{-1}\vec{y})
+\]
+Thus
+\[
+  \frac{d\vec{Y}}{dt} = J\vec{Y}
+\]
+
+So now our problem is
+\[
+  \begin{pmatrix}
+  \frac{dY_1}{dt}\\ \vdots\\ \frac{dY_n}{dt}
+\end{pmatrix}
+= 
+ \begin{pmatrix}
+  \lambda & 1 & \dots & 0 \\
+  0 & \lambda & 1 \dots  & 0 \\
+   && \ddots  &\\
+  0&&&\lambda 
+\end{pmatrix}
+\begin{pmatrix}
+  Y_1 \\ \vdots \\ Y_n
+\end{pmatrix}
+\]
+This can be solved recursively from the bottom upwards; the lowest row is trivial:
+\[
+  \frac{dY_n}{dt} = \lambda y_n
+  \implies Y_n = c_ne^{\lambda t}
+\]
+
+Then we go to the next row above: 
+\[
+  \frac{dY_{n-1}}{dt} = \lambda Y_{n-1} + Y_n
+\]
+We already solved for $Y_n$, so in fact we solve
+\[
+  \frac{dY_{n-1}}{dt} - \lambda Y_{n-1} = c_ne^{\lambda t}
+\]
+we could consider the complimentary function approach to solving this:
+\begin{align*}
+  CF: Y_{n-1}^{(CF)} &= c_{n-1}e^{\lambda t}\\
+  PI: Y_{n-1}^{(PI)} &= c^*te^{\lambda t} \quad \text{(ansatz)}
+\end{align*}
+We plug in our ansatz into our operator to find $c^*$: 
+\[
+  c*[e^{\lambda Y} + \lambda te^{\lambda t} - \lambda t e^{\lambda t}] = c_ne^{\lambda t}
+\]
+So $c* = c_n$. Thus 
+\[
+  Y_{n-1} = c_{n-1}e^{\lambda t} + c_nte^{\lambda t}
+\]
+
+We continue with the next row:
+\[
+  \frac{dY_{n-2}}{dt} = \lambda Y_{n-2} + Y_{n-1}
+\]
+Then 
+\[
+  Y_{n-2} = c_{n-2}e^{\lambda t} + c_{n-1}te^{\lambda t} + \frac{c_n}{2}t^2 e^{\lambda t}
+\]
+So recursively you go upwards and continue solving the system. So even if $A$ is defective, you can solve this using linear algebra.\\
+
+
+\begin{example} Suppose  \lecturemarker{12}{10 Feb}
+$A =  \begin{pmatrix}
+  1 & -1 \\ 1& 3	
+  \end{pmatrix}$, we find the eigenvalues:
+  \begin{align*}
+  \begin{vmatrix}
+  1 -\lambda & -1 \\ 1 & 3-\lambda 	
+  \end{vmatrix}&= 0\\
+  3 - 3\lambda - \lambda + \lambda^2 + 1 &=0\\
+  \l^2 - 4\l + 4 &= 0
+\end{align*}
+So $\l_1 = \l_2 = 2$. We solve $(1-2)v_{1x} - v_{1y} = 0 \implies v_{1y} = -v_{1x}$, so there is only one eigenvector
+\[
+  \vec{v_1} = \begin{pmatrix}
+  1 \\ -1
+\end{pmatrix}
+\]
+
+Now 
+\begin{align*}
+  W^{-1}AW &=
+  \begin{pmatrix}
+  2 & 1\\ 0 & 2
+\end{pmatrix}\\[.3cm]
+\implies 
+\begin{pmatrix}
+  1 & -1 \\ 1 & 3
+\end{pmatrix}
+\begin{pmatrix}
+  1 & \alpha \\ -1 & \beta 
+\end{pmatrix} &= \begin{pmatrix}
+  1 & \alpha \\ -1 & \beta 
+\end{pmatrix}
+\begin{pmatrix}
+  2 & 1\\ 0 & 2
+\end{pmatrix}\\
+\implies 
+\begin{pmatrix}
+  2 & \alpha - \beta \\
+   -2 & \alpha + 3\beta
+\end{pmatrix}
+&= 
+\begin{pmatrix}
+  2 & 1 + 2\alpha\\ -2 & -1 + 2\beta
+\end{pmatrix}
+\end{align*}
+
+Thus
+\[
+  \begin{cases}
+  \alpha - \beta = 1 + 2\alpha\\
+  \alpha + 3\beta = -1 + 2\beta	
+  \end{cases}
+ \alpha + \beta = -1
+\]
+So 
+\[
+  \vec{W_2} = \begin{pmatrix}
+  1\\ -2
+\end{pmatrix}\implies 
+ W = 
+ \begin{pmatrix}
+  1 & 1\\ -1 & -2
+\end{pmatrix}
+\]
+
+We check this: 
+\begin{align*}
+  W^{-1}AW &= 
+  \begin{pmatrix}
+  2 & 1\\ -1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+  1 & -1 \\ 1 & 3
+\end{pmatrix}
+\begin{pmatrix}
+  1 & 1\\ -1 & 2
+\end{pmatrix}\\
+&= 
+\begin{pmatrix}
+  2 & 1 \\ 0 & 2
+\end{pmatrix} = J
+\end{align*}
+
+We then recursively solve
+\[
+  \frac{d\vec{y}}{dt}
+  = 
+  \begin{pmatrix}
+  2 & 1\\ 0 & 2
+\end{pmatrix}\vec{y}
+\]
+The bottom row: 
+\[
+  \frac{dY_2}{dt} = 2Y_2 \implies Y_2 = c_2e^{2t}
+\]
+Then
+\begin{align*}
+  \frac{dY_1}{dt} &= 2Y_1 + Y_2
+\end{align*}
+We have 
+\begin{align*}
+ Y_1^{(CF)} &= c_1e^{2t} \\
+ Y_1^{(PI)} &+ c_3te^{2t}\longrightarrow  \text{ our ansatz}
+\end{align*}
+Plugging in our ansatz, we obtain
+\[
+  Y_1 = c_1e^{2t} + c_2te^{2t}
+\]
+So 
+\[
+  \vec{Y} = 
+  \begin{pmatrix}
+  c_1e^{2t} + c_2te^{2t}\\
+  c_2e^{2t}
+\end{pmatrix}
+\]	
+Then 
+\begin{align*}
+  \vec{y} &= W\vec{Y}\\
+  &= (\equalto{\vec{w_1}}{\vec{v_1}},\vec{w_2})
+  \begin{pmatrix}
+   c_1e^{2t} + c_2te^{2t}\\
+  c_2e^{2t}
+\end{pmatrix}\\
+&= (c_1e^{2t} + c_2te^{2t})
+\begin{pmatrix}
+  1 \\ -1
+\end{pmatrix}
++ c_2e^{2t}
+\begin{pmatrix}
+  1\\ -2
+\end{pmatrix}
+\end{align*}
+\end{example}
+
+We could have solved this system by changing it into a 2nd order ODE: 
+
+Write the system $\frac{d\vec{y}}{dt} = A\vec{y}$ as two equations and substitute:
+\begin{align*}
+  \frac{dx}{dt} &= x-y \\
+  \frac{dy}{dt} &= x + 3y
+\end{align*}
+So 
+\[
+  \frac{d^2x}{dt^2} - 4\frac{dx}{dt} + 4x = 0
+\]
+
+Using the ansatz of $e^{\lambda t}$, we get the characteristic equation of $\l^2 -4\l + 4 = 0$, which solves to the eigenvalues $\l_{1,2} = 2$. This corresponds to a basis of $\mathcal{B} = \{e^{2t},te^{2t}\}$ - the same solution that we found using the Jordan form method.
+
+
+\sektion{Qualitative Analysis of Systems}
+
+
+\subsektion{Asymptotic Behaviours}
+
+We now work towards a qualitative description of the solution of systems of linear ODEs. We look at the analytical solutions for all possible behaviours of $2 \times 2$ systems. 
+
+So for $2D$ systems: $n = 2$, and so we consider with $A_{2\times 2}$:
+\[
+  A = 
+  \begin{pmatrix}
+  a & b \\ c& d
+\end{pmatrix}
+\]
+The solutions are found by solving the eigenvalue equation
+\begin{align*}
+  \begin{vmatrix}
+  a - \l & b \\ c & d-\l	
+  \end{vmatrix}&= 0\\
+  \implies (a-\l)(a-\l) -bc) &= 0\\
+  \implies \l^2 - \underbrace{(a+d)}_{\tau = \mathrm{tr}(A)}\l + \underbrace{(ad-bc)}_{\Delta = \det(A)} &= 0\\[.2cm]
+  \implies \l^2 -\tau \l + \Delta &= 0
+\end{align*}
+The eigenvalues are then given by 
+\[
+  \lambda_{1,2} = \frac{\tau \pm \sqrt{\tau^2 - 4\Delta}}{2}
+\]
+So $(\tau,\Delta)$ are responsible for the behaviour of the system. What we're working towards is being able to characterise the behaviour of a system by looking at where $(\tau,\Delta)$ lie on the $\tau -\Delta$ plane. 
+
+\begin{center}
+\begin{tikzpicture}[domain = -3:3]
+\draw[->] (-3,0) -- (3,0) node [right] {$\tau$};
+\draw[->] (0,-2) -- (0,2) node[left]{$\Delta$};
+\draw[smooth] plot (\x,{0.2*abs((\x)^2)}) node [right] {$\tau^2 - 4\Delta$};
+\end{tikzpicture}	
+\end{center}
+
+
+\textsc{Case (1):} $\Delta < 0$. 
+
+Then $\tau^2 - 4\Delta > 0 \implies \l_{1,2}\iR$. Also $\tau^2 - 4\Delta > \tau^2$, so it follows that $\lambda_1\iR+$ and $\l_2\iR^-$. Then 
+\[
+  \vec{y} = c_1e^{\l_1t}\vec{v_1} + c_2e^{\l_2t}\vec{v_2}
+\]
+Asymptotically:
+
+\begin{enumerate}
+  \item  As $t \to \infty$, $y \to c_1e^{\l_1t}\vec{v_1}$. 
+  \item There is no oscillations because there are only real exponentials.
+\end{enumerate}
+
+This takes care of the lower half of the plane.\\
+
+%draw lower half of plane
+
+
+\textsc{Case (2):} $\Delta  >0$. We then need to split this into further cases. 
+
+\begin{enumerate}
+  \item[\textsc{(2.1)}] $\tau^2 - 4\Delta > 0 \implies \l_{1,2} \iR$. Also $\tau^2 - 4\Delta < \tau^2$.
+  \begin{enumerate}
+  \item[$\bullet$] $\tau > 0 \implies \l_1,\l_2 > 0$.
+  \item[$\bullet$] $\tau < 0 \implies \l_1,\l_2 < 0$. 
+\end{enumerate}
+We then have 
+\[
+    \vec{y} = c_1e^{\l_1t}\vec{v_1} + c_2e^{\l_2t}\vec{v_2}
+\]
+
+For (2.1.1), $\l_1 > \l_2 > 0$, so as $ t \to \infty$, $\vec{y} \to c_1e^{\l_1t}\vec{v_1} \to \begin{pmatrix}
+  \infty \\ \infty 
+\end{pmatrix}
+$. 
+
+For (2.1.2), $\l_2< \l_1 < 0$. So as $t\to \infty$, the $y \to c_1e^{\l_1t}\vec{v_1} \to \begin{pmatrix}
+  0 \\ 0
+\end{pmatrix}
+$.\\
+
+
+\item[\textsc{(2.2)}] $\tau^2 - 4\Delta < 0 \implies \Delta > \frac{\tau^2}{4}$. Then 
+\[
+  \left|\frac{\tau^2-4\Delta}{4}\right| = \omega^2
+\]
+So $\l_{1,2} = \frac{\tau}{2} \pm i\omega$. Then 
+\begin{enumerate}
+  \item[$\bullet$] $\tau = 0 \implies \l_{1,2} = \pm i\omega$. Then 
+  \[
+  \vec{y} = c_1e^{i\omega t}\vec{v_1} + c)2e^{-\omega t}\vec{v_2}
+\]
+This is sinusoidal functions $\implies$ periodic behaviour.
+
+\item[$\bullet$] $\tau > 0$, then 
+\begin{align*}
+  \vec{y} &= c_1e^{(\frac{\tau}{2} + i\omega)t}\vec{v_1} + c_2e^{(\frac{\tau}{2} -i\omega)t}\vec{v_2}\\
+  &= e^{\frac{\tau}{2}t}\left[c_1e^{i\omega t}\vec{v_1} + c_2e^{i\omega t}\vec{v_2}\right]
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[domain=0:6]
+\draw[->] (-2,0) -- (6,0) node [right] {$t$};
+\draw[->] (0,-2) -- (0,2) node [left] {$x$};	
+\draw[smooth] plot (\x,{0.1*exp(\x/2)*sin(\x r*5)});
+\draw [Green]  plot [smooth, tension=1] coordinates { (-1,.2) (3,.7) (5.5,2)} node[right]{$e^{\frac{\tau}{2}t}$};
+\draw [Green]  plot [smooth, tension=1] coordinates { (-1,-.2) (3,-.7) (5.5,-2)};
+\end{tikzpicture}
+\end{center} 
+
+\item[$\bullet$] $\tau < 0$. 
+\[
+  \vec{y} = e^{\frac{\tau}{2}t}\left[c_1e^{i\omega t}\vec{v_1} + c_2e^{i\omega t}\vec{v_2}\right]
+\]
+\begin{center}
+\begin{tikzpicture}[domain=0:5.4]
+\draw[->] (-2,0) -- (6,0) node [right] {$t$};
+\draw[->] (0,-2) -- (0,2) node [left] {$x$};	
+\begin{scope}[xscale=-1, shift = {(-5.4,0)}]
+\draw[smooth] plot (\x,{0.1*exp(\x/2)*sin(\x r*5)});
+\draw [Green]  plot [smooth, tension=1] coordinates { (-1,.2) (3,.7) (5.3,2)} node[right]{$e^{-\frac{\tau}{2}t}$};
+\draw [Green]  plot [smooth, tension=1] coordinates { (-1,-.2) (3,-.7) (5.3,-2)};	
+\end{scope}
+\end{tikzpicture}	
+\end{center}
+\end{enumerate}
+\end{enumerate}
+
+
+\textsc{Case (3):}  $\Delta = 0$. \lecturemarker{13}{12 Feb}
+
+Then $\l_1 = \tau$, $\l_2 = 0$, so 
+\[
+  \vec{y} = c_1e^{\l_1t}\vec{v_1} + c_2\vec{v_2}
+\]
+\begin{enumerate}
+\item[$\bullet$] $\tau > 0$. As $t \to \infty$, asymptotically the solution grows exponentially along $(c_1\vec{v_1})e^{\l_1t}$. 
+\item[$\bullet$] $\tau < 0$.  As $\to \to \infty$, $\vec{Y} \to c_2\vec{v_2}$ along $(c_2\vec{v_2})e^{\l_2t}$.
+\end{enumerate}\vspace*{10pt}
+
+
+\textsc{Case (4):} $\tau^2 - 4\Delta = 0$. 
+
+Then $\l_1 = \l_2 = \frac{\tau}{2} \implies $ repeated eigenvalues. 
+
+\begin{enumerate}
+\item[\textsc{(4.1)}] $A$ is diagonalisable. 
+\begin{align*}
+  A = \l\begin{pmatrix}
+  1 & 0 \\ 0 & 1
+\end{pmatrix}
+\end{align*}
+Where $\vec{v_1} = 
+\begin{pmatrix}
+  1 \\ 0
+\end{pmatrix}$, $\vec{v_2} = 
+\begin{pmatrix}
+  0 \\ 1
+\end{pmatrix}$. 
+\begin{align*}
+  \vec{y} &= c_1e^{\l t}
+  \begin{pmatrix}
+  1 \\ 0
+\end{pmatrix}
++ v_2e^{\l t}
+\begin{pmatrix}
+  0 \\ 1
+\end{pmatrix}\\
+&= e^{\l t}\left[
+c_1\begin{pmatrix}
+  1 \\ 0
+\end{pmatrix} + c_2
+\begin{pmatrix}
+  0\\1 
+\end{pmatrix}
+\right]\\
+&= e^{\l t}\begin{pmatrix}
+  c_1 \\ c_2
+\end{pmatrix}
+\end{align*}
+
+\begin{enumerate}
+  \item[-]$\tau > 0 \implies \lambda > 0$, so $\vec{y}$ diverges to infinite along $\begin{pmatrix}
+  c_1 \\ c_2
+\end{pmatrix}$, which is fixed by initial conditions. 
+\item[-] $\tau < 0$ then as $t \to \infty$, $\vec{y} \to \begin{pmatrix}
+  0 \\ 0
+\end{pmatrix}$ along 
+$\begin{pmatrix}
+  c_1 \\ c_2
+\end{pmatrix}$. 
+\end{enumerate}
+
+\item[\textsc{(4.2)}] $A$ is non-diagonalisable. We then consider the Jordan form:
+\[
+  W^{-1}AW = J
+\]
+Where $W = (\vec{v_1} \vec{w_2})$. Then 
+\[
+  \vec{y} = (c_1 + tc_2) e^{\l t}\vec{v_1} + c_2e^{\l t}\vec{w_2}
+\]
+
+
+\begin{enumerate}
+  \item[$\bullet$] $\tau > 0 \implies \l > 0$, so as $t \to \infty$, the dominant term is $te^{\l t}c_2\vec{v_1}$ and the solution diverges. 
+  \item[$\bullet$] $\tau < 0 \implies \l < 0$, so as $t \to \infty$, the dominant term is $te^{\l t}c_2\vec{v_1}$ and the solution $\vec{y} \to \begin{pmatrix}
+  0 \\ 0
+\end{pmatrix}$.
+ 
+
+\end{enumerate}
+
+	
+\end{enumerate}
+
+
+
+
+
+\subsektion{Phase Plane Analysis}
+
+We consider $\dfrac{d\vec{y}}{dt} = A\vec{y}$, where $\vec{y} \in \begin{pmatrix}
+  x \\ y 
+\end{pmatrix}
+\in \R^2$, and $\vec{y}(0) = 
+\begin{pmatrix}
+  x_0 \\ y_0 
+\end{pmatrix}$. 
+
+\begin{center}
+\begin{tikzpicture}[domain = -3:3]
+\draw[->] (-3,0) -- (3,0) node [right] {$x$};
+\draw[->] (0,-2) -- (0,2) node[left]{$y$};
+\draw[smooth] plot (\x,{0.2*abs((\x)^2)}) node [right] {$\tau^2 - 4\Delta$};
+\end{tikzpicture}	
+\end{center}
+
+
+We are interested in finding the general trajectories of $\vec{y}(t)$ on $\R^2$, from an initial condition $(x_0,y_0)$.\\
+
+\begin{definition}
+The \emph{phase portrait} of a given system described by $A$ is a collection of the representative trajectories of all distinct behaviours of the system.
+\end{definition}\vsp
+
+\begin{proposition}
+Trajectories cannot cross (except at special cases)	
+\end{proposition}
+\emph{Proof.} See \textsc{M2AA1}; this is based on the existence and uniqueness of solutions to ODEs. 
+
+
+
+
+So the main points of phase plane analysis are:\lecturemarker{14}{balh}
+\begin{enumerate}
+\item $\vec{y}(t)$ is a trajectory on the plane $(x,y)$	
+\item $(x(0),y(0)) = \vec{y}(0)$ is the initial condition which is a point on the plane
+\item No crossing of trajectories except at special points.
+\item Vector field: At every point of $(x,y)$ there is a vector defined at the point $\frac{d\vec{y}}{dt} = A\vec{y} \equiv$ ``velocity", which is always tangent to the trajectory at $\vec{y}$.
+\item The eigenvectors define special directions on the plane: invariant under the dynamics. ``If we start on $\vec{v_i}$, we remain on $\vec{v_i}$''
+\item Phase portrait: the collection of representative trajectories that describe the possible outcomes of the system.
+\item Special points are to be found. 
+\end{enumerate}
+
+\begin{example}
+$\dfrac{d\vec{y}}{dt} = A\vec{y}$, with $A = \begin{pmatrix}
+  -4 & -3 \\ 2 & 3
+\end{pmatrix}$.
+
+$\tau = -1$, $\Delta = -6.$ Since $\l^2 -\tau \l + \Delta = 0$, we find $\l_1 = 2$, $\l_2 = -3$ with eigenvectors
+\[
+  \vec{v_1} = \begin{pmatrix}
+  1 \\ -2
+\end{pmatrix}
+\quad \vec{v_2}
+= \begin{pmatrix}
+  3\\ -1
+\end{pmatrix}
+\]
+
+
+%%% 
+%%% Big trajectory plot here!
+%%%%
+
+
+Trajectory on $\vec{v_1}$: 
+
+
+
+	
+\end{example}
 
 
 
@@ -1474,8 +2264,6 @@ The Eigenvalues of $A \equiv \{\lambda_i\}_{i=1}^n$, and the eigenvectors of $A 
 
 
 
-\sektion{Phase plane analysis}
-\subsektion{Phase plane diagrams}
 \subsektion{Bifurcations}
 
 
@@ -1993,7 +2781,7 @@ In our case we have:
 \end{aligned}
 \]	
 
-Thus $A = det(U)A_0$. Hence $dx\,dy = det(J)\,dr\,d\theta$ in the previous example. This also extends to 3D with volume.
+Thus $A = \det(U)A_0$. Hence $dx\,dy = \det(J)\,dr\,d\theta$ in the previous example. This also extends to 3D with volume.
 \end{proof}~
 
 
@@ -2064,17 +2852,20 @@ Note: $\dfrac{\del u}{\del r} = \left[\cos\frac{\del}{\del r} - \frac{\sin\theta
 
 \emph{What is $\dfrac{\del^2u}{\del x^2}$}?
 \setlength{\jot}{8pt}
-\[\begin{aligned}
+
+\begin{align*}
   \frac{\del^2u}{\del x^2} 
   &= \frac{\del}{\del x}\left[\frac{\del}{\del x}\right][u]\\
   &= \left[\cos\theta\frac{\del}{\del r} - \frac{\sin\theta}{r}\frac{\del}{\del \theta}\right]\left[\cos\theta \frac{\del}{\del r} - \frac{\sin\theta}{r}\frac{\del}{\del \theta}\right]u\\
   &= \cos\theta\frac{\del}{\del r}\left[\cos\theta\frac{\del u}{\del r}\right] - \cos\theta\frac{\del}{\del r}\left[\frac{\sin\theta}{r}\frac{\del u}{\del \theta}\right] - \frac{\sin\theta}{r}\frac{\del}{\del \theta}\left[\cos\theta\frac{\del u}{\del r}\right]\\
-  &= \cos^2\theta\frac{\del^2u}{\del r^2}-\cos\theta\sin\theta\frac{\del}{\del r}\left[\frac{1}{r}\frac{\del u}{\del \theta}\right] - \frac{\sin\theta}{r}\frac{\del}{\del \theta}\left[\cos\theta\frac{\del u}{\del r}\right] + \frac{\sin\theta}{r^2}\frac{\del}{\del \theta}\left[\sin\theta\frac{\del u}{\del \theta}\right] \\ 
+     &= \cos^2\theta\frac{\del^2u}{\del r^2}-\cos\theta\sin\theta\frac{\del}{\del r}\left[\frac{1}{r}\frac{\del u}{\del \theta}\right] - \frac{\sin\theta}{r}\frac{\del}{\del \theta}\left[\cos\theta\frac{\del u}{\del r}\right] + \frac{\sin\theta}{r^2}\frac{\del}{\del \theta}\left[\sin\theta\frac{\del u}{\del \theta}\right]
+  \end{align*}
+\begin{align*}
+ \implies  \frac{\del^2u}{\del x^2} 
   &= \cos^2\theta\frac{\del^2u}{\del r^2} - \cos\theta\sin\theta\left[-\frac{1}{r^2}\frac{\del u}{\del \theta} + \frac{1}{r}\frac{\del^2u}{\del r\del \theta}\right]\\ 
   &- \frac{\sin\theta}{r}\left[(-\sin\theta)\frac{\del u}{\del r} + \cos\theta \frac{\del^2u}{\del \theta}{\del r}\right] + \frac{\sin\theta}{r^2}\left[\cos\theta\frac{\del u}{\del \theta} + \sin\theta\frac{\del^2u}{\del \theta^2}\right]\\
   &= \cos^2\theta \frac{\del^2u}{\del r^2} + 2\frac{\cos\theta\sin\theta}{r^2}\frac{\del u}{\del \theta} - \frac{2\cos\theta\sin\theta}{r}\frac{\del^2u}{\del r\del \theta} + \frac{\sin^2\theta}{r}\frac{\del u}{\del r} + \frac{\sin^2\theta}{r^2}\frac{\del^2u}{\del\theta^2}
-  \end{aligned}
-\]
+\end{align*}
 
 \[
 \begin{aligned}
@@ -2084,8 +2875,8 @@ Note: $\dfrac{\del u}{\del r} = \left[\cos\frac{\del}{\del r} - \frac{\sin\theta
   &= [\dots] \text{ (problem set)}\\
   &= \sin^2\theta \frac{\del^2u}{\del r^2} - 2\frac{\cos\theta\sin\theta}{r^2}\frac{\del u}{\del \theta} +\frac{2\cos\theta\sin\theta}{r}\frac{\del^2u}{\del r\del \theta} + \frac{\cos^2\theta}{r}\frac{\del u}{\del r} + \frac{\cos^2\theta}{r^2}\frac{\del^2u}{\del\theta^2}
 \end{aligned}
-\]
-q
+\]\vsp
+
 Thus the Laplace Equation in Polar Coordinates is: 
 \[\boxed{\frac{\del^2u}{\del x^2} + \frac{\del^2}{\del y^2} = \frac{\del^2u}{\del r^2} + \frac{1}{r}\frac{\del u}{\del r} + \frac{1}{r^2}\frac{\del^2u}{\del \theta^2}}\]
 \end{enumerate}
@@ -2249,7 +3040,7 @@ This ODE is not exact. We can find a $\lambda(x)$ that will make it exact:
 \begin{aligned}
   \implies \lambda(x)F(x) &= \frac{d\lambda}{dx}\\
   \implies \int \frac{d\lambda}{\lambda} &= \int F(x)\,dx\\
-  \implies \lambda &= K\exp[\int F(x)\,dx]
+  \implies \lambda &= K\exp\left[\int F(x)\,dx\right]
 \end{aligned}
 \]
 As in lecture 2. This integrating factor is always possible to solve. 
@@ -2573,53 +3364,4 @@ For $\vec{v} = \begin{pmatrix}
   \textsf{\textbf{- End of Mathematical Methods II -}}	
   \end{center}
   
-  \pagebreak
-  
-  
-  
-\[x^2\frac{d^2y}{dx^2} + px\frac{dy}{dx} + qy = 0\]
-
-Change of variables: 
-\[\begin{aligned}
-\begin{rcases*}
-x = e^z\\
-z = \log x	
-\end{rcases*}
-\frac{dy}{dx} &= \frac{dy}{dx}\frac{dz}{dx} = \frac{1}{x}\frac{dy}{dz}\\
-\Aboxed{\implies x\frac{dy}{dx} &= \frac{dy}{dz}}
-\end{aligned}\]
-
-
-For $\dfrac{d^2y}{dx^2}$: 
-\[
-\begin{aligned}
-  \frac{d^2y}{dx^2} &= \frac{d}{dx}\left(\frac{dy}{dx}\right) = \frac{d}{dz}\left(\frac{dy}{dx}\right)\cdot\frac{dz}{dx}\\
-  &= \frac{1}{x}\left[\frac{d^2y}{dz^2}\cdot\frac{1}{x} + \frac{dy}{dz}\left(\frac{-1}{x^2}\right)\frac{dx}{dz}\right]\\
-  &= \frac{1}{x^2}\frac{d^2y}{dz^2} - \frac{1}{x^2}\frac{dy}{dz}\\
-  \Aboxed{\implies x^2\frac{d^2y}{dx^2} &= \frac{d^2y}{dz^2} - \frac{dy}{dz}}
-\end{aligned}
-\]
-
-So our ODE becomes:
-
-\[
-\begin{aligned}
-  \left(\frac{d^2y}{dz^2} - \frac{dy}{dz}\right) + px\frac{dy}{dx} + qy &= 0\\
- \implies \frac{d^2y}{dz^2} + (p-1)\frac{dy}{dz} + qy &= 0
-\end{aligned}
-\]
-
-We end up with a 2nd Order Linear ODE with constant coefficients, the general solution (assuming two real roots) is: 
-
-\[
-\begin{aligned}
-  y(z) &= c_1e^{\lambda_1z} + c_2e^{\lambda_2z}\\
-\implies  \Aboxed{y(x) &= c_1x^{\lambda_1} + c_2x^{\lambda_2} }
-\end{aligned}
-\]
-
-Where \[\lambda_{1,2} = \frac{(1-p) \pm \sqrt{(p-1)^2 - 4q}}{2}\]
-
-
-
 \end{document}

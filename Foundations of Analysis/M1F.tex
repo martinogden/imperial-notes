@@ -1,13 +1,19 @@
-\documentclass[twoside]{scrartcl}
+\documentclass[10pt]{scrartcl}
+
+
 
 \usepackage[bluelinks]{drangreport}
 % \usepackage[caecilia]{drangreport}
+
+
+
 
 \title{Foundations of Analysis}
 \DeclareMathOperator{\hcf}{hcf}
 
 \newcommand{\rel}{\mathcal{R}}
-\usepackage{polynom}
+\input longdiv.tex
+\usepackage{xlop}
 
 \usetikzlibrary{shapes,backgrounds}
 \usetikzlibrary{arrows}
@@ -18,21 +24,28 @@ Author={Karim Bacchus},
 Keywords ={Foundations of Analysis, M1F, Lecture Notes, Imperial College, Maths},
 }}
 
+
+
+
 \begin{document}
 
-\NotesTitle{1st}{Autumn 2014}{Foundations of Analysis}{Prof.~A.}{Corti}
+\NotesSubTitle{1st}{Autumn 2014}{Foundations of Analysis}{Prof.~A.}{Corti}
 {
-\section*{Syllabus}
+\subsection*{Syllabus}
 \textit{An introductory course involving basic material, which will be widely used later.}
 
-\subsubsektion{The Very Beginning} Sets, Logic and basic proofs. The Archimedean Axiom. The principle of mathematical induction, strong induction, smallest element axiom. \vspace*{5pt}
+Sets, Logic and basic proofs. The Archimedean Axiom. The principle of mathematical induction, strong induction, smallest element axiom. 
 
-\subsubsektion{Number Systems} Integers, rational numbers, real numbers, decimal expansions for rationals and
-reals. Inequalities. The Complex Numbers, De Moivre's Theorem. Polynomials. \vspace*{5pt}
-\subsubsektion{Number Theory} Division theorem, Euclid’s algorithm. Prime Numbers and the Fundamental Theorem of Arithmetic. Arithmetic modulo $n$. Systems of congruences and the Chinese Remainder Theorem. Euler Phi Function, Fermat's Little Theorem. Public Key Cryptography. \vspace*{5pt}
-\subsubsektion{Counting} Permutations and combinations. Inclusion-Exclusion Principle. The Binomial Theorem. Equivalence relations.  \vspace*{5pt}
-\subsubsektion{Functions} Injective, Surjective and Bijective Functions, mappings between functions. Countability of Sets, Cantor's Diagonal Argument. \vspace*{5pt}
-\subsubsektion{Foundations of Analysis} Supremum and Infimums of sets. The Completeness axiom for $\R$.  Introduction to limits of sequences.
+\emph{Number Systems:} Integers, rational numbers, real numbers, decimal expansions for rationals ands
+reals. Inequalities. The Complex Numbers, De Moivre's Theorem. Polynomials. The cubic equation.
+
+\emph{Number Theory:} Division theorem, Euclid’s algorithm. Prime Numbers and the Fundamental Theorem of Arithmetic. Arithmetic modulo $n$. Systems of congruences and the Chinese Remainder Theorem. Euler Phi Function, Fermat's Little Theorem. Public Key Cryptography.
+
+\emph{Counting:} Permutations and combinations. Inclusion-Exclusion Principle. The Binomial Theorem. Equivalence relations.  
+
+\emph{Functions:} Injective, Surjective and Bijective Functions, mappings between functions. Countability of Sets, Cantor's Diagonal Argument. 
+
+\emph{Foundations of Analysis:} Supremum and Infimums of sets. The Completeness axiom for $\R$.  Introduction to limits of sequences.
 
 \subsection*{Appropriate books}
 
@@ -49,6 +62,7 @@ E.~Hurst and M.~Gould \emph{Bridging the Gap to University Mathematics}.
 
 
 \sektion{The Very Beginning}
+\setcounter{page}{3}
 
 \begin{quote}
  A human who does not understand the difference between strong induction and usual induction is a sad and demeaning spectacle. 
@@ -57,37 +71,41 @@ E.~Hurst and M.~Gould \emph{Bridging the Gap to University Mathematics}.
        \end{flushright} 
 \end{quote} 
 
+The main  \lecturemarker{0}{5 Oct}  goal of the course: you get some idea of what is a mathematical proof. University maths is about understanding everything - not just learning some procedure.
 
-\subsektion{Sets}
+ A proof is a document written in mathematical language. In theory, mathematical English is akin to a programming language. A computer should be able to check a mathematical proof. In practice of course we need to make compromises. There is a more fundamental point: to talk about \emph{ideas}. I will need to speak ``plain English" and drawing.  The hardest thing for you and myself will be to judge when I'm speaking plain English or mathematical English.
+
+\subsektion{Sets}\vspace*{5pt}
 \label{sub:sets}
 
-A set $S$ is \lecturemarker{0}{5 Oct} a collection of objects (called the \emph{elements} of the set)\\
-\begin{example}
-A way to specify a set is to list the objects (between curly brackets):
-\[S = \{1,3,7\}\]	
-The order of elements is unimportant, as is repetition:
-\[\{1,2\} = \{2,1\} = \{1,1,2\}\]
-\end{example}
+\begin{definition}
+A set $S$ is  a collection of objects (called the \emph{elements} of the set).
+\end{definition}
+A way to specify a set is to list the objects (between curly brackets), e.g. $S = \{1,3,7\}$. The order of elements is unimportant, as is repetition, i.e. $\{1,2\} = \{2,1\} = \{1,1,2\}$.\\
 
-I say $S_1 \subset S_2$ ($S_1$ \emph{contained} in $S_2$) if every element of $S_1$ is also an element of $S_2$. I can write this as a \emph{statement}: $x \in S_1 \implies x \in S_2$\\
 
-I say $S_1 = S_2$ if $S_1 \subset S_2$ \& $S_2 \subset S_1$. Elements can be sets: $S = \{1,2,\{1,2\}\}$.\\
- But there is one thing you are never allowed to do:\vspace*{5pt}
+\begin{definition}
+I say $S_1 \subset S_2$ ($S_1$ \emph{contained} in $S_2$) if every element of $S_1$ is also an element of $S_2$. I can write this as a \emph{statement}: $x \in S_1 \implies x \in S_2$.
+
+I say $S_1 = S_2$ if $S_1 \subset S_2$ and $S_2 \subset S_1$.
+\end{definition}
+
+
+ Elements can be sets: $S = \{1,2,\{1,2\}\}$. But there's one thing you're never allowed to do:\vspace*{5pt}
 
 \begin{axiom}[Foundation Axiom]
 $S \not \in S$	
 \end{axiom}
 
-
-
-More things about sets:
+\begin{definition}
 \begin{itemize}
-\item $a \not \in S$ ``$a$ is not an element of $S$''
-\item $S_1 \cup S_2$ ``$S_1$ union $S_2$'' = $\{x ~|~ x \in S_1 \text{ or } x \in S_2 \text{ (or both)}\} = \{x : x \in S_1 \text{ or } x \in S_2\}$
-\item $S_1 \cap S_2$ ``$S_1$ intersection $S_2$'' = $\{x ~|~ x \in S_1 \text{ and } x \in S_2\}$
-\item $S_1 \backslash S_2$ ``$S_1$ take away $S_2$'' = $\{x ~|~ x \in S_1 \& x \not \in S_2\}$
-\item $S_1 \triangle S_2$ ``symmetric difference'' = $\{x ~|~ x \in S_1 \text{ or } x \in S_2 \text{ but not both }\}$\\ = $(S_1 \cup S_2) \backslash (S_1 \cap S_2)$
+\item $a \not \in S$ (\emph{$a$ is not an element of $S$})
+\item $S_1 \cup S_2$ (\emph{$S_1$ union $S_2$}) = $\{x ~|~ x \in S_1 \text{ or } x \in S_2 \text{ (or both)}\}$
+\item $S_1 \cap S_2$ (\emph{$S_1$ intersection $S_2$}) = $\{x ~|~ x \in S_1 \text{ and } x \in S_2\}$
+\item $S_1 \backslash S_2$ (\emph{$S_1$ take away $S_2$}) = $\{x ~|~ x \in S_1 \;\&\; x \not \in S_2\}$
+\item $S_1 \triangle S_2$ (\emph{symmetric difference}) = $\{x ~|~ x \in S_1 \text{ or } x \in S_2 \text{ but not both }\}$\\ = $(S_1 \cup S_2) \backslash (S_1 \cap S_2)$
 \end{itemize}
+\end{definition}
 
 When you reason about sets \& other mathematical objects, it is useful to draw pictures:
 
@@ -95,8 +113,8 @@ When you reason about sets \& other mathematical objects, it is useful to draw p
 \def\firstcircle{(0,0) circle (1cm)}
 \def\secondcircle{(0:1.5cm) circle (1cm)}
 
-\colorlet{circle edge}{blue!50}
-\colorlet{circle area}{blue!20}
+\colorlet{circle edge}{Blue!50}
+\colorlet{circle area}{Blue!25}
 
 \tikzset{filled/.style={fill=circle area, draw=circle edge, thick},
     outline/.style={draw=circle edge, thick}}
@@ -105,7 +123,7 @@ When you reason about sets \& other mathematical objects, it is useful to draw p
 % Set A and B
 \begin{minipage}{0.5\textwidth}
 \hspace*{2cm}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.8]
     \begin{scope}
         \clip \firstcircle;
         \fill[filled] \secondcircle;
@@ -118,7 +136,7 @@ When you reason about sets \& other mathematical objects, it is useful to draw p
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
 %Set A or B but not (A and B) also known a A xor B
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.8]
     \draw[filled, even odd rule] \firstcircle node {$S_1$}
                                  \secondcircle node{$S_2$};
     \node[anchor=south] at (current bounding box.north) {$S_1\triangle S_2$};
@@ -127,7 +145,7 @@ When you reason about sets \& other mathematical objects, it is useful to draw p
 \begin{minipage}{0.5\textwidth}	
 \vspace*{15pt}
 \hspace*{2cm}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.8]
     \draw[filled] \firstcircle node {$S_1$}
                   \secondcircle node {$S_2$};
     \node[anchor=south] at (current bounding box.north) {$S_1 \cup S_2$};
@@ -136,7 +154,7 @@ When you reason about sets \& other mathematical objects, it is useful to draw p
 \begin{minipage}{0.5\textwidth}	
 % Set A but not B
 \vspace*{15pt}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.8]
     \begin{scope}
         \clip \firstcircle;
         \draw[filled, even odd rule] \firstcircle node {$S_1$}
@@ -146,7 +164,7 @@ When you reason about sets \& other mathematical objects, it is useful to draw p
                    \secondcircle node {$S_2$};
     \node[anchor=south] at (current bounding box.north) {$S_1\backslash S_2$};
 \end{tikzpicture}
-\end{minipage}
+\end{minipage}\vsp
 
 
 Sometimes (often) it is not practical to list all the elements of a set: 
@@ -160,9 +178,7 @@ Sometimes (often) it is not practical to list all the elements of a set:
 \end{examples}
 
 $\emptyset$ \lecturemarker{1}{5 Oct}
- denotes the \emph{empty set}.
-
-Rules governing the empty set - for every set $A$:\shortskip
+ denotes the \emph{empty set}. Rules governing the empty set: for every set $A$\shortskip
 \begin{itemize}
 \shortskip
 \item $\emptyset \subset A$
@@ -187,7 +203,7 @@ If $\underline{n}$ is a number, then also $\underline{n} + \underline{1} = \unde
 \end{example}
 \setlength{\parskip}{5pt}
 
-Q: What does it mean when a natural number is a set of empty sets?
+\emph{Q: What does it mean when a natural number is a set of empty sets?}\\
 
 Corti: You are confused, that is the definition! You can never object to a definition. I guess this example shows not only what to do with the empty set, but also if you take going back to first principles a little too far, it becomes something we don't want to do. 
 
@@ -204,55 +220,46 @@ Examples of Statements (aka	``propositions'')
 \item If $n^2$ is odd then $n$ is odd
 \item If $x \iR$, $x\geq 0$ then there exists $y \iR$ such that $y^2 = x$	
 \end{enumerate}
-\end{examples}~
+\end{examples}\vsp
 
 
 \subsubsektion{Implications}
 
-Let $P$ \& $Q$ be statements.
-\begin{center}
-$P \implies Q$ means any one of: 
-$\begin{cases}
- \text{If } P \text{ is true, then } Q \text{ is true}\\ 
- \text{If } P \text{ then } Q\\
- Q \text{ if } P\\
- P \text{ true only if } Q \text{ is true}\\
- Q \text{ false } \implies P \mbox{ false }\\
- P \text{ is sufficient for } Q\\
- Q \text{ is necessary for } P\\
-\end{cases}
-$\\
-\end{center}
+Let $P$ and $Q$ be statements. $P \implies Q$ means any one of: 
+\begin{itemize}
+\item $\text{If } P \text{ is true, then } Q \text{ is true}$
+\item $\text{If } P \text{ then } Q$
+\item $Q \text{ if } P$
+\item $P \text{ true only if } Q \text{ is true}$
+\item $Q \text{ false } \implies P \mbox{ false }$
+\item $P \text{ is sufficient for } Q$
+\item $Q \text{ is necessary for } P$\\
+\end{itemize}
 
-e.g. $m =3 \implies m^2 - 2n - 3 = 0$\\
+e.g. $m =3 \implies m^2 - 2n - 3 = 0$.\\
 
-\begin{center}
 $P \iff Q$ means any one of: 
-$\begin{cases}
- P \implies Q \text{ \& } Q \implies P\\
- P \text{ if and only if } P\\
- P \text{ is necessary and sufficient for } Q\\
- P \text{ iff } Q\\
+\begin{itemize}
+\item  $P \implies Q \text{ \& } Q \implies P$
+\item $ P \text{ if and only if } P$
+\item $  P \text{ is necessary and sufficient for } Q$
+\item $  P \text{ iff } Q$\\
+\end{itemize}
 
-\end{cases}
-$\\
-\end{center}
 
-This is just language, don't try to understand it. It's just mathematical English. A computer can be taught that any of those strings of words are completely equivalent, without having to understand anything, and so will you. \\
+This is just language, don't try to understand it. It's just mathematical English. A computer can be taught that any of those strings of words are completely equivalent, without having to understand anything, and so will you. 
 
 \subsubsektion{Negations}
 
-If $P$ is a statement, there is a statement $\overline{P}$ (non-$P$) such that $P$ is true $\iff \overline{P}$ is false. 
-
-$P \implies Q$ is equivalent to $\overline{Q} \implies \overline{P}$ (the basics of proofs by contradiction) 
+If $P$ is a statement, there is a statement $\overline{P}$ (non-$P$) such that $P$ is true $\iff \overline{P}$ is false. $P \implies Q$ is equivalent to $\overline{Q} \implies \overline{P}$ (the basics of proofs by contradiction) 
 
 e.g. $(x=2) \implies (x^2 < 5)$ is equivalent to $(x^2\geq 5) \implies (x \neq 2)$\\
 
 
-\subsubsektion{Quantifiers}\vspace*{5pt}
-\begin{definition} The symbol $\forall$ means ``for all'' (the ``universal quantifier'')
+\subsubsektion{Quantifiers}\vspace*{8pt}
+\begin{definition} The symbol $\forall$ means \emph{for all} (the ``universal quantifier'')
 
-The symbol $\exists$ means ``there exists'' (the ``existential'' quantifier)
+The symbol $\exists$ means \emph{there exists} (the ``existential'' quantifier)
 
 ($\exists_1$, or $\exists!$ means ``there exists a \emph{unique}$\dots$'')
 \end{definition}
@@ -262,13 +269,11 @@ So instead of writing
 \begin{center}
 ``If $x \iR,~x\geq 0$ then there is $y\iR$ such that $y^2 = x$''
 \end{center}
-
 I write 
-\[``\forall x \iR,~(x\geq 0) \implies (\exists y\iR: y^2 = x)"\]~
+\[``\forall x \iR,~(x\geq 0) \implies (\exists y\iR: y^2 = x)"\]
 
-In the course of the proof one is allowed to ``call up'' statements that have been proved previously and axioms (statements that are generally accepted and not proved).\\
+In the course of the proof one is allowed to ``call up'' statements that have been proved previously and axioms (statements that are generally accepted and not proved). The ``propositional calculus'' is a very strict system where:
 
-The ``propositional calculus'' is a very strict system where:
 \begin{enumerate}
 \item You are only allowd a given (small) list of symbols...
 
@@ -282,7 +287,7 @@ The ``propositional calculus'' is a very strict system where:
 \vspace*{15pt}
 
 
-\begin{example} Prove: for $n \in \mathbb{N} \quad n^2$ is odd $\implies n$ is odd.
+\begin{example} \emph{Prove: for $n \in \mathbb{N} \quad n^2$ is odd $\implies n$ is odd.}
 
 In the proof the following will be taken for granted.
 \begin{itemize}
@@ -293,28 +298,24 @@ In the proof the following will be taken for granted.
 
 \emph{First a wrong proof:}
 
-Suppose that $n$ is odd. \\
-Then $n = 2k +1$ (some $k$)\\
-Then $n^2 = (2k+1)^2 = 4k^2 + 4k+1 = 2(2k^2 + 2k) + 1$ which is odd. \qed\\
+Suppose that $n$ is odd. Then $n = 2k +1$ (some $k$). Then $n^2 = (2k+1)^2 = 4k^2 + 4k+1 = 2(2k^2 + 2k) + 1$ which is odd. \qed
 
-Sometimes it's harder to prove $\bar{q} \implies \bar{p}$ than directly - I think it's more psychological; some people are a bit more oppositional, they are angry with the world, and they start each proof by contradiction! I think psychologically it's much better to prove things directly. But in this case $\bar{q} \implies \bar{p}$ is much easier:\\
+Sometimes it's harder to prove $\bar{q} \implies \bar{p}$ than directly - I think it's more psychological; some people are a bit more oppositional, they are angry with the world, and they start each proof by contradiction! I think psychologically it's much better to prove things directly. But in this case proving $\bar{q} \implies \bar{p}$ is much easier:
 
 \emph{Now a correct proof...}
 
-The statement I want to prove is equivalent to:
-$n \text{ is even } \implies n^2 \text{ is even }$
-
-\begin{proof}Suppose $n$ is even, then $n = 2k$ (for some $k \in \mathbb{N}$)\\
-Hence $n^2 = (2k)^2 = 4k^2 = 2(2k^2)$ is also even.
+\begin{proof} The statement I want to prove is equivalent to:
+$n \text{ is even } \implies n^2 \text{ is even}$.
+Suppose $n$ is even, then $n = 2k$ (for some $k \in \mathbb{N}$). Hence $n^2 = (2k)^2 = 4k^2 = 2(2k^2)$ is also even.
 \end{proof}
 \end{example}\vspace*{5pt}
 
-Note:$\qed$ means I just finished the proof\footnote{I prefer using the black rectangle for all my notes; squares frighten me.}, same as QED, //, $\square$, $\blacksquare$ etc.\\
+Note:$\qed$ means I just finished the proof\footnote{Don't be a square; the black rectangle is superior.}, same as QED, //, $\square$, $\blacksquare$ etc.\\
 
 \begin{definition}
 Suppose that for all $n \in \mathbb{N}$ you are given a set $A_n$.\\
 
-Then we define the infinite unions and intersections:\\
+Then we define the infinite unions and intersektions:\\
 \[\bigcup_{n=1}^{\infty}A_{n} = \{ x \;|\; x \in A_n \text{ for some } n \in \mathbb{N}\}\]
 
 \[\bigcap_{n=1}^{\infty}A_{n} = \{ x \;|\; x \in A_n \text{ for all } n \in \mathbb{N}\}\]
@@ -326,13 +327,13 @@ The Open and Closed Intervals:
  etc. with $a \leq b$ with $a,b \in \mathbb{R}$.
 \end{definition}
 
-N.B. if $a,b = \pm \infty$, we must always use an open interval for the $\pm \infty$ since $\infty \notin \mathbb{R}$.
+N.B. if $a,b = \pm \infty$, we must use an open interval for the $\pm \infty$ since $\infty \notin \mathbb{R}$.\\
 
 
 \subsubsektion{The Archimedean Axiom}\vspace*{10pt}
 
 \begin{axiom}[Archimedean]
-Given any  $A \in \R, \; \exists m \in \N$ such that $m \geq A$.\\ $ [\forall A \in \R \; \exists n \in \N \;|\; n \geq A]$ 
+Given any  $A \in \R, \; \exists m \in \N$ such that $m \geq A$. $ [\forall A \in \R \; \exists n \in \N \;|\; n \geq A]$ 
 \end{axiom}
 
 
@@ -340,20 +341,17 @@ Given any  $A \in \R, \; \exists m \in \N$ such that $m \geq A$.\\ $ [\forall A 
 This statement is equivalent to: $\forall A \in \R, \; \exists m \in \N \; | \; m > A$. 
 
 The ``grammar'' that rules how these sentences are put together is very strict. In particular the \emph{order} of the ``words'' is extremely important. For instance: $\exists n \in \N \; : \; \forall A \in \R \; n > A$ still makes ``sense''. But it is \emph{not} the Archimedean axiom. It is an \emph{utterly false} statement.\\
+\begin{example} Prove that:
 
-\begin{example} Prove that:\\
+\begin{itemize}
+\item[(a)] ${\bigcup_{n=1}^{\infty} [\,0, 1-\frac{1}{m}) = [\,0,1)}$
+\item[(b)] ${\bigcap_{n=1}^{\infty} (1-\frac{1}{m}, 1+ \frac{1}{m}) = \{1\}}$ 
+\end{itemize}
 
-(a) ${\bigcup_{n=1}^{\infty} [\,0, 1-\frac{1}{m}) = [\,0,1)}$ \\
+\textbf{Part (a):} 
 
-(b) ${\bigcap_{n=1}^{\infty} (1-\frac{1}{m}, 1+ \frac{1}{m}) = \{1\}}$ \\ 
-
-\end{example}
-
-\textbf{Part (a)} 
-
-Picture \& Idea: If $n$ is very large, then $[\,0, 1-\frac{1}{m}]$ is almost the interval $[0,1)$\\
-\\
-\hspace*{60pt}
+Picture \& Idea: If $n$ is very large, then $[\,0, 1-\frac{1}{m}]$ is almost the interval $[0,1)$:\\
+\begin{center}
 \begin{tikzpicture}[scale=5, node distance=2cm]
 \draw[latex-latex] (-0.5,0) -- (1.5,0) ; %edit here for the axis
 \foreach \x in  {0,1,0.95} % edit here for the vertical lines
@@ -364,9 +362,9 @@ Picture \& Idea: If $n$ is very large, then $[\,0, 1-\frac{1}{m}]$ is almost the
 \draw[shift={(0.95,0)},color=black] (0pt,0pt) -- (0pt,-1pt) node[above, yshift=0.5cm] 
 {$1-\frac{1}{m}$};
 %\draw[*-o] (0.92,0) -- (2.08,0);
-%\draw[very thick] (0.92,0) -- (1.92,0);
+\draw[very thick] (0,0) -- (1,0);
 \end{tikzpicture}
-
+\end{center}
 
 \begin{proof}
 Note this $\subset$ is obvious. If $x \in \cup_{n=1}^{\infty} [\,0, 1-\frac{1}{m})$ then $\exists m \in \N$ such that $x \in [\,0, 1- \frac{1}{m})$. But $[\,0, 1- \frac{1}{m}) \subset [\,0,1)$ so $x \in [\,0,1)$.
@@ -384,7 +382,7 @@ We need to show $\supset$ now to complete the proof. Suppose $x \in [0,1):$
 \draw[shift={(0.8,0)},color=black] (0pt,0pt) -- (0pt,-1pt) node[above, yshift=0.3cm] 
 {$x$};
 %\draw[*-o] (0.92,0) -- (2.08,0);
-%\draw[very thick] (0.92,0) -- (1.92,0);
+\draw[very thick] (0,0) -- (1,0);
 \end{tikzpicture}%picture of line
 \end{center}
 
@@ -400,8 +398,7 @@ which is exactly what I had to show for (a).
 \end{proof}
 
 
-
-\textbf{Part (b):} ${\bigcap_{n=1}^{\infty} (1-\frac{1}{m}, 1+ \frac{1}{m}) = \{1\}}$ \\ 
+\textbf{Part (b):} Show ${\bigcap_{n=1}^{\infty} (1-\frac{1}{m}, 1+ \frac{1}{m}) = \{1\}}$.
 
 \begin{proof}
 
@@ -410,7 +407,7 @@ It is obvious that $1 \in \bigcap_{n=1}^{\infty} (1-\frac{1}{m}, 1 + \frac{1}{m}
 To complete the proof we thus need to show  that LHS $\subset$ RHS: \[\{x \; : \; 1 - \frac{1}{n} < x < 1 + \frac{1}{n} \; \forall n \in \N\} \subset \{1\}\]
 
 Picture:\\
-\hspace*{60pt}
+\begin{center}
 \vspace*{5pt}
 \begin{tikzpicture}[scale=5, node distance=2cm]
 \draw[latex-latex] (-0.5,0) -- (1.5,0) ; %edit here for the axis
@@ -422,82 +419,61 @@ Picture:\\
 \draw[shift={(0.8,0)},color=black] (0pt,0pt) -- (0pt,-1pt) node[above, yshift=0.3cm] 
 {$x$};
 %\draw[*-o] (0.92,0) -- (2.08,0);
-%\draw[very thick] (0.92,0) -- (1.92,0);
+\draw[very thick] (0,0) -- (1,0);
 \end{tikzpicture}%picture of line
+\end{center}
 
-It seems blindingly obivous that $(x < ,1 + \frac{1}{n} \quad \forall n) \implies (x \leq 1) \quad (*)$
+It seems blindingly obvious that \[(x < ,1 + \frac{1}{n} \quad \forall n) \implies (x \leq 1) \tag{$*$}\]
 
-I prove instead the equivalent to statement $(*)$: $x> 1 \implies \exists n $ such that $ x \geq 1 + \frac{1}{n}$
-
-Choose $n$ such that $n > \frac{1}{x-1}$ (invoking the Archimedean axiom) 
+I prove instead the equivalent to statement $(*)$: $x> 1 \implies \exists n $ such that $ x \geq 1 + \frac{1}{n}$. Choose $n$ such that $n > \frac{1}{x-1}$ (invoking the Archimedean axiom) 
 $x-1 > 0, \text{ so }$
 \[\begin{aligned} n(x-1) > 1 &\implies \textstyle{x-1 > \frac{1}{n} }\\ &\implies \textstyle{x > 1 + \frac{1}{n} } \end{aligned}\]
 
-There is a similar claim whose proof I gave to you for $(x > 1 - \frac{1}{n}~ \forall n) \implies (x \geq 1)$. 
-
-Since both LHS $\subseteq$ RHS, and RHS $\subseteq$ LHS,  ${\bigcap_{n=1}^{\infty} (1-\frac{1}{m}, 1+ \frac{1}{m}) = \{1\}}$
-\end{proof}\vspace*{5pt}
-
+There is a similar claim whose proof I gave to you for $(x > 1 - \frac{1}{n}~ \forall n) \implies (x \geq 1)$. Since both LHS $\subseteq$ RHS, and RHS $\subseteq$ LHS, we're done.
+\end{proof}
+\end{example}\vsp
 
 
-\begin{proposition} - \lecturemarker{3}{5 Oct}
+\begin{proposition} - {\normalfont \lecturemarker{3}{5 Oct}}
 Let $A, B, C, \Omega$ be sets:
 \begin{enumerate}
-\item $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
-\item $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
-\item If $A, B, \subset \Omega$, Define $A^C = \Omega \backslash A$ (the \emph{complement} of $A$). Then:
-\[A^C \cap B^C = (A \cup B)^C\]
-\[(A \cap B)^C = A^C \cup B^C\]
-\end{enumerate}
+\item[\emph{(i)}] $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+\item[\emph{(ii)}] $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+\item[\emph{(ii)}] If $A, B, \subset \Omega$, Define $A^C = \Omega \backslash A$ (the \emph{complement} of $A$). Then:
+\[
+	A^C \cap B^C = (A \cup B)^C \; \text{ and } \; (A \cap B)^C = A^C \cup B^C
+\]
+\end{enumerate}\vsp
+
 \end{proposition}
 
-\begin{proof} $(i)$
+\begin{proof} (i)
 First let us show $\subset$:
 
-Let $x \in A \cap (B \cup C)$. $x \in A$ and $x \in B \cup C$, so 
+Let $x \in A \cap (B \cup C)$. $x \in A$ and $x \in B \cup C$, so \emph{either} $x \in A$ and $x \in B \implies x \in A\cap B$ \emph{or} $x \in A$ and $x \in C \implies x \in A \cap C$. 	So \emph{either} $x \in A \cap B$ \emph{or} $x \in A\cap C$ - that is, $x \in (A \cap B) \cup (A \cap C)$. This shows ``$\subset"$.\\
 
-\emph{Either} $x \in A$ and $x \in B \implies x \in A\cap B$
+Second, let us show $\supset$: 
 
-\emph{Or} $x \in A$ and $x \in C \implies x \in A \cap C$. 	
-
-So 
-
-\emph{Either} $x \in A \cap B$
-
-\emph{Or} $x \in A\cap C$	
-
-that is, $x \in (A \cap B) \cup (A \cap C)$. This shows ``$\subset"$.\\
-
-Second, let us show $``\supset"$: 
-
-Let $x \in (A\cap B)\cup (A\cap C)$, then 
-
-\emph{Either} $x \in A\cap B \implies x \in A$ and $x \in B \implies x \in A$ and $x \in B \cup C$. 
-
-\emph{Or} $x \in A\cap C \implies x \in A$ and $x \in C \implies x \in A$ and $x \in B \cup C$. 
-
-So in both cases $x \in A \cap (B \cup C)$. The two inclusions together imply $(i)$. 
+Let $x \in (A\cap B)\cup (A\cap C)$, then \emph{either} $x \in A\cap B \implies x \in A$ and $x \in B \implies x \in A$ and $x \in B \cup C$ \emph{or} $x \in A\cap C \implies x \in A$ and $x \in C \implies x \in A$ and $x \in B \cup C$. So in both cases $x \in A \cap (B \cup C)$. The two inclusions together imply (i). 
 \end{proof}
 
 
-\begin{proof} $(ii)$. I could do this in a similar way to $(i)$. Instead, I show that $(i) \implies (ii)$ purely formally: 
+\begin{proof} (ii). I could do this in a similar way to (i). Instead, I show that (i) $\implies$ (ii) purely formally: 
 
-\[
-\begin{aligned}
-  (A \cup B)\cap (A \cup C) &= ((A\cup B)\cap A)\cup ((A \cup B)\cap C)\\
+\begin{align*}
+	  (A \cup B)\cap (A \cup C) &= ((A\cup B)\cap A)\cup ((A \cup B)\cap C)\\
   &= ((A\cap A)\cup (B\cap A))\cup ((A\cap C)\cup (B\cap C))\\
   &= [A \cup (B\cap A)\cup (C\cap A)] \cup (B\cap C)\\
   &= A \cup (B \cap C)\qedhere
-\end{aligned}
-\]
+\end{align*}
 \end{proof}
 
-Now for $(iii)$, sketch the general pictures:
+Now for (iii), sketch the general pictures:
 
 Picture of $A^C$: 
 \begin{center}
-\begin{tikzpicture}
-\fill[blue!30] (-2,-1.5) rectangle (3.5,1.5) node[below left]{$\Omega$};
+\begin{tikzpicture}[scale=0.8]
+\fill[Blue!25] (-2,-1.5) rectangle (3.5,1.5) node[below left]{$\Omega$};
 \draw (-2,-1.5) rectangle (3.5,1.5) node[below left]{$\Omega$};
 \fill[white] (0,0) circle (1cm);
 \draw (0,0) circle (1cm) node {$A$};
@@ -506,8 +482,8 @@ Picture of $A^C$:
 
 Picture of $(A\cup B)^C$:
 \begin{center}
-\begin{tikzpicture}
-\fill[blue!30] (-2,-1.5) rectangle (3.5,1.5) node[below left]{$\Omega$};
+\begin{tikzpicture}[scale=0.8]
+\fill[Blue!25] (-2,-1.5) rectangle (3.5,1.5) node[below left]{$\Omega$};
 \draw (-2,-1.5) rectangle (3.5,1.5) node[below left]{$\Omega$};
 \fill[white] (0,0) circle (1cm);
 \fill[white] (1.5,0) circle (1cm);
@@ -518,7 +494,7 @@ Picture of $(A\cup B)^C$:
 
 Can you ``see" that $(A\cup B)^C = A^C \cap B^C$?
 
-\begin{proof} $(iii)$ We show $``\subset"$: 
+\begin{proof} (iii) We show $\subset$: 
 
 Suppose $x \in A^C \cap B^C$. Then $x \not \in A$ and $x \not \in B \implies x \not \in A\cup B$.\\
 
@@ -527,8 +503,7 @@ Let's show $\supset$:
 Suppose $x \not \in A\cup B$, then $x \not \in A $ and $x \not \in B$. So $x \in A^C$ and $x \in B^C$. So $x \in A^C \cap B^C$. 
 \end{proof}
 
-\emph{Exercise:} Similarly prove on your own that $(A\cap B)^C = A^C \cup B^C$. 
-\pagebreak
+\emph{Exercise:} Similarly prove on your own that $(A\cap B)^C = A^C \cup B^C$.
 
 
 
@@ -560,7 +535,7 @@ Suppose given infinitely many propositions $P_n$, one for each $n \iN$. Suppose 
 Then $P_n$ is true for all $n\iN$. 
 \end{definition}
 
-\textbf{Question:} Can the principle of mathematical induction be considered a ``mathematical statement'' i.e. can we prove it. Yes!\\
+\textbf{Question:} {Can the principle of mathematical induction be considered a ``mathematical statement'' i.e. can we prove it.} Yes!\\
 
 
 \begin{axiom}[Smallest Element Axiom]\lecturemarker{4}{5 Oct}
@@ -570,15 +545,10 @@ Suppose $\phi \neq S \subset \N$. Then $S$ has a smallest element.
 \begin{proposition}
 Smallest element axiom $\implies$ mathematical induction.	
 \end{proposition}
-\begin{proof}By contradiction. Let $S = \{n \iN ~|~ \overline{P_N}\}$. Assume by contradiction $S \neq \phi$. Then $S$ has a smallest element $k \in S$. There are two cases: 
-
-\textbf{Either} $k - 1 \in S$. Then $k$ was not the smallest element: a contradiction. 
-
-\textbf{Or} $k-1 \not \in S$. This means $P_{k-1}$. But $P_{k-1} \implies P_k$. So $P_k$. But then $k \not \in S$, also a contradiction.	
-
+\begin{proof}By contradiction. Let $S = \{n \iN ~|~ \overline{P_N}\}$. Assume by contradiction $S \neq \phi$. Then $S$ has a smallest element $k \in S$. There are two cases: Either $k - 1 \in S$, then $k$ was not the smallest element: a contradiction, or $k-1 \not \in S$. This means $P_{k-1}$. But $P_{k-1} \implies P_k$. So $P_k$. But then $k \not \in S$, also a contradiction.	
 \end{proof}
 
-We will see the converse: mathematical induction $\implies$ smallest element axiom.\\
+We'll see the converse: mathematical induction $\implies$ smallest element axiom.\\
 
 \begin{example}
 Define the Fibonacci Sequence inductively as 
@@ -594,8 +564,8 @@ In the proof. I want to do something like this:
 \[
 \begin{aligned}
   F_{n+1} &= F_n + F_{n-1} \\ 
-  &= \frac{1}{\sqrt{5}} \left[\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n\right]
-  + \frac{1}{\sqrt{5}} \left[\left(\frac{1+\sqrt{5}}{2}\right)^{n-1} - \left(\frac{1-\sqrt{5}}{2}\right)^{n-1}\right]
+  &= \frac{1}{\sqrt{5}} \left[\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n\right]\\
+  &+ \frac{1}{\sqrt{5}} \left[\left(\frac{1+\sqrt{5}}{2}\right)^{n-1} - \left(\frac{1-\sqrt{5}}{2}\right)^{n-1}\right]
 \end{aligned}
 \]
 
@@ -628,12 +598,12 @@ So indeed
 \end{example}
 
 \begin{warning}
-Look at how you set up your proof; you're using \emph{both} $Q_n$ and $Q_{n-1}$ to prove $Q_{n+1}$, but this is NOT mathematical induction which is only $P_k \implies P_{k+1}$. You have to set up $P_k$ as well. I say this, as usually about 50 or 100 have to resit M1F in September - that's just a fact of life. Last summer the exam asked you to prove induction for this formula and a lot of people (I'm saying $> 50\%$) didn't tell me what $P_n$ is. Do you know how many marks they got, for pages and pages of algebra? Zero. 
-\end{warning}
+Look at how you set up your proof; you're using \emph{both} $Q_n$ and $Q_{n-1}$ to prove $Q_{n+1}$, but this is \textbf{not} mathematical induction which is only $P_k \implies P_{k+1}$. You have to set up $P_k$ as well. I say this, as usually about 50 or 100 have to resit M1F in September - that's just a fact of life. Last summer the exam asked you to prove induction for this formula and a lot of people (I'm saying $> 50\%$) didn't tell me what $P_n$ is. Do you know how many marks they got, for pages and pages of algebra? Zero marks.
+\end{warning}\vsp
 
 
 \begin{definition}[Strong principle of induction]
-Suppose $Q_n\; (n \iN)$ and assume \lecturemarker{5}{5 Oct}
+Suppose $Q_n\; (n \iN)$ \lecturemarker{5}{5 Oct} and assume 
 \begin{enumerate}
 \item $Q_0$ is true, and
 \item $\forall n \geq 1, (Q_k$ for $k < n)\implies Q_n$	
@@ -661,9 +631,9 @@ Every $n \iN, n \neq 0,1$ is the product of irreducibles.
 Uses the strong principle of induction with 
 \[Q_n: n = 0\text{ or }n = 1\text{ or }n \neq 0,1 \text{ is the product of irreducibles.}\]$Q_0, Q_1$ are true. Assume now that $n \neq 0,1$. I prove $(Q_k, k< n) \implies Q_n$. 
 
-\textbf{Either:} $n$ is irreducible, in this case obviously we're OK
+{Either:} $n$ is irreducible, in this case obviously we're OK
 
-\textbf{Or:} $n = a\cdot b$ is reducible, with $a \neq 1, b \neq 1.$. But then $a < n, b < n$, so by our inductive assumption $Q_a$ and $Q_b$ are both true: $a,b$ are both products of irreducibles. hence 
+{Or:} $n = a\cdot b$ is reducible, with $a \neq 1, b \neq 1.$. But then $a < n, b < n$, so by our inductive assumption $Q_a$ and $Q_b$ are both true: $a,b$ are both products of irreducibles. hence 
 \[n = \underbrace{\text{product of irreducibles}}_{a} \times \underbrace{\text{product of irreducibles}}_{b}\]
 is also the product of irreducibles.
 \end{proof}
@@ -671,11 +641,11 @@ is also the product of irreducibles.
 Next I complete a circle of ideas: 
 
 \[
-\begin{tikzcd}[row sep=1.5cm]
+\begin{tikzcd}[row sep=1cm,column sep=-1cm]
  &  \mbox{Usual induction}\arrow[implies-implies, double equal sign distance]{dr} \\ 
 \mbox{Strong induction} \arrow[implies-implies, double equal sign distance]{ur}\arrow[implies-implies, double equal sign distance]{rr} && \mbox{Smallest element axiom}
 \end{tikzcd}
-\]~\\
+\]\vsp
 
 \begin{proposition}
 Strong induction $\implies$ smallest element axiom.	
@@ -690,14 +660,13 @@ If $Q_n$ is true for all $n$, then I'm done since $S \neq \phi$. Then $\exists n
 \item $Q_0$ is clearly true: indeed if $0 \in S$ then $0$ is the smallest element of $S$ because it is the smallest element of $\N$
 \item I need to show that $(Q_k$ for $k < n) \implies Q_n$.
 
- If $n$ is the smallest element of $S$ then I'm done. Otherwise $n$ is not the smallest element of $S$. This means $\exists k \in S$, but then $Q_k$ tells me that $S$ has a smallest element. By strong induction, all $Q_n$ are true and then I'm done with this proof. 
+ If $n$ is the smallest element of $S$ then I'm done. Otherwise $n$ is not the smallest element of $S$. This means $\exists k \in S$, but then $Q_k$ tells me that $S$ has a smallest element. By strong induction, all $Q_n$ are true and then I'm done with this proof. \qedhere
 \end{enumerate}
-\end{proof}
+\end{proof}\vsp
 
 \emph{Q: Why have you included $0$ in $\N$?}
 
-Corti: It's a convention, some people do, some don't. I'm happy to include zero. The perspective I take is somewhat higher - there are many mathematical structures, like a semi-group where you can add things and there is a neutral element, if you don't have a neutral element things becomes shit. Of course it was a big deal in human history when humans decided that $0$ is a number. The place in history where this first came up was in those Indian Sanskrit poems, the Bhagavad Gita. Inside there, in Sanskrit texts of the 8th Century, people studied what we would call the Pell equation, and it included a cyclic method to solve the equation - if you allowed $0$ as a number it just becomes much clearer. I completely don't care about applications of maths like accounting and bullshit like that. $0$ helps with mathematical research. 
-
+Corti: It's a convention, some people do, some don't. I'm happy to include zero. The perspective I take is somewhat higher - there are many mathematical structures, like a semi-group where you can add things and there is a neutral element, if you don't have a neutral element things becomes shit. Of course it was a big deal in human history when humans decided that $0$ is a number. The place in history where this first came up was in those Indian Sanskrit poems, the Bhagavad Gita. Inside there, in Sanskrit texts of the 8th Century, people studied what we would call the Pell equation, and it included a cyclic method to solve the equation - if you allowed $0$ as a number it just becomes much clearer. I completely don't care about applications of maths like accounting and bullshit like that. $0$ helps with mathematical research.\\
 
 
 \subsubsektion{Contrapositive}
@@ -725,10 +694,9 @@ An element $a \in A$ such that $\overline{Q(a)}$ is called a \emph{counter examp
 \end{remark}\vspace*{10pt}
 
 \begin{example}
- A typical exam question: True or false? Find a proof or a counterexample: 
-\[n \in \N \text{ irreducible } \implies \exists a,b \iN \text{ with } n = a^2 + b^2\]	
+ A typical exam question: True or false? Find a proof or a counterexample: $n \in \N \text{ irreducible } \implies \exists a,b \iN \text{ with } n = a^2 + b^2$.
 
-A: It is false, that is, the negation: 
+Answer: It is false, that is, the negation: 
 \[\exists n\iN \text{ irreducible  such that } \forall a,b \iN, n \neq a^2 + b^2\]
 is true. 
 
@@ -742,9 +710,17 @@ We find the contrapositive applying our rules:
   Rule No. 2 (obvious rule): 
 \[=\exists n \in \{n \iN \text{ irreducible}\}\; (\forall (a,b) \in \N \times \N (n \neq a^2 + b^2))\]
 
-Indeed take $n = 3$. Then $\forall a,b$, $3 \neq a^2 + b^2$. (Exercise: Prove this!)
+Indeed take $n = 3$. Then $\forall a,b$, $3 \neq a^2 + b^2$. (\emph{Exercise:} Prove this!)
 \end{proof}
 \end{example}
+
+
+\vspace*{2cm}
+\begin{center}
+\includegraphics[width=9cm]{cartoon1.png}
+\end{center}
+
+
 
 
 \sektion{Number Systems}
@@ -762,7 +738,7 @@ Today \lecturemarker{6}{5 Oct} I take $\N, \Z$ for granted and discuss in some d
 \subsektion{$\Q$, the Rationals}
 
 Basically, elements of $\Q$ (the rational numbers) are ``things" that you write in the form: $x = m/n$, where $m \in \Z$ and $m \iN, n \neq 0$. There is a catch, and it is that $x$ cannot be uniquely written in this form: 
-$2/3 ``=" 4/6 ``=" 6/9$. This is not a \emph{major} problem: $m = cm'$, $n = cn'$ with $c = \hcf(m,n)$ then the expression for $x$: $x = m'/n'$ is unique. But it is a small problem nonetheless.\\
+$2/3\; ``=" \;4/6\; ``=" \;6/9$. This is not a \emph{major} problem: $m = cm'$, $n = cn'$ with $c = \hcf(m,n)$ then the expression for $x$: $x = m'/n'$ is unique. But it is a small problem nonetheless.\\
 
 \begin{definition}
 The \emph{cartesian product} of two sets, $A,B$ is 
@@ -781,7 +757,7 @@ Properties of equivalence:
 \item $x \sim y \implies y \sim x$
 \item $(x\sim y)$ and $(y \sim z) \implies x \sim z$	
 \end{enumerate}
-Exercise: Prove this\\
+\emph{Exercise}: Prove this.\\
 
 \begin{definition}
 If $(m,n) \in \Z \times (\Z \backslash\{0\})$ then the \emph{equivalence class} of $(m,n)$ is the set 
@@ -793,7 +769,7 @@ Alternative notation: $[m,n] = m/n$\\
 \begin{definition}
 \[\Q = \{[m,n] ~|~ (m,n) \in \Z \times (\Z \backslash\{0\})\}\]	
 \end{definition}
-Elements $x \iQ$ are written as ``equivalence classes" $m/n$ and now it makes perfect sense to write $2/3 = 4/6 = 6/9$.\\
+Elements $x \iQ$ are written as ``equivalence classes" $m/n$ and now it makes perfect sense to write $2/3 = 4/6 = 6/9$.
 
 \subsubsektion{Binary operations on $\Q$}
 Suppose $(p,q)$ and $(m,n) \in \Z \times \Z\backslash\{0\}$. Then 
@@ -904,13 +880,11 @@ First I claim that $-x = (-1)\times x$ for all $x$. Indeed:
 
 Secondly, I claim $(-1)\cdot(-1) = 1$ (Exercise!), then I can finish (2):
 
-\[
-\begin{aligned}
+\begin{align*}
   (-x)\cdot(-x) &= (-1)\cdot x \cdot (-1)\cdot x\\
   &= (-1)\cdot (-1)\cdot x\cdot x\\
-  &= 1\cdot x\cdot x = x \cdot x
-\end{aligned}
-\]	
+  &= 1\cdot x\cdot x = x \cdot x\qedhere
+\end{align*}
 \end{proof}	
 \end{itemize}
 \end{examples}\vspace*{10pt}
@@ -960,16 +934,20 @@ Cases: \begin{enumerate}
  \end{enumerate}
 
  Starting with (i):
- \[x(x+1) > 2 \implies x^2 - x - 2 >0 \implies (x-1)(x+2)>0\]
+\begin{align*}
+   x(x+1) > 2 &\implies x^2 - x - 2 >0\\
+   &\implies (x-1)(x+2)>0
+\end{align*}
  Recall $x > -1$, so case (i) $\implies x \in (1,\infty) = \{x \;|\; 1 < x\}$\\
  
- Next (ii): $x(x+1) <2 \implies x^2 - x - 2 < 0 \implies (x-1)(x+2) < 0$
- 
- Then $x \in (-2,1) \cap (-\infty,-1) = (-2,-1)$
-
-So our final answer is:
-$\boxed{x \in (-2,-1) \cup (1,\infty) }$
-\end{example}\pagebreak
+ Next (ii):
+\begin{align*}\\[-1cm]
+   x(x+1) <2 &\implies x^2 - x - 2 < 0\\
+   & \implies (x-1)(x+2) < 0
+\end{align*}
+ Then $x \in (-2,1) \cap (-\infty,-1) = (-2,-1)$. So our final answer is:
+\[x \in (-2,-1) \cup (1,\infty)\]
+\end{example}\vspace*{10pt}
 
 
 \begin{definition}[Absolute Value Function]
@@ -980,7 +958,7 @@ $\boxed{x \in (-2,-1) \cup (1,\infty) }$
  (so $|x| \geq 0\quad \forall x\in K$)
  \end{definition}
 
-\emph{Exercise:} Solve for $x \iR$: $|x+4| < |x-5|$, do it properly!\\ (hint: $|x| < A \iff -A < x < A$)
+\emph{Exercise:} Solve for $x \iR$: $|x+4| < |x-5|$, do it properly! (hint: $|x| < A \iff -A < x < A$)
 
 
 \subsektion{$\R$, the Real Numbers}
@@ -1088,11 +1066,11 @@ Clearly there is a unique $a_1 \in \{0,1,\dots,9\}$ such that $x \in [a_0, \frac
 
 \begin{example}
 $2/7 = 0.\overline{285714}$, using long division. 
-\end{example}\vspace*{5pt}
+\[
+   \opdiv[period]{2}{7}
+\]
 
-% Do diagram of decimal expansion of $\R$ pg 48 of his notes
-%
-%
+\end{example}
 
 In summary let $x \iR$. Then $x = a.a_1a_2a_3a_4\dots$ with $a,a_k \in \Z$ and $0\leq a_k \leq 9$, where $a = \lfloor x \rfloor$ and $a_k (k \geq 1)$ are defined inductively, starting from $f_0 = \{x\}$ by $a_{k+1} = \lfloor 10f_k\rfloor$ where $f_k = \{10f_{k-1}\}$.\\
 
@@ -1120,9 +1098,7 @@ It is enough to show that $y = 0.\overline{b_1\dots b_k} \iQ$:
 
 Next I prove $\implies$:
 
- Assume $x = p/q \iQ$, where $p \iZ, q \iZ, q \geq 1$. Then the expansion is eventually periodic: 
-
-$x = p/q \iQ$. Let $a = \lfloor x \rfloor$, $f = \{x\}$, so by the division theorem $p = aq + r$ where $r = qf$. 
+ Assume $x = p/q \iQ$, where $p \iZ, q \iZ, q \geq 1$. Then the expansion is eventually periodic: $x = p/q \iQ$. Let $a = \lfloor x \rfloor$, $f = \{x\}$, so by the division theorem $p = aq + r$ where $r = qf$. 
 
 Inductively we calculate: 
 
@@ -1139,7 +1115,7 @@ $a_k = \lfloor 10f_{k-1}\rfloor, f_k = \{10f_{k-1}\}$, so $10r_{k-1} = a_kq + r_
 
 In other words: write $p = aq + r$, then define $r_k (k \geq 1)$, $a_k$ inductively by: $10r_{k-1} = a_kq + r_k\quad 0 \leq r_k \leq 9$. 
 (the process / construction guarantees that $0\leq a_k \leq 9$). Because $0 \leq r_k < 9$ for all $k$, at some point $r_n = r_m,\; n > m$. This means that $x = a.a_1 \dots \overline{a_m\dots a_{n-1}}$, that is the decimal expansion is eventually periodic. 
-\end{proof}\vspace*{5pt}
+\end{proof}
 
 Non-uniqueness of decimal expansions:  \lecturemarker{11}{30 Oct}
 \[
@@ -1149,7 +1125,7 @@ Non-uniqueness of decimal expansions:  \lecturemarker{11}{30 Oct}
   &= \frac{9}{10}\left( 1 + \frac{1}{10} + \left(\frac{1}{10}\right)^2 + \dots + \left(\frac{1}{10}\right)^n + \dots \right)\\
   &= \frac{9}{1} \cdot \frac{1}{1 -\frac{1}{10}} = \frac{9}{10} \times \frac{10}{9} = 1
 \end{aligned}
-\]\vspace*{10pt}
+\]\vspace*{5pt}
 
 \begin{proposition}
 Suppose $x\iR$ has two different decimal expansions. Then these are as follows: 
@@ -1187,7 +1163,7 @@ So all $\leq$ must have been $=$ and this shows the proposition.
 \begin{enumerate}
 \item $\exists z \iQ: x < z < y$
 \item $\exists 	z \not \in \Q: x < z < y$
-\end{enumerate}
+\end{enumerate}\vsp
 
 %skipped blue part of p52.
 
@@ -1205,11 +1181,9 @@ Today we take the theorem for granted and draw some consequences. \\
 
 \begin{definition}
 For $r = p/q \geq 0$ and $x \iR$, $x \geq 0$ we define $x^r = \left(x^{\frac{1}{q}}\right)^p$.	
-\end{definition}\vspace*{5pt}
+\end{definition}
 
-\begin{remark} $x^r$ is well-defined. Recall $p/q = p'/q'$. Iff $\exists m,n$ such that $mp = np'$ and $mq = nq'$. To show $x^r$ is well defined, it is enough to show that $(x^{\frac{1}{q}})^p = ( x^{\frac{1}{mq}})^{mp}$. 
-
-We'd like to do $(x^{\frac{1}{q}})^p = x^{\frac{mp}{mq}} = x^{\frac{p}{q}} =( x^{\frac{1}{mq}})^{mp}$, 
+\begin{remark} $x^r$ is well-defined. Recall $p/q = p'/q'$. Iff $\exists m,n$ such that $mp = np'$ and $mq = nq'$. To show $x^r$ is well defined, it is enough to show that $(x^{\frac{1}{q}})^p = ( x^{\frac{1}{mq}})^{mp}$. We'd like to do $(x^{\frac{1}{q}})^p = x^{\frac{mp}{mq}} = x^{\frac{p}{q}} =( x^{\frac{1}{mq}})^{mp}$, 
 but this is using precisely the thing that we want to prove.
 
 \begin{proof}
@@ -1232,9 +1206,7 @@ Properties: Suppose $\alpha, \beta \in \Q_{\geq 0}$, and $x,y \in \R_{\geq 0}$. 
 \item $(x^\alpha)^\beta = x^{\alpha \beta}$
 \end{enumerate}
 
-\begin{proof} (i)
-
-Assume the result for integer powers. 
+\begin{proof} (i) Assume the result for integer powers. 
 \[
 \begin{aligned}
   x^\alpha x^\beta &= \left(x^{\frac{1}{n}}\right)^m \left(x^{\frac{1}{q}}\right)^p\\
@@ -1244,8 +1216,7 @@ Assume the result for integer powers.
 \]
 by what we just did. By results on integer powers this is $x^{\frac{mq + np}{nq}} = x^{\alpha + \beta}$. 
 \end{proof}
-
-\emph{Exercise:} $(ii)$ and $(iii)$. 
+\emph{Exercise:} (ii) and (iii).
 
 
 
@@ -1255,7 +1226,7 @@ by what we just did. By results on integer powers this is $x^{\frac{mq + np}{nq}
 Consider 
 \[\R^2 = \R \times \R:= \{(a,b): a \iR, b\iR\}\]
 
-(the symbol $:=$, ``colon equal" means that the thing on the left is defined to be the thing on the right. Similarly $=:$)\\
+(the symbol $:=$, ``colon equal" means LHS is defined to be RHS)\\
 
 \begin{definition} We define operations on $\R^2$: 
 \[
@@ -1283,9 +1254,9 @@ and we call this the Cartesian form of the complex numbers $(a,b)$.
 You picture the complex numbers on the Cartesian plane: 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.9]
 	\draw[->] (-3,0) -- (3,0) node at (2.8, -0.3) {$\Re$};
-	\draw [->] (0,-2) -- (0,3) node at (-0.3,2.8) {$\Im$};
+	\draw [->] (0,-1) -- (0,3) node at (-0.3,2.8) {$\Im$};
 	\draw[dashed] (0,2) -- (2,2) node at (2.4,2.4) {$(a,b) = a+ib$};
 	\draw[dashed] (2,0) -- (2,2);
 	\draw (1,-0.05) -- (1,0.05) node at (1.1,-0.2) {$1$};
@@ -1305,9 +1276,9 @@ Now $i^2 = (0,1)^2 = (0,1)\cdot (0,1) = (-1,0) = -1$, so using the properties (a
 \end{aligned}
 \]
 
-This is familiar and it motivates the definition we started out with. 
+This is familiar and it motivates the definition we started out with.
 
-\subsubsektion{More terminology and notation}
+%\textbf{More terminology and notation}
 
 If  \lecturemarker{12}{30 Oct} $z = a + ib \in C$ ($a,b \iR$), then we denote $\bar{z} := a-ib$ as the \emph{complex conjugate} of $z$.
 
@@ -1326,16 +1297,14 @@ Conjugation is reflection in the real axis.\\
 
 If $z = a + ib \iC$ ($a,b \iR$) then: 
 \begin{itemize}
-\item $a =$ real part of $z$, denoted $Re(z)$
-\item $b = $ imaginary part of $z$, denoted $Im(z)$	
+\item $a =$ real part of $z$, denoted $\mathrm{Re}(z)$
+\item $b = $ imaginary part of $z$, denoted $\mathrm{Im}(z)$	
 \end{itemize}\vspace*{5pt}
 
-So $z = Re(z) + i\,Im(z)$. Notice that $\begin{cases}
-Re(z) &= \dfrac{z + \bar{z}}{2}\\[0.5cm]
-Im(z) &= \dfrac{z-\bar{z}}{2i}
-\end{cases}$.\\
+So $z = \mathrm{Re}(z) + i\,\mathrm{Im}(z)$. Notice that \[\mathrm{Re}(z) = \dfrac{z + \bar{z}}{2},\,
+\mathrm{Im}(z) = \dfrac{z-\bar{z}}{2i}\]
 
-We denote $|z|:= \sqrt{a^2 + b^2} = \sqrt{z\bar{z}}$ as the \emph{absolute value} of $z\iC$. (note that if $z = a +ib$, then $z\bar{z} = (a+ib)(a-ib) = a^2+b^2$.)
+We denote $|z|:= \sqrt{a^2 + b^2} = \sqrt{z\bar{z}}$ as the \emph{absolute value} of $z\iC$. (note that if $z = a +ib$, then $z\bar{z} = (a+ib)(a-ib) = a^2+b^2$.)\\
 
 
 \subsubsektion{Properties of the absolute value of complex numbers}
@@ -1343,9 +1312,9 @@ We denote $|z|:= \sqrt{a^2 + b^2} = \sqrt{z\bar{z}}$ as the \emph{absolute value
 \item $|z| \geq 0$ and $|z| = 0 \iff z = 0$
 \item If $\lambda \iR$, then $|\lambda z| = |\lambda||z|$
 \item $|z+w| \leq |z| + |w|$ (triangle inequality)	
-\end{enumerate}
+\end{enumerate}\vsp
 
-\emph{Why is (iii) called the triangle inequality?}
+\textbf{Question:} \emph{Why is (iii) called the triangle inequality?}
 
  First understand $z + w$ in terms of the parallelogram law: 
 \[(a+ ib) + (a' + ib') = a + a' + i(b + b')\]
@@ -1380,7 +1349,7 @@ a \\ b
 
 Secondly, we have an interpretation: $|z| = \text{distance}\,(0,z) = $ distance. The triangle inequality is the obvious fact that the two sides of any triangle (on the Euclidean plane) must be greater than or equal to the other side. 
 
-Also note: $|z| \geq 0$ and $0$ iff $z = 0$. So if $z \neq 0$, then $1 = \dfrac{z\bar{z}}{|z|^2}$. That is, $z^{-1} = \dfrac{\bar{z}}{|z|^2}$.\\ 
+Also note: $|z| \geq 0$ and $0$ iff $z = 0$. So if $z \neq 0$, then $1 = \dfrac{z\bar{z}}{|z|^2}$. That is, \[z^{-1} = \dfrac{\bar{z}}{|z|^2}\] 
 
 
 \begin{example}
@@ -1388,8 +1357,8 @@ Also note: $|z| \geq 0$ and $0$ iff $z = 0$. So if $z \neq 0$, then $1 = \dfrac{
 	
 	\[
 \begin{aligned}
-  \frac{1+i}{1-2i} &+ \frac{1 +i}{1 - 2i} \times \frac{1 + 2i}{1 + 2i}\\
-  &= \frac{(1-2) + (2 + 1)i}{5}\\[0.2cm]
+  \frac{1+i}{1-2i} &= \frac{1 +i}{1 - 2i} \times \frac{1 + 2i}{1 + 2i}\\[0.3cm]
+  &= \frac{(1-2) + (2 + 1)i}{5}\\[0.3cm]
   &= \frac{-1}{5} + \frac{3i}{5}
 \end{aligned}
 \]
@@ -1405,9 +1374,9 @@ Also note: $|z| \geq 0$ and $0$ iff $z = 0$. So if $z \neq 0$, then $1 = \dfrac{
 (Motivation: the polar form allows us to neatly visualise complex multiplication much in the same way as the Cartesian form allows us to visualise complex addition.) 
 
 \begin{center}
-\begin{tikzpicture}
-\draw (-2.5,0) -- (2.5,0) node at (2.5,-0.2) {$\Re$};
-\draw (0,-2.5) -- (0,2.5) node at (-0.2,2.5) {$\Im$};
+\begin{tikzpicture}[scale = 0.65]
+\draw[->] (-2.5,0) -- (2.5,0) node at (2.5,-0.3) {$\Re$};
+\draw[->] (0,-2.5) -- (0,2.5) node at (-0.3,2.5) {$\Im$};
 \draw (0,0) circle (2);
 \draw[->] (0,0) -- (1, 1.73) node at (2, 2.1) {$z = a + ib$};
 \draw (0.5, 0) arc (0:40:0.8);
@@ -1415,9 +1384,7 @@ Also note: $|z| \geq 0$ and $0$ iff $z = 0$. So if $z \neq 0$, then $1 = \dfrac{
 \end{tikzpicture}
 \end{center}
 
-$z$ lies on a circle of radius $r = |z|$ and $\theta = $ angle from $\R$ to $z$. 
-
-The polar form of $z$ is in terms of data $(r,\theta)$. \\
+$z$ lies on a circle of radius $r = |z|$ and $\theta = $ angle from $\R$ to $z$. The polar form of $z$ is in terms of data $(r,\theta)$. \\
 
 \begin{definition}[Euler's form]
  If $\theta \iR$ then we write 
@@ -1442,7 +1409,7 @@ while preserving the usual property
 
 \item There are other considerations - you may be familiar with the infinite series for the exponential; if $x \iR$, then 
 \[e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots \]
-Could it just be that this makes sense for complex numbers?
+\emph{Could it just be that this makes sense for complex numbers?}
 \[
 \begin{aligned}
  e^{i\theta} &= 1 + i\theta - \frac{\theta^2}{2!} - \frac{i\theta^3}{3!} + \frac{\theta^4}{4!} + \dots\\
@@ -1453,58 +1420,53 @@ Could it just be that this makes sense for complex numbers?
 \end{enumerate}
 
 I gave some motivation for the formula
-$e^{i\theta} = \cos\theta + i\sin\theta$. Please now accept this. 
-
-Thus, $e^{i\theta} = z$ is the complex no. $z$ with $|z| = \cos^2 \theta + \sin^2\theta = 1$ and angle $\theta$ from the $\R$-axis to $z$: 
+$e^{i\theta} = \cos\theta + i\sin\theta$. Please now accept this. Thus, $e^{i\theta} = z$ is the complex no. $z$ with $|z| = \cos^2 \theta + \sin^2\theta = 1$ and angle $\theta$ from the $\R$-axis to $z$: 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale= .7]
 \draw (-3,0) -- (3,0) node at (2.9,-0.2) {$\Re$};
 \draw (0,-2.5) -- (0,2.5) node at (-0.2,2.5) {$\Im$};
 \draw (0,0) circle (2);
 \draw[->] (0,0) -- (1, 1.73) node at (1.2,1.9) {$z$};
 \draw[->] (0.5, 0) arc (0:40:0.8);
-\node at (0.6, 0.4) {$\theta$};
+\node at (0.6, 0.4) {\small $\theta$};
 \node at (2.1,-0.3) {$1$};
 \fill (2,0) circle (2pt);
-\node at (1.9,1.3) {$|z|\;\;=\; \sqrt{x^2 + y^2} = 1$};
+\node at (2.22,1.3) {\small $|z|\;\;=\; \sqrt{x^2 + y^2} = 1$};
 \end{tikzpicture}
 \end{center}
 
 
-Then every $z = x + iy \iC$ can be written uniquely if $z \neq 0$ in the polar form $z = re^{i\theta}$ for $r = |z| = \sqrt{x^2 + y^2} \iR_{\geq 0}$ and $\theta$ as an angle $\in (-\pi,\pi]$, where I call $r$ the \emph{modulus} of $z$ and $\theta = arg(z)$, the \emph{argument}. 
+Then every $z = x + iy \iC$ can be written uniquely if $z \neq 0$ in the polar form $z = re^{i\theta}$ for $r = |z| = \sqrt{x^2 + y^2} \iR_{\geq 0}$ and $\theta$ as an angle $\in (-\pi,\pi]$, where I call $r$ the \emph{modulus} of $z$ and $\theta = \mathrm{arg}(z)$, the \emph{argument}. 
 
 Conversion formulas: 
 \[\begin{cases}
 x &= r\cos\theta\\
-y &= r \sin\theta\\[0.2cm]
+y &= r \sin\theta\\
+\end{cases}
+\qquad 
+\begin{cases}
 r &= \sqrt{x^2 + y^2}\\
 \tan \theta &= \frac{y}{x}
 \end{cases}
-\]\vspace*{5pt}
+\]
 
-Note: our formula for $\theta$ does not nail it down uniquely; we need to make sure that $\theta \in (-\pi,\pi]$ is in the correct quadrant.
-
-\pagebreak
-
+Note: our formula for $\theta$ does not nail it down uniquely; we need to make sure that $\theta \in (-\pi,\pi]$ is in the correct quadrant.\\
 
 \begin{theorem}[De Moivre's Formula]
 If $z_1 = r_1e^{i\theta_1} \iC$ and $z_2 = r_2 e^{i\theta_2}\iC$ then 
 \[z_1 \cdot z_2 = r_1 r_2 e^{i(\theta_1 + \theta_2)}\]
 \end{theorem}
 
-Basically: modulus' multiplies; arguments add. 
-
-This allows us to visualise multiplication by $z = r^{i\theta}$: $\C \ni w \longrightarrow z\cdot w \iC$. This is the linear transformation of $\C = \R^2$ which inflates everything by factor $r$ and rotates everything through angle $\theta$.\\\\
+Basically: modulus' multiplies; arguments add. This allows us to visualise multiplication by $z = r^{i\theta}$: $\C \ni w \longrightarrow z\cdot w \iC$. This is the linear transformation of $\C = \R^2$ which inflates everything by factor $r$ and rotates everything through angle $\theta$.\\
 
 
 \begin{examples}
 Everyone should know these complex numbers: 
 
 \begin{minipage}{6cm}
-	
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
 \draw (-2.5,0) -- (2.5,0) node at (2.2,-0.2) {$\Re$};
 \draw (0,-2) -- (0,2) node at (-0.2,2) {$\Im$};
 \draw (0,0) circle (1.5);
@@ -1513,10 +1475,8 @@ Everyone should know these complex numbers:
 \draw[->] (0,0) -- (0,1.5) node at (0.2,1.7) {$i$};
 \end{tikzpicture}
 \end{center}
-
-
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
 \draw (-2.5,0) -- (2.5,0) node at (2.2,-0.2) {$\Re$};
 \draw (0,-2) -- (0,2) node at (-0.2,2) {$\Im$};
 \draw (0,0) circle (1.5);
@@ -1527,7 +1487,7 @@ Everyone should know these complex numbers:
 \end{center}
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
 \draw (-2.5,0) -- (2.5,0) node at (2.2,-0.2) {$\Re$};
 \draw (0,-2) -- (0,2) node at (-0.2,2) {$\Im$};
 \draw (0,0) circle (1.5);
@@ -1540,12 +1500,12 @@ Everyone should know these complex numbers:
 \begin{minipage}{6cm}
 \[i = e^{\frac{i\pi}{2}}\]
 
-\vspace*{4cm}
+\vspace*{2.5cm}
 
 \[\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2} = e^{\frac{i\pi}{4}}\]
 
 
-\vspace*{4cm}
+\vspace*{2.5cm}
 
 \[\frac{\sqrt{3} + i}{2} = e^{\frac{i\pi}{6}}\]
 
@@ -1554,14 +1514,11 @@ Everyone should know these complex numbers:
 
 \emph{What's $e^{\frac{i\pi}{12}}$?}
 
-Note that 
-\[\frac{1}{4} - \frac{1}{6} = \frac{3-2}{12} = \frac{1}{12}\]
-
-by De Moivre's formula: 
+Note that $\frac{1}{4} - \frac{1}{6} = \frac{3-2}{12} = \frac{1}{12}$, so by De Moivre's formula: 
 \[
 \begin{aligned}
-  &= \frac{\sqrt{2} + i\sqrt{2}}{\sqrt{3} + i} \times \frac{\sqrt{3} - i}{\sqrt{3} + i}\\
-  &= \frac{(\sqrt{6} + \sqrt{2}) + i(-\sqrt{2} + \sqrt{6})}{4}\\
+  &= \frac{\sqrt{2} + i\sqrt{2}}{\sqrt{3} + i} \times \frac{\sqrt{3} - i}{\sqrt{3} + i}\\[.2cm]
+  &= \frac{(\sqrt{6} + \sqrt{2}) + i(-\sqrt{2} + \sqrt{6})}{4}\\[.2cm]
   &= \frac{\sqrt{6} + \sqrt{2}}{4} + i\frac{-\sqrt{2} + \sqrt{6}}{4}
 \end{aligned}
 \]
@@ -1576,11 +1533,9 @@ by De Moivre's formula:
 Consider the equation \lecturemarker{13}{5}
 \[z^n = 1 \quad \text{for } z \iC\]
 
-Write $z = re^{i\theta}$, then we want $z^n = r^ne^{in\theta} = 1$. That is, 
-
+Write $z = re^{i\theta}$, then we want $z^n = r^ne^{in\theta} = 1$. That is, $r^n = 1$ 
 \[
 \begin{aligned}
-  r^n&=1\\
   \implies r &=1 \text{ and }n \theta = 2k\pi\text{ for some }k \iZ \\
    \implies \theta &= \frac{2\pi}{n} \cdot R\text{ for some }R \iZ
 \end{aligned}
@@ -1589,9 +1544,7 @@ Write $z = re^{i\theta}$, then we want $z^n = r^ne^{in\theta} = 1$. That is,
 
 \emph{How many solutions are there?} 
 
-$r = 1$, so $z$ is on the circle of radius $1$. 
-
-I draw the picture for $n = 12$: 
+$r = 1$, so $z$ is on the circle of radius $1$. I draw the picture for $n = 12$: 
 
  
 \begin{center}
@@ -1624,11 +1577,9 @@ They are the vertices of a regular $n$-gon inscribed in the unit circle with a v
 \begin{example}
 Solve for $z$, $z^n = 3$. 
 
-We want $z = re^{i\theta}$ such that $z^n = r^ne^{in\theta} = 3 \iff r^n = 3$ and $e^{in\theta} = 1$. 
-
-So $z^n = 3 \iff$
-\[z \in \{\sqrt[n]{3} w^k ~|~ w = e^{\frac{2\pi i}{n}}\; k = 0,1,\dots,n-1\}\]	
-\end{example}\vspace*{10pt}
+We want $z = re^{i\theta}$ such that $z^n = r^ne^{in\theta} = 3 \iff r^n = 3$ and $e^{in\theta} = 1$. So
+ \[z^n = 3 \iff z \in \{\sqrt[n]{3} w^k ~|~ w = e^{\frac{2\pi i}{n}}\; k = 0,1,\dots,n-1\}\]
+\end{example}
 
 
 %missing page 74
@@ -1640,10 +1591,8 @@ So $z^n = 3 \iff$
 \begin{theorem}[Fundamental Theorem of Algebra]
 Any polynomial with complex coefficients of degree $n \geq 1$: 
 \[p(z) = a_n z^n + a_{n-1}z^{n-1} + \dots + a_0\]
-($a_0,a_1,\dots,a_n \iC$, and $a_n \neq 0$)
-
-has a root $\lambda \iC$. 
-\end{theorem}\vspace*{5pt}
+($a_0,a_1,\dots,a_n \iC$, and $a_n \neq 0$) has a root $\lambda \iC$. 
+\end{theorem}
 
 In other words, there $\exists \lambda \iC$ such that $p(\lambda) = 0$.
 
@@ -1683,12 +1632,10 @@ So let $\lambda_1 \iC$ be a root of $p(z)$ (such a thing exists by the fundament
 where $q_{n-1}(z)$ is a polynomial of degree $n-1$. 
 
 By induction on $n$, $\exists \lambda_2,\dots,\lambda_n$ such that 
-\[
-\begin{aligned}
+\begin{align*}
   q_{n-1}(z) &= a_n(z-\lambda_2)\dots(z-\lambda_n)\\
   \implies p_n(z) &= a_n(z-\lambda_1)(z-\lambda_2)\dots(z-\lambda_n)\qedhere
-\end{aligned}
-\]
+\end{align*}
 \end{proof}\vspace*{10pt}
 
 \begin{example}
@@ -1735,7 +1682,7 @@ So the roots are $z = 1$, $z = \rho$ and $z = \bar{\rho}$, with multiplicities o
 Conclusion: 
 \[z^3 + z^2 +  z + 1 = (z-2)(z^2 + 3z + 7) + \underbrace{15}_{\text{remainder}}\]
 \[\frac{z^3 + z^2 + z + 1}{z-2} = \underbrace{z^2 + 3z + 7}_{\text{quotient}} + \frac{15}{z-2}\]
-\end{example}
+\end{example}\vsp
 
 \begin{corollary}[For polynomials with real coefficients]
 Let 
@@ -1760,10 +1707,8 @@ this is a polynomial with real coefficients. \\
 \end{enumerate}
 
 
-
-
 \subsubsektion{Roots and Coefficients of Algebraic Equations}
-
+We can write any general $n$th polynomial as
 \[
 \begin{aligned}
   (z-\lambda_1)(z-\lambda_2)\dots(z-\lambda_n) = z^n + a_{n-1}z^{n-1} + \dots + a_0
@@ -1778,9 +1723,9 @@ where
   &\vdots \\
   a_0 &= (-1)^n \lambda_1\dots \lambda_n
 \end{aligned}
-\]\vspace*{5pt}
+\]
 
-[Message to take home: the coefficients are simple expressions of the roots.]\\
+Message to take home: the coefficients are simple expressions of the roots.\\
 
 \begin{example}
 Find a cubic with roots $\lambda_1 = 1$, $\lambda_2 = 1 + i$, $\lambda_3 = 1-i$.
@@ -1837,7 +1782,7 @@ I want to tell you a similar formula for cubics:
 
 Recall how to derive the quadratic formula (for solving $ax^2 + bx + c = 0, a \neq 0$).
 
-First divide by $a$
+For simplicity we deal with
 \[x^2 + \frac{b}{a}x + \frac{c}{a} = 0\]
 
 The first step was to ``complete the square": 
@@ -1875,7 +1820,8 @@ So if we substitute $y = x + \frac{A}{3}$ we have an equation for $y$ of the for
 ($p$ and $q$ are easily computed from $A,B,C$). 
 
 Completing the cube did not quite solve the problem, but it made it simpler. 
-[Interesting fact: the cubic formula was discovered by Cardano in the early 1500s]
+
+\emph{Interesting fact:} the cubic formula was discovered by Cardano in the early 1500s.
 
 Now we study:
 \[y^3 + 3py + 2q = 0\]
@@ -1957,7 +1903,7 @@ I verify this:
 So in fact the formula gives: 
 \[y = 2 + \sqrt{2} + 2 - \sqrt{2} = 4\]
 
-The explanation for the simplified $\sqrt[3]{20 + 14\sqrt{2}} = 2 + \sqrt{2}$ relies precisely on the fact that the equation has a root $y \iQ$. This is complicated enough that I cannot tell you the whole story, as it's a long story. Even when you do Galois Theory you focus on other examples. The reason is that the other two roots are complex conjugated, and you need to extend your field more (??). These guys in the 1500s had absolutely no right to discover this formula as they didn't have the right equipment to deal with it, and the truth is neither do you.  
+The explanation for the simplified $\sqrt[3]{20 + 14\sqrt{2}} = 2 + \sqrt{2}$ relies precisely on the fact that the equation has a root $y \iQ$. The reason is that the other two roots are complex conjugated, and you need to extend your field more (??). This is complicated enough that I cannot tell you the whole story, as it's a long story. Even when you do Galois Theory you focus on other examples. These guys in the 1500s had absolutely no right to discover this formula as they didn't have the right equipment to deal with it, and the truth is neither do you.  
 \end{example}\vspace*{10pt}
 
 It is easy to find rational roots without using the cubic formula: 
@@ -1972,21 +1918,24 @@ has a root $y = \frac{p}{q} \iQ$, then $p \divides a_n$ and $q \divides a_0$.
 
 
 \begin{example}
-A typical (but not so nice, but interesting) example	. 
-
-Suppose you try to find a nice expression for $x = \cos\frac{\pi}{9}$ by solving a cubic using the cubic formula. 
+A typical (but not so nice, but interesting) example	. Suppose you try to find a nice expression for $x = \cos\frac{\pi}{9}$ by solving a cubic using the formula. 
 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = .8]
 \draw (-2.5,0) -- (2.5,0) node at (2.5,-0.2) {$\Re$};
 \draw (0,-2) -- (0,2) node at (-0.2,2) {$\Im$};
 \draw (0,0) circle (1.5);
-\draw[->] (0,0) -- (-0.75, 1.3) node at (-2, 2.1) {$\rho = \frac{-1 + i\sqrt{3}}{2} = e^{-\frac{\pi}{3}i}$};
-\draw [dashed] (-.75,0) -- (-.75,1.3) node at (-1,-0.2) {$-\frac{1}{2}$};
-\draw [dashed] (0,1.3) -- (-.75,1.3) node at (0.3,1.73) {$\frac{\sqrt{3}}{2}$};
+\draw[->] (0,0) -- (1.409,0.513) node at (1.8,0.8) {$ e^{\frac{\pi}{9}i}$};
+\draw [dashed] (1.409,0) -- (1.409,0.513) node at (1.409,-0.2) {$x$};
+\draw [dashed] (0,0.513) -- (1.409,0.513) node at (-0.3,0.513) {$y$};
 \end{tikzpicture}
 \end{center}
+
+Consider $z = e^{\frac{\pi i}{9}} =x +iy$, with $x = \cos\pi/9$ and $y = \sin\pi/9$. This satisfies 
+\[
+  z^3 = e^{\frac{\pi i}{3}} = \frac{1}{2} + \frac{i\sqrt{3}}{2}
+\]
 
 
 This leads to a cubic equation for $x = \cos\frac{\pi}{9}$: 
@@ -2004,9 +1953,7 @@ I am faced with the same problem that I started out with! Namely, I was looking 
 \[z = \sqrt[3]{\frac{1}{2} + \frac{i\sqrt{3}}{2}}\]
 The cubic formula didn't help!
 
-The fact here is: there is no ``nice" expression for $x = \cos\frac{\pi}{9}$ (i.e. all expressions involving any number of radicals of rational numbers). 
-
-In some sense, the best you can do with $x = \cos\frac{\pi}{9}$ is to remember that it is a solution of the cubic equation:
+The fact here is: there is no ``nice" expression for $x = \cos\frac{\pi}{9}$ (i.e. all expressions involving any number of radicals of rational numbers). In some sense, the best you can do with $x = \cos\frac{\pi}{9}$ is to remember that it is a solution of the cubic equation:
 \[4x^3 -3x - \frac{1}{2} = 0\]
 \end{example}\vspace*{10pt}
 
@@ -2022,16 +1969,6 @@ Assuming $p, q\iR$ and even better, $p, q \iQ$, it happens that:
   &\iff 3 \text{ real roots.} 
 \end{aligned}
 \]
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2084,14 +2021,11 @@ For $a,b \iZ$ the \emph{highest common factor}, hcf$(a,b)$ is
 \end{definition}
 
 
-\begin{algorithm}[Computing hcf]
+\subsubsektion{Computing hcf}
 
-Note: hcf$(a,b) = $ hcf$(\pm a,\pm b) = $ hcf$(b,a)$, so I'm fine to always assume $a,b \iN$ and $a \geq b$. 
-
-From our division algorithm, we can write $a = qb + r$ with $ 0 \leq r < b$.
+Note: hcf$(a,b) = $ hcf$(\pm a,\pm b) = $ hcf$(b,a)$, so I'm fine to always assume $a,b \iN$ and $a \geq b$. From our division algorithm, we can write $a = qb + r$ with $ 0 \leq r < b$.
 
 \textbf{Claim:} $(c \divides a$ and $c \divides b) \iff (c \divides b$ and $c \divides r)$. 	
-\end{algorithm}
 
 \begin{proof}$\implies:$
 $c \divides a$ and $c \divides b$, so we can write  $a = k_1c,\, b = k_2c$. Then
@@ -2105,14 +2039,13 @@ Recall:\\
 
 \begin{definition}
 Let $p \iN\backslash \{0,1\}$. $p$ is \emph{irreducible} iff
-\[p = nm \implies n = 1 \text{ or } m = 1\]
-($n,m \iN$)
-\end{definition}
+\[p = nm \implies n = 1 \text{ or } m = 1\quad (n,m \iN)\]
+\end{definition}\vsp
 
 \begin{definition}
 Let $p\iN \backslash \{0,1\}$. $p$ is \emph{prime} iff:
 \[(p \divides ab \implies p \divides a \text{ or } p\divides b)\]	
-\end{definition}
+\end{definition}\vsp
 
 \begin{proposition}
 $p$ is irreducible $\iff p$ is prime.	
@@ -2137,15 +2070,16 @@ The claim follows from $c \divides A, c \divides B \implies c \divides A + B$.
 \end{remark}
 
 The claim means that 
-\[\hcf(a,b) = \hcf(b,r)\]
+\[\boxed{\hcf(a,b) = \hcf(b,r)}\]
 
-This is it! $a \geq b$ and $b > r$ means that the pair $(b,r)$ is simpler (smaller) than the pair $(a,b)$, so I may assume inductively that I can handle computing hcf$(b,r)$. \\
+This is it! $a \geq b$ and $b > r$ means that the pair $(b,r)$ is simpler (smaller) than the pair $(a,b)$, so I may assume inductively that I can handle computing hcf$(b,r)$. \pagebreak
 
 \begin{theorem}[Bezout's Lemma]
 Let $d =$ hcf$(a,b)$. Then
 \[\exists\,x,y \iZ: ax + by = d\]	
-\end{theorem}
-This is a REALLY important fact.
+\end{theorem}\vsp
+
+This is a \textbf{really} important fact.\vsp
 
 \begin{corollary}
 Suppose $c \divides a,\, c\divides b \implies c\divides \hcf(a,b)$.	
@@ -2201,11 +2135,11 @@ We can then find $x,y$ such that $5817x + 1428y = d$ by working backwards:
 \]
 
 So I can take $x = -27$, $y = 110.$
-\end{example}
+\end{example}\vspace*{5pt}
 
 \begin{definition}
 $a,b \iZ$ are \emph{co-prime} iff hcf$(a,b) = 1$. 	
-\end{definition}
+\end{definition}\vspace*{5pt}
 
 \begin{proposition}
 Suppose $a,b \iZ$ are co-prime. Then
@@ -2231,10 +2165,10 @@ Consider $axc + byc = c$. We can see that
   \implies ab(xk_2 + y_k1) = c
 \end{aligned}
 \]
-so $ab \divides c$, showing $(i)$. 
+so $ab \divides c$, showing (i). 
 
-To show part $(ii)$ again: $a \times c + byc = c \implies a \divides (a\times c) + (byc)$, so $a \divides c$.
-\end{proof}
+To show part (ii) again: $a \times c + byc = c \implies a \divides (a\times c) + (byc)$, so $a \divides c$.
+\end{proof}\vsp
 
 \textbf{Terminology.} We know irreducible $\iff$ prime. From now on I just use the word prime.\\
 
@@ -2264,14 +2198,14 @@ From the first expression $p_1 \divides n$. From the second expression, we get $
 \end{aligned}
 \]
 But $\frac{n}{p_1} < n$, so I could assume (by strong induction) that the two decompositions of $\frac{n}{p_1}$ are identical $\implies$ the two decompositions for $n$ were also identical. 
-\end{proof}
+\end{proof}\vsp
 
 \begin{corollary}
 Suppose that $a = \Pi q_i^{r_i}$ and $b = \Pi p_i^{s_i}$. Then 
 \[\hcf(a,b) = \Pi p_i^{\min\{r_i,s_i\}}\]	
 \end{corollary}
 
-Note: This is not a good way to compute $\hcf(a,b)$! The good way is to use Euclid's algorithm.\\
+Note: This is not a good way to compute $\hcf(a,b)$! (use Euclid's algorithm.)\\
 
 
 \begin{theorem}[Euclid]
@@ -2279,7 +2213,7 @@ There are infinitely many primes.
 \end{theorem}
 
 \begin{proof}
-Suppose for a contradiction that the set of all primes is finite, and that :
+Suppose for a contradiction that the set of all primes is finite, and that
 \[p_1,p_2,\dots,p_r\]	
 is the list of all primes. Consider 
 \[N = p_1p_2\dots p_r + 1\]
@@ -2315,9 +2249,8 @@ Suppose $\sqrt{n} = \frac{a}{b} \iQ$, with $a,b \iN$ and $\hcf(a,b) = 1$. Then $
 
 \emph{A small digression.} Suppose $p$ is prime and $N \iZ$. We define 
 \[\mathrm{ord}_pN = \max\{k\iN ~|~ p^k \divides N \}\]
-So $N = \pm \displaystyle{\prod_{p \text{ prime}} p^{\mathrm{ord}_pN}}$. 
-
-Note: $\mathrm{ord}_p(N_1N_2) = \mathrm{ord}_pN_1 + \mathrm{ord}_pN_2$. 
+So \[N = \pm \displaystyle{\prod_{p \text{ prime}} p^{\mathrm{ord}_pN}}\]
+Note: $\mathrm{ord}_p(N_1N_2) = \mathrm{ord}_pN_1 + \mathrm{ord}_pN_2$.\\
 
 Back to the example. Let $p$ be prime. 
 \[
@@ -2390,10 +2323,10 @@ Every 3 months I start exactly one day earlier. So in the worst case I need $3 \
 \end{example}
 
 
-\subsektion{The Least Common Multiple}\vspace*{5pt}
-
-\begin{definition} \lecturemarker{19}{balsh} 
-Let $a,b \iZ$. We define 
+\subsektion{The Least Common Multiple}
+\emph{Corti was a bastard and delayed covering this until he was in the middle of modular arithmetic so he could set a horrible test question; the lecture numbering is improvised.}\\
+\begin{definition} 
+Let $a,b \iZ$. We define \lecturemarker{23}{balsh} 
 \[\text{lcm}(a,b) = \mbox{ smallest $> 0$ integer divisible by both $a$ and $b$}\]	
 \end{definition}
 
@@ -2427,8 +2360,8 @@ Thus $a'p = b'q$, so $a'\divides b'q$ and hcf$(a'b') =1 \implies a'\divides q$ (
 
 Second Step: Let $S = \{k ~|~ k>0,\, k \text{ is divisible by } a,b\}$
 
-\textbf{Claim:} lcm$(a,b) = min \,S$ We know that $m \in S$. We also know $k \in S \implies k$ is divisible by $m$. In particular $k \in S \implies k \geq m$. So indeed $m = min\,S$ and then $m = \text{lcm}(a,b)$. 
-\end{proof}
+\textbf{Claim:} lcm$(a,b) = min \,S$ We know that $m \in S$. We also know $k \in S \implies k$ is divisible by $m$. In particular $k \in S \implies k \geq m$. So indeed $m = \min\,S$ and then $m = \text{lcm}(a,b)$. 
+\end{proof}\vspace*{5pt}
 
 
 \subsubsektion{Equations of the form $ax + by = c$}\vspace*{5pt}
@@ -2488,7 +2421,7 @@ Sometimes $a,b, c >0$ are integers and we want to solve $ax + by = c$ for $x,y  
 Here is a picture of $\Z^2 \subset \R^2$: 
 
 \begin{center}
-\begin{tikzpicture}[scale =0.6]
+\begin{tikzpicture}[scale =0.5]
 \draw [->] (-8,0) -- (8,0);
 \draw [->] (0,-5) -- (0,5);
   \foreach \x in {-7,...,7}
@@ -2528,12 +2461,11 @@ is soluble for $x \iff \hcf(a,m) = 1$.
 
 
 
-\subsektion{Modular Arithmetic}\vspace*{10pt}
+\subsektion{Modular Arithmetic}\vspace*{8pt}
 
-\begin{definition}\lecturemarker{20}{11/20} 
+\begin{definition}\lecturemarker{24}{11/20} 
 $a,b\iZ$ $n\iN$. $a$ is \emph{congruent} to $b$ mod $n$: 
-\[a \equiv b \pmod{n} \]	
-if $n \divides a - b$. 
+\[a \equiv b \pmod{n}\quad  \mbox{if $n \divides a - b$. } \]	
 \end{definition}
 
 \begin{remark}
@@ -2544,9 +2476,7 @@ In modular arithmetic, we are really jut interested in classes:
 \[[a] = \{b ~|~ a \equiv b \pmod{n}\}\]
 
 \begin{remark}
-$\forall a, \exists!\, b$ such that $a \equiv b \pmod{n}$ and $0 \leq b < n$. 	
-
-This is just the division algorithm: $a = qn + b\; 0 \leq b < n$, so $ a \equiv b$. 
+$\forall a, \exists!\, b$ such that $a \equiv b \pmod{n}$ and $0 \leq b < n$. This is just the division algorithm: $a = qn + b:\; 0 \leq b < n$, so $ a \equiv b$. 
 \end{remark}
 
 So in fact I can , if I want, think of the set of classes mod $n$: 
@@ -2600,7 +2530,6 @@ Thus, addition and multiplication are defined in $\Z / n\Z$. It makes sense to s
   [a][c] &= [a \cdot c]
 \end{aligned}
 \]
-\pagebreak
 
 
 \textbf{Demonstration.} $\Z/ 5\Z = \{0,1,2,3,4\}$
@@ -2619,6 +2548,8 @@ Addition table mod $5$:
     $4$ & $4$ & $0$ & $1$ & $2$ & $3$ \\    
     \end{tabular}
 \end{table}
+
+\pagebreak
 
 Multiplication table mod $5$: 
 \begin{table}[h]
@@ -2640,14 +2571,16 @@ Some examples to familiarise ourselves with modular arithmetic. \\
 \begin{example}
 What is the remainder when I divide $7$ into $15^{99}$? 
 
-It is $= 1$, since $15 \equiv 1\pmod{7}$, so $15^{99} \equiv 1 \pmod{7}$, i.e. $15^{99} = k\cdot 7 + 1$, some $k$.
+It is $= 1$! 
+
+Since $15 \equiv 1\pmod{7}$, so $15^{99} \equiv 1 \pmod{7}$, i.e. $15^{99} = k\cdot 7 + 1$, for some $k$.
 \end{example}\vspace*{5pt}
 
 
 \begin{example}
 What is the smallest residue of $2^{100} \pmod{15}$? 	
 
-Mucking about: $2^4 = 16 \equiv 1 \pmod{15}$, so $2^{100} = (2^4)^{25} \equiv 1^{25} = 1\pmod{15}$. 
+Mucking about: \[2^4 = 16 \equiv 1 \pmod{15}\implies 2^{100} = (2^4)^{25} \equiv 1^{25} = 1\pmod{15}\]
 \end{example}\vspace*{5pt}
 
 
@@ -2659,18 +2592,20 @@ Compute $5^{67} \pmod{14}$ [method: successive squaring]
   &= 2^6 + 2 + 1
 \end{aligned}
 \]
-(in binary $67 = 1000011$). I compute $5^{64} \pmod{14}$ by successive squaring: 
-\[
-\begin{aligned}
+(in binary $67 = 1000011$). 
+
+I compute $5^{64} \pmod{14}$ by successive squaring: 
+\begin{align*}
   5^1 &\equiv 5 \pmod{14}\\
-  5^2 &= 25 \equiv -3 \pmod{14}\\
+  5^2 &= 25 \equiv -3 \pmod{14}
+ \end{align*}
+\begin{align*}
   5^4 &\equiv 9 \equiv -5 \pmod{14}\\
   5^8 &\equiv -3 \pmod{14}\\
   5^{16} &\equiv -5 \pmod{14}\\
   5^{32} &\equiv -3 \pmod{14}\\
   5^{64} &\equiv -5 \pmod{14} 
-\end{aligned}
-\]
+\end{align*}
 
 So
 \[
@@ -2706,14 +2641,12 @@ Fix $m \in \N, a \in \Z$. The equation $ax \equiv 1 \pmod{m}$ is soluble for $x 
 \end{proposition}
 
 \begin{proof}
-\[
-\begin{aligned}
+\begin{align*}
   &ax \equiv 1 \pmod{m}\\
   &\iff \exists y \iZ: ax +my = 1\\
-  &\iff \hcf(a,m) = 1.
-\end{aligned}
-\]
-\end{proof}\vspace*{10pt}
+  &\iff \hcf(a,m) = 1.\qedhere
+\end{align*}
+\end{proof}
 
 \begin{example}
 The equation
@@ -2721,9 +2654,7 @@ The equation
 has no solution for $x,y,z \iZ$. (except the trivial one where $x = y = z = 0$).
 
 \begin{proof}
-Note that if $x,y,z \iZ$ is a solution and $k\iZ$ then $kx,ky, kz$ is also a solution. 
-
-So assume for contradiction that $x,y,z$ is a nontrivial solution. I may assue hcf$(x,y,z) = 1$. Now consider $(*)$ mod $5$: 
+Note that if $x,y,z \iZ$ is a solution and $k\iZ$ then $kx,ky, kz$ is also a solution. So assume for contradiction that $x,y,z$ is a nontrivial solution. I may assue hcf$(x,y,z) = 1$. Now consider $(*)$ mod $5$: 
 \[x^2 \equiv 3z^2 \pmod{5}\]
 
 Exercise: $\implies$ both $x,z \equiv 0 \pmod{5}$. (idea again: $3$ is not a square modulo $5$)
@@ -2744,7 +2675,7 @@ Then $5 \divides x,\; 5 \divides z$ and $5\divides y$, a contradiction.
 \end{example}\vspace*{5pt}
 
 
-\begin{definition} \lecturemarker{21}{22 Oct}
+\begin{definition} \lecturemarker{25}{22 Oct}
 \[
 \begin{aligned}
   \Z / m\Z^\times &= \{\text{multiplicatively invertible elements of } [a] \in \Z / m \Z\}\\
@@ -2766,7 +2697,7 @@ The operations $+, \times$ on $\Z / p\Z$ satisfy the same axioms for $k = \Q, \R
 \begin{theorem}[Fermat's Little Theorem]
 Suppose that $p$ is prime, $a \neq 0 \pmod{p}$. Then 
 \[a^{p-1} \equiv 1 \pmod{p}\]
-\end{theorem}
+\end{theorem}\vspace*{5pt}
 
 If you know about groups, then the proof is very quick: 
 \begin{proof}
@@ -2796,11 +2727,11 @@ Next:
   &= (p-1)!\; a^{p-1}\pmod{p}
 \end{aligned}
 \]
-and all we need to observe is that 
-\[(p-1)! \not\equiv 0 \pmod{p}\]
-Indeed $p \centernot\divides 1,\; p \centernot\divides 2, \dots, p\centernot\divides (p-1) \implies p \centernot\divides (p-1)!$,  so I can divide though by $(p-1)!$ mod $p$ and conclude that 
-\[a^{p-1} \equiv 1 \pmod{p}\qedhere\]
-\end{proof}
+
+and all we need to observe is that $(p-1)! \not\equiv 0 \pmod{p}$.
+Indeed: $p \centernot\divides 1,\; p \centernot\divides 2, \dots, p\centernot\divides (p-1) \implies p \centernot\divides (p-1)!$,  so I can divide though by $(p-1)!$ mod $p$ and conclude that 
+$a^{p-1} \equiv 1 \pmod{p}$.
+\end{proof}\vspace*{5pt}
 
 \begin{theorem}[Chinese Remainder Theorem]
 Suppose hc$(m_1,m_2) = 1$. Then for all $a_1,a_2$ the system of equations
@@ -2832,25 +2763,21 @@ So $m_1 \divides x_1 - x_2$ and $m_2 \divides x_1 - x_2$. But $\hcf(m_1,m_2) = 1
 \end{proof}
 
 
-
-In other words: (recall if $A,B$ are sets then we denote the cartesian product as $A \times B = \{(a,b) ~|~ a \in A,\, b \in B\}$)
-\[\Z / m_1m_2\Z = \Z/ m_1\Z \times \Z / m_2\Z  \]
-if $\hcf(m_1,m_2) = 1$. I think of this as a kind of \emph{holography.}\\
+In other words: if $\hcf(m_1,_2) = 1$, \[\Z / m_1m_2\Z = \Z/ m_1\Z \times \Z / m_2\Z  \]
+(recall if $A,B$ are sets then we denote the cartesian product as $A \times B = \{(a,b) ~|~ a \in A,\, b \in B\}$.) I think of this as a kind of \emph{holography.}\\
 
 
 
 \subsubsektion{RSA Cryptography}
-Application of \lecturemarker{21}{22 Oct}
-Fermat's Little Theorem ($p$ prime, $a \neq \equiv 0 \pmod{p} \implies a^{p-1} \equiv 1 \pmod{p}$, e.g. $2^4 = 16 \equiv 1 \pmod{5}$)
+Application of \lecturemarker{26}{22 Oct}
+Fermat's Little Theorem ($p$ prime, $a \not \equiv 0 \pmod{p} \implies a^{p-1} \equiv 1 \pmod{p}$, e.g. $2^4 = 16 \equiv 1 \pmod{5}$). Perhaps the longest delay between something in mathematics becoming discovered and being applied usefully. 
 
-RSA = Riverst, Shamir, Alderman (MIT '77). 
-
-It was discovered earlier by Clifford Cocks (GCHQ '73)
+RSA = Riverst, Shamir, Alderman (MIT '77). It was actually discovered earlier by Clifford Cocks (GCHQ '73), though computers at the time were sufficiently slow that it was only thought of as a mathematical curiosity than something useful. 
 
 Public key cryptography: You can publish the encryption key publicly, so anyone can send you a message - only you can decrypt the message. 
 
 
-\begin{proc}[RSA Encryption]~\\
+\begin{proc}[RSA Encryption]~\\[-.25cm]
 \begin{enumerate}
 \item Choose 2 big prime numbers $p,q$. (in practice, we want $|p-q$ to be big)
 \item Compute $N = pq$ - make $N$ public. 
@@ -2882,41 +2809,34 @@ note that $de = 1 + m(p-1)(q-1)$, so $x^{de} = x\left(x^{(p-1)(q-1)}\right)^m$.
 So 
 \[
 \begin{aligned}
-  x^{de} &= x(x^{p-1})^{m(q-1)}\\
+  x^{de} &= x(x^{p-1})^{m(q-1)}\\[.2cm]
   &\equiv \begin{cases}
- x(1)^{m(q-1)} \text{ if } x \not\equiv 0 \pmod{p}\\
+ x(1)^{m(q-1)} \text{ if } x \not\equiv 0 \pmod{p}\\[.2cm]
  x(0)^{m(q-1)} \text{ if } x \equiv 0 \pmod{p}
  \end{cases}\\
  &\equiv x \pmod{p}.	
  \end{aligned}
 \]
 
-Similarly $x^{de} \equiv x \pmod{q}$. 
+Similarly $x^{de} \equiv x \pmod{q}$. So $p$ and $q$ both divide $x^{de} - x$. Also $\hcf(p,q) = 1$.\\
 
-So $p$ and $q$ both divide $x^{de} - x$. Also $\hcf(p,q) = 1$. 
+\textbf{Claim:} This implies that $N = pq$ divides $x^{de} -x$. This follows from:
 
-\textbf{Claim:} This implies that $N = pq$ divides $x^{de} -x$. 
-
-This follows from 
 \begin{lemma}
 If $\hcf(a,b) = 1,\, a \divides m,\, b \divides m \implies ab \divides m$. 	
 \end{lemma}
-\emph{Proof.} If $b\divides ac$ and $\hcf(a,b) = 1$, then $b \divides c$.\\ ($\exists x,y$ such that $ax + by = 1$, so $axc + byc = c$, i.e. $x(ac) + yc(b) = c$)
-
-By assumption, $a \divides m$, so $m = ac$ for some $c$. Also $b \divides m = ac$, so $b \divides c$, say $c = bk$. So $m = ac = (ab)k$ is divisible by $ab$. 
-\end{proof}
+\emph{Proof.} If $b\divides ac$ and $\hcf(a,b) = 1$, then $b \divides c$. ($\exists x,y$ such that $ax + by = 1$, so $axc + byc = c$, i.e. $x(ac) + yc(b) = c$.) By assumption, $a \divides m$, so $m = ac$ for some $c$. Also $b \divides m = ac$, so $b \divides c$, say $c = bk$. So $m = ac = (ab)k$ is divisible by $ab$. 
+\end{proof}\vspace*{5pt}
 
 
-Recap: Choose $p,q$, so $N = pq$. Choose $e$ with $\hcf(e,(p-1)(q-1)) = 1$. Find $d$ such that $de \equiv 1 \pmod{(p-1)(q-1)}$. Take a message $x$ with $ 0 \leq x < N$. 
+\textbf{Recap:} Choose $p,q$, so $N = pq$. Choose $e$ with $\hcf(e,(p-1)(q-1)) = 1$. Find $d$ such that $de \equiv 1 \pmod{(p-1)(q-1)}$. Take a message $x$ with $ 0 \leq x < N$. 
 
 Encrypt: $y \equiv x^e \pmod{N}$. Decrypt: $x \equiv y^d \pmod{N}$.\\
 
 \begin{example}[Silly example]
 $p  = 5, q = 7, e = 7$. $N = pq = 35$. 
 
-Message: $x = 20 \pmod{35}$. 
-
-$y = 20^7 \pmod{35}$. We calculate $20^7$ by repeated squaring: $20^7 = 20\cdot 20^2 \cdot 20^4$, so 
+Message: $x = 20 \pmod{35}$. Then the encryption is $y = 20^7 \pmod{35}$. We calculate $20^7$ by repeated squaring: $20^7 = 20\cdot 20^2 \cdot 20^4$, so 
 
 \[
 \begin{aligned}
@@ -2977,58 +2897,7 @@ So take $N$, and compute $N + 1, N+4,N+9,\dots$ and check if any of them are squ
 \item $n = 187$. Calculate $N+1 = 188,\,N+4 = 191,\, N+9 = 196 = 14^2$, so $a = 14, b = 3$ and $p = 17, q =11$.
 \end{enumerate} 
 \end{examples}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+%\vspace*{1.5cm}
 
 
 
@@ -3043,7 +2912,7 @@ I don't know how to count. \begin{flushright}
 
 \subsektion{Combinations}
 
-If $S$ is a set, I'll write $|S| = $ number of elements in $S$ ($\iN \cup \infty$) [the \emph{order} of $S$]
+If \lecturemarker{27}{22 Oct} $S$ is a set, I'll write $|S| = $ number of elements in $S$ ($\iN \cup \infty$) [the \emph{order} of $S$]
 
 \emph{Counting:} the art of finding formulas for $|S|$ for different types of $S$.\\ 
 
@@ -3090,7 +2959,8 @@ No. of ways of ordering the numbers $1,2,3,\dots,n$ (equally: ordering the objec
 \begin{proof}
 There are $n!$ factorial ways of ordering $1,2,3,\dots, n$. We do the ordering by choosing $r$ objects first, ordering those, and then ordering the remaining $n-r$ objects. 
 
-\[n! = \binom{n}{r} r! (n-r)! \]
+Thus
+\[n! = \binom{n}{r} r! (n-r)! \qedhere\]
 \end{proof}
 
 Note: we could take it as convention that $\binom{n}{0} = 1
@@ -3114,9 +2984,9 @@ When you expand $n$ times you select that the term $x^{n-k}y^k$ by choosing $y$ 
 
 \emph{Excercise:} Prove, by induction or otherwise, that 
 \[\binom{n+1}{r} = \binom{n}{r} + \binom{n}{r-1}\]
+\vsp
 
-
-\subsubsektion{Multinomial Coefficients}\vspace*{5pt}
+\subsubsektion{Multinomial Coefficients}\vspace*{8pt}
 
 \begin{definition}
 Let $S = \{1,2,\dots,n\}$ (or any set of order $n$). A \emph{partition} of $S$ is a collection $S_1,S_2,\dots,S_k$ of subsets of $S$ such that every $x \in S$ belongs to one and only one of these subsets. 
@@ -3143,8 +3013,8 @@ The no of ordered partitions of $\{1,2,3,\dots,n\}$ into $k$ subsets $S_1,S_2,\d
 \end{proposition}
 \begin{proof}
 	Order the elements $1,2,\dots,n$ by first making an ordered partition $S_1,S_2,\dots,S_k$ and then order the elements of $S_1$, then order the elements of $S_2, S_3,\dots$: 
-	\[n! = \binom{n}{r_1,r_2,\dots,r_k}r_1!r_2!\dots r_k!\]
-\end{proof}
+	\[n! = \binom{n}{r_1,r_2,\dots,r_k}r_1!r_2!\dots r_k!\qedhere\]
+\end{proof}\vsp
 
 \begin{remark}
 $r_1+r_2 + \dots + r_k = n$ and $\binom{n}{r,n-r} = \binom{n}{r}$	
@@ -3196,26 +3066,35 @@ This monomial appears with coefficient $\binom{n}{k,k,k,k}$ when $4k =n $.
 
 \subsubsektion{Inclusion-Exclusion Principle}
 
-It's obvious that  \lecturemarker{29}{22 Oct}
+It's obvious that  \lecturemarker{28}{22 Oct}
 \[|A \cup B| = |A| + |B| -|A\cap B|\]
 Similarly 
 \[|A\cup B\cup C| = |A| + |B| + |C| - |A\cap B| - |A\cap C| - |B\cap C| + |A\cap B\cap C|\]
 
 Proof by picture: 
-
-
 \begin{center}
-\begin{tikzpicture}
-\fill[white] (0,0) circle (1cm);
-\fill[white] (1.5,0) circle (1cm);
-\draw (-0.3,0) circle (1.5cm) node {$A$};
-\draw (1.8,0) circle (1.5cm) node {$B$};
-\draw (0.7,-1.8) circle (1.5cm) node{$C$};
-\end{tikzpicture}
+  \def\firstcircle{(90:1.75cm) circle (2.5cm)}
+  \def\secondcircle{(210:1.75cm) circle (2.5cm)}
+  \def\thirdcircle{(330:1.75cm) circle (2.5cm)}
+    \begin{tikzpicture}[scale=0.4]
+      \begin{scope}
+    \clip \secondcircle;
+    \clip \firstcircle;
+    \fill[Blue!25] \thirdcircle;
+      \end{scope}
+      \begin{scope}
+    \clip \firstcircle;
+    \clip \secondcircle;
+    \fill[Blue!25] \thirdcircle;
+      \end{scope}
+      \draw \firstcircle node[text=black,above] {$A$};
+      \draw \secondcircle node [text=black,below left] {$B$};
+      \draw \thirdcircle node [text=black,below right] {$C$};
+    \end{tikzpicture}
 \end{center}
 
 
-When I write $|A| + |B| + |C|$I count twice $x \in A\cap B$ (and $A\cap C, B \cap C$) I better take them out: $- |A \cap B|- |A \cap C| - |B\cap C|$. 
+When I write $|A| + |B| + |C|$. I count twice $x \in A\cap B$ (and $A\cap C, B \cap C$) I better take them out: $- |A \cap B|- |A \cap C| - |B\cap C|$. 
 This creates a new problem with $x \in A \cap B \cap C$. It was counted $3$ times the first time around. I also took it out $3$ times. So I better add those back again: $+|A \cap B\cap C|$.
 
 There is a more general version involving an arbitrary (finite) no. of sets:
@@ -3235,11 +3114,14 @@ There is a more general version involving an arbitrary (finite) no. of sets:
 
 
 \begin{example}
-$S =\{n ~|~ 0 \leq n < 360,\,\hcf(n,360)=1\}$. \emph{What is $|S|$?}
-Consider
+Let 
+\[S =\{n ~|~ 0 \leq n < 360,\,\hcf(n,360)=1\}\]
+\emph{What is $|S|$?}
+
+Consider instead
 \[S^C\{n ~|~ 0 \leq n < 360: \hcf(n,360) \neq 1\}\]
 
-$360 = 2^3 \times 3^2 \times 5$, so $S^C = A_2\cup A_3 \cup A_5$ where $A_k = \{u ~|~ 0 \leq n < 360 \;\&\; k \divides n\}$.
+$360 = 2^3 \times 3^2 \times 5$, so $S^C = A_2\cup A_3 \cup A_5$ where $A_k = \{u ~|~ 0 \leq n < 360 \;\&\; k \divides n\}$. Then by exclusion-inclusion:
 \[
 \begin{aligned}
   |S^C| &= |A_2| + |A_3| + |A_5| - |A_6| - |A_{10}| - |A_{15}|+ |A_{30}|\\
@@ -3248,18 +3130,17 @@ $360 = 2^3 \times 3^2 \times 5$, so $S^C = A_2\cup A_3 \cup A_5$ where $A_k = \{
   \implies |S| &= 360 - 264 = 96
 \end{aligned}
 \]
-
 This was the complicated way to use it as an illustration of the exclusion-inclusion principle. There was a simpler way to dos it, using the Chinese Remainder Theorem: 
+
+ To give a number $n:  0 \leq n < 360 
+\iff$ to give 3 numbers:
 \[
-\text{ To give a number } n:  0 \leq n < 360 
-\iff  \text{ To give 3 numbers }
 \begin{cases}
  0 \leq a < 8\\
  0 \leq b < 9\\
  0 \leq c < 5  
-\end{cases}
-\]
-\[\begin{cases}
+\end{cases} \implies 
+\begin{cases}
 n \equiv a \pmod{8}\\
 n \equiv b \pmod{9}\\
 n \equiv c \pmod{5}	
@@ -3292,14 +3173,14 @@ Recall that
    &= \{[a] \in \Z/m\Z ~|~ \hcf(a,n) = 1\}\\[0.2cm]
    \phi(n) &= |\Z /n \Z^\times|
 \end{aligned}
-\]
+\]\vsp
 
 \begin{proposition}
 \[\phi(n) = n\prod_{p \divides n} \left(1-\frac{1}{p}\right)\]	
 \end{proposition}
 \begin{proof}
 
-Step 1: $\phi$ is a multiplicative function, that is: 
+\textsc{Step 1:} $\phi$ is a multiplicative function, that is: 
 	\[\hcf(n,m) = 1 \implies \phi(n,m) = \phi(n)\phi(m)\]
 	Indeed by the Chinese Remainder Theorem, 
 	\[\text{ the system } \begin{cases}
@@ -3308,15 +3189,10 @@ Step 1: $\phi$ is a multiplicative function, that is:
  \end{cases}
 \]
 has a unqiue solution mod $nm$ and (exercise!) \[\hcf(x,nm) = 1\iff \hcf(a,n) = 1 \& \hcf(b,m)=1\]
-So $(\Z / nm\Z)^{\times} = (\Z/n\Z)^\times \times (\Z / m\Z)^\times$ and $\phi(nm) = \phi(m)\phi(n)$
+So $(\Z / nm\Z)^{\times} = (\Z/n\Z)^\times \times (\Z / m\Z)^\times$ and $\phi(nm) = \phi(m)\phi(n)$.\\
 
-Step 2: If $p$ is prime, then $\phi(p^a) = p^a - p^{a-1}$. 
-
-Indeed: $\Z / p^a\Z ^\times = \{0 \leq n < p ~|~ p \divides n\}^C$. 
+\textsc{Step 2:} If $p$ is prime, then $\phi(p^a) = p^a - p^{a-1}$. Indeed: \[\Z / p^a\Z ^\times = \{0 \leq n < p ~|~ p \divides n\}^C\]
 \end{proof}
-
-
-
 
 
 
@@ -3363,7 +3239,7 @@ A \emph{relation} $\mathcal{R}$ on a set $S$ is a subset $\mathcal{R} \subset S 
 We write $a \sim_{\mathcal{R}} b \iff (a,b) \in \mathcal{R}$. 
 \end{definition}
 
-Remember that it's an \emph{ordered} pair; suppose you considered a relation between people: you could get $x$ loves $y$ as a relation, which is \emph{not} automatically reflexive or transitive etc. The friend of your friend is not automatically your friend. In fact a friend of my best friend could be my best enemy. If $x$ loves $y$ it does not follow that $y$ loves $x$ - I'm sure you will have experienced this. And finally, most strangely, but true, it's not a fact that $x$ loves $x$.\\
+Remember that it's an \emph{ordered} pair; suppose you considered a relation between people: you could get $x$ loves $y$ as a relation, which is \emph{not} automatically reflexive or transitive etc. The friend of your friend is not automatically your friend. In fact a friend of my best friend could be my best enemy. If $x$ loves $y$ it does not follow that $y$ loves $x$ - I'm sure you will have experienced this\footnote{Especially if you're gay...}. And finally, most strangely, but true, it's not a fact that $x$ loves $x$.
 
 \textbf{Notation.} The \emph{diagonal} is $\triangle_S = \{(s,s): s \in S\} \subset S \times S$.\\
 
@@ -3371,7 +3247,7 @@ Remember that it's an \emph{ordered} pair; suppose you considered a relation bet
 	\begin{enumerate}
 	\item  $\triangle_{\R} \subset \R \times \R$:
 	\begin{center}
-	\begin{tikzpicture}
+	\begin{tikzpicture}[scale=.8]
 	\draw[->] (-3,0) -- (3,0) node at (3.1,-0.2) {$\R$};	
 	\draw[->] (0,-2) -- (0,2) node at (-0.2,2) {$\R$};	
 	\draw (-2,-2) -- (2,2) node at (1.1,0.8) {$\triangle_{\R}$};
@@ -3384,8 +3260,8 @@ Remember that it's an \emph{ordered} pair; suppose you considered a relation bet
 	
 	$\rel = \{(x,y) ~|~ x \leq y\} \subset \R^2$ [a relation on $\R$]
 	\begin{center}
-	\begin{tikzpicture}
-	\fill[blue!30] (-2,-2) -- (-2,2) -- (2,2);
+	\begin{tikzpicture}[scale=.8]
+	\fill[Blue!25] (-2,-2) -- (-2,2) -- (2,2);
 	\draw[->] (-2,0) -- (3,0) node at (3.1,-0.2) {$\R$};	
 	\draw[->] (0,-2) -- (0,2) node at (-0.2,2) {$\R$};	
 	\draw (-2,-2) -- (2,2);
@@ -3408,7 +3284,9 @@ Let me just ask this strange question:\\
 
 \begin{example}
 \emph{How many relations are there on the set $S = \{1,2\}$?}
-\begin{remarks}~\\
+
+First some remarks:
+
 1. A finite set $T$ has exactly $2^{|T|}$ subsets. 
 
 Let $S$ be a set $|S| = n$. Let $P(s) = \{T ~|~ T \subset S\}$. Then $|P(s)| = 2^n$. Let $P_k(s) = \{T ~|~ T \subset S \& |T| = k\}$. Then we know $|P_k(s)| = \binom{n}{k}$. Then 
@@ -3416,13 +3294,12 @@ Let $S$ be a set $|S| = n$. Let $P(s) = \{T ~|~ T \subset S\}$. Then $|P(s)| = 2
 
 
 
-2. If $S_1, S_2$ are finite sets then $|S_1 \times S_2| = |S_1||S_2|$. 
-\end{remarks}
+2. If $S_1, S_2$ are finite sets then $|S_1 \times S_2| = |S_1||S_2|$.\\
 
 Consider now $S = \{1,2\}$. A relation is a subset of $S \times S$, so here are $2^{|S \times S|} = 2^4 = 16$ relations on $\{1,2\}$. Let us picture them all: 
 
 \begin{center}
-\begin{tikzpicture} 
+\begin{tikzpicture}[scale=0.7]
   \foreach \y in {0,...,4}
       \draw (0,2.2*\y) -- (10,2.2*\y);
   \foreach \x in {0,...,4}
@@ -3487,10 +3364,6 @@ Consider now $S = \{1,2\}$. A relation is a subset of $S \times S$, so here are 
   	  \draw (5.35,0.9) circle (5pt);
 	   \draw (6.5,0.9) circle (5pt);
 	   \draw (6.5,1.8) circle (5pt);
-
-
-
-
 \end{tikzpicture}	
 \end{center}
 
@@ -3524,21 +3397,14 @@ I'm always surprised to see people who take in inside themselves a foreign objec
 \end{examples} 
 
 
-\emph{Exercise} For every $T \subset \{(i),(ii),(iii)\}$. Find some $S$, some $\rel$ on $S$ such that $\rel$ has property $(*) \iff (*) \in T$. 
-
-[hint: see what you can do with $16$ relations on $\{1,2\}$]\\
+\emph{Exercise:} For every $T \subset \{\text{(i), (ii), (iii)}\}$. Find some $S$, some $\rel$ on $S$ such that $\rel$ has property $(*) \iff (*) \in T$. [hint: see what you can do with $16$ relations on $\{1,2\}$]\\
 
 \begin{definition}
-$\rel \subset S \times S$ is an \emph{equivalence relation} iff $\rel$ satisfies $(i), (ii), (iii)$. 	
+$\rel \subset S \times S$ is an \emph{equivalence relation} iff $\rel$ satisfies (i), (ii), (iii).
 \end{definition}
 
-
-
-
-
-
-
-Recap: A \lecturemarker{30}{22 Oct}
+\pagebreak
+\textbf{Recap:} A \lecturemarker{29}{22 Oct}
 relation on a set $S$ is a subset $\rel \subset S\times S$. $\rel$ is an \emph{equivalence relation} if: 
 \begin{enumerate}
 \item Reflexive: $\forall a \in S, (a,a) \in \rel$
@@ -3551,12 +3417,10 @@ relation on a set $S$ is a subset $\rel \subset S\times S$. $\rel$ is an \emph{e
 \begin{enumerate}
 	
 
-\item[1.] $(a,b) \in \rel \iff a \equiv b \pmod{n}$\\
-(fix $n \in \N$, a relation on $\Z$)
+\item[1.] $(a,b) \in \rel \iff a \equiv b \pmod{n}$. (fix $n \in \N$, a relation on $\Z$)
 
 
-\item[2.] $\rel$ on $S = \Z \times (\Z /\{0\})$\\
-$((p,q),(N,M)) \in \rel \iff \exists a,b \in \Z/\{0\}$ such that $pa = Nb$ and $qa = Mb$
+\item[2.] $\rel$ on $S = \Z \times (\Z /\{0\})$. $((p,q),(N,M)) \in \rel \iff \exists a,b \in \Z/\{0\}$ such that $pa = Nb$ and $qa = Mb$.
 \end{enumerate}
 
 \end{examples}\vspace*{5pt}
@@ -3567,11 +3431,7 @@ $((p,q),(N,M)) \in \rel \iff \exists a,b \in \Z/\{0\}$ such that $pa = Nb$ and $
 \end{definition}
 
 
-In Example 4.15.1: $[a]$ = the ``class of $a$ mod $n$''
-
-In Example 4.15.2: $[(p,q)]$ = $\frac{p}{q} \in \Q$
-
-In both examples we have a good way to ``picture'' the set of classes, which are $\Z / n\Z$ and $\Q$ respectively.\\
+In example 1 $[a]$ = the ``class of $a$ mod $n$'', in example 2 $[(p,q)]$ = $\frac{p}{q} \in \Q$. In both examples we have a good way to ``picture'' the set of classes, which are $\Z / n\Z$ and $\Q$.\\
 
 
 \textbf{Notation.} If $R \subset S \times S$ is an \emph{equivalence relation} on $S$ then we write:\[a,b \in S~ a \sim b \iff (a,b) \in R\]
@@ -3586,17 +3446,17 @@ We can then re-write (i), (ii), (iii) as:
 \begin{remarks}~
 \begin{itemize}
 \item If $a \sim b$ then $[a] = [b] \subset S$
-\item For all $a,b\in S$ then either $[a] = [b]$ or $[a] \cap [b] = \emptyset$ (obviously not both)
+\item For all $a,b\in S$ then either $[a] = [b]$ or $[a] \cap [b] = \emptyset$ (obviously not both)\\
 \end{itemize}
 \end{remarks}
 
-\begin{proof}
-	$[a] = \{b ~|~ a \sim b\} \subset S$. 
-	
-	Suppose $a \sim b$. Then $b \in [a]$. I show that $[b] \subset [a]$. Suppose $c \in [b]$. Then $b \sim c$. But $a \sim b, b\sim c \implies a \sim c \implies c \in [a]$. Similarly since $b \sim a$, $[a] \subset [b]$, so then $[a] = [b]$. 
+\textbf{Claim:} 	$[a] = \{b ~|~ a \sim b\} \subset S$. 
 
-Now suppose $c \in [a] \cap [b]$.\\ This means $a \sim c$ and $b \sim c$, and then by what we just did $[a] = [c] = [b]$. 
-\end{proof}
+\begin{proof}
+	Suppose $a \sim b$. Then $b \in [a]$. I show that $[b] \subset [a]$. Suppose $c \in [b]$. Then $b \sim c$. But $a \sim b, b\sim c \implies a \sim c \implies c \in [a]$. Similarly since $b \sim a$, $[a] \subset [b]$, so then $[a] = [b]$.\\
+
+Now suppose $c \in [a] \cap [b]$. This means $a \sim c$ and $b \sim c$, and then by what we just did $[a] = [c] = [b]$. 
+\end{proof}\vspace*{5pt}
 
 \begin{definition}[Quotient Set] If $\rel $ is an equivalence relation on $S$, then we denote the quotient set:
 \[
@@ -3607,9 +3467,7 @@ Now suppose $c \in [a] \cap [b]$.\\ This means $a \sim c$ and $b \sim c$, and th
 \]
 \end{definition}
 
-In Example 1, $\rel$ is on $\Z$ where $a \sim b \iff a \equiv b \pmod{n}$. Then $\Z/\rel = \Z/n\Z$. 
-
-In Example 2, $\Z \times(\Z\backslash\{0\}) /\rel = \Q$. This is the foundation upon which the rational numbers depend on, which is higher - Maths is a tree that grows downward.  \\
+In Example 1, $\rel$ is on $\Z$ where $a \sim b \iff a \equiv b \pmod{n}$. Then $\Z/\rel = \Z/n\Z$. In Example 2, $\Z \times(\Z\backslash\{0\}) /\rel = \Q$. This is the foundation upon which the rational numbers depend on, which is higher - Maths is a tree that grows downward.  \\
 
 \begin{remark}
 What makes it easier to work with examples 1 and 2 is that every class has a \emph{distinguished element}. In example 1, every $[a]$ has a unique element $\bar{a}$ such that $ 0\leq \bar{a} < n$. So we think of the quotient set 
@@ -3623,10 +3481,6 @@ Recall that a \emph{partition} of set $S$ is a set $\{S_i ~|~ i \in I\}$ of subs
 \item $S = \bigcup_{i \in I} S_i$
 \item $\forall i,j \in I$ either $S_i = S_j$ or $S_i \cap S_i = \emptyset$	
 \end{enumerate}\vspace*{5pt}
-
-
-
-
 
 
 
@@ -3670,33 +3524,30 @@ It is amazing how economists get Nobel prizes by saying that when there is enoug
        \end{flushright} 
 \end{quote} \vspace*{15pt}
 
-\begin{definition} \lecturemarker{31}{22 Oct}
-Let $X,Y$ be sets. A \emph{function}, $f: X \to Y$, ``$f$ from $X$ to $Y$" is a subset: $\Gamma_f \subset X \times Y$, sometimes called ``the graph of $f$", such that 
+\begin{definition} \lecturemarker{30}{22 Oct}
+Let $X,Y$ be sets. A \emph{function}, $f: X \to Y$, ``$f$ from $X$ to $Y$" is a subset: $\Gamma_f \subset X \times Y$, sometimes called \emph{the graph of $f$}, such that 
 \[\forall x \in X,\,\exists!\, y \in Y: (x,y) \in \Gamma_f\]	
+
 This unique $y$ is denoted $y = f(x)$ and is called the \emph{value} of $f$ at $x$. 
 \end{definition}
 
 The usual definition for a function is a ``thing" that $\forall x \in X$ spits out a unique $y \in Y$ called $f(x)$.\\
 
 \textbf{Terminology.} $X$ is the \emph{domain} of $f$. $Y$ is the \emph{range} of $f$. The \emph{image} of $f$ is the set 
-\[f(X) = \{y \in Y ~|~ \exists x \in X \text{ with } f(x) = y\}\]\vspace*{-10pt}
+\[f(X) = \{y \in Y ~|~ \exists x \in X \text{ with } f(x) = y\}\]
+\vsp
 \begin{warning}
 Do not confuse the \emph{image} with the \emph{range.}	
-\end{warning}\vspace*{15pt}
 
-
-\begin{example}
-The function $f: \R \to \R$ such that \[f(x) = x^2\] ($\Gamma_f = \{(x,y) \in \R \times \R ~|~ y = x^2\}$)
-
-We have range$(f) = \R$, and image$(f) = \R_{\geq 0} = \{y ~|~ y \geq 0\}$	
-\end{example}
+E.g. The function $f: \R \to \R$ such that $f(x) = x^2$. ($\Gamma_f = \{(x,y) \in \R \times \R ~|~ y = x^2\}$.) We have range$(f) = \R$, and image$(f) = \R_{\geq 0} = \{y ~|~ y \geq 0\}$.\\
+\end{warning}
 
 There are two ways to make a new function from an old one.\\Suppose $f: X \to Y$ is a function. 
 
 \begin{enumerate}
 \item Restriction of the domain. 
 
-If $A \subset X$, then $f_{|A} : A \to Y$ is the function such that $f_{|A}(a) = f(a)$ for all $a \in A$ ($f$ is \emph{restricted} to $A \subset X$)\\
+If $A \subset X$, then $f_{|A} : A \to Y$ is the function such that $f_{|A}(a) = f(a)$ for all $a \in A$ ($f$ is \emph{restricted} to $A \subset X$)
 
 \item Restriction of the range. 
 
@@ -3705,9 +3556,9 @@ If im$(f) \subset B \subset Y$ then I can define a function $g: X \to B$ such th
 
 \begin{examples}
 \begin{enumerate}
-\item The function $g: \R \backslash\{0\} \to \R$ such that $g(x) = x^2$. Then $g = f_{|\R\backslash\{0\}}$ where $f$ is as in Example 5.1. 
-\item The function $g: \R \to \R_{\geq 0}$, $g(x) = x^2$ is obtained from the function $f$ in Example 5.1 by restricting its range. 
-\item The function $g: \R_{\geq 0} \to \R_{\geq 0}$ such that $g(x) = x^2$ is obtained from Example 5.1 by restricting the domain and the range. 
+\item The function $g: \R \backslash\{0\} \to \R$ such that $g(x) = x^2$. Then $g = f_{|\R\backslash\{0\}}$ where $f:\R \to \R$ such that  $f(x) = x^2$.
+\item The function $g: \R \to \R_{\geq 0}$, $g(x) = x^2$ is obtained from the function $f:\R \to \R$ with  $f(x) = x^2$. by restricting its range. 
+\item The function $g: \R_{\geq 0} \to \R_{\geq 0}$ such that $g(x) = x^2$ is obtained from $f:\R \to \R$ with $f(x) = x^2$ by restricting the domain and the range. 
 \end{enumerate}	
 \end{examples}\vspace*{5pt}
 
@@ -3738,7 +3589,7 @@ Draw a picture:
  \node at (1.8, -0.5) {$g$};
 \node at (3,0) {$Z$};
 \node at (1,1.8) {$g \circ f$};
-\draw [->, blue] (2.9,0.375) -- (2.91,0.36);
+\draw [->, blue] (2.903,0.365) -- (2.91,0.355);
 \end{tikzpicture}\end{center}
 
 \begin{definition}
@@ -3752,20 +3603,19 @@ Let $f: X \to Y$ be a function. Then $f$ is \emph{invertible} iff $\exists\, g: 
 
 \begin{examples}
 \begin{enumerate}
-\item $f: \R \to \R$ such that $f(x) = x^2$. 
-
-$g: \R_{\geq 0} \to \R$ such that $g(y) = \sqrt{y}$. 
+\item $f: \R \to \R$ such that $f(x) = x^2$. $g: \R_{\geq 0} \to \R$ such that $g(y) = \sqrt{y}$. 
 
 Note: $f \circ g = \R_{\geq 0} \to \R$. $f \circ g(y) = (\sqrt{y})^2 = y \neq \text{id}$ of anything. 
 
-On the other hand, it does not make sense to do $g \circ f$ because range$(f) = \R \neq \text{domain}(g) = \R_{\geq 0}$
+On the other hand, it does not make sense to do $g \circ f$ because range$(f) = \R \neq \text{domain}(g) = \R_{\geq 0}$\\
+
 \item Take  $f: \R \to \R_{\geq 0}$ such that $f(x) = x^2$ and $g: \R_{\geq 0} \to \R$ such that $g(y) = \sqrt{y}$.
 
 Now $f\circ g : \R_{\geq 0} \to \R_{\geq 0}$, $\forall y \in \R_{\geq 0}$. Now I can say $f \circ g = \mathrm{id}_{\R \geq 0}$. 
 
 I am also now allowed to take $g \circ f: \R \to \R$. Then $g\circ f(x) = \sqrt{x^2}= |x|$. This is not the same as $\mathrm{id}_{\R}$. 
 
-The function $g$ is not the inverse of $f$ and vice-versa. In fact $f$ is not invertible ($g$ is neither). \pagebreak
+The function $g$ is not the inverse of $f$ and vice-versa. In fact $f$ is not invertible ($g$ is neither).
 
 \item Take $f: \R_{\geq 0} \to \R_{\geq 0}\; f(x) = x^2$ and $g: \R_{\geq 0} \to \R_{\geq 0}\; g(y) = \sqrt{y}$. 
 
@@ -3791,7 +3641,7 @@ Indeed $g: Y \to X$ such that $g \circ f = \text{ id}_X$ and $f \circ g = \text{
 $\Gamma$ is a function. Indeed
 \[\forall y \in Y,\, \exists x \in X\text{ such that } (y,x) \in \Gamma_g\]
 i.e. $y = f(x)$ because $f$ is surjective. Moreover, this $x \in X$ is unique because $f$ is injective. I leave it to you to show that $g \circ f =\text{ id}_X$ and $f\circ g = \text{ id}_Y$. 
-\end{proof}
+\end{proof}\vsp
 
 \begin{definition}
 A function $f$ is \emph{bijective} $\iff$ it is injective and surjective. 
@@ -3799,7 +3649,7 @@ A function $f$ is \emph{bijective} $\iff$ it is injective and surjective.
 
 The last theorem also means bijective $\iff$ invertible. \\
 
-\begin{proposition} \lecturemarker{32}{22 Oct}
+\begin{proposition}{\normalfont\lecturemarker{31}{22 Oct}}
 Let $X,Y$ be finite sets and $f: X \to Y$ a function. 
 \[
 \begin{aligned}
@@ -3816,7 +3666,7 @@ Suppose $X = \{x_1,x_2,x_3,\dots,x_m\}$. If $f$ is injective, then $f(x_1),\dots
 Similarly if $f$ is surjective and $Y = \{y_1,\dots,y_m\}$ then there exists elements (necessarily distinct) $x_1,x_2,\dots,x_m \in X$ with $f(x_i) = y_i$ for $i = 1,\dots,n$. This shows $|X| \geq n$. 
 
 Finally if $f$ is bijective, it's both injective and surjective, so $|X| \leq |Y|$ and $|Y| \leq |X| \implies |X| = |Y|$. 	
-\end{proof}
+\end{proof}\vsp
 
 \begin{definition}
 Let $Y, X$ be sets. The \emph{power set} is
@@ -3840,12 +3690,10 @@ Say $X = \{x_1,\dots,x_m\}$. Then you have for a function $f: X \to Y$. 	There a
 \end{aligned}
 \]
 So overall: 
-\[|Y|^{|X|} = \underbrace{|Y| \times |Y| \times \dots \times |Y|}_{n \text{ times}} \text{ choices for } f.\]
+\[|Y|^{|X|} = \underbrace{|Y| \times |Y| \times \dots \times |Y|}_{n \text{ times}} \text{ choices for } f.\qedhere\]
 \end{proof}
 
-Application: Remember that I told you: If $S$ is a finite set, then $S$ has $2^{|S|}$ subsets. 
-
-Let $Z = \{T: T \subset S\}$. Let $2 = \{0,1\}$. 
+Application: Remember that I told you: If $S$ is a finite set, then $S$ has $2^{|S|}$ subsets. Let $Z = \{T: T \subset S\}$. Let $2 = \{0,1\}$. 
 
 \textbf{Claim.} There is a ``canonical" (natural) bijective function: 
 \[F: Z \to 2^{S}\]
@@ -3862,17 +3710,51 @@ Then $F^{-1}$ is defined as the mapping of:
 \[\chi:S \to \{0,1\} \longmapsto T = \{s \in S ~|~ \chi(s) = 1\}\]
 
 It is quite clear that $F$ and $F^{-1}$ are inverses of each other, in other words that $F$ is invertible and so bijective. The whole thing implies that 
-\[|Z| = |2^S| = 2^{|S|}\]	
-\end{proof}\vspace*{5pt}
+\[|Z| = |2^S| = 2^{|S|}\qedhere\]	
+\end{proof}
 
-\subsubsektion{Function maps}
+Let me draw you a picture: 
+
+\[Z = \{T ~|~ T \subset S\} \qquad \qquad \qquad \qquad \qquad \{\chi: S \to \{0,1\}\}\]
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\draw (0,0) ellipse (2cm and 1.2cm);
+\draw(-0.2,0.2) ellipse (0.8cm and 0.5cm);
+\fill[blue!20] (-0.2,0.2)ellipse (0.8cm and 0.5cm);
+\node at (-0.2,0.2) {\small $T$};
+\node at (1.5,-1) {$S$};
+
+\begin{scope}[shift={(7,-0.2)}]
+\draw (0,0) ellipse (2cm and 1.2cm);
+\draw (-0.2,1.3) ellipse (0.8cm and 0.4cm);
+\fill[blue!20] (-0.2,1.3) ellipse (0.8cm and 0.4cm);
+\draw (-1,1.3) -- (-1,.2);
+\draw (.6,1.3) -- (.6,.2);
+\draw (-0.2,.2) ellipse (0.8cm and 0.4cm);    
+\node at (-0.2,1.3) {\small $1,1,1,1$};
+\node at (1.5,-1) {$S$};
+\draw [->] (-2,0) -- (-2, 1.4);
+\node at (-2.2,0) {\small $0$};
+\node at (-2.2,1.4) {\small $1$};
+\node at (0,-0.7) {\small $0$};
+\node at (-0.8,-0.4) {\small $0$};
+\node at (-1.4,0.4) {\small $0$};
+\node at (.5,-.5) {\small $0$};
+
+\end{scope}
+
+\end{tikzpicture}
+	
+\end{center}
+
+\subsektion{Function maps}
 
 \textbf{Question.} Let $A,B,C$ be sets.
 
  Suppose we're given functions $f: A \to B$ and $h: A \to C$: 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.9]
 \node at (0,0) {$A$};
 \draw [->] (0.2,0.2) -- (2,1.5) node at (2.3,1.6) {$B$};	
 \draw [->] (0.3,0) -- (2.5,0) node at (2.8, 0) {$C$};
@@ -3883,7 +3765,7 @@ It is quite clear that $F$ and $F^{-1}$ are inverses of each other, in other wor
 \emph{Is there a function $g: B \to C$, such that $h = g \circ f$}?
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.9]
 \node at (0,0) {$A$};
 \draw [->] (0.2,0.2) -- (1.8,1.8) node at (2,2) {$B$};	
 \draw [->] (0.3,0) -- (2.7,0) node at (2.9, 0) {$C$};
@@ -3902,26 +3784,32 @@ It is quite clear that $F$ and $F^{-1}$ are inverses of each other, in other wor
 \begin{example}
 
 \begin{center}
-\begin{tikzpicture}
-\node at (0,0) {$A$};
-\draw [->] (0.2,0.2) -- (1.8,1.8) node at (2,2) {$B$};	
-\draw [->] (0.3,0) -- (2.7,0) node at (2.9, 0) {$C$};
+\begin{tikzpicture}[scale=.9]
+\draw [->] (0.15,0.2) -- (1.8,1.8);	
+\draw [->] (0.3,-0.1) -- (1.9,1.6);	
+\draw [->] (0.1,0.1) -- (2.7,0);
+\draw [->] (0.4,-0.2) -- (3.0,-0.3);
 \draw [dashed, ->] (2.2,1.7) -- (2.8,0.2);
 \node at (0.9,1.2) {$f$};
-\node at (1.4,-0.3) {$h$};
+\node at (1.5,-0.6) {$h$};
 \node at (2.8,1.2) {$g?$};
+\fill (-0.1,0.1) circle (2pt) node at (-0.2,-0.1) {$a_1$};
+\fill (0.2,-0.2) circle (2pt) node at (0.2,-0.5) {$a_2$};
+\fill (2,2) circle (2pt) node at (2,1.7) {$b$};
+\fill (2.9,0) circle (2pt) node at (3.1,0.2) {$c_1$};
+\fill (3.2,-0.3) circle (2pt) node at (3.5,-0.3) {$c_2$};
+\draw (0,-0.2) circle (0.85cm) node at (-0.4,-0.6) {$A$};
+\draw (1.95,1.85) circle (0.8cm) node at (2.3,2.3) {$B$};
+\draw (3.1,0) circle (0.75cm) node at (3.5,0.4) {$C$};
 \end{tikzpicture}
 \end{center}
 
-$g$ does not exist here, as $g$ would have to map $b$ to both $c_1$ and $c_2$ - impossible! Formally: 
-
-\begin{proof}
+In this situation $g$ does not exist here, as $g$ would have to map $b$ to both $c_1$ and $c_2$ - impossible! In other words:
 
 Suppose that $g$ existed: 
 
 Let $a_1, a_2 \in A$ and assume $f(a_1)= f(a_2)$. Then 
-\[h(a_1) = g(f(a_1)) = g(f(a_2)) = h(a_2)\qedhere\]
-\end{proof}
+\[h(a_1) = g(f(a_1)) = g(f(a_2)) = h(a_2).\]
 \end{example}
 
 \begin{theorem}
@@ -3941,7 +3829,7 @@ This function is well defined, i.e. independent of the choice of $a \in A$ such 
 
 \textbf{A special case:} Take $h = \text{id}_A$
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.9]
 \node at (0,0) {$A$};
 \draw [->] (0.2,0.2) -- (1.8,1.8) node at (2,2) {$B$};	
 \draw [->] (0.3,0) -- (2.7,0) node at (2.9, 0) {$C$};
@@ -3952,16 +3840,16 @@ This function is well defined, i.e. independent of the choice of $a \in A$ such 
 \end{tikzpicture}
 \end{center}
 
-i.e. $h(a) = a$ for all $a$. Then $\exists g : B\to A$ such that $g \circ f = \text{id}_A$ if and only if $\forall a_1,a_2 \in A, f(a_1) = f(a_2) \implies a_1 = a_2$. i.e. $\exists g: B\to A$ such that $g \circ f = \text{id}_A$ iff $f$ is injective. Such a $g$ is called a \emph{left inverse of $f$}. 
+i.e. $h(a) = a$ for all $a$. Then $\exists g : B\to A$ such that $g \circ f = \text{id}_A$ if and only if $\forall a_1,a_2 \in A, f(a_1) = f(a_2) \implies a_1 = a_2$. i.e. $\exists g: B\to A$ such that $g \circ f = \text{id}_A$ iff $f$ is injective. Such a $g$ is called a \emph{left inverse of $f$}.\vspace*{5pt}
 
-We found: $f$ has a left inverse iff $f$ is injective. 
+We found: \textbf{$f$ has a left inverse iff $f$ is injective.}\vspace*{10pt}
 
 \emph{A variation on the theme:}
 
 Let $A, B, C$ be sets. Let there be functions $g: B \to C$, $h: A \to C$. 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.9]
 \node at (0,0) {$A$};
 \draw [dashed,->] (0.3,0.3) -- (1.7,1.7) node at (2,2) {$B$};	
 \draw [->] (0.3,0) -- (2.6,0) node at (2.9, 0) {$C$};
@@ -3973,14 +3861,24 @@ Let $A, B, C$ be sets. Let there be functions $g: B \to C$, $h: A \to C$.
 \end{center}
 
 
-\emph{Is there $f:A \to B$ such that $g \circ f = h$?}
+\emph{Is there $f:A \to B$ such that $g \circ f = h$?}\\
 
-\emph{Exercise:} Show that $f$ exists $\iff im(h) \subset im(g)$. 
+\begin{theorem}$f$ exists $\iff \mathrm{im}(h) \subset \mathrm{im}(g)$. \end{theorem}
+
+\begin{proof}[Sketch Proof.] 
+$\impliedby$: Suppose $\mathrm{im}(h) \subset \mathrm{im}(g)$. Let me define $f$ for you.
+
+ Let $a \in A$. I want to make a decision about $f(a)$. Let $a = h(a)$. Because $\mathrm{im}(h) \subset \mathrm{im}(g)$ and $c \in \mathrm{im}(h)$ then $c \in \mathrm{im}(g)$, so $\exists b\in B$ such that $g(b) = c$. Choose such a $b$ and define \[f(a):= b\]
+
+%There's something in set theory call the axiom of choice that will allow you to make such choices of very large sets. We're not going to go there, I'm going to take this business of choice as a completely naive thing.
+	
+\emph{Exercise:} $\impliedby$ direction. 
+\end{proof}
 
 \textbf{Special case:} Take $h =\text{id}_A$. 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.9]
 \node at (0,0) {$A$};
 \draw [dashed,->] (0.3,0.3) -- (1.7,1.7) node at (2,2) {$B$};	
 \draw [->] (0.3,0) -- (2.6,0) node at (2.9, 0) {$C$};
@@ -3991,18 +3889,17 @@ Let $A, B, C$ be sets. Let there be functions $g: B \to C$, $h: A \to C$.
 \end{tikzpicture}
 \end{center}
 
-There exists $f$ such that $g \circ f = \text{id}_A \iff A \subset im(g)$ i.e. $A = im(g0$, i.e. $g$ is surjective. Such an $f$ is called a \emph{right inverse} of $g$. 
+There exists $f$ such that $g \circ f = \text{id}_A \iff A \subset im(g)$ i.e. $A = im(g)$, i.e. $g$ is surjective. Such an $f$ is called a \emph{right inverse} of $g$.
 
-We found: $g$ has a right inverse iff $g$ is surjective.\\
-
-
+We found: \textbf{$g$ has a right inverse iff $g$ is surjective.}\vspace*{5pt}
 
 \emph{Exercise:} Suppose $f: A \to B$ is injective and surjective:
 
  Then $f$ has a left inverse. Prove that this left inverse is unique and it also has a right inverse, therefore it is the inverse of $f$. Also do the opposite: 
 
-Then $f$ has a right inverse. Prove that this right inverse is unique, and it is also a left inverse, therefore it is the inverse of $f$.\\
+Then $f$ has a right inverse. Prove that this right inverse is unique, and it is also a left inverse, therefore it is the inverse of $f$.\vspace*{5pt}
 
+\emph{There is a method to this madness.} 
 
 
 \subsektion{Countability}\vspace*{5pt}
@@ -4015,29 +3912,31 @@ Informally, this means that I can ``list" all the elements of $S$:
 \[S = \{s_1,s_2,s_3,s_4,s_5,\dots\}\]
 more formally, $s_n = f(n)$. 
 
-N.B. A countable set is always infinite! \\
+N.B. A countable set is always infinite! \vspace*{5pt}
 
 
 \begin{proposition}
 Suppose $S \subset \N$ is infinite. Then $S$ is countable. 	
 \end{proposition}
 
-Informally: Take $s_1 = min S$. $s_2$ is the next element: $s_2 = min S \backslash\{s_1\}$; $s_3$ as the next element: $s_3 = min S \backslash\{s_1,s_2\}$ and so on. This is making a list of all the elements of $S$. More formally:
+Informally: Take $s_1 = \min S$. $s_2$ is the next element: $s_2 = \min S \backslash\{s_1\}$; $s_3$ as the next element: $s_3 = \min S \backslash\{s_1,s_2\}$ and so on. This is making a list of all the elements of $S$. More formally:
 
 \begin{proof}
 	Define $f: \N \to S$ inductively as follows: 
 	\begin{itemize}
-	\item $f(1) = min S$
+	\item $f(1) = \min S$
 	\item Assume $f(1),\dots, f(n-1)$ is defined already. 
 	
 	Then define 
-	\[f(n) = min S \backslash \{f(1),\dots,f(n-1)\}\]	
+	\[f(n) = \min S \backslash \{f(1),\dots,f(n-1)\}\]	
 	\end{itemize}
-	One an prove by induction that this procedure does define a function. One does need a bit of work to show this function is bijective. 
-\end{proof}\vspace*{5pt}
+	One can prove by induction that this procedure does define a function. One does need a bit of work to show this function is bijective: 
+	
+	$f(1) < f(2) < f(3) < \dots$, so $f$ is injective. We'd also have to show $f$ is surjective. If $f$ were not surjective, then $\exists$ smallest $s \in S \backslash \mathrm{im}\,(f)$. Either $s$ is smallest element of $S$ - impossible because $s = f(1)$, or $\exists s' \in S, s' < s$ - pick the largest such, then $s' = f(n)$ and by our rule $s = f(n+1)$. 
+\end{proof}\vsp
 
 
-\begin{proposition} \lecturemarker{33}{22 Oct}
+\begin{proposition} {\normalfont\lecturemarker{33}{22 Oct}}
 $\Z$ is countable. 
 \end{proposition}
 
@@ -4111,11 +4010,11 @@ Sketch of the usual proof: Consider $\Q_+$ and then arrange pairs $(p,q) \iN^2$ 
 \begin{proof}
 Let me show first that 
 \[\Q_{+} = \{ x = m/n \in \Q: x > 0\}\]	
-is countable: Define $f: \Q_+ \to \N$ as $f(m/n) \to 2^n3^m$.\footnote{Or just use $f(m/n) \to 2^{m}(2n-1)$ which is already a bijection onto $\N$.} $f$ is injetive. $f$ is not surjective, but it is surjective to $S = im(f)$, so $\Q_+$ is a bijective correspondence with $S \subset \N$. By Proposition 6.1, $S$ is countable: 
-\[\Q_+ \longrightarrow S \longrightarrow \N\]
+is countable: Define $f: \Q_+ \to \N$ as $f(m/n) \to 2^n3^m$.\footnote{Or just use $f(m/n) \to 2^{m}(2n-1)$ which is already a bijection onto $\N$.} $f$ is injective. $f$ is not surjective, but it is surjective to $S = \mathrm{im}(f)$, so $\Q_+$ is a bijective correspondence with $S \subset \N$. By Proposition 6.1, $S$ is countable: 
+\[\Q_+ \overset{f}{\longrightarrow} S \overset{g}{\longrightarrow} \N\]
 So $h = g \circ f: \Q_+ \to \N$ is bijective. 
 
-To finish off, we prove as an exercise the following: If $A$ is countable, and $B$ is countable, then $A \cup B$ is countable. This implies that $Q = Q_- \cup \{0\} \cup \Q_+$ is countable
+To finish off, we prove as an exercise the following: If $A$ is countable, and $B$ is countable, then $A \cup B$ is countable. This implies that $Q = Q_- \cup \{0\} \cup \Q_+$ is countable.
 \end{proof}
 
 \
@@ -4128,6 +4027,7 @@ There are different degrees of infinities. This sort of bothers me a little bit,
 
 \begin{proof} (Cantor's Diagonal Argument)
 Suppose for a contradiction that you could ``list" all the real numbers. Let this be the list: 
+
 \[
 \begin{aligned}
   x_1 &= a_1 \cdot a_{11}\,a_{12}\,a_{13}\,a_{14}\dots\\
@@ -4154,17 +4054,18 @@ We produce a real number $x \iR$ which is not on the list:
 \hspace*{20pt}\vdots 
 \end{enumerate}
 
-Notice: We don't allow $9$, so we don't end up with the number ending 
-Let $x = b_1\cdot c_1\,c_2\dots c_n \dots$. 
+Notice: We don't allow $9$, so we don't end up with the number ending in recurring $9$'s.
 
-Then $x$ is not on the list. $x \neq$ every number on the list (at least one digit in the decimal expansion is different!)
-\end{proof}
+Let $x = b_1\cdot c_1\,c_2\dots c_n \dots$. Then $x$ is not on the list. $x \neq$ every number on the list (at least one digit in the decimal expansion is different!)
+\end{proof}\vspace*{10pt}
 
 I'm not a big fan of countability and uncountability, so this is all I'm going to say about this topic. Philosophically I am uncomfortable with there being an infinite set strictly bigger than the set of natural numbers. I have a hard time making this ontological commitment to a higher degree of infinity than the smallest I need to accept. There are ways to justify this position mathematically, but they have some catches, and that wouldn't be the mainstream view so I'm not going to go there. 
+\vspace*{2cm}
 
 
-
-
+\begin{center}
+\includegraphics[width=8cm]{cartoon3.png}
+\end{center}
 
 
 \sektion{Foundations of Analysis}
@@ -4196,7 +4097,7 @@ Make sure $S \neq \emptyset$, as the empty set has no maximum.
 \begin{examples}
 \begin{enumerate}
 \item $S = \{x ~|~ x \geq 0\}$
-then $S$ has no maximum, min$S = 0$.
+then $S$ has no maximum, min\,$S = 0$.
 
 \item $S = (0,1)$
 We would like to say that $1$ is the max, but this is not true because $1 \not \in S$. So $S$ has no maximum. $S$ has no min either. Clearly $x = 1$ is an ``important'' number for the set $(0,1)$. The next few definitions address this. 	
@@ -4227,7 +4128,7 @@ $S = \{x \iR ~|~ x \geq 0\}$ is bounded below but not above.
 $S = \{x \iR ~|~ x \leq 0\}$ is bounded above, not below. 
 
 $S = (0,1) = \{x \iR ~|~ 0 < x < 1\}$ is bounded (above and below). 	
-\end{examples}
+\end{examples}\vspace*{5pt}
 
 \begin{definition}
 Suppose $\emptyset \neq S\subset \R$ is bounded above. The \emph{least upper bound} of $S$ a.k.a. the ``sup" (\emph{supremum}) of $S$, is the smallest of all upper bounds (assuming that it exists!), i.e.
@@ -4241,25 +4142,25 @@ Suppose $\emptyset \neq S\subset \R$ is bounded above. The \emph{least upper bou
 $S = (0,1)$. Then $T = \{y ~|~ y \text{ is an upperbound for } S\}$. 
 
 $T$ has a minimum: $1 = \min T = \mathrm{sup}\, (0,1)$. Similarly $0 = \mathrm{inf}(0,1)$. 
-\end{example}
-
-
+\end{example}\vspace*{5pt}
 
 
 \begin{axiom}[Completeness of $\RR$]
 Suppose that $\emptyset \neq S \subset \RR$ is bounded above. Then $S$ has a supremum.
 \end{axiom}
 
-This is an article of faith about the real numbers. There are very strange things that I would like to discuss that I won't tell you as I don't want to scare your innocent minds. You may want to use set theory to construct the real numbers and prove that the completion axiom is a theorem there. But what's worse is that if you study logic carefully, then you cannot state this axiom in ``first order logic", but I'm not going to go there; it's something that bothers me but it shouldn't bother you. Just believe it.\\
+This is an article of faith about the real numbers. There are very strange things that I would like to discuss that I won't tell you as I don't want to scare your innocent minds.
+
+ You may want to use set theory to construct the real numbers and prove that the completion axiom is a theorem there. But what's worse is that if you study logic carefully, then you cannot state this axiom in ``first order logic", but I'm not going to go there; it's something that bothers me but it shouldn't bother you. \emph{Just believe it.}\\
 
 
-Consequence: If $\emptyset \neq S \subset \R$ is bounded below then $S$ has an inf. Indeed: $S$ is bounded below $\implies -S$ is bounded above and inf $S=- sup(-S)$.\\
+Consequence: If $\emptyset \neq S \subset \R$ is bounded below then $S$ has an inf. Indeed: $S$ is bounded below $\implies -S$ is bounded above and inf $S=- \mathrm{sup}(-S)$.\\
 
-\emph{Exercise.} There is a real number $x \iR$ such that $x^2 = 2$. In other words, $\sqrt{2}$ exists as a real number. 
+\emph{Exercise.} Prove that there is a real number $x \iR$ such that $x^2 = 2$. In other words, $\sqrt{2}$ exists as a real number. 
 
 Hint: \begin{enumerate}
- \item Let $r = sup\{x \iR ~|~ x^2 < 2\}$. You next try to show $r^2 = 2$. To do that the following characterisation of sup $S$ may help. 
- \item $L = \mathrm{sup} S$ iff 
+ \item Let $r = \sup\,\{x \iR ~|~ x^2 < 2\}$. You next try to show $r^2 = 2$. To do that the following characterisation of sup $S$ may help. 
+ \item $L = \mathrm{sup}\,S$ iff 
  \begin{enumerate}
  \item $L$ is an upperbound ($\forall x \in S,\, x \leq L$)
  \item $\forall \epsilon >0, \epsilon \iR$, $\exists \, x \in S$ such that $L-\epsilon < x$
@@ -4271,20 +4172,34 @@ So \lecturemarker{27}{blah}
 I introduced sup $S$ for $\emptyset \neq S \subset \R$ bounded above: 
 \[
 \begin{aligned}
-  sup\,S &= \min\{ t\iR: t \text{ an upper bound for } S\}\\
+  \mathrm{sup}\,S &= \min\{ t\iR: t \text{ an upper bound for } S\}\\
   &= \min\{t \iR ~|~ \forall x \in S, x \leq t\}
 \end{aligned}
 \]
 
 \textbf{Criterion to help recognising sup $S$}
 
-$L = sup\,S$ if and only if
+$L = \sup\,S$ if and only if
 \begin{enumerate}
-\item[(1)] $L$ is an upper bound for $S$, i.e. $\forall x \in S, x \leq L$
-\item[(2)] $\forall \epsilon >0, \exists x \in S$ such that $L-\epsilon <x$> 	
-\end{enumerate}
+\item[(1)] $L$ is an upper bound for $S$, i.e. $\forall x \in S, x \leq L$.
+\item[(2)] $\forall \epsilon >0, \exists x \in S$ such that $L-\epsilon <x$.
+\end{enumerate}\vspace*{5pt}
 
 I think the idea is easy to understand: 
+
+\begin{center}
+\begin{tikzpicture}[scale=5, node distance=2cm]
+\draw[latex-latex] (-0.5,0) -- (1.5,0) ; %edit here for the axis
+\draw[shift={(0.75,0)},color=black] (0pt,0pt) -- (0pt,-1pt) node[above, yshift=0.3cm] 
+{$x \in S$};
+\draw[shift={(0.6,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=-0.5cm] 
+{$L-\epsilon$};
+\draw[shift={(1,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=-0.5cm] 
+{$L$};
+%\draw[*-o] (0.92,0) -- (2.08,0);
+\draw[very thick] (0.6,0) -- (1,0);
+\end{tikzpicture}%picture of line
+\end{center}
 
 Think: $\epsilon$ is \emph{small}, then $L-\epsilon$ is a little bit smaller than $L$; then (2) is just saying that $L-\epsilon$ is not an upperbound for $S$. 
 
@@ -4294,12 +4209,13 @@ Equivalent formulation of (2) is
 \[\forall \epsilon > 0,\, L-\epsilon \text{ is not an upper bound for } S\]
 also equivalent
 \[(2\dagger) \quad \forall L', L'<L, L' \text{ is not an upper bound for } S.\]
+
 \begin{proof}[Proof of the Criterion]
 	Suppose that $L$ is sup $S$. Then (1) is obvious (the min of a set by definition belongs to that set.)
 	
 (2) is done by the definition of min: If $L'$ is an upper bound $\implies L \leq L'$, or equivalently $L'$ is not an upperbound $\impliedby L' <L$. This shows that $(2\dagger)$ holds, hence (2) holds. 
 	
-	For the converse, suppose that (1) and $(2\dagger)$ hold. I want to show $L =$ sup $S$. i.e. $L = \min T$, where $T = \{t \iR ~|~ t \text{ an upper bound of } S$. (1) is saying $L \in T$. $(2\dagger)$ is saying $L' \in T \implies L leq L'$. i.e. indeed $L = \min T$.
+	For the converse, suppose that (1) and $(2\dagger)$ hold. I want to show $L =$ sup $S$. i.e. $L = \min T$, where $T = \{t \iR ~|~ t \text{ an upper bound of } S$. (1) is saying $L \in T$. $(2\dagger)$ is saying $L' \in T \implies L \leq L'$. i.e. indeed $L = \min T$.
 \end{proof}
 
 Application: 
@@ -4307,7 +4223,7 @@ Application:
 $\forall y \iR, y \geq 0,\,\exists! x \iR, x \geq 0\text{ such that }x^2 =y$.
 \end{theorem}\vspace*{5pt}
 
-\begin{remark}~\\
+\begin{remark}~\\[-0.5cm]
 
 (1) $x = \sqrt{y}$. This shows the existence of the square-root function.
 
@@ -4319,7 +4235,7 @@ $\forall y \iR, y \geq 0,\,\exists! x \iR, x \geq 0\text{ such that }x^2 =y$.
 \begin{proof}
 We are supposed to do this using sup. 
 
-Fix  $y \geq 0$. Let $x = sup\{t \geq 0~|~ t^2 \leq y\}$. In order for this to make sense, we need to check that $T = \{t \geq 0~|~ t^2 \leq\}$ is bounded above. [$0 \in T$, so $T \neq \emptyset$]
+Fix  $y \geq 0$. Let $x = \mathrm{sup}\,\{t \geq 0~|~ t^2 \leq y\}$. In order for this to make sense, we need to check that $T = \{t \geq 0~|~ t^2 \leq\}$ is bounded above. [$0 \in T$, so $T \neq \emptyset$]
 
 Indeed $M = \max\{1,y\}$ is an upper bound for $T$. (think about this as an exercise). 
 
@@ -4355,25 +4271,16 @@ Formally, I choose:
 then I claim $(x+\epsilon)^2 < y$ (and this finishes the proof). 
 
 Indeed: 
-\[
-\begin{aligned}
+\begin{align*}
   (x+\epsilon)^2 &= x^2 + 2\epsilon x + \epsilon\\
   &\leq x^2 + 2\epsilon x + \epsilon \\
   &= x^2 + \epsilon (2x + 1)\\
-  &< x^2 + \frac{y-x^2}{2x+1}2x+1 = y
-\end{aligned}
-\]
-\end{proof}
-
-
-
-
-
-
-
+  &< x^2 + \frac{y-x^2}{2x+1}2x+1 = y\qedhere
+\end{align*}
+\end{proof}\vsp
 
 \subsektion{* Sequences and Limits *}
-\emph{The rest of these notes are unexamined in M1F (but are in M1P1, where it's recovered).}\\
+\emph{The}\lecturemarker{31}{blah} \emph{rest of these notes are unexamined in M1F (but are in M1P1, where it's recovered).}\\
 
 \begin{definition}
 A \emph{sequence} of real numbers is an infinite list of real numbers: 
@@ -4383,12 +4290,11 @@ one for each positive integer $n$.
 
 \textbf{Notation.} We denote a sequence $(a_n)_{n \iN^{\times}}$, or just $(a_n)$. 
 
-Note the ``round" parentheses $(,)$ to distinguish from the notation for sets that uses $\{,\}$ curly brackets. 
+Note the ``round" parentheses $(,)$ to distinguish from the notation for sets that uses $\{,\}$ curly brackets.\vspace*{5pt}
 
 \begin{remark}
 A sequence is a function $a: \N^\times \to \R$ with $a(n) = a_n$. 	
-\end{remark}
-
+\end{remark}\vspace*{5pt}
 
 
 \begin{examples}
@@ -4418,15 +4324,30 @@ a_n &= a_{n-1} + a_{n-2} \quad \text{ for } n \geq 3
 \end{enumerate}
 \end{examples}
 
-I want to define the notion of a limit of a sequence ($a_n$) as $n \to \infty$. (``$n$ tends to $\infty$")\\
+I want to define the notion of a limit of a sequence ($a_n$) as $n \to \infty$. (``$n$ tends to $\infty$")\vspace*{5pt}
 
 \textbf{A little preparation}
 
-Here $l \iR, \epsilon >0$. The statement $|x-l|<\epsilon$ means ``$x$ is within $\epsilon$ of $l$", another way to say this is :
+Here $l \iR, \epsilon >0$. The statement $|x-l|<\epsilon$ means ``$x$ is within $\epsilon$ of $l$", i.e.
 \[-\epsilon < x-l<\epsilon \iff l-\epsilon < x < l + \epsilon\]
 
-in other words $x \in$ open window of radius $\epsilon$ centred at $l$.\\
+in other words $x \in$ open window of radius $\epsilon$ centred at $l$. I picture this: 
 
+\begin{center}
+\begin{tikzpicture}[scale=5, node distance=2cm]
+\fill[blue!20] (0.4,-0.02) rectangle (0.8,0.02);
+\draw[latex-latex] (-0.5,0) -- (1.5,0) ; %edit here for the axis
+\draw[shift={(0.6,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=0.3cm] 
+{$l $};
+\draw[shift={(0.4,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=-0.5cm] 
+{$l-\epsilon$};
+\draw[shift={(0.8,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=-0.5cm] 
+{$l+\epsilon$};
+\node at (1.5,-0.07) {$\R$};
+%\draw[*-o] (0.92,0) -- (2.08,0);
+%\draw[very thick] (0.92,0) -- (1.92,0);
+\end{tikzpicture}%picture of line
+\end{center}
 
 
 \begin{definition}
@@ -4434,7 +4355,7 @@ Let $(a_n)$ be a sequence and $l \iR.$ I say that $a_n \to l$ (``$a_n$ tends to 
 \[\forall \epsilon >0,\, \exists N \iN\text{ such that } n \geq N \implies |a_n - l| < \epsilon\]
 \end{definition}
 
-Intuitively: If $n$ is large, then $a_n$ is very close to $l$. \\
+Intuitively: If $n$ is large, then $a_n$ is very close to $l$.\\
 
 
 \begin{example}
@@ -4457,14 +4378,43 @@ Let $a_n = \dfrac{1-(-1)^n}{2}$, i.e. $a_n = \begin{cases}
  
  This is rather awkward to prove directly from the definition, becuase you would have to show 
  \[\forall l \iR,\, \exists >0 \forall N, \exists n \geq N\text{ s.t. } |a_n - l| \geq \epsilon\]
- But you try.
-\end{example}
+ But you try. You'll then see there are tricks that allow you do this more efficiently. Indeed the thing I do next will help you prove this directly. 
+\end{example}\vspace*{5pt}
 
 
 
 \begin{proposition}[Uniqueness of limits]
 Let $(a_n)$ be a sequence. Suppose $l_1 = \lim_{n \to \infty} a_n$ and	$l_2 = \lim_{n \to \infty} a_n$. Then $l_1 = l_2$.
 \end{proposition}
+
+Picture of proof: 
+
+\begin{center}
+\begin{tikzpicture}[scale=5, node distance=2cm]
+\fill[blue!20] (0.6,-0.02) rectangle (1,0.02);
+\fill[red!20] (-0.1,-0.02) rectangle (0.3,0.02);
+\draw[latex-latex] (-0.5,0) -- (1.5,0) ; %edit here for the axis
+\draw[shift={(0.8,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=0.3cm] 
+{\small $l_2$};
+\draw[shift={(0.6,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=-0.5cm] 
+{\small $l_2-\epsilon$};
+\draw[shift={(1,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=-0.5cm] 
+{\small$l_2+\epsilon$};
+
+\node at (1.5,-0.07) {$\R$};
+\begin{scope}[shift={(-.5,0)}]
+\draw[shift={(0.6,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=0.3cm] 
+{\small $l_1$};
+\draw[shift={(0.4,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=-0.5cm] 
+{\small $l_1-\epsilon$};
+\draw[shift={(0.8,0)},color=black] (0pt,1pt) -- (0pt,-1pt) node[above, yshift=-0.5cm] 
+{\small $l_1+\epsilon$};	
+\end{scope}
+\end{tikzpicture}%picture of line
+\end{center}
+
+We pick $\epsilon < \frac{l_2-l_1}{2}$. Then the windows $(l_1-\epsilon,l_1+\epsilon)$ and $(l_2-\epsilon,l_2+\epsilon)$ are disjoint, however $\exists N$ such that $n \geq N \implies a_n$ has to go in both windows, a contradiction.
+
 
 \begin{proof}
 Fix $\epsilon >0$. By the definition of a limit 
@@ -4486,7 +4436,7 @@ So $|l_1 - l_2| < \epsilon \implies |l_1 - l_2| = 0$, i.e. $l_1 = l_2$.
 \end{proof}
 
 
-\textbf{Strategy to prove $a_n \to l$ directly}\lecturemarker{31}{blah}
+\textbf{Strategy to prove $a_n \to l$ directly}\lecturemarker{32}{blah}
 
 Step 1: Fix $\epsilon >0$. 
 
@@ -4498,23 +4448,58 @@ Step 4: Choose $N \iN$ such that $n \geq N \implies |a_n - l| < \epsilon$
 
 Step 5: Turn this ``upside down" and write your own proof.\\
 
+\textbf{Felina.} Finally we will show the limits of two sequences: 
+\[(1)\; a_n= \dfrac{n+5}{n+1} \to 1 \quad (2)\; a_n = \dfrac{n^2 - 5}{n^3-50} \to 0\]
+
+It's blindingly obvious that this is the limit, and no one in their right mind would spend a fraction of their life thinking about it.	Similarly for the second example, the $-5$ is just a red herring, $-50$ is just some bullshit; I could have put $5$ billion or whatever, it doesn't matter.
+
+ You might think this is the educational equivalent of sadism - I keep this dungeon with lots and lots of questions like this, which I use to torment you! That's not the real purpose; I'm not a sadist, believe it or not. But it's to develop a skill, to write a precise mathematical argument, and develop a greater control of your thought processes, it's a kind of yoga of the brain, not the body. At the beginning when you go to yoga class you don't do those amazing things you see when you open up a yoga master book. It will take some time and training, and in yoga 101 you do some pretty stupid things, and it's the same with maths. It's a bit silly, this is  not a problem about sequences, but it does develop the skill. That's why you do it.\\
+
+
 \begin{example}
 Show $a_n= \dfrac{n+5}{n+1} \to 1$.
 
-\begin{proof}
-Fix $\epsilon >0.$ Let $N = \lceil \frac{4}{\epsilon} -1\rceil +1$. Now if $n \geq N$, then 
+
+\emph{Rough work.} 
+Step 1: Fix $\epsilon >0$. 
+
+Step 2: Calculate $|a_n-l|$
 \[
 \begin{aligned}
-  n > \frac{4}{\epsilon} - 1 &\implies n + 1> \frac{4}{\epsilon}\\
-  \implies \frac{4}{n+1} = |a_n - l| < \epsilon.
+  |a_n - l| &= \frac{n+5}{n+1} - 1 = \frac{n+5-n-1}{n+1}\\
+  &= \frac{4}{n+1}
 \end{aligned}
 \]
+
+STEP 3: solve for $n$ $|a_n - l| < \epsilon$. 
+\[
+\begin{aligned}
+  \frac{4}{n+1} < \epsilon &\iff 4 < \epsilon(n+1)\\
+  &\iff n_1 > \frac{4}{\epsilon}\\
+  &\iff n > \frac{4}{\epsilon} -1
+\end{aligned}
+\]
+
+
+Step 4: If $N = \lceil \frac{4}{\epsilon} -1\rceil + 1$, then $n \geq N \implies |a_n -l| < \epsilon$.\vspace*{5pt}
+
+(\textbf{Notation:} if $\alpha \in \R$, than $\lceil \alpha\rceil =$ \emph{round up} of $x = \min \{k\iZ ~|~ k \geq \alpha\})$
+
+Step 5: Turn this into a proof. 
+
+\begin{proof}
+Fix $\epsilon >0.$ Let $N = \lceil \frac{4}{\epsilon} -1\rceil +1$. Now if $n \geq N$, then 
+\begin{align*}
+  n > \frac{4}{\epsilon} - 1 &\implies n + 1> \frac{4}{\epsilon}\\
+  &\implies \frac{4}{n+1} = |a_n - l| < \epsilon.\qedhere
+\end{align*}
 \end{proof}
-\end{example}
+\end{example}\vspace*{5pt}
 
 	
 	
-	\textbf{Felina.} Show that $a_n = \dfrac{n^2 - 5}{n^3-50} \to 0$\\
+\begin{example} Show that $a_n = \dfrac{n^2 - 5}{n^3-50} \to 0$.\\
+	
 	
 	\emph{Rough work.} We want to prove that $a_n \to 0$. Compute: 
 	\[|a_n - l| = \frac{|n^2- 5|}{|n^3 - 50|}\]
@@ -4532,6 +4517,8 @@ Fix $\epsilon >0.$ Let $N = \lceil \frac{4}{\epsilon} -1\rceil +1$. Now if $n \g
 	
 	(5) Turn this upside down and write your proof.\\
 	
+	\textbf{Let's try this:}
+	
 	(2$\frac{1}{2}$) Choose $b_n$, now $|a_n -l| = \left|\dfrac{n^2-5}{n^3-50}\right|$. I choose $b_n = \frac{2}{n}$.
 	
 	 I need $n_0$ such that $ \left|\dfrac{n^2-5}{n^3-50}\right| \leq b_n$ for all $n \geq n_0$. 
@@ -4541,14 +4528,20 @@ Fix $\epsilon >0.$ Let $N = \lceil \frac{4}{\epsilon} -1\rceil +1$. Now if $n \g
 	Note: If $n \geq 4$ then both the numerator $n^2 -5 >0$ and the denomiator $n^3 - 50 > 0$. I am definitely going to take $n_0 \geq 4$, so 
 	\[\left|\frac{n^2-5}{n^3-50}\right| = \frac{n^2-5}{n^3-50}\]
 	and then I want to fix 
+	\[\frac{n^2-5}{n^2-50}\leq \frac{n^2}{n^3-50}\leq \frac{2}{n}\]
+	i.e. $n^3 \leq 2(n^3-50)$. It's enough that $100 \leq n^3$, i.e. OK for $n \geq 5$. 
 	
+	Message: For $n_0 = 5, \left|\frac{n^2-5}{n^3-50}\right| \leq \frac{2}{n}$. To wrap this up, take $b_n = \frac{2}{n}$ and $n_0 = 5$.\\
 	
+	(3') $b_n < \epsilon: \frac{2}{n} < \epsilon \iff n >\frac{2}{\epsilon}$. 
+	
+	(4') Let $N = \lceil \frac{2}{\epsilon}\rceil + 1$.	
 	
 	Now we're ready to put everything together into a proof: 
 	
-	\begin{proof} Fix $\epsilon > 0$. Let $N = \max\{\lceil \frac{2}{\epsilon} \rceil + 1,5\}$.
+	\begin{proof} Fix $\epsilon > 0$. Let $N = \max\{\lceil \frac{2}{\epsilon} \rceil + 1,\;5\}$.
 	
-	Claim: If $n \geq 5$, then $|a_n - l| \leq 2/n$.
+	\textbf{Claim:} If $n \geq 5$, then $|a_n - l| \leq 2/n$.
 	
 	\textit{Proof of Claim.}
 	\[
@@ -4559,11 +4552,11 @@ Fix $\epsilon >0.$ Let $N = \lceil \frac{4}{\epsilon} -1\rceil +1$. Now if $n \g
 \]	
 by the claim, if $n \geq N$, then 
 \[|a_n - l| \leq \frac{2}{n} < \frac{2}{2/\epsilon} = \epsilon \qedhere\]
-\end{proof}\vspace*{20pt}
+\end{proof}
+\end{example} 
+  
+\theend 
 
-  
-  \theend
-  
 \end{document}
 	
 
@@ -4571,21 +4564,3 @@ by the claim, if $n \geq N$, then
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\end{document}

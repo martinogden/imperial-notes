@@ -1,4 +1,4 @@
-\documentclass[twoside]{scrartcl}
+\documentclass[10pt,twoside]{scrartcl}
 
 %\usepackage[blacklinks]{drangreport}
 \usepackage[bluelinks]{drangreport}
@@ -8,7 +8,7 @@
 \usepackage{pgfplots}
 
 %Thomas' contradiction symbol
-\newcommand*{\cont}{%
+\newcommand*{\cont}{%d
   \mathsf{X}\mkern-8.5mu\mathsf{X}%
 }
 \renewcommand{\thempfootnote}{$\dagger$}
@@ -25,7 +25,7 @@
 
 
 \hypersetup{pdfinfo={
-Title={Analysis I Lecture Notes},
+Title={M1P1: Analysis I Lecture Notes},
 Author={Karim Bacchus},
 Keywords ={Analysis I, M1P1, Lecture Notes, Imperial College, Maths},
 }}
@@ -34,33 +34,34 @@ Keywords ={Analysis I, M1P1, Lecture Notes, Imperial College, Maths},
 \begin{document}
 
 
-\NotesTitle{1st}{Spring 2015}{Analysis I}{Prof. R. P. W.}{Thomas}
+\NotesSubTitle{1st}{Spring 2015}{Analysis I}{Prof. R. P. W.}{Thomas}
 {
 
-\section*{Syllabus}  
+\subsection*{Syllabus}  
 
 \textit{A rigorous treatment of the concept of a limit, as applied to sequences, series and functions.}
 
-\subsubsektion{Sequences}\vspace*{-5pt}
+\emph{Sequences:}
 Real and complex sequences. Convergence, divergence and divergence to infinity. Sums and products of convergent sequences. The Sandwich Test. Sub-sequences, monotonic sequences, Bolzano-Weierstrass Theorem. Cauchy sequences and the general principle of convergence.
 
-\subsubsektion{Series}\vspace*{-5pt}
+\emph{Series:}
 Real and complex series. Convergent and absolutely convergent series. The Comparison Test for non-negative series and for absolutely convergent series. The Alternating Series Test.  Rearranging absolutely convergent series. Radius of convergence of power series. The exponential series.
 
-\subsubsektion{Continuity}\vspace*{-5pt}
+\emph{Continuity:}
 Limits and continuity of real and complex functions. Left and right limits and continuity. Maxima
 and minima of real valued continuous functions on a closed interval. Inverse Function Theorem for
 strictly monotonic real functions on an interval. 
 
-\subsubsektion{Differentiation}\vspace*{-5pt}
+\emph{Differentiation:}
  An introduction to differentiability: definitions, examples, left and right derivative.
 
 \subsection*{Appropriate books}
 
 {\shortskip
 
-K.~G.~ Binmore, \textit{Mathematical Analysis, A Straightforward Approach} (Cambridge University Press).
+K.~G.~ Binmore, \textit{Mathematical Analysis, A Straightforward Approach} (Cambridge University Press).\\
 
+W.~ Rudin, \textit{Principles of Mathematical Analysis} (Cambridge University Press).
 }
 
 }
@@ -74,34 +75,36 @@ K.~G.~ Binmore, \textit{Mathematical Analysis, A Straightforward Approach} (Camb
 
 \setcounter{lecture}{-1}
 
-\setcounter{page}{4}
+\setcounter{page}{3}
 \sektion{Preliminaries}
 
-M1F stuff:\lecturemarker{1}{5 Oct}
 
+We're \lecturemarker{1}{15 Jan} basically carrying on from M1F. We're going to practice more of that and use that to give rigorous definitions to continuity and differentiation. Analysis involves anything that's infinite, that involves the real numbers rather than the integers. 
+
+It's guaranteed that you averaged 30\% on M1F - that's atrocious - absolutely unforgivable.... You need to get good at this. You're just making your life miserable without doing any work. There's only about three definitions in this course - if you get on top of them now it's going to be so much easier. The tests are there to help you understand this subject better, so take it as such - do not spend all your time thinking about what's going to be on the test. Just try and use it to understand the material. 
 
 \begin{itemize}
 \item $\forall$ - for any, \textbf{fix any}, for all, every...
 \item $\exists$ - there exists
-\item $\N - \{1,2,3,\dots\}$ 
+\item $\N - \{1,2,3,\dots\}$ - there's no $0$ in $\N$ for this course.
 \end{itemize}
 
 \begin{theorem}[Triangle Inequality]
-(See Question Sheet 1)
 	\[|a+b| \leq |a| + |b|\]
 \end{theorem}
+
+In many ways this is the most crucial thing in this course, as there's many things close to each other where we need to estimate distance between things. 
 
 \begin{corollary}
 \[\left||a| - |b|\right|\leq |a-b|	\]
 \end{corollary}
 \begin{proof}
-\[
-\begin{aligned}
+\begin{align*}
 |a-b| < \epsilon &\iff b-\epsilon < a < b + \epsilon\\
 &\iff a \in (b-\epsilon, b+\epsilon)\\
 &\iff b \in (a-\epsilon, a+\epsilon)	\\
-&\implies \left||a| - |b|\right|< \epsilon
-\end{aligned} \] 
+&\implies \left||a| - |b|\right|< \epsilon\qedhere
+\end{align*} 
 \end{proof}
 
 Lots of other versions, see Question Sheet 1 - \emph{don't try to memorise them!}\\
@@ -133,9 +136,7 @@ sequence $(a_n)_{n\geq 1}$ of real (or complex, etc.) numbers is an infinite lis
 	A \emph{sequence} is a function $a:\mathbb{N} \to \mathbb{R}$
 \end{definition}
 
-\textbf{Notation:} We let $a_n \in \mathbb{R}$ denote $a(n)$ for $n \in \mathbb{N}$. The data $(a_n)_{n=1,2,\dots}$ is equivalent to the function $a:\mathbb{N} \to \mathbb{R}$ because a function $a$ is determined by its values $a_n$ over all $n \in \mathbb{N}$. 
-
-We will denote $a$ by $a_1,~a_2,\dots$ or $(a_n)_{n\in\mathbb{N}}$ or $(a_n)_{n\geq 1}$ or even just $(a_n)$.\vspace*{5pt}
+\textbf{Notation:} We let $a_n \in \mathbb{R}$ denote $a(n)$ for $n \in \mathbb{N}$. The data $(a_n)_{n=1,2,\dots}$ is equivalent to the function $a:\mathbb{N} \to \mathbb{R}$ because a function $a$ is determined by its values $a_n$ over all $n \in \mathbb{N}$. We will denote $a$ by $a_1,~a_2,\dots$ or $(a_n)_{n\in\mathbb{N}}$ or $(a_n)_{n\geq 1}$ or even just $(a_n)$.\vspace*{5pt}
 
 \begin{remark}
 $a_i$'s could be repeated, so $(a_n)$ is \emph{not} equivalent to the set $\{a_n : n \in \mathbb{N}\}\subset \mathbb{R}$. E.g. $(a_n) = 1,~0,~1,~0,\dots$ is different from $(b_n) = 1,~0,~0,~1,~0,~0,~1,\dots$	
@@ -201,7 +202,7 @@ axis lines=middle,
     ytick = {0.3,0.12},
    yticklabels={$\epsilon_1$,$\epsilon_2$},
    xtick = 0,
-  width=12cm,height=8cm]
+  width=11cm,height=6cm]
    \addplot[samples at={2,...,20}, only marks, mark=x, mark size=2pt,  mark options={red},]{1/x};
    \draw (axis cs:20,0.3) -- (axis cs:0,0.3);
       \draw (axis cs:20,0.12) -- (axis cs:0,0.12);
@@ -233,7 +234,7 @@ a_n = \begin{cases}
  \text{ satisfies } a_n \to 0 \text{ according to Prof. Nestel.}
 \]
 
-We want to modify this to say eventually $|a_n - a| < \epsilon$ \emph{and it stays there!}\vspace*{5pt}
+We want to modify this to say eventually $|a_n - a| < \epsilon$ \emph{and it stays there!}\vspace*{10pt}
 
 \textbf{Ignore Mestel and Nestel's definition!}\lecturemarker{3}{5 Oct}\\
 
@@ -251,7 +252,7 @@ $N$ depends on $\epsilon$! $N = N(\epsilon)$
 Equivalently:
 \[\forall \epsilon >0,~ \exists N \in \mathbb{N} \text{ such that} ``\forall n \geq N,~|a_n -a|<\epsilon"\]
 or equivalently
-\[\forall \epsilon >0,~\exists N_\epsilon\in\mathbb{N} \text{ such that } |a_n - a| < \epsilon,~\forall n \geq N_\epsilon\]
+\[\forall \epsilon >0,~\exists N_\epsilon\in\mathbb{N} \text{ such that } |a_n - a| < \epsilon,~\forall n \geq N_\epsilon\]\vspace*{5pt}
 
 \begin{clicker}Given a sequence of real numbers $(a_n)_{n\geq 1}$. Conisder 
 \[\boxed{\forall n \geq 1,~\exists \epsilon >0 \text{ such that } |a_n|< \epsilon}\]
@@ -296,11 +297,11 @@ axis lines=middle,
   \begin{proof}
 $\iff a_n \in (-\epsilon,\epsilon)~ \forall n \iff |a_n|$ is bounded by $\epsilon$. \end{proof}
 
-\end{clicker}~
+\end{clicker}\vspace*{5pt}
 
 \begin{definition}
 If $a_n$ does not converge to $a$ for any $a\in \mathbb{R}$, we say that $a_n$ \emph{diverges.}
-\end{definition}~
+\end{definition}\vspace*{5pt}
 
 \begin{example}
 I claim that $\frac{1}{n} \to 0$ as $n \to \infty$
@@ -338,8 +339,6 @@ Since $a_n = \frac{1}{n}$ is monotonic, it is \emph{sufficient} to ensure that $
 Fix $\epsilon >0$. 
  Pick any $N \in \mathbb{N}$ such that $N > \frac{1}{\epsilon}$. (This is the Archimedean axiom of $\mathbb{R}$. Notice $N$ depends on $\epsilon$!!). Then $n \geq N \implies |\frac{1}{n}-0| = \frac{1}{n} \leq \frac{1}{N} < \epsilon$.
 \end{proof}
-
-
 \end{example}
 
 
@@ -359,7 +358,7 @@ $a_n = \dfrac{n+5}{n+1}$\\
 \emph{Rough Working}
 \[ |a_n - 1| = \left| \dfrac{n+5}{n+1} -1 \right| = \dfrac{4}{n+1}\]
 
-This is $< \epsilon \iff n+1 > 4/\epsilon \iff n > 4/\epsilon$, so take $N \geq 4/\epsilon$. 
+This is $< \epsilon \iff n+1 > 4/\epsilon \iff n > 4/\epsilon$, so take $N \geq 4/\epsilon$.\\
 
 \begin{proof}
 Fix $\epsilon > 0$. Pick $N$ such that $N \geq 4/\epsilon$. Then $\forall n \geq N$, \[|a_n - 1| = \frac{4}{n+1} \leq \frac{4}{N+1} < \frac{4}{N} \leq \epsilon\qedhere\]
@@ -377,22 +376,21 @@ But if we take $N = \frac{4}{\epsilon}$, we need the \emph{opposite} implication
 
 To make $n-2$ smaller, make $2$ bigger! e.g. $\frac{n}{2}>2$ for $n>4$. Then $\frac{4}{n-2} < \frac{4}{n-n/2} = \frac{8}{n}$
 
-Also want $b_n = \frac{8}{n} < \epsilon \iff n > 8/\epsilon$. So take $N > \mathrm{max}(8/\epsilon, 4)$.
+Also want $b_n = \frac{8}{n} < \epsilon \iff n > 8/\epsilon$. So take $N > \mathrm{max}(8/\epsilon, 4)$.\\
 
 \begin{proof}
-Fix $\epsilon > 0.$	Choose $N \iN$ such that $N > \mathrm{max}(8/\epsilon, 4)$. Then $n \geq N \implies n > 8/\epsilon~ (1)$ and $n > 4 ~(2) \implies$
+Fix $\epsilon > 0.$	Choose $N \iN$ such that $N > \mathrm{max}(8/\epsilon, 4)$. Then $n \geq N \implies n > 8/\epsilon\; (1)\text{ and }n > 4 \; (2) $
 
-\[\left|\frac{n+2}{n-2} - 1\right| = \frac{4}{n-2} \underbrace{<}_{(2)} \frac{4}{n-n/2} = \frac{8}{n} \underbrace{<}_{(1)} \epsilon\qedhere\]
+\[\implies\left|\frac{n+2}{n-2} - 1\right| = \frac{4}{n-2} \underbrace{<}_{(2)} \frac{4}{n-n/2} = \frac{8}{n} \underbrace{<}_{(1)} \epsilon\qedhere\]
 
 \end{proof}
 
 	
-\end{example}
-\pagebreak
+\end{example}\vspace*{5pt}
 
 
-\lecturemarker{4}{5 Oct}
-We can also define limits for \emph{complex sequences}.\\
+We can\lecturemarker{4}{5 Oct}
+ also define limits for \emph{complex sequences}.\\
 
 \begin{definition}
 $a_n \in \mathbb{C},~\forall n \geq 1$. We say $a_n \to a \in \mathbb{C}$ iff
@@ -401,7 +399,7 @@ $a_n \in \mathbb{C},~\forall n \geq 1$. We say $a_n \to a \in \mathbb{C}$ iff
 (i.e. $\sqrt{\Re(a_n-a)^2 + \frak{I}(a_n-a)^2} < \epsilon$) 
 
 This is equivalent (see problem sheet!) to $(\frak{R}a_n) \to \frak{a}$ \emph{and} $(\frak{I}a_n) \to \frak{I}a$
-\end{definition}~
+\end{definition}\vspace*{10pt}
 
 \begin{example}
 Prove $a_n = \dfrac{e^{in}}{n^3-n^2-6} \to 0$ as $n \to \infty$\\
@@ -409,19 +407,19 @@ Prove $a_n = \dfrac{e^{in}}{n^3-n^2-6} \to 0$ as $n \to \infty$\\
 \emph{Rough Working} 
 \[|a_n - a| = \left|\dfrac{e^{in}}{n^3-n^2-6} \right| = \left|\frac{1}{n^3-n^2-6}\right|\]
 
-\emph{Estimate} $\left|\dfrac{1}{n^3-n^2-6}\right| < \dfrac{1}{c_n}$ by making $c_n$ smaller than $n^3 - n^2 - 6$ (But not too small! We want $c_n \to \infty$). So let $c_n = n^3 - \text{\emph{ something bigger than} } n^2 + 6$.
+\emph{Estimate} \[\left|\dfrac{1}{n^3-n^2-6}\right| < \dfrac{1}{c_n}\] by making $c_n$ smaller than $n^3 - n^2 - 6$ (But not too small! We want $c_n \to \infty$). So let $c_n = n^3 - \text{\emph{ something bigger than} } n^2 + 6$.
 
 Take off $\frac{n^3}{2}$ to make the expression simple. For $n \geq 4$, we have $\frac{n^3}{2} > n^2 + 6$. 
 
 So for $n \geq 4$
 \[\left|\frac{1}{n^3-n^2-6}\right| < \frac{1}{n^3- n^3/2} = \frac{2}{n^3} \]
-and this is $< \epsilon$ for $n > \sqrt[3]{\frac{2}{\epsilon}}$.
+and this is $< \epsilon$ for $n > \sqrt[3]{\frac{2}{\epsilon}}$.\\
 
 \begin{proof}
 $\forall \epsilon > 0$, choose $N \geq \mathrm{max}(4,\sqrt[3]{2/\epsilon})$	. Then $\forall n \geq N$
 \[|a_n - 0| = \left| \frac{1}{n^3-n^2 - 6}\right| < \frac{1}{n^3- n^3/2} = \frac{2}{n^3} \leq \frac{2}{N^3} \leq \epsilon \qedhere \]
 \end{proof}
-\end{example}~
+\end{example}\vspace*{10pt}
 
 
 \begin{example}
@@ -433,7 +431,7 @@ i.e. we need to prove
 \[\forall a,~ \exists \epsilon > 0 \text{ s.t. } \forall N \in \mathbb{N},~\exists n \geq N \text{ s.t. } |a_n-a| \geq \epsilon\]
 
 \emph{Rough:} 	
-Assume for contadiction that $a_n \to a$, i.e. $\forall \epsilon > 0,~\exists N \in \mathbb{N} \text{ s.t. } n \geq N \implies |a_n - a| <\epsilon$
+Assume for contadiction that $a_n \to a$, i.e. \[\forall \epsilon > 0,~\exists N \in \mathbb{N} \text{ s.t. } n \geq N \implies |a_n - a| <\epsilon\]
 
 
 \begin{center}
@@ -452,7 +450,7 @@ axis lines=middle,
      ytick = {0.35, -0.05,0.1},
    yticklabels={$a+\epsilon$,$a-\epsilon$, $a$},
    xtick = 0,
-  width=10cm,height=5cm]
+  width=9cm,height=5cm]
    \addplot[samples at={3,5,7,9}, only marks, mark=x,  mark options={red}, mark size=3pt]{0.2};
     \addplot[samples at={2,4,6,8,},only marks, mark options={red},mark=x,mark size=3pt]{-0.2};
        \draw (axis cs:20,0.35) -- (axis cs:0,0.35); %a+e line
@@ -460,10 +458,10 @@ axis lines=middle,
        \draw[dashed] (axis cs:20,0.1) -- (axis cs:0,0.1); %a line
          \fill[gray!40,nearly transparent] (axis cs:0,-.05)-- (axis cs: 0,0.35) -- (axis cs: 10,0.35) -- (axis cs: 10,-0.05) -- cycle;
   \end{axis}
-   \draw[->] (9,2.1) -- (8,2.1);
-      \draw[->] (9,0.8) -- (8,0.8);
-      \node[draw,text width=2cm] at (10.2,2.1) {\small Eventually all pts are within $\epsilon$ of $a$};
-        \node[draw,text width=2cm] at (10.2,0.8) {\small Agh!};
+   \draw[->] (8,2.1) -- (7,2.1);
+      \draw[->] (8,0.8) -- (7,0.8);
+      \node[draw,text width=2cm] at (9.2,2.1) {\small Eventually all pts are within $\epsilon$ of $a$};
+        \node[draw,text width=2cm] at (9.2,0.8) {\small Agh!};
 \end{tikzpicture}
 \end{center}
 
@@ -482,16 +480,16 @@ Fix $a\iR$. Take $\epsilon = \delta$ (or $\epsilon < \delta$ will do).
 (or use triangle inequality: \[|\delta - (-\delta)| \leq |\delta - a| + |a -(-\delta)| < \epsilon + \epsilon \implies 2\delta < 2\epsilon = 2\delta ~\cont\text{)}\]
 So $a_n \not\to a$, but this holds $\forall a \in \RR$, so $a_n$ does not converge.
 \end{proof}
-\end{example}~
+\end{example}\vspace*{10pt}
 
 \begin{clicker}
 Fix $(a_n)_{n\geq 1},~a_n \in \RR$. Then \[\forall n,~\exists \epsilon >0 \text{ s.t. } |a_n| < \epsilon \text{ means?}\]
 
 \textbf{Answer:} Nothing. This is always true. Take $\epsilon = |a_n| + 1$	
-\end{clicker}~
+\end{clicker}\vspace*{10pt}
+
 
 \lecturemarker{5}{5 Oct}
-
 \begin{theorem}[Uniqueness of Limits]
 Limits are unique. If $a_n \to a$ and $a_n \to b$, then $a=b$	
 \end{theorem}
@@ -508,8 +506,7 @@ Limits are unique. If $a_n \to a$ and $a_n \to b$, then $a=b$
 Set $N = \mathrm{max}(N_a,N_b)$. Then $\forall n \geq N$, (i) and (ii) hold, so
 \[|a - b| = |(a-a_n) + (a_n - b)| \leq |a - a_n| + |a_n - b| < 2\epsilon \implies |a-b| = 0!\qedhere\]
 (recall! if not, set $\epsilon = \frac{1}{2}|a-b| >0$ to get a contradiction)
-\end{proof}~
-
+\end{proof}\vsp
 
 \begin{proof}[Proof 2]
 By contradiction. Assume $a \neq b$. 
@@ -530,7 +527,7 @@ axis lines=middle,
      ytick = {0.3, 0.2,0.1,-0.1,-0.2,-0.3},
    yticklabels={$a+\epsilon$,$a$, $a-\epsilon$,$b+\epsilon$, $b$, $b-\epsilon$},
    xtick = 0,
-  width=12cm,height=6cm]
+  width=10cm,height=5.5cm]
        \draw (axis cs:20,0.3) -- (axis cs:0,0.3); %a+e line
       \draw (axis cs:20,0.1) -- (axis cs:0,0.1); %a-e line
        \draw[dashed] (axis cs:20,0.2) -- (axis cs:0,0.2); %a line
@@ -549,11 +546,11 @@ Eventually $a_n$ is in \emph{both} corridors. So if I choose $\epsilon$ sufficie
 Set $\epsilon = \frac{|a-b|}{2} > 0$. Then $\exists N_a, N_b$ such that $\forall n \geq N_a,N_b$, we have 
 \[|a_n - a| < \epsilon \text{ and } |a_n - b| < \epsilon\]
 w.l.o.g. $a > b$. Then $a_n > a - \epsilon$ and $a_n < b$
-\[\begin{aligned}
+\begin{align*}
 	&\implies b + \epsilon > a-\epsilon\\
-	&\implies 2\epsilon > a-b = 2\epsilon~ \cont 
-\end{aligned}\]
-\end{proof}
+	&\implies 2\epsilon > a-b = 2\epsilon~ \cont \qedhere 
+\end{align*}
+\end{proof}\vsp
 
 \begin{clicker}
 Prove $\frac{1}{n-2} \to 0$. Student Answer:
@@ -567,11 +564,13 @@ Fix $\epsilon >0$.
 	\item $\forall n \geq N$, $n > 1/\epsilon$ which is $(*)$
 	\item So $\frac{1}{n-2} \to 0$
 	\item (This is correct)
-\end{enumerate}
+\end{enumerate}\vspace*{5pt}
+
+\emph{Which step is incorrect?}
 
 \textbf{Answer:} (iv) is wrong. 
 	
-\end{clicker}
+\end{clicker}\vspace*{5pt}
 
 
 \begin{theorem}[Algebra of Limits]\label{thm1}
@@ -585,17 +584,16 @@ $a_n \to a$ and $b_n \to b$ then:\begin{enumerate}
 Fix any $\epsilon >0$. Then $\exists N_a \in \mathbb{N}$ such that $\forall n\geq N_a,~ |a_n	 - a| < \epsilon/2$ 
 
 and $\exists N_b \in \mathbb{N}$ such that $\forall n \geq N_b,~ |b_n - b| < \epsilon/2$. Set $N =$ max$\{N_a,N_b\}$, so 
-\[\begin{aligned}|(a_n + b_n) - (a+b)| &\leq |a_n -a| + |b_n -b| \\
+\begin{align*}|(a_n + b_n) - (a+b)| &\leq |a_n -a| + |b_n -b| \\
 	 &< \epsilon/2 + \epsilon/2 = \epsilon \qedhere
-\end{aligned}\]
+\end{align*}
 \end{proof}
 
 \begin{proof}[Proof of (ii)]
 \emph{Rough working:} 	
-\[\begin{aligned}|a_nb_n -ab|  &= |(a_n -a)b - a_nb + a_nb_n|\\ 
+\begin{align*}|a_nb_n -ab|  &= |(a_n -a)b - a_nb + a_nb_n|\\ 
 &\leq |a_n-a||b| + |a_n|	|b_n-b|
-\end{aligned}
-\]
+\end{align*}
 
 We can easily make $|a_n - a| < \epsilon/2$ if I take $|a_n - a| < \frac{\epsilon}{2|b|}$.
 
@@ -622,7 +620,7 @@ axis lines=middle,
      ytick = {0.25, -0.05,0.1},
    yticklabels={$a+1$,$a-1$, $a$},
    xtick = 0,
-  width=12cm,height=8cm]
+  width=10cm,height=6cm]
    \addplot[samples at={3,5,7,9}, only marks, mark=x,  mark options={red}, mark size=3pt]{1/x};
     \addplot[samples at={2,4,6,8},only marks, mark options={red},mark=x,mark size=3pt]{-1/(x^2)+0.1};
        \draw (axis cs:20,0.25) -- (axis cs:0,0.25); %a+e line
@@ -646,11 +644,10 @@ Fix $\epsilon >0$. Then $\exists N_a$ such that $\forall n \geq N_a$, $|a_n - a|
 and $\exists N_b$ such that $\forall n \geq N_b$, $|b_n - b| < \dfrac{\epsilon}{2A}$. 
 
 Set $N = \text{max}(N_a,N_b)$. Then $\forall n \geq N$
-\[\begin{aligned}|a_nb_n -ab| &\leq |a_n-a||b_n| + |b_n-b||a|\\ 
+\begin{align*}|a_nb_n -ab| &\leq |a_n-a||b_n| + |b_n-b||a|\\ 
 &< \frac{\epsilon}{2}\frac{|b|}{|b|+1} + A\frac{\epsilon}{2A}\\ 
 & < \epsilon/2 + \epsilon/2 = \epsilon\qedhere	
-\end{aligned}
-\]
+\end{align*}
 \end{proof}
 
 See exercise sheet for proof of \ref{thm1}(iii).\\
@@ -676,7 +673,7 @@ axis lines=middle,
      ytick = {0.26,0.38,0.32},
    yticklabels={$a-\epsilon$,$a+\epsilon$,$a$},
    xtick = 0,
-  width=12cm,height=7cm]
+  width=11cm,height=6cm]
    \addplot[samples at={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19}, only marks, mark=x,  mark options={red}, mark size=3pt]{0.35-1/x};
        \draw (axis cs:20,0.38) -- (axis cs:0,0.38);
               \draw (axis cs:20,0.26) -- (axis cs:0,0.26);
@@ -694,7 +691,7 @@ Fix $\epsilon >0$. $a-\epsilon$ is \emph{not} an upper bound for $\{a_n : n \iN\
 \begin{remark}\lecturemarker{6}{5 Oct}
  Now it's easier to handle things like $a_n = \dfrac{n^2 + 5}{n^3 - n + 6}$.
 
-Dividing by $n^3$, we get $a_n = \dfrac{1/n + 5/n^3}{1 - 1/n^2 + 6/n^3}$.
+Dividing by $n^3$, we get \[a_n = \dfrac{1/n + 5/n^3}{1 - 1/n^2 + 6/n^3}\]
 
  Use the fact that $1/n \to 0$ as $n \to \infty$ (Recall proof: $\forall \epsilon >0$, let $N_\epsilon  > 1/\epsilon$, then $n\geq N_{\epsilon} \implies n > 1/\epsilon \implies 1/n < \epsilon$), and the algebra of limits to deduce that 
 \[a_n \to \dfrac{0 + 5.0^3}{1 - 0^2 + 6.0^3} = 0.\]
@@ -709,10 +706,10 @@ Gives a way of proving convergence \emph{without} knowing the limit.\\
 \begin{definition}
 	A sequence is Cauchy iff
 	\[\forall \epsilon >0,~\exists N \in \mathbb{N} \text{ s.t. } \forall n,m \geq N,~ |a_n - a_m| < \epsilon\]
-\end{definition}~
+\end{definition}\vspace*{5pt}
 
 \begin{remark}
-$m,n \geq N$ are arbitrary. It is not enough to say that $\forall \epsilon >0,~\exists N \in \NN$ such that $n \geq N \implies |a_n - a_{n+1}| < \epsilon$. See ex sheet. 	
+$m,n \geq N$ are arbitrary. It is not enough to say that $\forall \epsilon >0,~\exists N \in \NN$ such that $n \geq N \implies |a_n - a_{n+1}| < \epsilon$. See exercise sheet. 	
 \end{remark}
 
 \begin{proposition}	
@@ -745,7 +742,7 @@ axis lines=middle,
      ytick = {0.15, 0.05},
    yticklabels={$a_{N_{\epsilon}}+\epsilon$,$a_{N_{\epsilon}}-\epsilon$},
    xtick = 0,
-  width=10cm,height=5cm]
+  width=10cm,height=6cm]
    \addplot[samples at={3,5,7,9}, only marks, mark=x,  mark options={red}, mark size=3pt]{1/x};
     \addplot[samples at={2,4,6,8},only marks, mark options={red},mark=x,mark size=3pt]{-1/(x^2)+0.1};
        \draw (axis cs:20,0.15) -- (axis cs:0,0.15); %a+e line
@@ -761,7 +758,7 @@ axis lines=middle,
 
 We will produce an auxiliary sequence which is \emph{monotonic} (+ bounded) $\implies$ convergence. $b_n:= \mathrm{sup}\{a_i : i \geq n\}$. Then picture shows that $b_{N_{\epsilon}} \in (a_{N_{\epsilon}} - \epsilon, a_{N_{\epsilon}} + \epsilon]$ and $b_n$'s are monotonically \emph{decreasing} because $b_{n+1} = \mathrm{sup}\{a_i : i \geq n+1\}$, a subset of $\{a_i : i \geq n\}$. 
 
-So $b_n$s converge to $\mathrm{inf}\{b_n: n \iN\}$. We will show that $a_n$'s converge to same number, $a$, using Cauchy condition. 
+So $b_n$s converge to $\mathrm{inf}\{b_n: n \iN\}$. We will show that $a_n$'s converge to same number, $a$, using Cauchy condition.\\
 
 \begin{lemma}
 $(a_n)$ is Cauchy $\implies (a_n)$ is bounded
@@ -775,30 +772,32 @@ Pick $\epsilon =1$, then $\exists N$ such that $\forall n,m \geq N$, $|a_n - a_m
 
 \begin{theorem}
 $(a_n)$ is a Cauchy sequence of real numbers $\implies a_n$ convergent. 
-\end{theorem}
+\end{theorem}\vspace*{5pt}
 
 \begin{corollary}
-$(a_n)$ Cauchy $\iff (a_n)$ convergent. (Ex: Show not true in $\QQ$!) 	
+$(a_n)$ Cauchy $\iff (a_n)$ convergent. (Exercise: Show not true in $\QQ$!) 	
 \end{corollary}
 
 \begin{proof}
 $(a_n)$ Cauchy $\implies$ bounded. So we can define $b_n = \mathrm{sup}\{a_i : i \geq n\}$. Then define $a = \mathrm{inf}\{b_n : n \iN\}$ and we prove that $a_n \to a$.
 
-Fix $\epsilon > 0$. $\exists N \iN$ s.t. $n,m \geq N  \implies |a_n - a_m| < \epsilon/2 \iff a_n - \epsilon/2 < a_m < a_n + \epsilon /2$.
+Fix $\epsilon > 0.\, \exists N \iN\text{ s.t. }n,m \geq N$ 
+\[\implies|a_n - a_m| < \epsilon/2 \iff a_n - \epsilon/2 < a_m < a_n + \epsilon /2\]
 Take supremum over all $m \geq i \geq N$
-\[\begin{aligned}
+\begin{align*}
 \implies a_n - \epsilon/2 &< \mathrm{sup}	\{a_m: m \geq i\} \leq a_n + \epsilon/2\\
-\text{ i.e. } a_n - \epsilon/2 &< b_i \leq a_n + \epsilon/2\\
+\text{ i.e. } a_n - \epsilon/2 &< b_i \leq a_n + \epsilon/2\\[.2cm]
 \implies a_n - \epsilon/2 &\leq \equalto{\mathrm{inf}	\{b_i: i \geq N\}}{a} \leq a_n + \epsilon/2\\
-\iff |a-a_n| &\leq \epsilon/2 < \epsilon \quad \forall n \geq N.\end{aligned}\]
+\iff |a-a_n| &\leq \epsilon/2 < \epsilon \quad \forall n \geq N.
+\end{align*}
 (We used: $S \subseteq \RR$ is bounded satisfying $x < M~\forall x \in S$. Then $\mathrm{sup}S \leq M$.)
-\end{proof}
+\end{proof}\vspace*{10pt}
 
-\pagebreak
 \lecturemarker{7}{5 Oct}
 
 \begin{example}
-Prove that if $\left|a_{n+1}/a_n\right|\to L$, $L < 1$, then $a_n \to 0$	
+Prove that if \[\left|\frac{a_{n+1}}{a_n}\right|\to L < 1\]
+then $a_n \to 0$.
 
 \emph{Idea:} $a_N \approx c.L^n$ for $n >> 0$, $L<1 \implies a_n \to 0$. 
 
@@ -806,28 +805,34 @@ To turn this in to a proof, we want $\left|a_{n+1}/a_n\right|$ to be less than $
 
 \begin{proof}
 Fix $\epsilon = \frac{1-L}{2} > 0$ (because $L < 1$). $\exists N \iN$ such that $\forall n \geq N$
-\[\left|\frac{a_{n+1}}{a_n} - L\right| < \epsilon \implies \left|\frac{a_{n+1}}{a_n}\right| < L + \epsilon = L + \frac{1-L}{2} = \frac{1+L}{2} < 1\]
+\begin{align*}
+\left|\frac{a_{n+1}}{a_n} - L\right| &< \epsilon\\
+\implies \left|\frac{a_{n+1}}{a_n}\right| &< L + \epsilon\\ &= L + \frac{1-L}{2}\\ &= \frac{1+L}{2} < 1
+\end{align*}
 So inductively we find that
-\[|a_{N+k}| \leq \frac{1+L}{2} |a_{N+k-1}| \leq \left(\frac{1+L}{2}\right)^2 |a_{N+k-2}| \leq \dots \leq \left(\frac{1+L}{2}\right)^k |a_{N}| ~(*)\]
-[Ex sheet: $\alpha^k \to 0$ as $k \to \infty$ if $|\alpha| < 1$]
+\begin{align*}|a_{N+k}| &\leq \frac{1+L}{2} |a_{N+k-1}|\\
+&\leq \left(\frac{1+L}{2}\right)^2 |a_{N+k-2}|\\
+&\leq \dots\\ &\leq \left(\frac{1+L}{2}\right)^k |a_{N}| \tag{$*$}
+\end{align*}
+[Exercise sheet: $\alpha^k \to 0$ as $k \to \infty$ if $|\alpha| < 1$]
 
 Applying this to $\alpha = \frac{1+L}{2} < 1$. $\exists M > 0$ s.t. $\forall m \geq M$
 
 \[\left(\frac{1+L}{2}\right)^M < \frac{\epsilon}{1 + |a_N|}\]
 (as before we add $1$ in denominator in case $|a_N| = 0$)
 
-So by $(*)$ we have $|a_{N+m}| < \dfrac{\epsilon|a_N|}{1 + |a_N|} < \epsilon~\forall m \geq M$. Rewriting this: 
+So by $(*)$ we have \[|a_{N+m}| < \dfrac{\epsilon|a_N|}{1 + |a_N|} < \epsilon~\forall m \geq M\] Rewriting this: 
 \[\forall n \geq N+M,~ |a_n| < \epsilon\qedhere\]
 \end{proof}
-\end{example}~
+\end{example}
 
-\subsektion{Subsequences}
+\subsektion{Subsequences}\vspace*{5pt}
 
 \begin{definition}
-A \emph{subsequence} of $(a_n)$ is a new sequence $b_i = a_{n(i)}~ \forall i \iN$ where $n(1) < n(2) < \dots < n(i) < \dots ~\forall i \implies n(i) \geq i$ (Ex: prove this by induction)
+A \emph{subsequence} of $(a_n)$ is a new sequence $b_i = a_{n(i)}~ \forall i \iN$ where $n(1) < n(2) < \dots < n(i) < \dots ~\forall i \implies n(i) \geq i$ (\emph{Exercise:} prove this by induction)
+\end{definition}
 
-[Formally $n(i)$ is a function $\NN \to \NN$ with $i \mapsto n(i)$ which is strictly monotonically increasing.] ``Just go down the sequence faster, missing some terms out''
-\end{definition}~
+Formally $n(i)$ is a function $\NN \to \NN$ with $i \mapsto n(i)$ which is strictly monotonically increasing. ``Just go down the sequence faster, missing some terms out"\\
 
 \begin{example}
 $a_n = (-1)^n$ has subsequences:
@@ -867,7 +872,7 @@ axis lines=middle,
   xmax = 12,
     ytick = 0,
    xtick = 0,
-  width=10cm,height=6cm]
+  width=9cm,height=5cm]
 \addplot[color=red,mark=x] coordinates {
 		(2,1)
 		(3,2)
@@ -892,17 +897,13 @@ Either
 \begin{enumerate}
 	\item $(a_n)$ has a finite no. of peak points
 	\item $(a_n)$ has an infinite no. of peak points
-\end{enumerate}
+\end{enumerate}\vspace*{5pt}
 
-\textbf{Case (i):} Pick $n(1) \geq \mathrm{max}(j_1,\dots,j_k)$ where $a_{j1},\dots,a_{jk}$ are the finite no. of peak points. 
+\textbf{Case (i):} Pick $n(1) \geq \mathrm{max}(j_1,\dots,j_k)$ where $a_{j1},\dots,a_{jk}$ are the finite peak points. 
 
 ``Go beyond the (finitely many) peak points''.
 
-$a_{n(1)}$ is not a peak point $\implies \exists n(2) > n(1)$ s.t. $a_{n(2)} \geq a_{n(1)}$. 
-
-Similarly $a_{n(2)}$ not a peak point $\implies \exists n(3) > n(2)$ s.t. $a_{n(3)} \geq a_{n(2)}$.
-
-Recursively no peak pints beyond $n(1) \implies$ we get $n(i) > n(i-1) > \dots > n(1)$ s.t. $a_{n(i)} \geq a_{n(i-1)}~\forall i$.
+$a_{n(1)}$ is not a peak point $\implies \exists n(2) > n(1)$ s.t. $a_{n(2)} \geq a_{n(1)}$. Similarly $a_{n(2)}$ not a peak point $\implies \exists n(3) > n(2)$ s.t. $a_{n(3)} \geq a_{n(2)}$. Recursively no peak points beyond $n(1) \implies$ we get $n(i) > n(i-1) > \dots > n(1)$ s.t. $a_{n(i)} \geq a_{n(i-1)}~\forall i$.
 
 \begin{center}
 \begin{tikzpicture}
@@ -920,7 +921,7 @@ axis lines=middle,
      ytick = 0,
    xtick = {4,8,11},
    xticklabels = {$n(1)$,$n(2)$,$n(3)$},
-  width=10cm,height=7cm]
+  width=9cm,height=5cm]
 \addplot[color=red,mark=x] coordinates {
 		(4,2.2)
 		(5,2)
@@ -945,7 +946,9 @@ axis lines=middle,
 i.e. $a_{n(i)}$ is a monotonically increasing subsequence of $a_n$. $(a_n)_{n\geq 1}$ bounded $\implies (a_{n(i)})_{i\geq 1}$ is bounded $\implies a_{n(i)}$ is convergent (to $\mathrm{sup}\{a_{n(i)} : i \iN\}$.
 
 
-\textbf{Case (ii):} $\exists$ infinitely many peak points. Call these peak points $a_{n(1)}, a_{n(2)},\dots$ where $n(1) > n(2) > \dots$
+\textbf{Case (ii):} $\exists$ infinitely many peak points. 
+
+Call these peak points $a_{n(1)}, a_{n(2)},\dots$ where $n(1) > n(2) > \dots$
 
 \begin{center}
 \begin{tikzpicture}
@@ -957,13 +960,13 @@ axis lines=middle,
     xlabel={\small $n$},
     ylabel={$a_n$},
   ymin = 0,
-  ymax = 8,
+  ymax = 6.5,
   xmin = 1,
   xmax = 13,
      ytick = 0,
    xtick = {4,8,11},
    xticklabels = {$n(1)$,$n(2)$,$n(3)$},
-  width=10cm,height=6cm]
+  width=10cm,height=5cm]
 \addplot[color=red,mark=x] coordinates {
 		(12,1)
 		(11,2)
@@ -1003,10 +1006,8 @@ This gives us another proof that $(-1)^n$ is not convergent, because if $(-1)^n 
 
 We also get another proof of ``Cauchy $\implies$ convergence'' using BW (Bolzano-Weierstrass). If $a_n$ is Cauchy ($\forall \epsilon >0 ~\exists N \iN$ s.t. $\forall n,m \geq N~|a_n -a_m | < \epsilon$), then $a_n$ is convergent $(\exists a$ s.t. $a_n \to a$)
 
-\begin{proof}
-	We know that $a_n$ is bounded (by $\mathrm{max}\{|a_1|,|a_2|,\dots,|a_{N-1}|,|a_N| + 1)\}$. So by BW, $\exists$ a convergent subsequence $a_{n(i)},~i \geq 1$ s.t. $a_{n(i}) \to a$ as $i \to \infty$ for some $a \iR$. 
-	
-	So fix $\epsilon >0$. We have:
+\begin{proof}[Proof 2 of Cauchy $\implies$ Convergence]
+	We know that $a_n$ is bounded (by \[\mathrm{max}\{|a_1|,|a_2|,\dots,|a_{N-1}|,|a_N| + 1\})\] So by BW, $\exists$ a convergent subsequence $a_{n(i)},~i \geq 1$ s.t. $a_{n(i}) \to a$ as $i \to \infty$ for some $a \iR$. So fix $\epsilon >0$. We have:
 	\begin{enumerate}
 	\item $\exists N_1$ s.t. $\forall n,m \geq N_1,~|a_n - a_m| < \epsilon$
 	\item $\exists N_2$ s.t. $\forall i \geq N_2,~|a_{n(i)} -a | < \epsilon$	
@@ -1034,28 +1035,29 @@ axis lines=middle,
        \draw[dashed] (axis cs:20,0.6) -- (axis cs:0,0.6); %a line
             \draw (axis cs:5.5,1) -- (axis cs:5.5,-0.1) node  at (axis cs:5.5,-0.15) {$N =n(\mathrm{max}\{N_1,N_2\})$}; %N line
                   \node[text width=4cm] at (axis cs:8,0.9) {\small (i) other $a_n$ ($\times$) close to subseq. ($\otimes$)};
-          \node[text width=4cm] at (axis cs:8,0.35) {\small (ii) subseq. ($\otimes$) close to $a$};
+          \node[text width=4.5cm] at (axis cs:8,0.35) {\small (ii) subseq. ($\otimes$) close to $a$};
             
   \end{axis}
 \end{tikzpicture}
 \end{center}
 
 Set $N = n(\mathrm{max}\{N_1,N_2\}) \geq \mathrm{max}\{N_1,N_2\} \geq N_1$. Then $\forall n \geq N$ we have
-\[\begin{aligned}|a_n - a| &= |(a_n - a_N) + (a_N - a)| \\
+\begin{align*}|a_n - a| &= |(a_n - a_N) + (a_N - a)| \\
 &\leq |a_n - a_N| + |a_N - a|\\
- &< \epsilon + \epsilon = 2\epsilon	
-\end{aligned}\]\end{proof}\vspace*{5pt}
+ &< \epsilon + \epsilon = 2\epsilon	\qedhere
+\end{align*}\end{proof}\vspace*{5pt}
 
 
 \textbf{Aside:} Fix $c >0$. Then $a_n \to a$ iff 
 \[\boxed{\forall \epsilon >0,~\exists N_{\epsilon} \iN \text{ s.t. } n \geq N_\epsilon \implies |a_n - a| < c\epsilon (*)}\]
-Ex: Show $\implies$
+\emph{Exercise:} Show $\implies$
 
 \begin{proof}[Proof $\impliedby$] Fix $\epsilon >0$. Set $e' = \epsilon/c >0$. Then $(*) \implies $
 \[\exists N_\epsilon \iN \text{ s.t. } n \geq N_\epsilon \implies |a_n - a| < c\epsilon' = \epsilon\qedhere\]
 \end{proof}
 
-\textbf{Beware!} Do not let $c$ depend on $\epsilon$ (Nor $N!$), e.g. if we let $c = \frac{1}{\epsilon}$ then $(*)$ becomes $\forall \epsilon >0,~\exists N \iN$ s.t. $\forall n \geq N,~|a_n - a| < 1$ and $a_n = \frac{1}{2} \forall n,~ a = 0$ satisfies this!\\
+\begin{warning} Do not let $c$ depend on $\epsilon$ (Nor $N!$), e.g. if we let $c = \frac{1}{\epsilon}$ then $(*)$ becomes $\forall \epsilon >0,~\exists N \iN$ s.t. $\forall n \geq N,~|a_n - a| < 1$ and $a_n = \frac{1}{2}\; \forall n,~ a = 0$ satisfies this!	
+\end{warning}
 
 We can also go the other way round: Cauchy theorem $\implies$ BW. 
 
@@ -1063,22 +1065,15 @@ We can also go the other way round: Cauchy theorem $\implies$ BW.
 
 
 
-Take a bounded sequence $(a_n)$. We want to find a convergent subsequence. 
-
-Given $a_n \in [-R,R]~ \forall n$, repeatedly subdivide to make this interval smaller. So either
+Take a bounded sequence $(a_n)$. We want to find a convergent subsequence. Given $a_n \in [-R,R]~ \forall n$, repeatedly subdivide to make this interval smaller. So either
 \begin{enumerate}
 \item $\exists$ infinite number of $a_n$'s in $[-R,0]$
 \item $\exists$ infinite number of $a_n$'s in $[0,R]$
 \end{enumerate}
 
-Pick one of these intervals with inifnite number of $a_n$'s; call it $[A_1,B_1]$, length $2R/2$. 
+Pick one of these intervals with infinite number of $a_n$'s; call it $[A_1,B_1]$, length $2R/2$. 
 
-Now subdivide again; call $[A_2,B_2]$ one of the intervals $[A_1,\frac{A_1+B_1}{2}]$ or $[\frac{A_1+B_1}{2},B_1]$ with infinitely many $a_n$'s in it with length $2R/2^2$ etc. 
-
-We get a sequence of intervals $[A_n,B_n]$ of length $2R/2^n$ each containing an infinite number of $a_n$s which are nested: $[A_{k+1},B_{k+1}] \subseteq [A_k,B_k]$
-
-
-Now we use a \emph{diagonal argument}. Let $b_i = a_{n(i)}$ be an elements of the sequence in $[A_i,B_i]$ s.t. $n(i) > n(i-1)$. (This is possible because $\exists$ infinite no. of elements of sequence in $[A_i,B_i]$. 
+Now subdivide again; call $[A_2,B_2]$ one of the intervals $[A_1,\frac{A_1+B_1}{2}]$ or $[\frac{A_1+B_1}{2},B_1]$ with infinitely many $a_n$'s in it with length $2R/2^2$ etc. We get a sequence of intervals $[A_n,B_n]$ of length $2R/2^n$ each containing an infinite number of $a_n$s which are nested: $[A_{k+1},B_{k+1}] \subseteq [A_k,B_k]$. Now we use a \emph{diagonal argument}. Let $b_i = a_{n(i)}$ be an elements of the sequence in $[A_i,B_i]$ s.t. $n(i) > n(i-1)$. (This is possible because $\exists$ infinite no. of elements of sequence in $[A_i,B_i]$. 
 
  \textbf{Claim:} $b_i = a_{n(i)}$ is convergent.
 
@@ -1087,10 +1082,12 @@ Fix $\epsilon >0$. Take $N_{\epsilon} > \frac{2R}{\epsilon}$, so that $\frac{2R}
 beacause $b_i,b_j \in [A_{N_{\epsilon}},B_{N_{\epsilon}}] \implies (b_i)$ Cauchy $\implies$ convergent.
 	\end{proof}\vspace*{5pt}
 	
+\vspace*{1cm}
 
-%!TEX root = M1P1.tex
+\begin{center}
+\includegraphics[width = 7cm]{cartoon1.jpg}	
+\end{center}
 
-\pagebreak
 
 \sektion{Series}\vspace*{5pt}
 
@@ -1105,9 +1102,8 @@ We say that the series $\sum a_n = A \in \mathbb{R}$ (or ``converges to $A \in \
 \end{definition}
 
 
-
 \[
-\begin{tikzcd}[row sep=1.5cm]
+\begin{tikzcd}[row sep=1.5cm,column sep = -.5cm]
  &  \mbox{Sequence of partial sums $(s_n)$}\arrow[<->]{dr}{s_n = \sum_{i=1}^n a_i} \\ 
 \mbox{Sequence $(a_n)$} \arrow[<->]{ur}{a_n = s_n - s_{n-1}} \arrow[<->]{rr}{\text{Equivalent Information}} && \mbox{Series $\sum a_n$}
 \end{tikzcd}
@@ -1118,9 +1114,9 @@ We say that the series $\sum a_n = A \in \mathbb{R}$ (or ``converges to $A \in \
 \begin{example}
 $a_n = x^n,~n \geq 0$. Consider $\sum_{n=0}^{\infty} a_n = \sum_{n=0}^{\infty} x^n$.
 
-Define $s_n = \sum_{i=0}^n x^i = 1 + x + \dots + x^n$ then $xS_n = x + \dots + x^n + x^{n+1} \implies S_n - xS_n = 1 - x^{n+1}$
+Define \[s_n = \sum_{i=0}^n x^i = 1 + x + \dots + x^n\] then \begin{align*}xS_n = x + \dots + x^n + x^{n+1}\\ \implies S_n - xS_n = 1 - x^{n+1}\end{align*}
 \[\implies S_n = \begin{cases}
- \frac{1-x^{n+1}}{1-x} & x \neq 1\\
+ \dfrac{1-x^{n+1}}{1-x} & x \neq 1\\
  n+1 & x = 1	
  \end{cases}
 \]
@@ -1145,46 +1141,41 @@ $S_n - S_{n-1} = a_n$. If $S_n \to S$ then $S_{n-1} \to S$ (Ex). So by the algeb
 
 \begin{proof}[Proof from first principles]
 Fix $\epsilon >0$. $s_n \to s$, so 
-\[\exists N\iN \text{ s.t. } \forall n \geq N,~|s_n - s| < \epsilon\]
-\[\begin{aligned}
+\[\exists N\iN \text{ s.t. } \forall n \geq N,~|s_n - s| < \epsilon\vspace*{-10pt}\]
+\begin{align*}
 \implies |a_n| &= |s_n - s_{n-1}| \\
 &\leq |s_n - s| + |s_{n-1} - s| \\ 
 &< \epsilon + \epsilon \text{, for } n-1 \geq N.	
-\end{aligned}
-\]
+\end{align*}
 So $\forall n \geq N+1$, $|a_n| < 2\epsilon$. 
 \end{proof}\vspace*{5pt}
 
 \begin{remark}
 Converse is \emph{not} true. E.g. $a_n = \frac{1}{n} \to 0$, but $\sum \frac{1}{n}$ is \emph{not} convergent. 	
-\end{remark}~
+\end{remark}\vspace*{5pt}
 
 \begin{example}
-$\displaystyle{\sum_{n=1}^{\infty} \frac{1}{n^2}}$ is convergent\footnote{Famously to $\pi^2/6$ - see \href{https://en.wikipedia.org/wiki/Basel_problem}{Basel Problem}.} 	
+$\displaystyle{\sum_{n=1}^{\infty} \frac{1}{n^2}}$ is convergent.
 
-\begin{proof}(Trick) First do $\sum_{n=1}^\infty \frac{1}{n(n+1)}$ and use $\frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}$
-
-\[\begin{aligned}
+\begin{proof}(Trick) First do $\sum_{n=1}^\infty \frac{1}{n(n+1)}$ and use $\frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}$.
+\begin{align*}
 S_n &= \sum_{i=1}^n \frac{1}{i} - \frac{1}{i+1} \\
 &= \textstyle{(1-\frac{1}{2}) + (\frac{1}{2} - \frac{1}{3}) + \dots + (\frac{1}{n} - \frac{1}{n+1})}\\
 &= 1 - \frac{1}{n+1} \to 1 \text{ as } n \to \infty	
-\end{aligned}
-\]
+\end{align*}
 
 $\implies \sum_{n=1}^\infty \frac{1}{n(n+1)}$ is convergent to $1$.
 
 Ao now compare the partial sums $\sigma_n$ of $\sum \frac{1}{n^2}$ to those of $\sum \frac{1}{n(n+1)} = 1$
-
-\[\begin{aligned}
+\begin{align*}
 \sigma_n = \sum_{i=1}^n \frac{1}{i^2} &= 1 + \sum_{j=1}^{n-1} \frac{1}{(j+1)^2} \\
 &\leq 1 + \sum_{j=1}^{n-1}\frac{1}{j(j+1)}\\
 &= 1 + s_{n-1}	
-\end{aligned}
-\]
+\end{align*}
 
 $s_{n-1}$ is a bounded (by $1$) monotonically increasing sequence (because $\frac{1}{n(n+1)} >0$), convergent to $1$. So $s_{n-1} < 1~\forall n \implies \sigma_n < 2 \implies$ bounded above monotonic increasing sequence $\implies \sigma_n$ is convergent $\implies \sum \frac{1}{n^2}$ is convergent.	
 \end{proof}
-\end{example}\vspace*{5pt}
+\end{example}
 
 
 Similarly $\sum \frac{1}{n^k}$ is convergent for $k \geq 2$ because $\frac{1}{n^k} \leq \frac{1}{n^2}$. In fact $\zeta(k) = \sum \frac{1}{n^k}$ is convergent for $k \in (1,\infty)$... See later!\\
@@ -1202,7 +1193,7 @@ Put differently, if $\sum a_n$, $\sum b_n$ converge, then so does $\sum (\lambda
 Partial sums (to $n$ terms) of $\sum (\lambda a_n + \mu b_n)$ is 
 \[\sum_{i=1}^{n} (\lambda a_i + \mu b_i) = \lambda \sum_{i=1}^{n} \lambda a_i + \sum_{i=1}^{n} \mu b_i \to \lambda \sum_{i=1}^{\infty} a_n + \mu \sum_{i=1}^{\infty} \mu b_n \]
 as $n \to \infty$ by the algebra of limits for sequences. So the partial sums converge.
-\end{proof}~
+\end{proof}\vspace*{10pt}
 
 
 
@@ -1226,24 +1217,23 @@ Suppose $a_n \geq 0 ~\forall n$. Then $\sum_{n=1}^{\infty} a_n$ converges iff $S
 \end{proposition}
 
 \begin{proof}
-$a_n \geq 0 \iff (S_n)$ is monotonic increasing. So $(S_n)$ bounded $\iff$ convergent.
-
-$S_N$ unbounded $\iff \forall R>0,~ \exists N \in \NN$ such that $\forall n \geq N,~ S_n > R \iff S_n \to +\infty$. 
+$a_n \geq 0 \iff (S_n)$ is monotonic increasing. So $(S_n)$ bounded $\iff$ convergent. $S_N$ unbounded $\iff \forall R>0,~ \exists N \in \NN$ such that $\forall n \geq N,~ S_n > R \iff S_n \to +\infty$. 
 \end{proof}\vspace*{5pt}
 
-Exercise: (Converse of Comparison Test)
-If $0 \leq a_n \leq b_n$ then $\sum a_n$ diverges to $\infty\implies \sum b_n$ diverges to $\infty$\\
+\emph{Exercise}: (Converse of Comparison Test)
+If $0 \leq a_n \leq b_n$ then $\sum a_n$ diverges to $\infty\implies \sum b_n$ diverges to $\infty$.\\
 
 
 \begin{example}
 $\sum_{n=1}^{\infty} \frac{1}{n^{\alpha}},~ \alpha > 1$ is convergent.
 \begin{proof}
 (Trick!) Arrange the partial sum as follows:
-\[\begin{aligned}
+\begin{align*}
 1 + \frac{1}{2^\alpha} + \frac{1}{3^\alpha} + \dots  = 1 + \left(\frac{1}{2^\alpha} + \frac{1}{3^\alpha}\right) &+ \left(\frac{1}{4^\alpha} + \dots +\frac{1}{7^\alpha}\right)  \\ 
 &+ \left(\frac{1}{8^\alpha} + \dots + \frac{1}{15^\alpha}\right) \\
 &+ \left(\frac{1}{16^\alpha} + \dots + \frac{1}{31^\alpha}\right) \\
-&+ \dots  \end{aligned}\]
+&+ \dots 
+\end{align*}
 Note that the $k$th bracketed term:
 \[\left(\frac{1}{(2^k)^\alpha} + \dots +\frac{1}{(2^{k+1}-1)^\alpha}\right ) \leq \frac{1}{2^{k\alpha}} + \dots + \frac{1}{2^{k\alpha}} = \frac{2^k}{2^{k\alpha}} = \frac{1}{2^{k(\alpha-1)}}\]
 
@@ -1251,31 +1241,32 @@ So any partial sum is less than some finite sum of these bracketed terms, i.e. f
 
 So partial sums are bounded above $\implies$ convergent. 
 \end{proof}	
-\end{example}~
+\end{example}\vspace*{5pt}
 
 \begin{definition}
 Say that the series $\sum_{n=1}^{\infty}a_n$ is \emph{absolutely convergent} if and only if the series $\sum_{n=1}^{\infty} |a_n|$ is convergent	
-\end{definition}~
+\end{definition}\vspace*{5pt}
 
 \begin{example}
 $\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$ is \emph{not} absolutely convergent, but it is convergent.
 
 
-\textit{Rough Working.} $1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \dots = (1-\frac{1}{2}) + (\frac{1}{3} - \frac{1}{4}) + (\frac{1}{5} -\frac{1}{6}) + \dots$, the $k$th bracket $\frac{1}{2k-1} - \frac{1}{2k} = \frac{1}{2k(2k-1)}$. This is positive and $\leq \frac{1}{2k(2k-2)} = \frac{1/4}{k(k-1)}$, seen earlier sum of these is convergent.
-
-So cancellation between consecutive terms is enough to make series converge by comparison with $\sum \frac{1}{k(k-1)}$.
+\textit{Rough Working.} \[\textstyle{1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \dots = (1-\frac{1}{2}) + (\frac{1}{3} - \frac{1}{4}) + (\frac{1}{5} -\frac{1}{6}) + \dots}\]the $k$th bracket $\frac{1}{2k-1} - \frac{1}{2k} = \frac{1}{2k(2k-1)}$. This is positive and $\leq \frac{1}{2k(2k-2)} = \frac{1/4}{k(k-1)}$, seen earlier sum of these is convergent. So cancellation between consecutive terms is enough to make series converge by comparison with $\sum \frac{1}{k(k-1)}$.
 
 \begin{proof}
-Fix $\epsilon >0.$ Then use 2 things\begin{enumerate}
-\item[(1)] $\sum \frac{1}{2k(2k-1)}$	is convergent
-\item[(2)] $\frac{(-1)^{n+1}}{n}\to 0$
-\end{enumerate}
+Fix $\epsilon >0.$ Then use 2 things
+ \[\sum \frac{1}{2k(2k-1)}\text{	is convergent}\tag{1}\]
+\[\frac{(-1)^{n+1}}{n}\to 0\tag{2}\]
+
 By (1) $\exists N_1$ such that $\forall n \geq N_1,~ \sum_{n=1}^{\infty} \frac{1}{k(k-1)} < \epsilon$
 
 By (2) $\exists N_2$ such that $\forall n \geq N_2,~ \left|\frac{(-1)^{n+1}}{n}\right| < \epsilon$
 
 Set $N =$ max$(N_1,N_2)$. Then $\forall n \geq N$, we have:
-\[S_n = \left(1-\frac{1}{2}\right) + \left(\frac{1}{3} - \frac{1}{4}\right) + \dots \left(\frac{1}{2j-1} - \frac{1}{2j} \right) + \delta = \sum_{k=1}^{j} \frac{1}{2k(2k-1)} + \delta\] 
+\begin{align*}S_n &= \left(1-\frac{1}{2}\right) + \left(\frac{1}{3} - \frac{1}{4}\right) + \dots \left(\frac{1}{2j-1} - \frac{1}{2j} \right) + \delta\\
+&= \sum_{k=1}^{j} \frac{1}{2k(2k-1)} + \delta	
+\end{align*}
+
 where $\delta = \begin{cases}
  	\frac{(-1)^{n+1}}{n} & \text{ if } n \text{ is odd.}\\
  	0 & \text{ if } n \text{ is even.}
@@ -1285,8 +1276,10 @@ $ $~~\left(j = \lfloor \frac{n}{2} \rfloor\right)$   $j = \begin{cases}
  	\frac{n}{2} & \text{ if } n \text{ is even.}
  \end{cases}
 $
+
 \[\implies S_n = \sum_{k=1}^{\infty} \frac{1}{2k(2k-1)} - \sum_{k=\lfloor \frac{n}{2} \rfloor + 1}^{\infty} \frac{1}{2k(2k-1)} + \delta\]
-\[\text{So } \left|S_n - \sum_{k=1}^{\infty} \frac{1}{2k(2k-1)} \right| \leq \sum_{k=\lfloor \frac{n}{2} \rfloor + 1}^{\infty} \frac{1}{2k(2k-1)} + \frac{1}{n} < \epsilon + \epsilon\] for all $n \geq 2N$ (so that $\lfloor \frac{n}{2} \rfloor + 1 >N$) 
+So
+\[ \left|S_n - \sum_{k=1}^{\infty} \frac{1}{2k(2k-1)} \right| \leq \sum_{k=\lfloor \frac{n}{2} \rfloor + 1}^{\infty} \frac{1}{2k(2k-1)} + \frac{1}{n} < \epsilon + \epsilon\] for all $n \geq 2N$ (so that $\lfloor \frac{n}{2} \rfloor + 1 >N$) 
 \end{proof}
 \end{example}\vspace*{10pt}
 
@@ -1299,26 +1292,33 @@ $
 Let $S_n = \sum_{i=1}^{n} |a_i|$, $\sigma+n = \sum_{i=1}^n a_i$ be the partial sums.
 
 We're assuming that $S_n$ converges. Therefore $S_n$ is Cauchy: 
-\[ \forall \epsilon >0~ \exists N_{\epsilon}\text{ such that }n > m \geq N_{\epsilon} \implies |S_n - S_m| < \epsilon \iff |a_{m+1} + \dots + |a_n| < \epsilon\]
-i.e. the terms in the tail of the series contribute little to the sum 
+\begin{align*} &\forall \epsilon >0~ \exists N_{\epsilon}\text{ such that }n > m \geq N_{\epsilon}\\
+ &\implies |S_n - S_m| < \epsilon \\
+ &\iff |a_{m+1} + \dots + |a_n| < \epsilon	
+\end{align*}
 
-$\implies |a_{m+1} + \dots + a_n| < \epsilon$ by the triangle inequality $\implies |\sigma_n - \sigma_m| < \epsilon \implies (\sigma_n)$ is Cauchy $\implies \sum a_i$ is convergent.
+i.e. the terms in the tail of the series contribute little to the sum 
+\begin{align*}
+  &\implies |a_{m+1} + \dots + a_n| < \epsilon\text{ by the triangle inequality }\\
+  &\implies |\sigma_n - \sigma_m| < \epsilon\\
+  &\implies (\sigma_n)\text{ is Cauchy }\\
+  &\implies \sum a_i\text{ is convergent.} \qedhere
+\end{align*}
 \end{proof}\vspace*{5pt}
 
 \begin{example}
 $\sum_{n=1}^{\infty} z_n$ is convergent for $|z| < 1$, divergent for $|z| \geq 1$
 \begin{proof}
-$\sum_{n=1}^{\infty} z_n$ is absolutely convergent because we showed that $\sum_{n=1}^{\infty} |z|^n$ converges to $\frac{1}{1 - |z|}$ for $|z| < 1$	
-
-For $|z| \geq 1$, the individual terms $z^n$ have $|z^n| \geq 1$, so $z^n \not\to 0$, so $\sum z^n$ divergent.
+$\sum_{n=1}^{\infty} z_n$ is absolutely convergent because we showed that $\sum_{n=1}^{\infty} |z|^n$ converges to $\frac{1}{1 - |z|}$ for $|z| < 1$.	 For $|z| \geq 1$, the individual terms $z^n$ have $|z^n| \geq 1$, so $z^n \not\to 0$, so $\sum z^n$ divergent.
 \end{proof}
 \end{example}
 
 
-\subsektion{$*$Re-arrangement of Series$*$}
-\emph{This section was non-examinable in 2015}
+\subsektion{* Re-arrangement of Series *}\vspace*{5pt}
 
-\textbf{Beware.} Do not rearrange series and sum them in a different order unless you can prove the result is the same.\\
+\begin{warning} Do not rearrange series and sum them in a different order unless you can prove the result is the same.	
+\end{warning}
+
 
 \begin{example}
 $\sum (-1)^{n+1} = 1 - 1 + 1 - 1 + \dots$
@@ -1373,12 +1373,13 @@ We can do each step because $\sum a_{2n+1}$ diverges to $\infty$ and $\sum a_{2n
 Why? If not then we must eventually only take terms of one type (w.l.o.g. the even -ve terms) but these sum to $-\infty,~\cont$. At point they reach $<42$ we switch back to odd +ve terms.
 
 Finally proof that the reordered sum converges to $42$ 
+\begin{proof}
 \[a_n \to 0 \text{ so }\forall \epsilon >0,~\exists N \iN \text{ s.t. } n \geq N \implies |a_n| < \epsilon ~(*)\]
 
 So now we go to a point in the reordering where we have used all $a_i$ up to $N$ and then further to the point where the partial sum crosses $42$. At this point, $(*)$ holds, so I'm within $\epsilon$ of $42$. from this point on the sum is always within $\epsilon$ of $42$ by design and by $(*)$. 
-
-\[\implies |s_n - 42| < \epsilon \text{ from this point on}\qed\]
-\end{example}
+\[\implies |s_n - 42| < \epsilon \text{ from this point on}\qedhere\]
+\end{proof}
+\end{example}\vspace*{5pt}
 
 
 More generally \lecturemarker{12}{9 Feb}
@@ -1459,27 +1460,25 @@ So $(s_n)$ is Cauchy $\implies s_n$ is convergent.
 
 Let $N$ be max$(I,J)$ where $I$ is the $N_i$th $a_i \geq 0$ (the $N_i$th positive term) and $a_J$ the $N_J$th -ve term. Then $\forall n \geq N$
 
-\[\begin{aligned}\left|\sum_{i=1}^n - (A+B)\right| 
+\begin{align*}\left|\sum_{i=1}^n - (A+B)\right| 
 &\leq \left|\sum_{a_i \geq 0}^n a_i - A\right| + \left|\sum_{a_i < 0}^n a_i - B\right| < \epsilon + \epsilon = 2\epsilon 
-\end{aligned}
-\]
+\end{align*}
+
 So $\sum_{i=1}^n \to A+B$ as $n \to \infty$.\\
 
-(4) Finally $(b_m)$ is a rearrangement of $(a_n)$. We want to show that $\sum b_m$ converges to $A+B$ as well. 
-
-Pick $M \iN$ such that $b_1,b_2,\dots,b_M$ contains all of $P_1,P_2,\dots,P_I$ and $N_1,N_2,\dots,N_J$ where $P_i$ is the $i$th $a_i \geq 0$ and $N_J$ is the $j$th $a_j <0$. 
+(4) Finally $(b_m)$ is a rearrangement of $(a_n)$. We want to show that $\sum b_m$ converges to $A+B$ as well. Pick $M \iN$ such that $b_1,b_2,\dots,b_M$ contains all of $P_1,P_2,\dots,P_I$ and $N_1,N_2,\dots,N_J$ where $P_i$ is the $i$th $a_i \geq 0$ and $N_J$ is the $j$th $a_j <0$. 
 
 [i.e. we're far enough down the rearranged series to have included all significant $a_i \geq 0$ and $a_i <0$ which sum to $<\epsilon$ by (1) and (2)]
 
 Then $\forall m \geq M$ we have
 
-\[\begin{aligned}
+\begin{align*}
 \left|\sum_{i=1}^m b_i - (A+B)\right| 
 &\leq \left|\sum_{b_i \geq 0}^m b_i - A\right| + \left|\sum_{b_i < 0}^m b_i - B\right|\\
 &\leq \left|\sum_{a_k \geq 0}^I a_k + \delta - A\right| + \left|\sum_{a_k < 0}^J a_k +\delta' - B\right|\\
 &< \epsilon + \epsilon = 2\epsilon 
-\end{aligned}
-\]
+\end{align*}
+
 (where $\delta =$ sum of $a_k \geq 0$ with $k >I$ and $\delta' =$ sum of $a_k < 0$ with $k > J$) \end{proof}
 
 \subsektion{Tests for convergence}
@@ -1503,9 +1502,8 @@ Use Cauchy. $\forall \epsilon >0,~ \exists N \in \NN$ such that $\forall n,m > N
 \[\implies \left|\sum_{i=1}^{n} a_i - \sum_{i=1}^m a_i\right| < \epsilon \implies \left(\sum_{i=1}^{n} a_i \right) \text{ is Cauchy.} \qedhere\]
 \end{proof}\vspace*{5pt}
 
- \lecturemarker{14}{12 Feb}
 \begin{theorem}[Comparison III]
-If $\frac{a_n}{b_n}\to l \in \RR$ then $\sum b_n$ absolutely convergent $\implies \sum a_n$ is absolutely convergent.
+If  \lecturemarker{14}{12 Feb} $\frac{a_n}{b_n}\to l \in \RR$ then $\sum b_n$ absolutely convergent $\implies \sum a_n$ is absolutely convergent.
 \end{theorem}
 \begin{proof}
 Pick $\epsilon = 1$, then $\exists N \in \NN$ such that $\forall n \geq N$:
@@ -1527,24 +1525,24 @@ Write $a_n = (-1)^nb_n,~b_n\geq 0 ~\forall n	$. Consider the partial sums $S_n =
  \item[(2)]$S_i \geq S_{2n+1}~\forall i\geq 2n+1$
  \end{enumerate}
  Since if $i=2j$ is even, then
-  \[\begin{aligned}
+  \begin{align*}
 	S_{2j} &= S_{2n} + a_{2n+1} + \dots + a_{2j}\\ 
 	&= S_{2n} + \underbrace{(-b_{2n+1} + b_{2n+2})}_{\leq 0} + \dots + \underbrace{(-b_{2j-1} + b_{2j})}_{\leq 0} \leq S_2n
-\end{aligned}
-\]
+\end{align*}
+
  
   If $i= 2j+1$ is odd, then similarly:
-   \[\begin{aligned}
+   \begin{align*}
 	S_{2j} = S_{2n} + \underbrace{(-b_{2n+1} + b_{2n+2})}_{\leq 0} + \dots + \underbrace{(-b_{2j-1} + b_{2j})}_{\leq 0} - b_{2j+1} \leq S_2n
-\end{aligned}
-\]
+\end{align*}
+
   
  So now $\forall \epsilon >0,~ \exists N \in \mathbb{N}$ such that $\forall n \geq N,~|b_n| < \epsilon$. So $\forall n,m\geq 2n$, we have: \[S_{2N+1} \leq S_n,~S_m \leq S_{2N}\] 
- \[\begin{aligned}\text{So } |S_n - S_m| &\leq |S_{2N+1} - S_{2N}|\\
- &= b_{2n+1} < \epsilon	
-\end{aligned}
-\]
-\end{proof}\vspace*{5pt}
+ \begin{align*}\text{So } |S_n - S_m| &\leq |S_{2N+1} - S_{2N}|\\
+ &= b_{2n+1} < \epsilon	\qedhere
+\end{align*}
+\end{proof}\vsp
+
 
 \begin{theorem}[Ratio Test]
 If $a_n$ is a sequence such that $\left|\frac{a_{n+1}}{a_n}\right| \to r < 1$, then $\sum a_n$ is absolutely convergent.	
@@ -1566,16 +1564,15 @@ So by the comparison test $\sum_{k\geq N} |a_k|$ is convergent $\implies \sum_{k
 The point is that the ratio test, when it applies, says that $a_n \approx r^n$ i.e. decays exponentially. But many convergent series like $\sum \frac{1}{n^2}$ do not decay so fast.\\
 
 \begin{example}
-$a_n = \dfrac{100^n(\cos n\theta + i\sin n\theta}{n!} = \dfrac{(100e^{i\theta})^n}{n!}$
+\[a_n = \dfrac{100^n(\cos n\theta + i\sin n\theta}{n!} = \dfrac{(100e^{i\theta})^n}{n!}\]
 
 Then 
 \[\left|\frac{a_{n+1}}{a_n}\right| = \frac{(100e^{i\theta})^{n+1}/(n+1)!}{(100e^{i\theta})^{n}/n!} = \frac{100}{n+1} \to 0\]
 So by the ratio test, $\sum a_n$ is absolutely convergent $\implies \sum a_n$ is convergent.	
-\end{example}\vspace*{5pt}
-
- \lecturemarker{15}{16 Feb}
+\end{example}
+ 
 \begin{theorem}[Root Test]
-If $\lim_{n\to \infty} |a_n|^{1/n} = r < 1$, then $\sum a_n$ is absolutely convergent.	
+If \lecturemarker{15}{16 Feb} $\lim_{n\to \infty} |a_n|^{1/n} = r < 1$, then $\sum a_n$ is absolutely convergent.	
 \end{theorem}
 \begin{proof}
 Fix $\epsilon = \frac{1-r}{2} > 0$. Then $\exists N \in \mathbb{N}$ such that $\forall n \geq N$
@@ -1620,17 +1617,17 @@ But notice different behaviours on $|z| = 1$. \begin{enumerate}
  \item Convergent for some $|z| = 1$ (in fact $z \neq 1$), divergent for others
  \item Also convergent $\forall z$ with $|z|  =1$ (comparison with $\sum \frac{1}{n^2}$)	
  \end{enumerate}
-\end{clicker}\vspace*{5pt}
+\end{clicker}
 
 
 \subsubsektion{Products of Series}
 Consider 
-\[\begin{aligned}
+\begin{align*}
 \sum_{n=0}^{\infty} a_nz^n \sum_{n=0}^{\infty}b_nz^n &= (a_0 + a_1z + a_2z^2 + \dots) (b_0 + b_1z + b_2z^2 + \dots)\\
-&``='' a_0b_0 + (a_0b_1 + a_1b_0)z + (a_0b_2 + a_1b_1 + a_2b_0)z^2 + \dots \\
+&``=" a_0b_0 + (a_0b_1 + a_1b_0)z + (a_0b_2 + a_1b_1 + a_2b_0)z^2 + \dots \\
 &= \sum_{n=0}^{\infty} c_nz^n 	
-\end{aligned}
-\]
+\end{align*}
+
 where $c_0 = a_0b_0$, $c_1 = a_0b_1 + a_1b+0, \dots c_n = a_0b_n + a_1b_{n-1} + \dots + a_nb_0$. 
 
 So we set $c_n = \sum_{i=0}^{n} a_i b_{n-i}$ and ask when is the product $\sum a_nz^n \sum b_nz^n$ equal to $\sum c_nz^n$? We can also do this without the $z^n$'s:\\
@@ -1639,12 +1636,106 @@ So we set $c_n = \sum_{i=0}^{n} a_i b_{n-i}$ and ask when is the product $\sum a
 Given series $\sum a_n,~\sum b_n$, their \emph{Cauchy Product} is the series $\sum c_n$ where $c_n := \sum_{i=0}^n a_ib_{n-i}$.	
 \end{definition}\vspace*{5pt}
 
-  \lecturemarker{16}{19 Feb}
+
 \begin{theorem}[Cauchy Product]
-If $\sum a_n, \sum b_n$ are absolutely convergent, then $\sum c_n$ is absolutely convergent to $(\sum a_n) \cdot (\sum b_n)$	
+If   \lecturemarker{16}{19 Feb}$\sum a_n, \sum b_n$ are absolutely convergent, then $\sum c_n$ is absolutely convergent to $(\sum a_n) \cdot (\sum b_n)$	
 \end{theorem}
-\textit{Proof.}
-See handout on blackboard. Non-examinable. \\
+\begin{proof} (Non-examinable.) 
+We try to control
+\[
+  \sum_{i=0}^{2n}c_i - \sum_{i,j = 0}^n a_ib_j,
+\]
+which is the sum of $a_ib_j$ over all $i,j$ in the $2$ triangles shaded in the diagram below. 
+ \begin{center}
+ \resizebox{8cm}{5.8cm}{
+    \begin{tikzpicture}
+      \draw [->] (0, 0) -- (7.5, 0) node [right] {$i$};
+      \draw [->] (0, 0) -- (0, 6.5) node [left] {$j$};
+      \draw (0,0) rectangle (6,6);
+      \draw (0,0) rectangle (3,3);
+      \draw (6,0) -- (0,6);
+	\fill [blue!10] (0,3) -- (0,6) -- (3,3);
+	\fill [blue!10] (3,3) -- (6,0) -- (3,0);
+	\draw [red] (0,1) -- (1,0);
+	\draw [red] (1.8,0) -- (0,1.8);
+    \node at (0.4,5.6) {\small $a_0b_{2n}$};
+    \node at (2.8,2.9) {\small $a_nb_{n}$};    
+	\node at (5.6,0.2) {\small $a_{2n}b_{0}$};                         
+	\node at (0.35,0.3) {\small $a_{0}b_{0}$};                         
+	\node at (1.1,0.3) {\small $a_{1}b_{0}$};                         
+	\node at (0.35,1) {\small $a_{0}b_{1}$};                         
+     \node at (0.1,2.1) {$\vdots$}; 
+    \node at (0.1,4.1) {$\vdots$}; 
+     \node at (4.1,0.2) {$\dots$};
+     \node at (2.8, 1.5) {$\vdots$};
+    \node at (1.5, 2.8) {$\dots$};
+     \node at (0.35,2.8) {\small $a_0b_{n}$};
+     \node at (2.8,0.2) {\small $a_nb_{0}$}; 
+     \node at (2.1,0.2) {$\dots$};
+     \draw [red] (5.3,0) -- (0,5.3); 
+     \draw [red,->] (-0.3,6) -- (0,5.8) node at (-0.6,6) {$c_{2n}$};  
+      \draw [red,->] (-0.3,0.5) -- (0,0.2)node at (-0.5,0.5) {$c_{0}$};                                                               
+      \draw [red,->] (-0.3,1.5) -- (0,1.2) node at (-0.5,1.5) {$c_{1}$};
+      \draw [red,->] (-0.3,3.2) -- (0,3) node at (-0.5,3.2) {$c_{n}$};                                                                                                                     
+    \end{tikzpicture}}
+  \end{center} 
+ 
+By the triangle inequality
+\[
+  \left|\sum_{i=0}^{2n}c_i - \sum_{i,j = 0}^{n}a_ib_j\right| \leq \sum |a_i b_j|
+\]
+where the right hand sum is over $i,j$ in (2 triangles) $\subset$ (big square minus small square). Thus
+\[
+  \left|\sum_{i=0}^{2n} c_i - \sum_{i,j = 0}^n a_ib_j \right| \leq \sum_{i=0}^{2n}\sum_{j=0}^{2n}|a_ib_j| - \sum_{i=0}^{n}\sum_{j=0}^n|a_ib_j| \tag{1}
+\]
+Since the partial sums $\sum_{i=0}^n|a_i|$ and $\sum_{j=0}^n|b_j|$ converge, their product $\sum_{i,j =0}^n|a_ib_j|$ does too, so in particular it defines a Cauchy sequence. Therefore, if we fix $\epsilon >0$, there exists $N_1$ such that 
+\[
+  m \geq n \geq N_i \implies \sum_{i,j = 0}^n |a_ib_j| - \sum_{i,j = 0}^n |a_ib_j|< \epsilon 
+\]
+Taking $m = 2n$ and substituting into (1) gives us
+\[
+  n \geq N_1 \implies \left|\sum_{i=0}^{2n} c_i - \sum_{i,j = 0}^n a_jb_j\right| \leq \epsilon \tag{2}
+\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now we know that the partial sums $\sum_{i=0}^n a_i \to a$ and $\sum_{j=0}^n b_j \to b$, so by the algebra of limits, 
+\[
+  \sum_{i=0}^na_i \sum_{j=0}^n b_j \to ab,
+\]
+which means that $\exists N_2$ such that 
+\[
+  n \geq N_2 \implies \left|\sum_{i,j=0}^{n}a_ib_j - ab\right| <\epsilon 
+\]
+Combined with (2) and the triangle inequality, this gives
+\[
+  \left|\sum_{i=0}^{2n} c_i - ab\right| < 2\epsilon 
+\]
+for all $n \geq \mathrm{max}(N_1,N_2)$. Similarly one can deal with $\sum_{i=0}^{2n+1}c_i$ in the same way by sandwiching it between the squares $0 \leq i,j\leq n$ and $0\leq i,j \leq 2n+1$. The upshot is that 
+\[
+  \left|\sum_{i=0}^{k} c_i - ab\right|< 2\epsilon 
+\]
+for all $k \geq 2\max(N_1,N_2)$. Therefore $\sum_{i=0}^k c_i \to ab$. Finally to prove that $\sum c_n$ is absolutely convergent, just replace $a_n,b_n$ by $|a_n|,|b_n|$ in the above proof.\end{proof}\vspace*{5pt}
 
 \begin{corollary}
 If $\sum A_nz^n$ and $\sum B_nz^n$ have radius of convergence $R_A$ and $R_B$ respectively, then $\sum c_nz^n$ has radius of convergence $R_C \geq \mathrm{min}\{R_A,R_B\}$.	
@@ -1653,17 +1744,17 @@ If $\sum A_nz^n$ and $\sum B_nz^n$ have radius of convergence $R_A$ and $R_B$ re
 By the previous theorem, for $|z| < \mathrm{min}\{R_A,R_B\} ~(*)$ we have $\sum A_nz^n$ and $\sum B_nz^n$ absolutely convergent $\implies \sum c_nz^n$ absolutely convergent to their product. 
 
 In fact $|c_nz^n| \to 0$ so $|z| < R_c$. So by $(*)$, $R_c \geq \mathrm{min}\{R_A,R_B\}$.
-\end{proof}~
+\end{proof}\vspace*{5pt}
 
 \begin{example}
 $\sum z^n$ has $R_A = 1$, $1-z$ has $R_B = \infty$ So their cauchy product $\sum c_nz^n$ has $R_c \geq 1$. 
 
-\emph{Ex:} Check $c_0 = 1, c_n = 0~\forall n \geq 1$, so in fact $R_c = \infty$	.
+\emph{Exercise:} Check $c_0 = 1, c_n = 0~\forall n \geq 1$, so in fact $R_c = \infty$	.
 
 But we only know that $\sum c_n z^n = 1 = (\sum z^n)(1-z)$ when $|z| < 1 = \mathrm{min}\{R_A,R_B\}$. 
-\end{example}\vspace*{5pt}
+\end{example}
 
-\subsubsektion{Exponential Power Series}\vspace*{5pt}
+\subsektion{Exponential Power Series}\vspace*{5pt}
 
 \begin{definition}[Exponential Series]
 \[E(z):= \sum_{n=0}^\infty \frac{z^n}{n!},~z\iC\]
@@ -1703,10 +1794,10 @@ $E(q) = e^q$ for $q \iQ$ (recall rational powers of $a \iR$ were defined in M1F)
 \end{proposition}
 \begin{proof}
 	Suppose $q > 0$; write $q = \frac{m}{n}$, $m,n \iN$. Then 
-	\[\textstyle{E(q) = E(\underbrace{\frac{1}{n} + \dots + \frac{1}{n}}_{n \text{ times}}) = E(\frac{1}{n})^m}\]
-	But \[E(\frac{1}{n})^n = E(\underbrace{\frac{1}{n} + \dots + \frac{1}{n}}_{m \text{ times}}) = E(1) = e\]
+	\[E(q) = E(\underbrace{\textstyle{\frac{1}{n} + \dots + \frac{1}{n}}}_{n \text{ times}}) = E(\frac{1}{n})^m\]
+	But \[E\textstyle{(\frac{1}{n}})^n = E(\underbrace{\textstyle{\frac{1}{n} + \dots + \frac{1}{n}}}_{m \text{ times}}) = E(1) = e\]
 	
-	\[ \implies E(\frac{1}{n}) = e^{1/n}\text{ and }E(q) = E(\frac{1}{n})^m = e^{m/n} = e^q\]
+	\[ \implies E\textstyle{(\frac{1}{n}}) = e^{1/n}\text{ and }E(q) = E\textstyle{(\frac{1}{n}})^m = e^{m/n} = e^q\]
 	
 	If $q = \frac{-m}{n}$ then $E(q) = 1/E(m/n) = \frac{1}{e^{m/n}} = e^{-m/n} = e^q$.
 \end{proof}
@@ -1722,23 +1813,29 @@ Some \lecturemarker{17}{20 Feb} useful properties of $E(x)$:
 \item $|x| < 1$ then $|E(x) - 1| < \frac{|x|}{1-|x|}$
 \item $\RR \ni x \mapsto E(x)$ is a continuous bijection onto $(0,\infty)$. (proven later)
 \item So we can define $\log: (0,\infty) \to \RR$ as inverse of $E$, i.e. $y = \log x$ defined by $\iff x = e^y$ with the usual log properties
-\end{enumerate}~
+\end{enumerate}\vspace*{5pt}
 
 We can also define $a^x$ for $a \in(0,\infty),x\in \RR$ by $a^x = E(x\log a)$
 
-Exercise: If $x \iQ$ this agrees with Corti's definition. 
+\emph{Exercise:} If $x \iQ$ this agrees with Corti's definition. 
 
 And trig functions $\cos \theta = \Re E(i\theta)$, $\sin \theta = \Im E(i\theta)$ etc. 
 
-Exercise: $E(i\theta + i\phi) = E(i\theta)E(i\phi)$ implies what?
+\emph{Exercise:} $E(i\theta + i\phi) = E(i\theta)E(i\phi)$ implies what?
 	
 
+
+\vspace*{.5cm}
+
+\begin{center}
+\includegraphics[width = 7.5cm]{cartoon2.jpg}	
+\end{center}
 
 
 
 \sektion{Continuity}
 
-\subsektion{Continuity and Limits}
+\subsektion{Continuity and Limits}\vsp
 \begin{definition}
 	Given a function $f: \RR \to \RR$, we say that $f$ is \emph{continuous at $a \iR$} if and only if 
 	\[\forall \epsilon >0, ~\exists \delta >0 \text{ such that } |x-a| < \delta \implies |f(x) - f(a)| < \epsilon \]
@@ -1763,7 +1860,7 @@ More precisely: ``However close (i.e. within $\epsilon$) I want $f(x)$ to be to 
      ytick = {0.75, 0.45,0.6},
    yticklabels={$f(a) + \epsilon$,$f(a) -\epsilon$, $f(a)$},
    xtick = 0,
-  width=12cm,height=8cm]
+  width=10cm,height=6cm]
    \addplot[draw=blue, domain=4:8,smooth] {(0.0309*x^3 - 0.5504*x^2 + 3.313*x - 6.13)};
        \draw (axis cs:20,0.75) -- (axis cs:0,0.75); %fa+e line
       \draw (axis cs:20,0.45) -- (axis cs:0,0.45); %fa-e line
@@ -1816,8 +1913,8 @@ Take $\epsilon = 1$ (or $0 < \epsilon < 1$). Then if $f$ is continuous at $x = 0
 axis lines=middle,
 xtick = 0,
 ytick = 0,
-  width=10cm,height=6cm]
-   \addplot[domain=0.0005:0.03,samples=200]{sin(1/x)};
+  width=8cm,height=5cm]
+   \addplot[domain=0.0005:0.03,samples=350]{sin(1/x)};
  \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -1830,7 +1927,7 @@ Now choose $n \in \mathbb{N}$, $n > \frac{1}{\delta}$. Then take $x = \frac{1}{(
 \[|\sin(1/x) - \sin(1/y)| = |1 - (-1)| = 2 ~\cont\qedhere\]
 \end{proof}
 
-\end{example}~
+\end{example}\vspace*{5pt}
 
 
 \begin{example}
@@ -1838,22 +1935,22 @@ Now choose $n \in \mathbb{N}$, $n > \frac{1}{\delta}$. Then take $x = \frac{1}{(
 $f: \RR \to \RR$, $f = mx + c$ is continuous at $a, ~\forall a \iR$. 
 
 \emph{Rough working:} We want 
-\[\begin{aligned}|f(x) - f(a)| < \epsilon &\iff |(mx+c) - (ma + c)|  < \epsilon \\
+\begin{align*}|f(x) - f(a)| < \epsilon &\iff |(mx+c) - (ma + c)|  < \epsilon \\
 &\iff |mx(-a)| < \epsilon\\
 &\iff |x-a| < \frac{\epsilon}{|m|} \text{ if } m \neq 0 \\
 &\impliedby |x-a| < \frac{\epsilon}{|m|+1} 
-\end{aligned}
-\]
+\end{align*}
+
 So set $\delta:= \epsilon / (1 + |m|)$. Then $|x-a| < \delta \implies |f(x) - f(a)| < \epsilon$
 \begin{proof}
 Set $\delta:= \frac{\epsilon }{1 + |m|} > 0$. Then when $|x-a| < \delta$ we have  
-\[\begin{aligned}
+\begin{align*}
 |(mx+ c) - (ma +c)| &= |f(x) - f(a)| \\
 &= |m||x-a| \\
-&< |m|\delta = \epsilon \frac{|m|}{|m|+1} < \epsilon	
-\end{aligned}\]
+&< |m|\delta = \epsilon \frac{|m|}{|m|+1} < \epsilon	\qedhere
+\end{align*}
 \end{proof}
-\end{example}
+\end{example}\vspace*{5pt}
 
 \begin{example}
 $f: \RR\to \RR, f(x) = x^2$
@@ -1888,17 +1985,17 @@ Fix $\epsilon >0$, $a \iR$. Set $\delta = \mathrm{min}\{1,\frac{\epsilon}{1 + 2|
 \end{example}~
 
 \begin{clicker}
-Fix $a,b \iR$. Then $x < a \implies x < b$ tells us? 
+Q: Fix $a,b \iR$. Then $x < a \implies x < b$ tells us? 
 
 \textbf{Answer:} $a \geq b$. 
 
-Prove that $f(x) = \begin{cases}
+Q: A student attempts to prove that \[f(x) = \begin{cases}
  	\frac{1}{x} & x \neq 0\\
  	0 & x = 0
- \end{cases}$
+ \end{cases}\]
  is discontinuous at $x = 0$
 
-Student answer:
+\emph{What was wrong?}
 \begin{enumerate}
 \item Suppose $f$ is cts at $0$
 \item Then $\forall \epsilon >0,~\exists \delta > 0$ s.t.
@@ -1938,7 +2035,7 @@ So every point within $\delta$ of $\vec{a}$ gets mapped by $f$ to within $\epsil
 
 
 \begin{center}
-\includegraphics[width = 12cm]{ball1.jpg}
+\includegraphics[width = 8cm]{ball1.jpg}
 \end{center}
 
 
@@ -1946,7 +2043,7 @@ $f^{-1}(B_\epsilon(f(\vec{a}))) := \{\vec{x} \in \RR^n : f(\vec{x}) \in B_\epsil
 
 Continuity at $\vec{a}$ says that $\vec{a}$ is in the ``interior'' of $f^{-1}(B_\epsilon (f(\vec{a})))$, i.e. $\exists$ a small ball $B_\delta (\vec{a})$ around it which is also in $f^{-1}(B_\epsilon(f(\vec{a})))$. 
 
-So continuity at $\vec{a} \iff$ If $\vec{x}$ moves a tiny bit around $\vec{a}$ then $f(\vec{x})$ moves a tiny bit around $f(\vec{a})$.\pagebreak
+So continuity at $\vec{a} \iff$ If $\vec{x}$ moves a tiny bit around $\vec{a}$ then $f(\vec{x})$ moves a tiny bit around $f(\vec{a})$.\\
 
 \begin{example}
 $f(x) = \begin{cases}
@@ -1960,7 +2057,7 @@ $f(x) = \begin{cases}
 axis lines=middle,
 xtick = 0,
 ytick = 0,
-  width=10cm,height=5cm]
+  width=8cm,height=5cm]
    \addplot[color = red, domain=-0.003:0.003,samples=300]{x*sin(1/x)};
    \addplot[domain=-0.003:0.003,smooth]{x};
    \addplot[domain=-0.003:0.003,smooth]{-x};
@@ -1985,37 +2082,37 @@ Take $\delta = \epsilon$. Then $|x| < \delta \implies |x| < \epsilon \implies |f
 \begin{proposition}
 $E: \CC \to \CC$ defined by $E(z) := \sum_{n=0}^{\infty} \frac{z^n}{n!}$ is continuous (i.e. continuous at $a,~\forall a \iC$)	
 \end{proposition}
-[Ex: from this show that $x \mapsto \sin x$ is continuous on $\RR$]
+\emph{Exercise:} From this show that $x \mapsto \sin x$ is continuous on $\RR$.
 
 \emph{Rough working:} 
-\[\begin{aligned}
+\begin{align*}
 |E(z) - E(a)| &= |E(a)(E(z-a)-E(0))| \\ 	
 &= |E(a)| |E(z-a) -1|\\
 & \leq |E(a)| \cdot \frac{|z-a|}{1-|z-a|}
-\end{aligned}
-\]
-for $|z-a| < 1$ (see earlier lecture)
-\[\begin{aligned}
-\text{We want this to be } < \epsilon &\iff |z-a| < \frac{\epsilon}{|E(a)|}(1-|z-a|)\\
+\end{align*}
+
+for $|z-a| < 1$ (see earlier lecture).
+
+We want this to be
+\begin{align*}
+ < \epsilon &\iff |z-a| < \frac{\epsilon}{|E(a)|}(1-|z-a|)\\
 &\iff (1 + \epsilon/|E(a)|)|z-a| < \frac{\epsilon}{|E(a)|}\\
 &\iff |z-a| < \epsilon/|E(a)|/(1 + \epsilon/|E(a)|)
-\end{aligned}
-\]
+\end{align*}
+
 
 
 \begin{proof}
 Fix $\epsilon >0$. Set $\delta = \dfrac{\epsilon}{|E(a)| + \epsilon} ~(*)$
 
 Then we calculate that 
-\[\begin{aligned}
+\begin{align*}
 |E(z) - E(a)| &\leq |E(a)| \frac{|z-a|}{1-|z-a|} \\
 &< |E(a)| \cdot \frac{\delta}{1-\delta}	
-\end{aligned}
-\]	
-for all $z$ with $|z-a| < \delta$. But by $(*)$, $\dfrac{\delta}{1-\delta} = \dfrac{\epsilon}{|E(a)|}$. 
+\end{align*}
 
-So $|z-a|< \delta \implies |E(z) - E(a)| < \epsilon$.
-\end{proof}
+for all $z$ with $|z-a| < \delta$. But by $(*)$, $\dfrac{\delta}{1-\delta} = \dfrac{\epsilon}{|E(a)|}$. So \[|z-a|< \delta \implies |E(z) - E(a)| < \epsilon\qedhere\]
+\end{proof}\vsp
 
 
 \begin{theorem}
@@ -2032,20 +2129,20 @@ $f,g: \RR \to \RR$ cts at $a \in \RR \implies (f + g), f\cdot g$ are cts at $a$.
 	We need a bound on $|g(x)|$. We cannot bound $g(x)~ \forall x$!  But near $a$, $g(x)$ is close to $g(a)$, so we can bound $g(x)$ near $a$
 	
 	Take $\epsilon =1$ 
-	\[\exists \delta_1 > 0\text{ s.t. }|x-a| < \delta_1 \implies |g(x) - g(a)| < 1 \implies |g(x)| < 1 + |g(a)| ~(A)\]
+	\[\exists \delta_1 > 0\text{ s.t. }|x-a| < \delta_1 \implies |g(x) - g(a)| < 1 \implies |g(x)| < 1 + |g(a)| \tag{A}\]
 	
 	Now fix any $\epsilon >0$. Then 
-	\[\exists \delta_2 > 0\text{ s.t. }|x-a| < \delta_2 \implies |f(x) - f(a)| < \epsilon/1+|g(a)| ~ (B)\] (to cancel $|g(x)| < 1+|g(a)|$ in $(*)$)
+	\[\exists \delta_2 > 0\text{ s.t. }|x-a| < \delta_2 \implies |f(x) - f(a)| < \epsilon/1+|g(a)| \tag{B}\] (to cancel $|g(x)| < 1+|g(a)|$ in $(*)$)
 	
-	\[\exists \delta_3 > 0 \text{ s.t. } |x-a| < \delta_3 \implies |g(x) - g(a)| < \frac{\epsilon}{1 + |f(a)|}~ (C)\]
+	\[\exists \delta_3 > 0 \text{ s.t. } |x-a| < \delta_3 \implies |g(x) - g(a)| < \frac{\epsilon}{1 + |f(a)|} \tag{C}\]
 	(to cancel $|f(a)|$ in $(*)$)
 	
 	Set $\delta := \mathrm{min}\{\delta_1,\delta_2,\delta_3\}$. Then $|x-a| < \delta \implies (A), (B), (C)$ all hold. 
 	
 	Substitute into $(*)$ to find 
-	\[\begin{aligned}|f(x)g(x) - f(a)g(a)| &< 1+|g(a)|\frac{\epsilon}{1+|g(a)|} + |f(a)|\frac{\epsilon}{1 + |f(a)|}\\
-	&\leq \epsilon + \epsilon = 2\epsilon
-\end{aligned}\]
+	\begin{align*}|f(x)g(x) - f(a)g(a)| &< 1+|g(a)|\frac{\epsilon}{1+|g(a)|} + |f(a)|\frac{\epsilon}{1 + |f(a)|}\\
+	&\leq \epsilon + \epsilon = 2\epsilon \qedhere
+\end{align*}
 \end{proof}
 
 
@@ -2088,13 +2185,11 @@ We need to bound $f(x)$ below! Need $|f(x)| > \text{ some }\eta > 0 \iff \frac{1
 We can't, but we can near $a$! $f(a) \neq 0$, so take $\epsilon' = |f(a)|/2 >0$. Then 
 \[\exists \delta' \text{ s.t. } |x-a| < \delta' \implies|f(x) - f(a)| < \epsilon' = \frac{|f(a)|}{2}\]
 \[\implies |f(x)| > |f(a)| -\epsilon = \frac{|f(a)|}{2}\]
-
-
-\[\begin{aligned}
+\begin{align*}
 \text{So by } (*) \text{, we have }\left|\frac{1}{f(x)} - \frac{1}{f(a)}\right| &< \frac{1}{|f(a)|/2\cdot |f(a)|} |f(x) - f(a)| \\ 
 	& = \frac{2}{|f(a)|^2}|f(x) - f(a)|
-\end{aligned}
-\]
+\end{align*}
+
 
 Fix $\epsilon >0$. Set $\epsilon'' = \mathrm{min}\left(\frac{|f(a)|}{2}, \frac{\epsilon}{2}|f(a)|^2\right) > 0$
 
@@ -2102,11 +2197,11 @@ Then $\exists \delta > 0$ such that $|x-a| < \delta \implies |f(x) - f(a)| < \ep
 
 $\implies (1) |f(x)| > |f(a)| - \epsilon'' \geq |f(a)| - |f(a)|/2$ and $(2) |f(x) - f(a)| < \frac{\epsilon}{2}|f(a)|^2$. So 
 
-\[\begin{aligned}
+\begin{align*}
 \left|\frac{1}{f(x)} - \frac{1}{f(a)}\right| &= \frac{1}{|f(x)||f(a)|} |f(x) -f(a)| \\
 &< \frac{1}{|f(a)|/2\cdot|f(a)|}\cdot \frac{\epsilon}{2}|f(a)|^2 = \epsilon	\qedhere
-\end{aligned}
-\]
+\end{align*}
+
 \end{proof}	
 \end{example}
 
@@ -2120,15 +2215,9 @@ In one direction this is somewhat easy: if $x_n \to a$ and $f$ is continuous at 
 The converse is \emph{much harder}. If I want to see if $f$ is continuous, I can test with a sequence $x_n \to a$ to see if $f(x_n)$ if close to $f(a)$ when $n$ is large. But $x_n$'s doesn't cover all $x$'s! But if I use \emph{all} sequences $x_n \to a$ then I do cover all $x$ and get a theorem. 
 
 \begin{proof}
-If $f$ is cts at $a$, fix $\epsilon >0$. $\exists \delta > 0$ such that $|x-a| < \delta \implies |f(x) - f(a)| < \epsilon$. Now $x_n \to a$, so $\exists N \in \mathbb{N}$ such that $n \geq N \implies |x_n - a| < \delta \implies |f(x_n) - f(a)| < \epsilon$.\\
+If $f$ is cts at $a$, fix $\epsilon >0$. $\exists \delta > 0$ such that $|x-a| < \delta \implies |f(x) - f(a)| < \epsilon$. Now $x_n \to a$, so $\exists N \in \mathbb{N}$ such that $n \geq N \implies |x_n - a| < \delta \implies |f(x_n) - f(a)| < \epsilon$.
 
-\noindent Suppose $f$ is not cts at $a\in \RR$ for contradiction.
-
- Then $\exists \epsilon >0$ such that $\forall \delta >0,~\exists x \in (a-\delta,a+\delta)$ such that $|f(x) -f(a)| \geq \epsilon.$ 
- 
- Choose $\delta = \frac{1}{n}$. $\exists x_n \in (a - \frac{1}{n},a + \frac{1}{n})$ such that $|f(x_n) - f(a)| \geq \epsilon$. 
- 
- So $|x_n-a| < \frac{1}{n}~\forall n \implies x_n \to a$. But $f(x_n) \centernot\implies f(a),~\cont$.  
+ Suppose $f$ is not cts at $a\in \RR$ for contradiction. Then $\exists \epsilon >0$ such that $\forall \delta >0,~\exists x \in (a-\delta,a+\delta)$ such that $|f(x) -f(a)| \geq \epsilon$. Choose $\delta = \frac{1}{n}$. $\exists x_n \in (a - \frac{1}{n},a + \frac{1}{n})$ such that $|f(x_n) - f(a)| \geq \epsilon$. So $|x_n-a| < \frac{1}{n}~\forall n \implies x_n \to a$. But $f(x_n) \centernot\implies f(a),~\cont$.  
 \end{proof}\vspace*{5pt}
 
 \begin{example}
@@ -2214,9 +2303,9 @@ Exercise: $f: \RR \to \RR$ is continuous at $a\iR \iff f$ is both right and left
 	\[\forall \epsilon > 0,~\exists \delta > 0 \text{ s.t. } x \in (a,a+\delta) \implies |f(x) - f(a)| < \epsilon\]
 \end{definition}
 
-Exercise: Just as before find that $f$ is right continuous at $a\iff f(x) \to f(a)$ as $x \to a_+$
+\emph{Exercise}: Just as before find that $f$ is right continuous at $a\iff f(x) \to f(a)$ as $x \to a_+$.\\
 
-\pagebreak
+
 \subsektion{Intermediate Value Theorem}\vspace*{5pt}
 
 \begin{theorem}[Intermediate Value Theorem] If $f: [a,b] \to \RR$ cts, $c \in (f(a),f(b)),$ then $\exists x \in [a,b]$ such that $f(x) = c$
@@ -2236,7 +2325,7 @@ Exercise: Just as before find that $f$ is right continuous at $a\iff f(x) \to f(
      ytick = {0.5},
    yticklabels={$c$},
    xtick = 0,
-  width=12cm,height=6.5cm]
+  width=10cm,height=6cm]
    \addplot[draw=blue, domain=4:5,smooth] {(0.0309*x^3 - 0.5504*x^2 + 3.313*x - 6.23)};
       \addplot[draw=blue, domain=7:8,smooth] {(0.0309*x^3 - 0.5504*x^2 + 3.313*x - 6.23)};
        \draw[dashed] (axis cs:20,0.5) -- (axis cs:0,0.5); %c line
@@ -2255,13 +2344,11 @@ If $f$ is continuous it must cross the line $y=c$ at some point $x \in [a,b]$.
 Any odd degree polynomial over $\RR$ has a root $\iR$	
 \end{corollary}
 \begin{proof}
-w.l.o.g. $p(x) = x^{2n+1} + a_{2n}x^{2n} + \dots + a_1x + a_0$
+w.l.o.g. $p(x) = x^{2n+1} + a_{2n}x^{2n} + \dots + a_1x + a_0$.
 
 If we write this as $p(x) = x^{2n+1}(1 + \frac{a_{2n}}{x} + \dots + \frac{a_0}{x^{2n+1}})$ then we see that $p(x) < 0$ for $x << 0$, and $p(x) > 0$ for $x>>0$. 
 
-So we can find $a,b \iR$ such that $p(a) < 0$,  $p(b) > 0$. 
-
-So we apply IVT to $\left.p\right|_{[a,b]}: [a,b] \to \RR$ with $c = 0$ to find an $x \in [a,b]$ with $p(x) = c = 0$.
+So we can find $a,b \iR$ such that $p(a) < 0$,  $p(b) > 0$. So we apply IVT to $\left.p\right|_{[a,b]}: [a,b] \to \RR$ with $c = 0$ to find an $x \in [a,b]$ with $p(x) = c = 0$.
 \end{proof}
 
 We used the facts (proved in earlier lectures) that $mx +c$ is continuous and the product/sum of continuous functions are also continuous $\implies p(x)$ is continuous. 
@@ -2280,7 +2367,7 @@ We used the facts (proved in earlier lectures) that $mx +c$ is continuous and th
      ytick = {0.6, 0.25, 0.95},
    yticklabels={$c$, $f(a)$, $f(b)$},
    xtick = 0,
-  width=12cm,height=7cm]
+  width=10cm,height=6cm]
       \addplot[draw=blue, domain=4:9,smooth]{0.006*x^4 - 0.0987*x^3 + 0.3937*x^2 + 0.6556*x - 3.9};
             \addplot[thick, domain=6.5:8.054,smooth]{0.006*x^4 - 0.0987*x^3 + 0.3937*x^2 + 0.6556*x - 3.9};
                \addplot[thick, domain=4:4.849,smooth]{0.006*x^4 - 0.0987*x^3 + 0.3937*x^2 + 0.6556*x - 3.9};
@@ -2314,7 +2401,7 @@ Consider $S_c = \{y \in [a,b] : f(y) \leq c\}$. Define $x:=$ sup$S_c$ ($S_c \neq
      ytick = {0.6,0.4},
    yticklabels={$c$,$f(x)$},
    xtick = 0,
-  width=12cm,height=7cm]
+  width=10cm,height=6cm]
    \addplot[draw=blue, domain=4:8,smooth] {(0.0309*x^3 - 0.5504*x^2 + 3.313*x - 6.23)};
    %\addplot {(6,0.55)};
    \addplot [color=black, mark=*, mark options={solid},]
@@ -2348,7 +2435,7 @@ Consider $S_c = \{y \in [a,b] : f(y) \leq c\}$. Define $x:=$ sup$S_c$ ($S_c \neq
      ytick = {0.55},
    yticklabels={$c$},
    xtick = 0,
-  width=12cm,height=7cm]
+  width=10cm,height=6cm]
    \addplot[draw=blue, domain=4:8,smooth] {(0.0309*x^3 - 0.5504*x^2 + 3.313*x - 6)};
       \addplot [color=black, mark=*, mark options={solid},]
                 coordinates{(6,0.73)};
@@ -2373,7 +2460,7 @@ Suppose $f: [0,1] \to [0,1]$ is continuous. Then it has a fixed point (i.e. $\ex
 \emph{Idea of proof:} Rotate picture to make it look like IVT. 
 
 \begin{center}
-\includegraphics[width = 12cm]{rotate.jpg}
+\includegraphics[width = 10cm]{rotate.jpg}
 \end{center}
 
 \begin{proof}
@@ -2402,17 +2489,17 @@ Then take $x = \mathrm{min}\{\frac{1}{2m},1) \implies x \leq 1/2m \implies 1/x \
 \end{proof}	
 \end{example}
 
-Also $f(x) = \begin{cases}
+Also \[f(x) = \begin{cases}
  \frac{1}{x} & x\neq 0\\
  0 & x = 0	
- \end{cases}$
+ \end{cases}\]
  
  $f:[0,1]\to \RR$ is also unbounded. Note that $f$ is not continuous at 0!
  
- So $\begin{cases}
+ So \[\begin{cases}
 	\mbox{discontinuous functions can be unbounded}\\
 	\mbox{continuous functions can be unbounded on non-closed intervals}
-\end{cases}$
+\end{cases}\]
 
 But..
 
@@ -2420,7 +2507,7 @@ But..
 $f:[a,b] \to \RR$ cts $\implies f$ is bounded.	
 \end{theorem}
 
-Ex: Give a function $f: [a,b] \cap \QQ \to \RR$ which is continuous and unbounded. 
+\emph{Exercise:} Give a function $f: [a,b] \cap \QQ \to \RR$ which is continuous and unbounded. 
 
 \begin{proof}[Proof]\lecturemarker{23}{5 Oct}
 Suppose not. Then $\forall N \in \mathbb{N}$, $N$ is not an upperbound, so $\exists x_N \in [a,b]$ such that $|f(x_n)| > N$.
@@ -2439,7 +2526,8 @@ Fix $\epsilon =1$, then
 	Suppose not. Then $\forall N \in \mathbb{N}$, $N$ is not an unpperbound, so $\exists x_N \in [a,b]$ such that $|f(x_n)| > N$.
 	
 By BW Theorem, exists cvgt subsequence, $y_i := x_{N(i)}, y_i \to y \in [a,b]$. With $|f(y_i)| = |f(x_{N(i)})| > N(i) \geq i ~(*)$. $f$ is cts at $y \implies f(y_i) \to f(y)$, contradicting $(*)$.  
-\end{proof}
+\end{proof}\vsp
+
 
 \subsektion{Extreme Value Theorem}\vspace*{10pt}
 \begin{theorem}[Extreme Value Theorem] $f: [a,b] \to \RR$ cts $\implies f$ bounded and attains its bounds.
@@ -2489,24 +2577,24 @@ $g$ is continuous (and also strictly increasing - Ex!)
 \begin{proof}
 Fix $\epsilon >0$ and $y_0 \in [f(a),f(b)]$. 
 
-\[\begin{aligned}
+\begin{align*}
 \mbox{Set }\delta:&= \mathrm{min}(f(g(y_0) + \epsilon) - f(g(y_0)), f(g(y_0)) - f(g(y_0) - \epsilon))\\
 	&= \mathrm{min}(f(x_0 + \epsilon) -  y_0, y_0 - f(x-\epsilon))\mbox{, where }x_0 = g(y_0)
-\end{aligned}\]
+\end{align*}
 
 \emph{Picture:} 
 \begin{center}
-\includegraphics[width = 12cm]{ball2.jpg}
+\includegraphics[width = 8cm]{ball2.jpg}
 \end{center}
 
 In this definition we use the convention that if $x_0 -\epsilon <a$ then by $f(x_) - \epsilon$ I mean $f(a)$ if $x_0 + \epsilon > b$ then $f(x_0 + \epsilon)$ means $f(b)$. 
 
-(Equivalently I've extended $f$ to $\tilde f: \RR \to \RR$ by $\tilde f(x) =\begin{cases}
+Equivalently I've extended $f$ to $\tilde f: \RR \to \RR$ by \[\tilde f(x) =\begin{cases}
 f(a) & x \leq a\\
 f(x) & x \in [a,b]\\
 f(b) & x \geq b
 \end{cases}
-$)
+\]
 
 So $\delta$ was chosen s.t. $(y_0 -\delta, y_0 + \delta) \subseteq (f(x_0 - \epsilon), f(x+\epsilon))$, so $y \in (y_0 - \delta, y_0 + \delta) \cap [a,b]$ then $f(x_0 -\epsilon) < y < f(x_0 + \epsilon)$
 
@@ -2564,8 +2652,8 @@ We already showed that $E$ is continuous, never takes the value $0$ ($E(-x) = E(
 
 We also showed it is strictly monotonically increasing ($E(y) = E(y-x)E(x) > E(x)$ for $y > x$). So by previous result it's a bijection to $(0,\infty)$ with a continuous inverse.\\
 
-\lecturemarker{25}{12 March}
-\begin{theorem}
+
+\begin{theorem}\lecturemarker{25}{12 March}
 	$f:\RR^n \to \RR^m$ is cts at $\mathbf{a} = (a_1,\dots,a_n)$ if and only if $f_i:\RR^n \to \RR$ is cts at $a_i~\forall i$. (With $f = (f_1,\dots,f_m)$).
 \end{theorem}
 
@@ -2580,21 +2668,20 @@ Easy way is $\implies$:
 \textsc{First Principles:}
 	Fix $\epsilon >0.$ Then $f$ is cts at $\vec{a} \implies \exists \delta >0 $ such that $|\vec{x} - \vec{a}| < \delta  \implies |f(\vec{x}) - f(\vec{a})| < \epsilon ~(*)$. But this implies $|f_i(\vec{x}) - f_i(\vec{a})| < \epsilon$ because
 	
-\[\begin{aligned}
+\begin{align*}
 |f(\vec{x}) - f(\vec{a})| &= \sqrt{\sum_{j=1}^m (f_j(\vec{x}) - f_j(\vec{a}))^2}\\
 &\geq \sqrt{(f_i(\vec{x}) - f_i(\vec{a}))^2}\\
 &= |f_i(\vec{x}) - f_i(\vec{a})| 	
-\end{aligned}
-\]	
+\end{align*}
+
 \textsc{Proof of $\impliedby$:}
 
 	Suppose $f_i$ cts at $a_i~\forall i$. Fix $\epsilon > 0$. Then $\exists \delta_i > 0$ such that \[|\vec{x} - \vec{a}| < \delta_i \implies |f_i(\vec{x}) - f_i(\vec{a})| < \epsilon\]
 	 Set $\delta =$ min$\{(\delta_i\} >0$, so that 
-	 \[\begin{aligned}|\vec{x} - \vec{a}| < \delta &\implies |f_i(\vec{x}) - f_i(\vec{a})| < \epsilon ~\forall i\\
+	 \begin{align*}|\vec{x} - \vec{a}| < \delta &\implies |f_i(\vec{x}) - f_i(\vec{a})| < \epsilon ~\forall i\\
 	  \implies |f(\vec{x}) - f(\vec{a})| &= \sqrt{\sum_{i=1}^m (f_i(\vec{x}) - f_i(\vec{a}))^2} \\
-	  &\leq \sqrt{\sum_{i=1}^m \epsilon^2} = \sqrt{m}.\epsilon	
-\end{aligned}
-\]
+	  &\leq \sqrt{\sum_{i=1}^m \epsilon^2} = \sqrt{m}.\epsilon	\qedhere
+\end{align*}
 \end{proof}
 
 So we can study the continuity of $f: \RR^n \to \RR^m$ in terms of their coordinates $f_i$ in $\RR^m$. But \emph{not} in terms of the restoration of $f$ to coordinate axises in $\RR^n$.\vspace*{15pt}
@@ -2623,14 +2710,17 @@ $f: \RR^2 \to \RR$, $f(x,y) = \begin{cases}
 Pick $\epsilon = \frac{1}{2}$. Then for any $\delta > 0$, take $x = \frac{\delta}{2}$ so that $(x,x) \in B_\epsilon(0,0)$. But $f(x,x) = \frac{1}{2} \not\in B_\epsilon(f(0,0)) = B_\epsilon(0)$. So $f$ is not continuous at $(0,0)$. \qed
 \end{example}
 
-Exercise: Converse is true: if $f: \RR^n \to \RR^m$ is continuous then $f$ is continuous on restriction to any line in $\RR^n$; more generally $\left.f\right|_S: S \to \RR^m \text{ is continuous } \forall S \subseteq \RR^n$
+\emph{Exercise:} Converse is true: if $f: \RR^n \to \RR^m$ is continuous then $f$ is continuous on restriction to any line in $\RR^n$; more generally $\left.f\right|_S: S \to \RR^m \text{ is continuous } \forall S \subseteq \RR^n$
+
+\vspace*{2cm}
+
+\begin{center}
+\includegraphics[width = 8cm]{cartoon3.jpg}	
+\end{center}
 
 
 
-%!TEX root = M1P1.tex
 
-
-\pagebreak
 
 \sektion{Differentiation}
 \label{sub:differentiation}
@@ -2653,7 +2743,7 @@ $f$ is \emph{differentiable}  at $a$ iff $\lim_{x\to a} \frac{f(x)-f(a)}{x-a} = 
   xmax = 10,
      ytick = 0,
    xtick = 0,
-  width=12cm,height=6cm]
+  width=10cm,height=6cm]
       \addplot[draw=blue, domain=4:9,smooth]{0.006*x^4 - 0.0987*x^3 + 0.3937*x^2 + 0.6556*x - 3.9};
        \draw (axis cs:7.7,0.53) -- (axis cs:8.2,0.65); %tangent line
        \draw (axis cs:8.2,0.65) -- (axis cs:8.2,-0.04) node at (axis cs: 8.2,-0.1) {$x$};
@@ -2684,10 +2774,10 @@ If $f$ is differentiable at $a\iR$ then $f is$ continuous at $a$
 \end{proposition}
 
 \begin{proof}[Proof] If $f$ is differentiable at $a$ then
-	\[\begin{aligned}\forall \epsilon >0~ \exists \delta  > 0 \text{ such that } 0 < |x-a| < \delta &\implies \left|\frac{f(x) - f(a)}{x-a} - f'(a)\right| < \epsilon \\ 
+	\begin{align*}\forall \epsilon >0~ \exists \delta  > 0 \text{ such that } 0 < |x-a| < \delta &\implies \left|\frac{f(x) - f(a)}{x-a} - f'(a)\right| < \epsilon \\ 
 	&\implies |f(x) - f(a)| < |x-a|(|f'(a)| + \epsilon).	
-\end{aligned}
-\] 
+\end{align*}
+
 	Fix $\epsilon > 0$, set $\delta = \epsilon$. Then \[0 < |x-a| < \delta \implies  |f(x) - f(a)| < \epsilon(|f'(a)| + \epsilon) = k\epsilon\] (also true for $x = a \implies |f(x) - f(a)| = 0$.)
 \end{proof}
 
@@ -2713,11 +2803,11 @@ axis lines=middle,
 xtick = {0},
 xticklabels = {$0$},
 ytick = 0,
-  width=10cm,height=5cm]
+  width=9cm,height=4.5cm]
    \addplot[color = red, domain=-0:0.003,smooth]{x};
    \addplot[color = red, domain=-0.003:0,smooth]{-x};
-   \node[text width = 1cm] at (axis cs: 0.0011,0.0022) {gradient  $= 1$};
-   \node[text width = 1cm] at (axis cs: -0.0011,0.0022) {gradient $= -1$};
+   \node[text width = 1cm] at (axis cs: 0.0011,0.0022) {\small gradient  $= 1$};
+   \node[text width = 1cm] at (axis cs: -0.0011,0.0022) {\small gradient $= -1$};
  \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -2741,14 +2831,14 @@ Anything else you might guess is also false: e.g. ``if $f$ is differentiable eve
 \begin{theorem}[Product Rule] $f,g : \RR \to \RR$ differentiable at $a \in \RR$. Then $fg$ is differentiable at $a$ with $(fg)'(a) = f'(a)g(a) + f(a)g'(a)$
 \end{theorem}
 \begin{proof}
-\[\begin{aligned}
+\begin{align*}
 	\frac{f(x)g(x) - f(a)g(a)}{x-a} &= \frac{(f(x)-f(a))g(x) + (g(x) - g(a))f(a)}{x-a} \\ 
 	&= g(x) \frac{f(x)-f(a)}{x-a} + f(a)\frac{g(x)-g(a)}{x-a}
-\end{aligned}
-\]
+\end{align*}
+
 Taking $\lim_{x\to a} \implies (fg)'(a) = g(a)f'(a) + f(a)g'(a)$ by cty of $g$ and algebra of limits.
-\end{proof}
-\pagebreak
+\end{proof}\vsp
+
 
 \begin{corollary}
 $f(x) = x^k$ has $f'(x) = kx^{k-1}$	
@@ -2766,10 +2856,10 @@ See old question sheet.
  
  Working on this and $(a-\delta,a+\delta)\ni x$ we calculate
  
- \[\begin{aligned}\frac{g(x) -g(a)}{x-a} &= \dfrac{1/f(x) -1/f(a)}{x-a}\\
+ \begin{align*}\frac{g(x) -g(a)}{x-a} &= \dfrac{1/f(x) -1/f(a)}{x-a}\\
  &= \frac{f(a) - f(x)}{(x-a)f(a)f(x)}\\
- &\to -f'(a)\cdot\frac{1}{f(a)f(a)} \text{ as } x \to a
-\end{aligned}\]
+ &\to -f'(a)\cdot\frac{1}{f(a)f(a)} \text{ as } x \to a \qedhere
+\end{align*}
 \end{proof}
 
 
@@ -2783,11 +2873,11 @@ So Mestel \emph{guesses} that $E' = E$
 
 \textbf{Claim:} $E'(0) = 1$
 \begin{proof}
-\[\begin{aligned}\frac{E(x) -E(0)}{x-0} &= \frac{\sum \frac{x^n}{n!}}{x}\\
+\begin{align*}\frac{E(x) -E(0)}{x-0} &= \frac{\sum \frac{x^n}{n!}}{x}\\
 &= \sum_{n=1}^\infty \frac{x^{n-1}}{n!}\\
 &= 1 + \sum_{k=1}^\infty \frac{x^k}{(k+1)!} \quad(k = n+1)
-\end{aligned}
-\]
+\end{align*}
+
 
 Now by the comparison test \[\sum_{k=1}^\infty \frac{x^k}{(k+1)!} \leq \sum_{k=1}^\infty |x^k| = \dfrac{|x|}{1-|x|} \to 0\]
 
@@ -2800,17 +2890,16 @@ $E$ is differentiable everywhere with $E' = E$
 \end{proposition}
 \begin{proof}
 
-\[\begin{aligned}
+\begin{align*}
 \frac{E(x) - E(a)}{x-a} &= E(a)\cdot \frac{E(x-a)-E(a)}{x-a}\\
  &\to E(a)E'(0) \\
-&= E(a)	
-\end{aligned}
-\]	
+&= E(a)	\qedhere
+\end{align*}
 \end{proof}
 \end{example}\vspace*{15pt}
 
 
-\subsektion{Rolle's Theorem}\vspace*{5pt}
+\subsektion{Rolle's Theorem}\vspace*{10pt}
 
 
 \begin{theorem}[Rolle's Theorem]\lecturemarker{27}{16 March}
@@ -2824,18 +2913,18 @@ $E$ is differentiable everywhere with $E' = E$
 \end{center}
 
 
-\begin{proof}~
-\begin{enumerate}
-\item[Case 1.] $f$ is constant on $[a,b]$. Then set $c = \frac{a+b}{2},$ so $f'(c) = \lim_{x\to c}\frac{f(x) - f(c)}{x-c} = 0$.
-\item[Case 2.] $f$ takes values $< f(a)$. Then replace $f$ by $-f$ and consider Case 3.
-\item[Case 3.] $f$ takes values $> f(a)$. Therefore sup $\{f(x): x \in [a,b]\} > f(a)$ by EVT is realised by some $c \in (a,b)$. Now $f'(c) = \lim_{x\to c} \frac{f(x) - f(c)}{x-c}$. Consider
+\begin{proof}
+
+\textsc{Case 1.} $f$ is constant on $[a,b]$. Then set $c = \frac{a+b}{2},$ so $f'(c) = \lim_{x\to c}\frac{f(x) - f(c)}{x-c} = 0$.
+
+\textsc{Case 2.} $f$ takes values $< f(a)$. Then replace $f$ by $-f$ and consider Case 3.
+
+\textsc{Case 3.} $f$ takes values $> f(a)$. Therefore sup $\{f(x): x \in [a,b]\} > f(a)$ by EVT is realised by some $c \in (a,b)$. Now $f'(c) = \lim_{x\to c} \frac{f(x) - f(c)}{x-c}$. Consider
  \[x > c,~f(x) \leq f(c) \implies \frac{f(x) - f(c)}{x-c} \leq 0 \implies \lim_{x \to c^{+}} \frac{f(x) - f(c)}{x-c} \leq 0\]
  \[x < c,~f(x) \leq f(c) \implies \frac{f(x) - f(c)}{x-c} \geq 0 \implies \lim_{x \to c^{-}} \frac{f(x) - f(c)}{x-c} \geq 0 \] 
- Hence  $\dfrac{f(x) - f(c)}{x-c} = 0$.\qedhere 
-\end{enumerate}
-	
-\end{proof}
-\pagebreak
+ Hence  $\dfrac{f(x) - f(c)}{x-c} = 0$.	
+\end{proof}\vsp
+
 
 \subsektion{Mean Value Theorem}\vspace*{5pt}
 
@@ -2853,7 +2942,7 @@ Note: we can write this as $f(b) = f(a) + (b-a)f'(c)$, $c \in (a,b)$. Compare th
 \emph{Idea of Proof:} Turn MVT into Rolle. 
 
 \begin{center}
-\includegraphics[width = 12cm]{mvt2.jpg}
+\includegraphics[width = 8cm]{mvt2.jpg}
 \end{center}
 
 \begin{proof}
@@ -2872,19 +2961,23 @@ Suppose for a contradiction that $\exists d \in[a,b]$ s.t. $f(d) \neq f(a)$. The
 \begin{theorem}[Chain Rule]\lecturemarker{28}{19 March} $g: \RR \to \RR$ diff'ble at $a \in \RR$, $f: \RR \to \RR$ diff'ble at $g(a) \in \RR$, then $f \circ g$ diff'ble at $a$ with $(f\circ g)'(a) =f'(g(a))g'(a)$
 \end{theorem}
 
-i.e. \[\left.\frac{d}{dx} f(g(x))\right|_{x=a} = \frac{df}{dx} (g(a)) \frac{dg}{dx}(a) = \left.\frac{df}{dy}\right|_{y=g(a)}\frac{dg}{dx}(a) ``=" \frac{df}{dg}\frac{dg}{dx}\]
+i.e. \begin{align*}\left.\frac{d}{dx} f(g(x))\right|_{x=a} &= \frac{df}{dx} (g(a)) \frac{dg}{dx}(a)\\
+&= \left.\frac{df}{dy}\right|_{y=g(a)}\frac{dg}{dx}(a)\\
+& ``=" \frac{df}{dg}\frac{dg}{dx}
+\end{align*}
 
 \emph{Idea of proof:} 
-\[\frac{f(g(x))-f(g(a))}{x-a} = \frac{f(g(x)) - f(g(a))}{g(x) -g(a)}\cdot\frac{g(x)-g(a)}{x-a} \to f'(g(a))\cdot g'(a)\]
+\begin{align*}\frac{f(g(x))-f(g(a))}{x-a}&= \frac{f(g(x)) - f(g(a))}{g(x) -g(a)}\cdot\frac{g(x)-g(a)}{x-a}\\ &\to f'(g(a))\cdot g'(a)
+\end{align*}
 problem with this is that $g(x) - g(a)$ might be zero
 
 $\left(\dfrac{h(x) - h(a)}{x-a} \text{ is not defined at } x=a \text{, so define it to be } h'(a) \text{ at } x=a \right)$\\
 
 \begin{proof}
-Define $F(g) = \begin{cases}
+Define \[F(g) = \begin{cases}
  	\dfrac{f(y)-f(b)}{g-b} & y \neq b\\
  	f'(g) &  y = b 
- \end{cases}~(\ddagger)$
+ \end{cases}~(\ddagger)\]
  where $b = g(a)$. \vspace*{5pt}\\$f$ is diff'ble at $b \implies \lim_{y \to b} F(y) \to f'(b) = F(b)$ as $y \to b$. So $F$ is cts at $b = g(a) ~(*)$. 
  
  $g$ is diff'ble at $a \implies$ cts at $a$. 
@@ -2896,9 +2989,9 @@ Define $F(g) = \begin{cases}
  
 
  
- Now take $\lim_{x\to a}$ to get $(f\circ g)'(a)$ exists and equals $f'(b)g'(a)$ by $(**)$ \end{proof}\vspace*{5pt}
+ Now take $\lim_{x\to a}$ to get $(f\circ g)'(a)$ exists and equals $f'(b)g'(a)$ by $(**)$ \end{proof}
  
- Ex: ``Sum Rule" $f, g$ are differentiable at $a\implies f+g$ are differentiable at $a$ with $(f+g)'(a) = f'(a) + g'(a)$. Pre-ex: Algebra of limit for $\lim_{x\to a}$ is on Question Sheet.\\
+ \emph{Exercise:} (Sum Rule) $f, g$ are differentiable at $a\implies f+g$ are differentiable at $a$ with $(f+g)'(a) = f'(a) + g'(a)$. Pre-ex: Algebra of limit for $\lim_{x\to a}$ is on Question Sheet.\\
  
  \emph{Rough:} $f: \RR\to \RR$ is differentiable and bijective, $g = f^{-1}: \RR \to \RR$.
  
@@ -2912,7 +3005,7 @@ Define $F(g) = \begin{cases}
 \begin{proof}
 \textit{Lemma:} $f'(a) \neq 0 \implies \exists \delta > 0$ such that $f(x) \neq f(a)$ for $x \in (a-\delta,a + \delta)\backslash\{0\}$.  (Proof is left as exercise - use $\lim_{x\to a}$ definition of $f'$ and MVT) \\
 
- So $\dfrac{g(y)-g(b)}{y-b} = \dfrac{x-a}{f(x) - f(a)} = 1/\dfrac{f(x)-f(a)}{x-a}$ where $x = g(y),~y \neq b$.
+ So \[\dfrac{g(y)-g(b)}{y-b} = \dfrac{x-a}{f(x) - f(a)} = 1/\dfrac{f(x)-f(a)}{x-a}\] where $x = g(y),~y \neq b$.
  
  As $y \to b$, $g(y) \to g(b) = a$ since $f$ differentiable at $a \implies f$ cts at $a \implies g$ cts at $b \implies x \to a \implies$ RHS $\to \dfrac{1}{f'(a)}$.	
 \end{proof}\vspace*{15pt}
@@ -2925,18 +3018,17 @@ Define $F(g) = \begin{cases}
 \item $f$ is continuous everywhere	
 \end{itemize}
 
-\emph{What if $f$?}
+\emph{What is $f$?}
 
-Observe $y = 0: f(x) + f(0) = f(x),~\forall x$, so $f(0) = 0$. 
+Observe $y = 0: f(x) + f(0) = f(x),~\forall x$, so $f(0) = 0$. For $y = 1: f(x) + f(1) = f(x+1)$. 
 
-For $y = 1: f(x) + f(1) = f(x+1)$
-
-\[\begin{aligned}\text{Induction } f(x+2) &= f(x) + f(1) + f(1) \\
+Inductively 
+\begin{align*} f(x+2) &= f(x) + f(1) + f(1) \\
 f(x+3) &= f(x) + 3f(1)\\
 &\vdots \\ 
  f(x+n) &= f(x) + nf(1)\\
-\implies f(n) &= nf(1) ~(*)\end{aligned}
-\]
+\implies f(n) &= nf(1) ~(*)
+\end{align*}
 
 Similar mucking about should convince you that $f(x) = xf(1)$. We've proved that for $x\iN$ by $(*)$. $f(1)$ is an unknown constant $c$. [Notice $f(x) = cx$ indeed satisfies the given assumptions]
 
@@ -2968,10 +3060,7 @@ This is true $\forall \epsilon >0 \implies |f(x) -cx| = 0$
 \vspace*{20pt}
 
 
-  \begin{center}
-  \includegraphics[width = 5cm]{thomas.jpg}
-  \vspace*{20pt}
-  
+  \begin{center}  
   \textsf{\textbf{- End of Analysis I -}}	
   \end{center}
   

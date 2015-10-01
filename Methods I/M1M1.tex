@@ -1,4 +1,4 @@
-\documentclass[twoside]{scrartcl}
+\documentclass[10pt]{scrartcl}
 
 \usepackage[bluelinks]{drangreport}
 % \usepackage[caecilia]{drangreport}
@@ -41,7 +41,7 @@
 
 
 \hypersetup{pdfinfo={
-Title={Mathematical Methods I Lecture Notes},
+Title={M1M1:  Mathematical Methods I Lecture Notes},
 Author={Karim Bacchus},
 Keywords ={Mathematical Methods I, M1M1, Lecture Notes, Imperial College, Maths},
 }}
@@ -49,35 +49,34 @@ Keywords ={Mathematical Methods I, M1M1, Lecture Notes, Imperial College, Maths}
 
 \begin{document}
 
-\NotesTitle{1st}{Autumn 2014}{Mathematical Methods I}{Prof.~J.}{Mestel}
+\NotesSubTitle{1st}{Autumn 2014}{Mathematical Methods I}{Prof.~A.~J.}{Mestel}
 {
 
-\section*{Syllabus}
+\subsection*{Syllabus}
 \textit{The course supplies a firm grounding to A-level topics such as differentiation, integration, complex numbers and series expansions.}
 
-\subsubsektion{Functions}\vspace*{-5pt}
-Polynomial, rational, exponential, logarithmic, trigonometric and hyperbolic functions. Odd, even and inverse functions.
+\emph{Functions:} Polynomial, rational, exponential, logarithmic, trigonometric and hyperbolic functions. Odd, even and inverse functions.
 
-\subsubsektion{Limits}\vspace*{-5pt}
+\emph{Limits:}
  Basic properties and evaluation. Continuity \& discontinuous functions.
 
-\subsubsektion{Differentiation}\vspace*{-5pt}
+\emph{Differentiation:}
  First principles, differentiability; logarithmic and implicit differentiation; higher derivatives; Leibniz's formula; stationary points and points of inflexion; curve sketching; parametric representation, polar co-ordinates.
  
-\subsubsektion{Power Series}\vspace*{-5pt}
+\emph{Power Series:}
   The Mean Value Theorem. Taylor's Theorem with remainder. Infinite power series, radius of convergence. Ratio test; Taylor and Maclaurin Series. De l'Hopital's rule.
  
-\subsubsektion{Integration}\vspace*{-5pt}
+\emph{Integration:}
    Definition as Riemann limit; indefinite \& definite integrals; the fundamental theorem of calculus; integration by substitution and by parts; partial fractions; Existence of improper and infinite integrals. Integrals over areas and volumes.
   
   
-\subsubsektion{Complex Numbers}\vspace*{-5pt}
+\emph{Complex Numbers:}
   Definition; the complex plane; standard and polar representation; de Moivre's Theorem; $\exp(z)$ and $\log(z)$
 
-\subsubsektion{First order Differentiation Equations}\vspace*{-5pt}
+\emph{First order Differentiation Equations:}
   Separable, homogeneous and linear equations. Special cases. Linear higher order equations with constant coefficients,
 
-Course content at \url{http://www.ma.ic.ac.uk/~ajm8/M1M1}\\
+Course content at \url{http://www.ma.ic.ac.uk/~ajm8/M1M1}
 
 \subsection*{Appropriate books}
 
@@ -96,7 +95,7 @@ E. Kreyszig \emph{Advanced Engineering Mathematics}
 
 %!TEX root = linear-algebra.tex
 \pagebreak
-\setcounter{page}{5}
+\setcounter{page}{3}
 \section{Introduction}
  \lecturemarker{0}{ 10.10.2014}
 
@@ -119,9 +118,9 @@ Yes, but this is not obvious. The series converges (i.e. tends to an answer) for
 \begin{example}
 $f = \dfrac{4}{3+\cos x}$\\
 
-Can we write the power series $f = a_0 + a_1 x + a_2 x^2 + \dots = \sum a_n x^n?$ where $a_n$ are known constants?\\
+\emph{Can we write the power series $f = a_0 + a_1 x + a_2 x^2 + \dots = \sum a_n x^n?$ where $a_n$ are known constants?}
 
-Yes, we find (somehow) that $f = 1 + \frac{x^2}{8} + \frac{x^4}{192} + \dots$\\
+Yes, we find (somehow) that $f = 1 + \frac{x^2}{8} + \frac{x^4}{192} + \dots$
 
 Does this series converge? Using Maple to find the series and plotting $f - \sum_0^{200} a_n x^n$, we actually find that at $\pm 3.60$ish, the difference is non-zero and it fails to converge. This is (apparently) amazing evidence of the existence of the complex plane...
 \end{example}\vspace*{5pt}
@@ -130,12 +129,12 @@ Does this series converge? Using Maple to find the series and plotting $f - \sum
 
 $\displaystyle{\lim_{x \to \infty} (\sin x) = ? }$, it is undefined.\\
 
-$\displaystyle{\lim_{x \to \infty} \left(\dfrac{\sin x}{x}\right) }= 0 $, from the sandwich theorem as 0 is squeezed between $\frac{1}{x}$ and $-\frac{1}{x}$\\\\
+$\displaystyle{\lim_{x \to \infty} \left(\dfrac{\sin x}{x}\right) }= 0 $, from the sandwich theorem as 0 is squeezed between $\frac{1}{x}$ and $-\frac{1}{x}$\\
 
-$\displaystyle{\lim_{x \to \infty} \left(\dfrac{1}{x\sin x}\right) = ? }$, undefined once more, since whenever $x = n\pi$, the denominator is 0.\\\\
+$\displaystyle{\lim_{x \to \infty} \left(\dfrac{1}{x\sin x}\right) = ? }$, undefined once more, since whenever $x = n\pi$, the denominator is 0.\\
 
 $\displaystyle{\lim_{n \to \infty} \left(\frac{\sin n}{n}\right) }$, $n \in \R$ is not at all obvious (depends on how well you can approximate $\pi$)
-\end{example}\vspace*{5pt}
+\end{example}
 
 Clearly we have work to do....
 
@@ -145,7 +144,6 @@ Clearly we have work to do....
 %Actual lectures
 
 \pagebreak
-
 
 \sektion{Functions}         
 A function  \lecturemarker{1}{14.10.2014}
@@ -169,7 +167,7 @@ So $f(x) = \sqrt{x^2 -1 }$ in $[1,\infty)$ has the \emph{range} $[0,\infty)$.\\
 Note: $\sqrt{}$ is always positive conventionally, otherwise it maps to more than one value $\implies f$ is not a function. Hence $\sqrt{x^2} = |x|$, \textit{not necessarily $x$.}\\
 
 
-\subsubsektion{How might we define functions?}
+\emph{How might we define functions?}
 
 \begin{enumerate}
 \item An explicit formula, e.g. $f(x) = x^2\sin(x)$
@@ -194,19 +192,13 @@ Similarly we could define $f(x) = \displaystyle{\int_0^x t^t \, \mathrm{d}t}$
 
 (Note: we use a different letter for the \textit{dummy} variable, $t$)\\
 
-\item In words
+\item In words, e.g. $f(x) =$ ``the maximum amount by which $x$ exceeds an integer for $ n = 1,2,\dots 100$''
 
- e.g. $f(x) =$ ``the maximum amount by which $x$ exceeds an integer for $ n = 1,2,\dots 100$''
-
-\item An implicit definition
-
- e.g. $f(x)$ given by $f(x) + \frac{1}{2}\sin[f(x)] = x$
+\item An implicit definition, e.g. $f(x)$ given by $f(x) + \frac{1}{2}\sin[f(x)] = x$
 
 (or $y + \sin y = x :$ we can't solve for $y$ in terms of $x$ easily) given $x$, not easy to calculate $f(x)$\\
 
-\item As a limit
-
- e.g. $x^{x^{x^{\iddots}}}$ or more formally: $f_1 = x^x$, $f_{n+1} = x^{f_n}$ for $n \geq 1$
+\item As a limit, e.g. $x^{x^{x^{\iddots}}}$ or more formally: $f_1 = x^x$, $f_{n+1} = x^{f_n}$ for $n \geq 1$
 
 If this process tends to a limit as $n \to \infty$ we may have defined a function.
 \end{enumerate}\vspace*{5pt}
@@ -241,15 +233,14 @@ ytick = 0,
    \addplot[domain=0.0005:0.03,samples=500]{sin(1/x)};
  \end{axis}
 \end{tikzpicture}
-\end{center}
+\end{center}\vsp
+
 
 \begin{example} $f(x) = e^{-\frac{1}{x^2}}$
-
-
 \begin{center}
 \begin{tikzpicture}
 \begin{axis}[
-%minor tick num=0,
+ytick = 0,
 axis y line=middle,
 axis x line=middle,
 domain=-5:5,
@@ -262,7 +253,7 @@ width=8cm,height=5cm
 \end{tikzpicture}
 \end{center}
 
-$f(x)$ is so flat at zero that the Macluarin (Taylor) Series converges to 0. This is NOT the right answer. We then call this a non-analytical function.
+$f(x)$ is so flat at zero that the Macluarin (Taylor) Series converges to 0. This is \emph{not} the right answer. We then call this a non-analytical function.
 \end{example}\vspace*{5pt}
 
 
@@ -348,14 +339,14 @@ The graph $y = f(x)$ helps us understand what is going on. So we sketch it, noti
 
 
 
-\begin{example} Does $f^{-1}$ exist for $y = x + \frac{1}{x} = f(x)$?
+\begin{example} \emph{Does $f^{-1}$ exist for $y = x + \frac{1}{x} = f(x)$?}
 
 Note that if $x = 2$, then $f(2) = 2.5$, but $f(\frac{1}{2}) = 2.5$ also...
 maybe if we restrict the domain of $f$, we can find a sensible inverse. Lets try $y = x + \frac{1}{x}$
 \[
 \begin{aligned}
   \implies xy &= x^2 + 1\\
-  \implies x^2 - xy + 1 &= 0\\
+  \implies x^2 -& xy + 1 = 0\\
   \implies x &= \dfrac{y \pm \sqrt{y^2 -4}}{2}
 \end{aligned}
 \]
@@ -376,7 +367,8 @@ Sketching $f(x)$, we can note that $y = k$ intersects the graph:
 \begin{center}
 \begin{tikzpicture}
 \begin{axis}[
-minor tick num=5,
+xtick = 0,
+ytick =0,
 axis y line=middle,
 axis x line=middle,
 width=8cm,height=6cm
@@ -406,7 +398,6 @@ If instead we restrict the domain of $f$ to be $|x| \geq 1$ then:
  \dfrac{y - \sqrt{y^2 -4}}{2} & \text{ if } y \leq 2 \\
  \end{cases}
  \]
-So a little care is required.
 \end{example}
 
 \subsubsektion{Trigonometric Functions}
@@ -424,6 +415,10 @@ If $f(x) = \cos(x)$ then $f^{-1}(x) = \cos^{-1}(x)$ (or $\arccos(x)$) exists for
   \begin{center}
 \begin{tikzpicture}
 \begin{axis}[
+ytick = 0,
+    xtick=\empty,
+    extra x ticks={-3.141,-1.5708, 1.5708,3.141},
+    extra x tick labels={$-\pi$,$-\frac{\pi}{2}$, $\frac{\pi}{2}$,$\pi$},
 minor tick num=0,
 axis y line=middle,
 axis x line=middle,
@@ -445,6 +440,10 @@ But remember $0 \leq \cos^{-1} \leq \pi $ always!\\
   \begin{center}
 \begin{tikzpicture}
 \begin{axis}[
+ytick = 0,
+    xtick=\empty,
+    extra x ticks={-3.141,-1.5708, 1.5708,3.141},
+    extra x tick labels={$-\pi$,$-\frac{\pi}{2}$, $\frac{\pi}{2}$,$\pi$},
 minor tick num=0,
 axis y line=middle,
 axis x line=middle,
@@ -476,6 +475,7 @@ So finally $tanx = \gamma$ has general solution:
 \begin{tikzpicture}
 \begin{axis}
         [
+    ytick = 0,
     ymin=-10,ymax=10,
     xmin=-4,xmax=4,
     %clip=false,
@@ -498,9 +498,7 @@ So finally $tanx = \gamma$ has general solution:
 \end{tikzpicture}
 \end{center}
 \end{minipage}
-
-\pagebreak
-
+\vspace*{10pt}
 
 \subsektion{Parity - Even \& Odd Functions} 
 \vspace*{5pt}
@@ -543,10 +541,7 @@ This proves that any $f$ has an even part and an odd part.\\
 
 \begin{example}
 Redo Example 1.6. $f(x) = \dfrac{x}{x+1} = f_e(x) + f_o(x)$
-
-\[\begin{aligned}\implies f_e(x) &= \frac{1}{2} \left[\dfrac{x}{x+1} + \dfrac{-x}{1-x}\right]\\
-&= \frac{1}{2} \left[\dfrac{x - x^2 - x^2 -x}{(1+x)(1-x)}\right] = \dfrac{-x^2}{1-x^2} = \dfrac{x^2}{x^2-1}\end{aligned}\]
-
+\[\implies f_e(x) = \frac{1}{2} \left[\dfrac{x}{x+1} + \dfrac{-x}{1-x}\right] = \frac{1}{2} \left[\dfrac{x - x^2 - x^2 -x}{(1+x)(1-x)}\right] = \dfrac{x^2}{x^2-1}\]
 \end{example}
 
 \subsubsektion{Evaluating Integrals}
@@ -558,39 +553,54 @@ Replacing $x$ by $-x$ we can see that the integrand is an odd function since $f(
 
 
   \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.8]
 \begin{axis}[
 minor tick num=0,
 axis y line=middle,
 axis x line=middle,
 width=10cm,height=6cm
 ]
-\addplot[name path=f, domain =-pi: pi,smooth] {(x + sin (x^3))/(1 + e^(x^2))};
+\addplot[name path=f, domain =-pi: pi,samples=300] {(x + sin (x^3))/(1 + e^(x^2))};
      \path[name path=axis] (axis cs:0,0) -- (axis cs:1,0);
-
  \addplot [
         thick,
-        color=blue,
-        fill=blue, 
-        fill opacity=0.05
+        color=Blue,
+        fill=Blue, 
+        fill opacity=0.25
     ]
     fill between[
         of=f and axis,
-        soft clip={domain=0:1},
+        soft clip={domain=0:3},
+    ];
+     \addplot [
+        thick,
+        color=Blue,
+        fill=Red, 
+        fill opacity=0.25
+    ]
+    fill between[
+        of=f and axis,
+        soft clip={domain=-3:0},
     ];
 \end{axis}
+ \node at (5.3,3.4) {$A$};
+ \node at (2.8,1.2) {$-A$};
 \end{tikzpicture}
 \end{center}\vspace*{5pt}
 
 \begin{proposition} In general $I = \displaystyle{\boxed{\int_{-a}^{a} f_o(x) \, \mathrm{d}x = 0}}$\end{proposition}
+
 \begin{proof}Substituting $t = -x$
+
 \begin{align*}\nonumber
  \implies I &= \int_{a}^{-a} f_o(-t) \, (\mathrm{-d}x) \\
  &=  \int_{-a}^{a} f_o(-t) \, (\mathrm{d}x) \qquad \text{[Use - sign to swap limits]}\\
  &=  -I 
 \end{align*}
 
-Hence $I = -I \implies I = 0$. We conclude that if $f(x)$ is odd, then $ \displaystyle{\int_{-a}^{a} f(x) \, \mathrm{d}x = 0}.$\end{proof}
+Hence $I = -I \implies I = 0$. 
+
+We conclude that if $f(x)$ is odd, then $ \displaystyle{\int_{-a}^{a} f(x) \, \mathrm{d}x = 0}.$\end{proof}
 
 Later we will deal with power series $f(x) = a_0 + a_1x + a_2x^2 + ...$, where $a_i$ is a given constant  for $i \in \N$. 
 
@@ -625,7 +635,7 @@ So although $\sin (x+ 4\pi) = \sin x \; \forall x$, we do not say that $\sin x$ 
 \emph{Are there any other periodic functions (other than the trigonometric ones)?}\\
 
   \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.7]
 \begin{axis}
         [
     %ymin=-10,ymax=10,
@@ -652,7 +662,7 @@ So although $\sin (x+ 4\pi) = \sin x \; \forall x$, we do not say that $\sin x$ 
 %%%%
 %%%%%%%%%%%%%%%%%%%%%%
 
-We can turn any function into a periodic one. Any function defined on a finite interval can be extended into a periodic function over all $\R$ by copying. Define $f(x + L) = f(x)$ to replicate the behaviour $\forall x$.\\
+We can turn any function into a periodic one. Any function defined on a finite interval can be extended into a periodic function over all $\R$ by copying. Define $f(x + L) = f(x)$ to replicate the behaviour $\forall x$.
 
 
 \subsektion{Polynomials}
@@ -708,20 +718,20 @@ Formula: $x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} \quad$ \underline{OR} $\quad x
 
 \emph{Exercise 2}: Use your calculator to solve the equation $\epsilon x^2 + (1 + \epsilon)x + 1 = 0$, where $\epsilon$ is very small (i.e. $10^{-12}$).
 
-Subtracting two numbers which are very close together leads to severe accuracy loss c.f. Patriot missiles. The ``Best'' formula to solving a quadratic depends on $a, b$ and $c$ in practice.
+Subtracting two numbers which are very close together leads to severe accuracy loss c.f. Patriot missiles. The ``Best'' formula to solving a quadratic depends on $a, b$ and $c$ in practice.\vsp
 
 \item Cubics: $ax^3 + bx^2 + cx + d = 0$
 
-There is a formula\footnote{\tiny $x = \sqrt[3]{\left(\frac{-b^3}{27a^3} + \frac{bc}{6a^2} - \frac{d}{2a}\right) + \sqrt{\left(\frac{-b^3}{27a^3} + \frac{bc}{6a^2}-\frac{d}{2a}\right)^2 - \left(\frac{c}{3a}-\frac{b^2}{9a^2}\right)^3}} + \sqrt[3]{\left(\frac{-b^3}{27a^3}+\frac{bc}{6a^2}-\frac{d}{2a}\right) + \sqrt{\left(\frac{-b^3}{27a^3}+\frac{bc}{6a^2}-\frac{d}{2a}\right)^2 - \left(\frac{c}{3a}-\frac{b^2}{9a^2}\right)^3}} - \frac{b}{3a}$\\},
- but it has very little practical use.\\
+There is a formula (see M1F),
+ but it has very little practical use.\vsp
 
-\item Quartics: $ax^4 + bx^3 + cx^2 + dx + e = 0$
+\item Quartics: $ax^4 + bx^3 + cx^2 + \mathrm{d}x + e = 0$
 
-There is also a general formula... once again not worth knowing\footnote{or even typesetting...}\\
+There is also a general formula... once again not worth knowing.\vsp
 
-\item Quintics: $ax^5 + bx^4 + cx^3 + dx^2 + ex + f = 0$
+\item Quintics: $ax^5 + bx^4 + cx^3 + \mathrm{d}x^2 + ex + f = 0$
 
-There is no general formula to express the roots in terms of radicals. See \textsc{M3P11 - Galois Theory} in 3rd year. But one can easily find the roots in practice for any particular case.\\
+There is no general formula to express the roots in terms of radicals. See \textsc{M3P11 Galois Theory} in 3rd year. But one can easily find the roots in practice for any particular case.
 
 \item $N > 5$: Similarly no formula. However considering general $N$:
 \begin{align*} \nonumber
@@ -730,14 +740,51 @@ P_N(x) &= a_Nx^N + a_{N-1}x^{N-1} + \dots\\
 \end{align*}
 
 
-As $\displaystyle{ |x| \to \infty, \frac{1}{x^N} \to 0 }$, So for large $|x|, P_N \approx a_Nx^N$. 
+As ${ |x| \to \infty, \frac{1}{x^N} \to 0 }$, So for large $|x|, P_N \approx a_Nx^N$. 
 
-Hence if $a_N > 0$ WLOG, then as $\displaystyle{x \to \pm \infty , \; P_{2N}(x) \to +\infty \text{ and } P_{2N+1} \to \pm \infty }$\\  
-%%%%%%%%%%%%%%%%%%
-%
-% PUT SKETCH OF POINT HERE
+Hence if $a_N > 0$ WLOG, then as $\displaystyle{x \to \pm \infty , \; P_{2N}(x) \to +\infty \text{ and } P_{2N+1} \to \pm \infty }$\\ 
 
-%%%%%%%%%%%%%%%%%
+\begin{minipage}{5cm}
+
+  \begin{center}
+\begin{tikzpicture}[scale=.8]
+\begin{axis}
+        [
+    xtick=\empty,
+    ytick=\empty,
+    axis lines = center,
+    xlabel=$x$,ylabel=$P_{2N}(x)$,
+    width=6cm,height=5cm
+    ]
+    \addplot [domain = -4.6:5.5, smooth] {0.02*(x^6-2*x^5-26*x^4+28*x^3+145*x^2-26*x-80};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\end{minipage}
+\begin{minipage}{5cm}
+	
+	
+  \begin{center}
+\begin{tikzpicture}[scale=.8]
+\begin{axis}
+        [
+    xtick=\empty,
+    ytick=\empty,
+    axis lines = center,
+    xlabel=$x$,ylabel=$P_{2N+1}(x)$,
+    width=6cm,height=5cm
+    ]
+    \addplot [domain = -3.2:3.2, smooth] {2*(x^7- 14*x^5+ 49*x^3 - 36*x)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\end{minipage}
+
+
+
 \end{itemize}
 
 \subsektion{Rational Functions}\vspace*{5pt}
@@ -768,7 +815,7 @@ Suppose $Q$ has degree $N$, with no repeated root, i.e.
 Where $\lambda \neq 0, r_i \neq r=j$ unless $i = j$ and $r_i \in \mathbb{C}$
 
 Then we can write:
-\[\frac{P}{Q} = \frac{A_1}{x-r_1} + \frac{A_2}{x-r_2} + \dots + \frac{A_N}{x-r_N} + \overbrace{R(x)}^\text{if needed} \]\vspace*{5pt}
+\[\frac{P}{Q} = \frac{A_1}{x-r_1} + \frac{A_2}{x-r_2} + \dots + \frac{A_N}{x-r_N} + \overbrace{R(x)}^\text{if needed} \]
 
 We can easily find $A_i$ by multiplying through $Q$:\vspace*{5pt}
 \begin{align} \nonumber P &= \frac{A_1Q}{x-r_1} + \frac{A_2Q}{x-r_2} + \dots + \frac{A_NQ}{x-r_N}\\ \nonumber
@@ -845,12 +892,17 @@ So differentiating:
   f^{(n)} &= \frac{1}{2}\left[\frac{1}{(x+3)^{n+1}} + \frac{1}{(x+1)^{n+1}}\right](-1)^nn!
 \end{aligned}
 \]
-
-
 \end{example}
 
 
-\pagebreak
+\vspace*{1cm}
+
+\begin{center}
+\includegraphics[width = 6.5cm]{cartoon3.jpg}	
+\end{center}
+
+
+
 
 
 
@@ -903,7 +955,7 @@ From now we can use all the properties of the exponential function,
 
  e.g. $e^xe^y = e^{x+y}, \quad (e^a)^b = e^{ab}, \quad e^0 = 1$. 
 
-Calling $g(x) = \log(x) = ln(x)$, we have the usual properties which follows from the first problem sheet:\\
+Calling $g(x) = \log(x) = ln(x)$, we have the usual properties which follows from the first problem sheet:\\[-.2cm]
 \begin{itemize}
 \item $\log(uv) = \log(u) + \log(v)$
 \item $\log(1) = 0$
@@ -912,9 +964,9 @@ Calling $g(x) = \log(x) = ln(x)$, we have the usual properties which follows fro
 \item $\log(a^b) = b\log a$
 \item $a^b = e^{b \log a}$
 \end{itemize}
-(We will not consider logarithms to different bases)\\
+(We will not consider logarithms to different bases)
 
-$e^x$ is defined $x \in R$, \emph{ what if $x$ is complex or purely imaginary?}\vspace*{5pt}
+$e^x$ is defined $x \in R$, \emph{ what if $x$ is complex or purely imaginary?}\\
 
 \begin{definition}
 Write $x = i\theta, \theta \in R$, then define $e^{i\theta}$ to be:
@@ -936,8 +988,8 @@ better proof that $coz(x+y) = coz(x)coz(y) - zin(x)zin(y)$ uses complex numbers,
 Consider $\exp(i\theta)\exp(i\phi) \equiv \exp(i\theta + i\phi)$ 
 \[\implies [\cos(\theta)+ i\sin(\theta)][\cos(\phi) + i\sin(\phi)] \equiv \cos(\theta + \phi) + i \sin(\theta + \phi)\]
 
-Expanding and equating the real parts gives required result.\footnote{Much easier than the series manipulation on handout 1!
-} \end{proof}
+Expanding and equating the real parts gives required result. (Much easier than the series manipulation on handout 1!)
+\end{proof}
 
 \emph{Now we prove identity $(*)$...}
 
@@ -959,7 +1011,7 @@ Then $\displaystyle{\exp(x)\exp(y) = \sum_{n=0}^{\infty}\sum_{m=0}^{\infty}\frac
 
  
  \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=.7]
       \draw [->] (0, 0) -- (9, 0) node [right] {$n$};
       \draw [->] (0, 0) -- (0, 5.5) node [left] {$m$};
       \foreach \x in {1,...,8}{
@@ -987,14 +1039,12 @@ Assume it does not matter in which order we add up all the terms i.e. we can add
 \begin{align} \nonumber \exp(x)\exp(y) = \sum_{n=0}^{\infty}\sum_{m=0}^{\infty}\frac{x^n}{n!}\frac{y^m}{m!} &= \sum_{p=0}^{\infty}\sum_{n=0}^{p} \left(\frac{x^ny^{p-n}}{p!} \right) \\\vspace*{5pt} \nonumber
 &= \sum_{p=0}^{\infty}\sum_{n=0}^{p}\left(\frac{\comb{p}{n} x^n y^{p-n}}{p!}\right) \\\vspace*{5pt} \nonumber
 &= \sum_{p=0}^{\infty} \frac{1}{p!} \sum_{n=0}^{p} \comb{p}{n}  x^n y^{p-n} \\\vspace*{5pt} \nonumber
-&= \sum_{p=0}^{\infty} \frac{(x+y)^p}{p!} = \exp(x+y)
+&= \sum_{p=0}^{\infty} \frac{(x+y)^p}{p!} = \exp(x+y)\qedhere
 \end{align}
-
 \end{proof}
 
 We now have $\cos and \sin$. You will prove on Sheet 2 Question 1 that they are $2\pi$-periodic and all the trigonometric formulae that follow, i.e. $\cos(A+B)$ etc. \textit{Remember them, or be able to derive them in 15 seconds!}
 
-\pagebreak
 
 \subsektion{Other Infinite Series}
 
@@ -1006,13 +1056,13 @@ There is no infinite series for $\log(x)$, i.e.
 
 \[\displaystyle{\frac{1}{1+x} = 1 - x + x^2 - x^3 + x^4 + \dots = \sum_{n=0}^{\infty} x^n(-1)^n, \; |x| < 1 }\]
 
-This is an example of the geometric series $a + ar + ar^2 + \dots = \frac{a}{1-r}, \; |r|<1$. N.B. We could integrate the series for $\frac{1}{1+x}$ to obtain $\log(1+x) + c = x - \frac{1}{2}x^2 + \frac{1}{3}x^3 - \dots$ assuming integrating term by term is allowed. Letting $x = 0 \implies c = 0$. \\
+This is an example of the geometric series $a + ar + ar^2 + \dots = \frac{a}{1-r}, \; |r|<1$. N.B. We could integrate the series for $\frac{1}{1+x}$ to obtain $\log(1+x) + c = x - \frac{1}{2}x^2 + \frac{1}{3}x^3 - \dots$ assuming integrating term by term is allowed. Letting $x = 0 \implies c = 0$. 
 
 \subsubsektion{The Binomial Series}
 The Geometric series is a special case of the Binomial Series:
 \[\displaystyle{(1+x)^{\alpha} = 1 + \alpha x + \frac{\alpha(\alpha -1)}{2}x^2 + \dots + \frac{\alpha(\alpha-1)\dots(\alpha-p)}{(p+1)!}x^{p+1} + \dots \quad (\alpha \in \R) }\]
 
-This series converges provided $|x|<1$. Note, if $\alpha \in \N$, then eventually the coefficients become zero and the power series \emph{terminates} as a polynomial of degree $N$. The series then becomes the binomial theorem: $(1+x)^n = \sum_{k=0}^{n} \comb{n}{k} x^k$\\
+This series converges provided $|x|<1$. Note, if $\alpha \in \N$, then eventually the coefficients become zero and the power series \emph{terminates} as a polynomial of degree $N$. The series then becomes the binomial theorem: $(1+x)^n = \sum_{k=0}^{n} \comb{n}{k} x^k$.
 
 Proof by: 
 \begin{enumerate}
@@ -1028,10 +1078,8 @@ We define
 \[\sinh(x) = \text{ Odd part of } (e^x)\]	
 i.e. 
 \[
-\begin{aligned}
-  \cosh(x) &\equiv \frac{1}{2}(e^x + e^{-x})\\[0.2cm]
-  \sinh(x) &\equiv \frac{1}{2}(e^x - e^{-x})
-\end{aligned}
+  \cosh(x) \equiv \frac{1}{2}(e^x + e^{-x}),\quad
+  \sinh(x) \equiv \frac{1}{2}(e^x - e^{-x})
 \]
 \end{definition}
 
@@ -1220,7 +1268,7 @@ Try letting $T = e^x$:
 \end{aligned}
 \]
 
-We would then try gathering the constant terms, the $x$ terms together etc. But then we end up with $-1 + 1 -1 + 1 - 1 + \dots$ and $x + x + x + \dots$, which goes off to infinity! 
+We would then try gathering the constant terms, the $x$ terms together etc. But then we end up with $-1 + 1 -1 + \dots$ and $x + x + x + \dots$, which goes off to infinity! 
 
 \emph{What's gone wrong?}
 
@@ -1279,9 +1327,7 @@ Note that if this is true then $f(0) = a_0$. So if $f(x)$ is \emph{differentiabl
 
 In general, if the function $f(x)$ can be differentiated $r$ times (and so can the series), then \[f^{(r)}(0) = a_r r!x^0 + 0 + 0 + 0 + \dots \implies \boxed{a_r = \dfrac{f^{(r)}}{r!}}\]
 
-(if $n<r$ in sum, one of the prefactors of $x^{n-r}$ is 0. If $n>r, x^{n-r}$ is 0, when $x=0$. So only one term, $n=r$, remains.)
-
-So formally,\\
+(if $n<r$ in sum, one of the prefactors of $x^{n-r}$ is 0. If $n>r, x^{n-r}$ is 0, when $x=0$. So only one term, $n=r$, remains.) So formally,
 
 \begin{definition} if the function has a power series then we expect the \emph{Maclaurin Series} (or the Taylor series about $x=0$) to be:
 
@@ -1299,9 +1345,7 @@ So $\log(x), x^{3.1}, \sin(x^{\frac{1}{2}}),$ or $|x^3|$ do not have series expa
  
  We shall not worry about such functions anymore.
  
-So a Maclaurin series exists $\iff f^{(n)}(0)$ exists $\forall n$. 
-
-e.g. $f(x) = e^{-x}\sin(2x) = 2x - 2x^2 + \mathcal{O}(x^3)$
+So a Maclaurin series exists $\iff f^{(n)}(0)$ exists $\forall n$. e.g. $f(x) = e^{-x}\sin(2x) = 2x - 2x^2 + \mathcal{O}(x^3)$
 
 \subsektion{Radius of Convergence}\vspace*{5pt}
 
@@ -1317,11 +1361,11 @@ For any power series $\displaystyle{\sum_{n=0}^{\infty} a_nx^n}$ ($a_n, x \in \m
 \end{itemize}
 
 $R$ is called the \emph{radius of convergence}
-\end{definition}\vspace*{-5pt}
+\end{definition}\vspace*{-10pt}
 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.8]
 \fill[color =Blue!30] (0,0) circle (1.5);
 \draw [->] (-4,0) -- (4,0) node [pos = 1, right] {$\Re$};
 \draw [->] (0,-3) -- (0,3) node [pos = 1, right] {$\Im$};
@@ -1351,7 +1395,12 @@ assuming $a >0$ (otherwise if $a <0$, write $a=-b, (x-b)^{\alpha} = b^{\alpha}(\
 In practice, the series converges in as big a circle as it can i.e. until it reaches a singular point. e.g. $\frac{1}{x^2+1}$ is singular (infinite) when $x=i$, so $R \ngtr 1$ (else series would have to converge at $x = i$, but it can't as function is infinite there), so $R = 1$ for this function.\\
 
 
-He spent Lecture 10 \lecturemarker{10}{Nov} going through his handout on Analysis. This basically summarises \textsc{M1P1 Analysis I}, the most important results of which are: 
+He spent Lecture 10 \lecturemarker{10}{Nov} going through his handout on Analysis. This basically summarises \textsc{M1P1 Analysis I}, the most important results of which are: \\
+
+\begin{definition}[Convergence]
+We say $u_n \to u$ if $\forall n$ sufficiently large, $|u_n - u|$ is arbitrarily small. Define a real number $b \iR$ to be arbitrarily small if it is smaller than any $\epsilon>0$, i.e. $\forall \epsilon >0, |b| < \epsilon$.
+\end{definition}\vsp
+
 
 \begin{theorem}[Comparison Test]
 Suppose $a_n \geq b_n \geq 0$. Then 
@@ -1369,7 +1418,7 @@ Suppose $a_n \geq b_n \geq 0$. Then
 \]
 \end{theorem}
 
-We can use the ratio test to determine the radius of convergence for a power series, since applying it to $\sum_{n=0}^{\infty} a_n x^n$, we have:  
+We can use the ratio test to determine the radius of convergence for a power series. Applying it to $\sum_{n=0}^{\infty} a_n x^n$, we have:  
 \[\lim_{n\to \infty} \left|\frac{a_{n+1}x^{n+1}}{a_nx^n}\right| = \frac{|x|}{R}\]
 
 Then by the ratio test, the power series converges if $|x| < R$, diverges if $|x| > R$ and may do either if $|x| = R$. So if the test works, $R$ is in fact the \emph{radius of convergence.}
@@ -1404,28 +1453,20 @@ Relabelling $y \to x$ and $g \to f$, we get the Taylor series:\\
  axis line style={black},
  axis lines=middle,
   ymin = -0.2,
-  ymax = 1,
+  ymax = 1.25,
   xmin = 6,
   xmax = 10,
      ytick = 0,
    xtick = 0, 
   width=12cm,height=6cm]
       \addplot[draw=blue, domain=6:9.5,smooth]{0.006*x^4 - 0.0987*x^3 + 0.3937*x^2 + 0.6556*x - 3.9};
-       \draw (axis cs:7.7,0.50) -- (axis cs:8.2,0.62); %tangent line
-       \draw[red](axis cs:8.7,0.97)--  (axis cs:6.8,0.55); %big tangent line
-       \draw (axis cs:8.7,0.97) -- (axis cs:8.7,-0.04) node at (axis cs:8.7,-0.1) {$b$};
-       \draw (axis cs:6.8,0.55) -- (axis cs:6.8,-0.04)  node at (axis cs:6.8,-0.1) {$a$};
-        \draw[<->] (axis cs:9,0.53) -- (axis cs:9,0.65) node at (axis cs: 9.5,0.6) {\small $f(b) - f(a)$};
-         \node[text width=4cm] at (axis cs:7.5,0.8) {\small straight line gradient $= \frac{f(x)-f(a)}{x-a}$};
+       \draw (axis cs:8.7,0.97) -- (axis cs:8.7,-0.04) node at (axis cs:8.7,-0.1) {\small some point};
+       \draw (axis cs:7.2,0.55) -- (axis cs:7.2,-0.04)  node at (axis cs:7.2,-0.1) {\small where all derivatives are evaluated.};
+         \node[text width=4cm] at (axis cs:7.5,0.8) {\small some function};
+         \draw (axis cs: 8.7,0.97) circle (2pt) node at (axis cs:9,1.1) {\small function value to be found};
   \end{axis}
 \end{tikzpicture}
-\end{center}
-
-What the taylor series does is approximate $b$ by considering the derivatives at $a$.
-
-
-
-\pagebreak
+\end{center}\vspace*{5pt}
 
 
 \subsubsektion{Finding the Radii of Convergence}\vspace*{5pt}
@@ -1444,7 +1485,6 @@ To find the radius of convergence, look at the ratio of two adjacent terms.
 
 Now take the limit as $n \to \infty$. Obviously this tends to $0$. i.e. 
 \[\lim_{n\to \infty}\left|\frac{u_{n+1}}{u_n}\right| = 0 < 1\]
-
 So series converges for all $x$ by the ratio test, so ``$R = \infty$''. 
 \end{example}\vspace*{5pt}
 
@@ -1483,10 +1523,9 @@ To find the radius of convergence, look at
 \]
 
 
-Why is $R = 1$? The function is perfectly well behaved in $\R$: 
-
+Why is $R = 1$? The function is perfectly well behaved in $\R$: \vspace*{-5pt}
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.8]
 \begin{axis}[
 minor tick num=0,
 xtick=\empty,
@@ -1527,7 +1566,7 @@ To find $R$, we need to be able to find limits. This can often be hard. Normally
 \[\lim_{x \to a} f(x) = f(a)\]
 if $f$ is continuous, but what if $f(a)$ is hard to evaluate? 
 
-What is ``$\frac{0}{0}$''? It can be anything. Also troublesome is $\frac{\infty}{\infty}$, $0 \times \infty$, $0^{\infty}$, $\infty - \infty$, $1^{\infty}$. 
+What is ``$\dfrac{0}{0}$''? It can be anything. Also troublesome is \[\frac{\infty}{\infty},\,0 \times \infty,\,0^{\infty},\,\infty - \infty,\,1^{\infty}\] 
 
 \emph{How do we cope?}\\
 
@@ -1570,12 +1609,12 @@ noting that $\log(1+t) = t - \frac{t^2}{2} + \frac{t^3}{3} + \dots$.
 So
 \[\lim_{x \to 0}\left[(\cosh(\sqrt{x}))^{1/2}\right]  = e^{1/2}\]
 \end{example}
+\vspace*{1.5cm}
 
 
-
-
-
-
+\begin{center}
+\includegraphics[width = 9cm]{cartoon2.jpg}
+\end{center}
 
 
 
@@ -1583,13 +1622,12 @@ So
 
 \subsektion{First Principles Differentiation}
 
-\emph{What is} \lecturemarker{12}{Nov}
-\[\lim_{x\to a} (f(x) - f(a))\]
-\emph{if $f(x)$ is continuous?} ($=0$ obviously)\\
+\emph{What is} \lecturemarker{12}{Nov} $\lim_{x\to a} (f(x) - f(a))$ 
+\emph{if $f(x)$ is continuous?} ($=0$ obviously.)\\
 
 
 \emph{What about}
-\[\lim_{x \to a} \left[\frac{f(x) - f(a)}{x-a}\right] ?\]
+$\lim_{x \to a} \left[\frac{f(x) - f(a)}{x-a}\right] ?$
 
 \begin{center}
 \begin{tikzpicture}
@@ -1621,19 +1659,18 @@ We are taking the limit of the line joining $(a, f(a))$ to $(x,f(x))$.
 exists, we call it the ``\emph{derivative} of the function $f(x)$ at $a$''. 	
 \end{definition}
 
-We can denote this limit $(*)$ as either $\dfrac{df}{dx}$ or $f'(x)$. 
+We can denote this limit $(*)$ as either $\dfrac{df}{\mathrm{d}x}$ or $f'(x)$. 
 
-If in addition this limit $(*)$ exists for every point on an interval $ c < x < d$ ($x \in (c,d)$), we say $f(x)$ is \emph{differentiable} on the interval $(c,d)$ and we have then defined a new function
-\[f'(x) \text{ on } x \in (c,d)\]
+If in addition this limit $(*)$ exists for every point on an interval $ c < x < d$ ($x \in (c,d)$), we say $f(x)$ is \emph{differentiable} on the interval $(c,d)$ and we have then defined a new function $f'(x) \text{ on } x \in (c,d)$.\\
 
 \begin{definition}
 More commonly we define 
 \[f'(x) = \lim_{\epsilon \to 0} \left[\frac{f(x+\epsilon) - f(x)}{\epsilon}\right]\]	
 \end{definition}
 
-N.B. This definition is equivalent to $(*)$, with $\epsilon = x-a$. (Exercise: Check this.)
+N.B. This definition is equivalent to $(*)$, with $\epsilon = x-a$. (\emph{Exercise:} Check this.)
 
-Lets do some examples: 
+Lets do some examples:\\
 
 \begin{example}
 Differentiate $f(x) = x^2$ from first principles
@@ -1677,7 +1714,7 @@ Suppose we have $f(x)$ and $g(x)$ that are differentiable, i.e. their derivative
 
 \[
 \begin{aligned}
-  \frac{d}{dx}(fg) &= \lim_{\epsilon \to 0}\left[\frac{f(x +\epsilon)g(x+\epsilon)-f(x)g(x)}{\epsilon}\right]\\
+  \frac{d}{\mathrm{d}x}(fg) &= \lim_{\epsilon \to 0}\left[\frac{f(x +\epsilon)g(x+\epsilon)-f(x)g(x)}{\epsilon}\right]\\
   &= \lim_{\epsilon \to 0}\left[\frac{f(x +\epsilon)g(x+\epsilon) +0 -f(x)g(x)}{\epsilon}\right]\\
 \end{aligned}
 \]
@@ -1685,59 +1722,51 @@ Suppose we have $f(x)$ and $g(x)$ that are differentiable, i.e. their derivative
 
 \[
 \begin{aligned}
-   \frac{d}{dx}(fg) &= \lim_{\epsilon \to 0}\left[\frac{f(x +\epsilon)g(x+\epsilon) - f(x)g(x+\epsilon) + f(x)g(x + \epsilon) -f(x)g(x)}{\epsilon}\right]\\[0.2cm]
+   \frac{d}{\mathrm{d}x}(fg) &= \lim_{\epsilon \to 0}\left[\frac{f(x +\epsilon)g(x+\epsilon) - f(x)g(x+\epsilon) + f(x)g(x + \epsilon) -f(x)g(x)}{\epsilon}\right]\\[0.2cm]
   &= \lim_{\epsilon \to 0}\left[g(x+\epsilon)\left(\frac{f(x+\epsilon)-f(x)}{\epsilon}\right) + f(x)\left(\frac{g(x+\epsilon) -g(x)}{\epsilon}\right)\right]\\[0.2cm]
   &= \lim_{\epsilon \to 0}[g(x)+\epsilon]\lim_{\epsilon \to 0}\left(\frac{f(x+\epsilon)-f(x)}{\epsilon}\right) +  \lim_{\epsilon \to 0}[f(x)+\epsilon]\lim_{\epsilon \to 0}\left(\frac{g(x+\epsilon)-g(x)}{\epsilon}\right) \\[0.2cm]
   &= g(x)f'(x) + f(x)g'(x)
 \end{aligned}
 \]
 
-We have shown:
-\[\boxed{(fg)' = f'g + g'f}\]
+We have shown: ${(fg)' = f'g + g'f}$. 
 
 
 \subsubsektion{Chain Rule}
 
 Suppose again that $f,g$ are differentiable in appropriate domains, then what is
-\[\frac{d}{dx}(f(g(x)))?\]
+$\frac{d}{\mathrm{d}x}(f(g(x)))?$
 
 By definition
-\[\frac{d}{dx}(f(g)) = \lim_{\epsilon \to 0} \left[\frac{f(g(x+\epsilon)) - f(g(x))}{\epsilon}\right]\]
+\[\frac{d}{\mathrm{d}x}(f(g)) = \lim_{\epsilon \to 0} \left[\frac{f(g(x+\epsilon)) - f(g(x))}{\epsilon}\right]\]
 
 \emph{Trick:} We are going to multiply by $1$ in a clever way by multiplying the top and bottom by $g(x+\epsilon) - g(x)$. [We know the answer will have $g'$ in it, but we are not cheating... not really] 
 
 \[
 \begin{aligned}
-  \frac{d}{dx}(f(g)) &= \lim_{\epsilon \to 0}\left[\frac{f(g(x+\epsilon) - f(g(x))}{\epsilon}\cdot \frac{g(x+\epsilon)-g(x)}{g(x+\epsilon -g(x)}\right]\\[0.2cm]
+  \frac{d}{\mathrm{d}x}(f(g)) &= \lim_{\epsilon \to 0}\left[\frac{f(g(x+\epsilon) - f(g(x))}{\epsilon}\cdot \frac{g(x+\epsilon)-g(x)}{g(x+\epsilon -g(x)}\right]\\[0.2cm]
   &= \lim_{\epsilon \to 0} \left[\frac{f(g(x+\epsilon))-f(g(x))}{g(x+\epsilon)-g(x)}\right]\lim_{\epsilon \to 0}\left[\frac{g(x+\epsilon)-g(x)}{\epsilon}\right]
 \end{aligned}
 \]\vspace*{10pt}
 
-\emph{Trick}: Let 
-\[
-\begin{aligned}
-  \theta &= g(x+ \epsilon) -g(x)\\
-  \implies &g(x+\epsilon) = g(x) + \theta 
-\end{aligned}
-\]
+\emph{Trick}: Let $  \theta = g(x+ \epsilon) -g(x)
+  \implies g(x+\epsilon) = g(x) + \theta $.
 
 I claim that $\lim_{\epsilon \to 0}\equiv \lim_{\theta \to 0}$. So
-\[\frac{d}{dx}(f(g)) = \lim_{\epsilon \to 0}\left[\frac{g(x+\epsilon)-g(x)}{\epsilon}\right]\;\lim_{\theta \to 0}\left[\frac{f(g(x) + \theta) -f(g(x))}{\theta}\right]\]
+\[\frac{d}{\mathrm{d}x}(f(g)) = \lim_{\epsilon \to 0}\left[\frac{g(x+\epsilon)-g(x)}{\epsilon}\right]\;\lim_{\theta \to 0}\left[\frac{f(g(x) + \theta) -f(g(x))}{\theta}\right]\]
 
 Let $g(x) = u$, so 
 \[\lim_{\theta \to 0} \left[\frac{f(u + \theta) - f(u)}{\theta}\right] = \frac{df}{du}\]
 
 Then we have 
-\[\boxed{\frac{d}{dx}(f(g)) = \frac{dg}{dx}\cdot \frac{df}{du}}\]
+\[\boxed{\frac{d}{\mathrm{d}x}(f(g)) = \frac{dg}{\mathrm{d}x}\cdot \frac{df}{du}}\]
 
 
 \subsubsektion{Quotient Rule} 
 
-\emph{What is} $\dfrac{d}{dx}\left(\dfrac{f(x)}{g(x)}\right)$? 
+\emph{What is} $\dfrac{d}{\mathrm{d}x}\left(\dfrac{f(x)}{g(x)}\right)$? 
 
-We will use the product rule: 
-
-\[\left(\frac{f}{g}\right)' = f'\left(\frac{1}{g}\right) + f\left(\frac{1}{g}\right)'\]
+We will use the product rule: $\left(\frac{f}{g}\right)' = f'\left(\frac{1}{g}\right) + f\left(\frac{1}{g}\right)'$. 
 
 \emph{Aside: What is $\left(\frac{1}{x}\right)'$?}
 
@@ -1749,45 +1778,12 @@ We will use the product rule:
 \end{aligned}
 \]
 
-Therefore 
-\[
-\begin{aligned}
-  \frac{d}{dx}\left(\frac{1}{g}\right) &= \frac{d}{dg}\left(\frac{1}{g}\right)\frac{dg}{dx} \quad \text{[Chain Rule]}\\
-  &= -\frac{1}{g^2}\cdot g'
-\end{aligned}
-\]
+Therefore $\frac{d}{\mathrm{d}x}\left(\frac{1}{g}\right) = \frac{d}{dg}\left(\frac{1}{g}\right)\frac{dg}{\mathrm{d}x} 
+  = -\frac{1}{g^2}\cdot g'$. Putting it all together, we find:
+\[ \left(\frac{f}{g}\right)' = \frac{f'}{g} - \frac{fg'}{g^2}=  \frac{f'g - fg'}{g^2}\]
+\[\implies\boxed{\frac{d}{\mathrm{d}x}\left(\frac{f(x)}{g(x)}\right) = \frac{\frac{df}{\mathrm{d}x}g - f\frac{dg}{\mathrm{d}x}}{g^2}}\]
 
-Putting it all together, we find: 
-
-\[
-\begin{aligned}
-  \left(\frac{f}{g}\right)' &= \frac{f'}{g} - \frac{fg'}{g^2}\\
-  &= \frac{f'g - fg'}{g^2} 
-\end{aligned}
-\]
-
-So 
-\[\boxed{\frac{d}{dx}\left(\frac{f(x)}{g(x)}\right) = \frac{\frac{df}{dx}g - f\frac{dg}{dx}}{g^2}}\]
-
-With all these rules we can find the derivative to say: $\log(1 + \sin(2^x + \sin(x)^{\cos(x)}))$.\\
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-The product rule and chain rule extend to more than two functions e.g. \lecturemarker{13}{10.11.2014}
+With all these rules we can find the derivative to say: $\log(1 + \sin(2^x + \sin(x)^{\cos(x)}))$. The product rule and chain rule extend to more than two functions e.g. \lecturemarker{13}{10.11.2014}
 \[(fgh)' = f'(gh) + f(gh)' = f'(gh) + fg'h + (fg)h'\]
 
 Similarly (by defining $g(h(x)) \equiv k(x)$):\\
@@ -1795,16 +1791,15 @@ Similarly (by defining $g(h(x)) \equiv k(x)$):\\
  
  It's easier to just remember that:
  \[\displaystyle{
- \frac{dy}{dx} = 
- \frac{dy}{du}
+ \frac{\mathrm{d}y}{\mathrm{d}x} = 
+ \frac{\mathrm{d}y}{du}
  \frac{du}{dt}
  \frac{dt}{d\Omega}
  \frac{d\Omega}{d\chi}
  \frac{d\chi}{d\xi}
- \frac{d\xi}{dx}   
- } \text{ etc. }\]
- 
-\subsubsektion{Some more ``First Principles'' Differentiation}\vspace*{5pt}
+ \frac{d\xi}{\mathrm{d}x}   
+ } \text{ etc. }\]\vspace*{5pt}
+
 
 \begin{example}
 What is $\dfrac{\mathrm{d}}{\mathrm{d}x} (e^x)$?
@@ -1824,26 +1819,26 @@ What is $\dfrac{\mathrm{d}}{\mathrm{d}x} (e^x)$?
 \]
 \end{example}
 
-\emph{Excerise}: Show that $\dfrac{dx}{dx} = 1$ from first principles
+\emph{Excerise}: Show that $\dfrac{\mathrm{d}x}{\mathrm{d}x} = 1$ from first principles
 
-So $1 = \dfrac{dx}{dx} = \dfrac{dx}{dy}\dfrac{dy}{dx}$ (using chain rule). i.e. $\boxed{\dfrac{dy}{dx} = \dfrac{1}{dx/dy}}$
+So $1 = \dfrac{\mathrm{d}x}{\mathrm{d}x} = \dfrac{\mathrm{d}x}{\mathrm{d}y}\dfrac{\mathrm{d}y}{\mathrm{d}x}$ (using chain rule). i.e. $\boxed{\dfrac{\mathrm{d}y}{\mathrm{d}x} = \dfrac{1}{\mathrm{d}x/\mathrm{d}y}}$
 
 
 N.B. Next term you will meet partial derivatives, $\frac{\partial u}{\partial x}$; The chain rule for partial differentiation is more complicated, and $\frac{\partial u}{\partial x} \neq \frac{1}{\partial x / \partial u}$ necessarily.\\
 
 
-\textit{If $y = \log x$, What is $\dfrac{dy}{dx}$?}
+\textit{If $y = \log x$, What is $\dfrac{\mathrm{d}y}{\mathrm{d}x}$?}
 
-Write $x = e^y \implies \dfrac{dx}{dy} = e^y \implies \dfrac{dy}{dx} = \dfrac{1}{e^y} = \dfrac{1}{x}$\\
+Write $x = e^y \implies \dfrac{\mathrm{d}x}{\mathrm{d}y} = e^y \implies \dfrac{\mathrm{d}y}{\mathrm{d}x} = \dfrac{1}{e^y} = \dfrac{1}{x}$\\
 
 \subsubsektion{Inverse Trigonmetric Derivatives}
 
-\textit{What is $\dfrac{\mathrm{d}}{\mathrm{d}x} (\sin^{-1} x)$?}
+\textit{What is $\dfrac{\mathrm{d}}{\mathrm{d}x} (\sin^{-1} x)$?} First we should find out what  $\dfrac{\mathrm{d}}{\mathrm{d}y} (\sin y)$ is:
 
 \[
 \begin{aligned}
-  \dfrac{dx}{dy} &= \dfrac{d}{dy}(\sin y) \\
-&= \dfrac{d}{dy}
+  \dfrac{\mathrm{d}x}{\mathrm{d}y} &= \dfrac{\mathrm{d}}{\mathrm{d}y}(\sin y) \\
+&= \dfrac{d}{\mathrm{d}y}
 \left[y - \dfrac{y^3}{6} + \dfrac{y^5}{120} + \dots \dfrac{y^n}{n!}\right] \\
 &= \left[1 - \dfrac{y^2}{2} + \dfrac{y^4}{24} + \dots\right]\\
 &= \cos y
@@ -1851,7 +1846,7 @@ Write $x = e^y \implies \dfrac{dx}{dy} = e^y \implies \dfrac{dy}{dx} = \dfrac{1}
 \]
 
 Or we could use first principles:
-\begin{align*} \nonumber \frac{d}{dy}[\sin y] 
+\begin{align*} \nonumber \frac{\mathrm{d}}{\mathrm{d}y}[\sin y] 
 &= \lim_{\epsilon \to 0}
 \left[\frac{\sin(y+\epsilon) - \sin(y)}{\epsilon} \right]\\
 &=\lim_{\epsilon \to 0}
@@ -1871,26 +1866,23 @@ Or we could use first principles:
 \end{align*}
 
 
-Similarly $\dfrac{d}{dx}(\cos x) = -\sin x$. 
+Similarly $\dfrac{d}{\mathrm{d}x}(\cos x) = -\sin x$. 
 
 For $\tan(x)$, we have:
-
-\[\begin{aligned}\dfrac{d}{dx}(\tan x) = \left(\frac{\sin(x)}{\cos(x)}\right)
+\[\begin{aligned}\dfrac{\mathrm{d}}{\mathrm{d}x}(\tan x) = \left(\frac{\sin(x)}{\cos(x)}\right)
 &= 1 + \frac{\sin^2x}{\cot x}\\
 &= \frac{\cos^2x + \sin^2x}{\cos^2x}\\
 &= \frac{1}{\cos^2x}\\
 &= \sec^2x
 \end{aligned}\]
 
-Return to $\dfrac{d}{dx}(\sin^{-1}x); \quad x = \sin y$
+Return to $\dfrac{d}{\mathrm{d}x}(\sin^{-1}x).$ Write $x = \sin y$, then $\dfrac{\mathrm{d}x}{\mathrm{d}y} = \cos y = \sqrt{1 - \sin^2y} = \sqrt{1 - x^2}$.
 
-\[\dfrac{dx}{dy} = \cos y = \sqrt{1 - \sin^2y} = \sqrt{1 - x^2}\]
+Hence \[\boxed{\dfrac{\mathrm{d}y}{\mathrm{d}x} = \dfrac{1}{\sqrt{1-x^2}} = \dfrac{\mathrm{d}}{\mathrm{d}x}[\sin^{-1}x]}\]
 
-Hence \[\boxed{\dfrac{dy}{dx} = \dfrac{1}{\sqrt{1-x^2}} = \dfrac{d}{dx}[\sin^{-1}x]}\]
+\emph{Exercise}: Show $\dfrac{\mathrm{d}}{\mathrm{d}x}(\cos x) = -\dfrac{1}{\sqrt{1-x^2}}$\\
 
-\emph{Exercise}: Show $\dfrac{d}{dx}(\cos x) = -\dfrac{1}{\sqrt{1-x^2}}$\\
-
-Hence $\dfrac{d}{dx}[\sin^{-1}x + \cos^{-1}x] = 0$, which is clear from the right angled triangle: \begin{center}
+Hence $\dfrac{d}{\mathrm{d}x}[\sin^{-1}x + \cos^{-1}x] = 0$, which is clear from the right angled triangle: \begin{center}
 	
 \begin{tikzpicture}[thick]
 \coordinate (O) at (0,0);
@@ -1903,7 +1895,7 @@ Hence $\dfrac{d}{dx}[\sin^{-1}x + \cos^{-1}x] = 0$, which is clear from the righ
 \tkzLabelSegment[above right=2pt](A,B){\textit{1}}
 
 \tkzMarkRightAngle[fill=Blue!50,size=0.6,opacity=.4](A,O,B)% square angle here
-\tkzLabelAngle[pos = 0.35](A,O,B){~$90\degree$}
+\tkzLabelAngle[pos = 0.35](A,O,B){~$90$}
 
 \tkzMarkAngle[fill= Blue!50,size=0.8cm,%
 opacity=.4](B,A,O)
@@ -1915,14 +1907,14 @@ opacity=.4](O,B,A)
 
 \end{tikzpicture}
 \end{center}
-Since $\alpha = \sin^{-1}x$ and $\beta = \cos^{-1}x$, $\alpha + \beta = \frac{\pi}{2}$, obviously $\frac{d}{dx} \frac{\pi}{2} = 0$.\\
+Since $\alpha = \sin^{-1}x$ and $\beta = \cos^{-1}x$, $\alpha + \beta = \frac{\pi}{2}$, obviously $\frac{d}{\mathrm{d}x} \frac{\pi}{2} = 0$.\\
 
 
 
 \subsubsektion{Logarithmic Derivative}
 
 \[\displaystyle{
-\frac{d}{dx}(\log(u(x))) = \frac{d}{du}\log u.\frac{du}{dx} = \frac{1}{u}u'
+\frac{d}{\mathrm{d}x}(\log(u(x))) = \frac{d}{du}\log u.\frac{du}{\mathrm{d}x} = \frac{1}{u}u'
 }\]
 
 This is called a logarithmic derivative. Useful when performing integration e.g.
@@ -1941,16 +1933,14 @@ If $y$ is given implicitly in terms of $x$ e.g. $y + \tan y = x$, we can differe
 \begin{example}
 Differentiate $y + \tan y = x$:
 \begin{align*}\nonumber
-\frac{d}{dx}(y + \tan y) = \dfrac{d}{dx}(x) &= 1
+\frac{d}{\mathrm{d}x}(y + \tan y) = \dfrac{d}{\mathrm{d}x}(x) &= 1
 \\ \nonumber 
-\implies \frac{dy}{dx}\frac{d}{dy}(y + \tan y) &= 1
+\implies \frac{\mathrm{d}y}{\mathrm{d}x}\frac{d}{\mathrm{d}y}(y + \tan y) &= 1
 \\ \nonumber
-\implies \frac{dy}{dx}(1 + \sec^2y) &= 1
+\implies \frac{\mathrm{d}y}{\mathrm{d}x}(1 + \sec^2y) &= 1
 \end{align*}
 \begin{align*}
-\implies \frac{dy}{dx} &= \frac{1}{\sec^2y + 1}\\
-& = \frac{1}{2 + \tan^2y}\\
-& = \frac{1}{2 + (x-y)^2}
+\implies \frac{\mathrm{d}y}{\mathrm{d}x} &= \frac{1}{\sec^2y + 1} = \frac{1}{2 + \tan^2y} = \frac{1}{2 + (x-y)^2}
 \end{align*}
 \end{example}
 
@@ -1958,19 +1948,16 @@ Differentiate $y + \tan y = x$:
 
 \subsubsektion{Higher Derivatives}
 
-If $f(x)$ is differentiable in $(a,b) \iff f'(x)$ is defined on $(a,b)$.\\
-
- Maybe $f'$ is also differentiable. If so, we write it as 
- \[f''\text{ or }\dfrac{d^2f}{dx^2}\text{ or }\left(\dfrac{d}{dx}\right)^2f\]
- BUT NOT EVER EVER $\left(\dfrac{df}{dx}\right)^2$
+If $f(x)$ is differentiable in $(a,b) \iff f'(x)$ is defined on $(a,b)$. Maybe $f'$ is also differentiable. If so, we write it as 
+ $f''\text{ or }\frac{d^2f}{\mathrm{d}x^2}\text{ or }\left(\frac{d}{\mathrm{d}x}\right)^2f$, 
+ but not ever ever $\left(\frac{df}{\mathrm{d}x}\right)^2$.
  
  Continuing, we can write the n'th derivative (if it exists) as 
- \[f^{(n)}(x)\text{ or  }\dfrac{d^nf}{dx^n}\text{ or }\left(\dfrac{d}{dx}\right)^n f\]
- These forms are useful for Taylor / Maclaurin series.
+ $f^{(n)}(x)\text{ or  }\frac{d^nf}{\mathrm{d}x^n}\text{ or }\left(\frac{d}{\mathrm{d}x}\right)^n f$. These forms are useful for Taylor / Maclaurin series.
 
 \subsektion{Leibniz' Rule}
 
-\textit{How can we (easily) differentiate a product many times?} \lecturemarker{14}{Nov}\\
+\textit{How can we (easily) differentiate a product many times?} \lecturemarker{14}{Nov}
 
 Suppose $f$ and $g$ are differentiable an arbitrarily number of times. What is $(fg)'$? Use the product rule:
 
@@ -1996,7 +1983,7 @@ This is very similar to the binomial theorem:\\
 (which I had hoped would have been proved in M1F)
 
 \begin{proof}
-Use induction to prove $(*)$\\
+Use induction to prove $(*)$
 
 (A) Take $n = 1: (fg)' = f'g + fg'$ by product rule, so true for $n=1$
 
@@ -2012,7 +1999,7 @@ f^{(s)}g^{(k+1-s)}\left[{k \choose s-1} + {k \choose s}\right]
 \end{aligned}
 \]\vspace*{5pt}
 
-\begin{lemma}: $\displaystyle{ {k \choose s-1} + {k \choose s} = {k+1 \choose s} }$	
+\begin{lemma} $\displaystyle{ {k \choose s-1} + {k \choose s} = {k+1 \choose s} }$	
 \end{lemma}
 
 \textit{Proof}
@@ -2030,19 +2017,17 @@ Assuming lemma, we obtain: \[(fg)^{(k+1)} = \displaystyle{\sum_{s=0}^{k+1}{k+1 \
 
 Note: Leibniz is very useful is one of the functions $\omega \log$ $f$ is a polynomial, as then the high derivatives vanish (are zero)\\
 
-\begin{example} What is $\dfrac{d}{dx}(x^2\sin x)$?\\
+\begin{example}\emph{What is $\dfrac{d}{\mathrm{d}x}(x^2\sin x)$?}
 
 Using Leibniz, $f = \sin x, g = x^2$:
-
 \begin{flalign} \nonumber 
-\dfrac{dy}{dx} &= (\sin x)^{(100)}x^2 + {100 \choose 1}\sin x^{(99)}.2x + {100 \choose 2}\sin x^{(98)}.2 + 0 + 0 + \dots 
+\dfrac{\mathrm{d}y}{\mathrm{d}x} &= (\sin x)^{(100)}x^2 + {100 \choose 1}\sin x^{(99)}.2x + {100 \choose 2}\sin x^{(98)}.2 + 0 + 0 + \dots 
 \\ \nonumber
 &= \sin x[x^2 -9900] - 200x\cos x
 \end{flalign}
 \end{example}\vspace*{5pt}
 
-\begin{example}: What is the Maclaurin series for $y = \sin^{-1}x$?\\
-
+\begin{example}: What is the Maclaurin series for $y = \sin^{-1}x$?
 \[
 \begin{aligned}
  y' &= \dfrac{1}{\sqrt{1-x^2}},\quad  y'' = x(1-x^2)^{-3/2}\\
@@ -2075,10 +2060,7 @@ So \[\displaystyle{
 
 \end{example}
 
-\pagebreak
-
-
-\subsektion{Four Theorems and an Example}
+\subsektion{Four Theorems and an Example}\vspace*{5pt}
 
 \begin{theorem}\lecturemarker{15}{Nov}
 Suppose  $f(x)$ is continuous on $[a,b]$ i.e. $a \leq x \leq b$ and differentiable on $(a,b)$ i.e. $a < x < b$. Then $f(x)$ attains its maximum and minimum values somewhere in $[a,b]$. i.e. 
@@ -2103,13 +2085,38 @@ because $f(c)$ is a maximum.
 Consider 
 \[\frac{f(c) - f(c-\epsilon)}{\epsilon} \geq 0\]
 
-Then take the limit as $\epsilon \to 0$, both tend to $f'(c)$ but one is $\geq 0$, and the other is $\leq 0$. See \textsc{M1P1 - Analysis I}. 
+Then take the limit as $\epsilon \to 0$, both tend to $f'(c)$ but one is $\geq 0$, and the other is $\leq 0$. 
 \end{proof}\vspace*{5pt}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+ axis line style={black},
+ axis lines=middle,
+  ymin = -0.2,
+  ymax = 1,
+  xmin = 6,
+  xmax = 10,
+     ytick = 0,
+   xtick = 0, 
+  width=12cm,height=6cm]
+      \addplot[draw=blue, domain=6:9.5,smooth]{0.006*x^4 - 0.0987*x^3 + 0.3937*x^2 + 0.6556*x - 3.9};
+       \draw (axis cs:7.7,0.50) -- (axis cs:8.2,0.62); %tangent line
+       \draw[red](axis cs:8.7,0.97)--  (axis cs:6.8,0.55); %big tangent line
+       \draw (axis cs:8.7,0.97) -- (axis cs:8.7,-0.04) node at (axis cs:8.7,-0.1) {$b$};
+       \draw (axis cs:6.8,0.55) -- (axis cs:6.8,-0.04)  node at (axis cs:6.8,-0.1) {$a$};
+        \draw[<->] (axis cs:9,0.53) -- (axis cs:9,0.65) node at (axis cs: 9.5,0.6) {\small $f(b) - f(a)$};
+         \node[text width=4cm] at (axis cs:7.5,0.8) {\small straight line gradient $= \frac{f(b)-f(a)}{b -a}$};
+           \draw (axis cs:7.5,0.55) -- (axis cs:7.5,-0.04)  node at (axis cs:7.5,-0.1) {$\xi$};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
 
 
 \begin{theorem}[Mean Value Theorem]
-Suppose $f$ is continuous in $[a,b]$ and differentiable in $(a,b)$. Then $\exists \zeta \in (a,b)$ such that 
-\[\frac{f(b) - f(a)}{b-a} = f'(\zeta)\]
+Suppose $f$ is continuous in $[a,b]$ and differentiable in $(a,b)$. Then $\exists \xi  \in (a,b)$ such that 
+\[\frac{f(b) - f(a)}{b-a} = f'(\xi)\]
 \end{theorem}
 
 
@@ -2131,7 +2138,8 @@ Suppose $f$ is continuous in $[a,b]$ and differentiable in $(a,b)$. Then $\exist
        \draw (axis cs:8.7,0.97) -- (axis cs:8.7,-0.04) node at (axis cs:8.7,-0.1) {$b$};
        \draw (axis cs:6.8,0.55) -- (axis cs:6.8,-0.04)  node at (axis cs:6.8,-0.1) {$a$};
         \draw[<->] (axis cs:9,0.53) -- (axis cs:9,0.65) node at (axis cs: 9.5,0.6) {\small $f(b) - f(a)$};
-         \node[text width=4cm] at (axis cs:7.5,0.8) {\small straight line gradient $= \frac{f(x)-f(a)}{x-a}$};
+         \node[text width=4cm] at (axis cs:7.5,0.8) {\small straight line gradient $= \frac{f(b)-f(a)}{b -a}$};
+           \draw (axis cs:7.5,0.55) -- (axis cs:7.5,-0.04)  node at (axis cs:7.5,-0.1) {$\xi$};
   \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -2150,12 +2158,10 @@ Define a new function
 
 If $g(a) = g(b) = 0$ and $g$ is continuous and differentiable. 
 
-Now use Rolle's Theorem on $g(x) \implies \exists \zeta \text{ s.t. } g'(\zeta) = 0 \text{ and } a < \zeta < b$. Now $g'(x) = f'(x) - \frac{f(b) = f(a)}{b-a}$, so 
-\[0 = g'(\zeta) = f'(\zeta) - \frac{f(b) - f(a)}{b-a}\]
-
-Or
-\[f'(\zeta) = \frac{f(b) - f(a)}{b-a}\]
-for \emph{some} $\zeta \in (a,b)$.
+Now use Rolle's Theorem on $g(x) \implies \exists \xi \text{ s.t. } g'(\xi) = 0 \text{ and } a < \xi < b$. Now $g'(x) = f'(x) - \frac{f(b) - f(a)}{b-a}$, so 
+$0 = g'(\xi) = f'(\xi) - \frac{f(b) - f(a)}{b-a}$, or
+\[f'(\xi) = \frac{f(b) - f(a)}{b-a}\qedhere\]
+%for \emph{some} $\xi \in (a,b)$.
 \end{proof}
 
 
@@ -2167,24 +2173,20 @@ If $f(x)$ and $g(x)$ are differentiable in some interval about $x=a$, and $f(a) 
 or
 \[\lim_{x \to a}\frac{f(x)}{g(x)} = \lim_{x \to a}\frac{f'(x)}{g'(x)}\]	
 Provided both limits exist [Second one used when $g'(a) = 0$]
-\end{theorem}\vspace*{5pt}
+\end{theorem}
 
 
 \begin{proof}
 Use MVT. Assume $x > a$. 
-\[\frac{f(x) - f(a)}{x-a} = f'(\zeta)\]
-for some $\zeta \in (a,x)$. 
+$\frac{f(x) - f(a)}{x-a} = f'(\xi)$
+for some $\xi \in (a,x)$. Also 
+$\frac{g(x) - g(a)}{x-a} = g'(z)$
+for some $z \in (a,x)$. Now $f(a) = g(a) = 0$. So 
 
-Also 
-\[\frac{g(x) - g(a)}{x-a} = g'(z)\]
-for some $z \in (a,x)$. 
-
-Now $f(a) = g(a) = 0$. So 
-
-\[\frac{f(x)}{g(x)} = \frac{(x-a)f'(\zeta)}{(x-a)g'(z)} = \frac{f'(\zeta)}{g'(z)}\]
+\[\frac{f(x)}{g(x)} = \frac{(x-a)f'(\xi)}{(x-a)g'(z)} = \frac{f'(\xi)}{g'(z)}\]
 Then 
-\[\lim_{x \to a} \left[\frac{f(x)}{g(x)}\right] = \lim_{x \to a}\left[\frac{f'(\zeta)}{g'(z)}\right]\]
-Where $\zeta, z \in (a,x)$. 
+\[\lim_{x \to a} \left[\frac{f(x)}{g(x)}\right] = \lim_{x \to a}\left[\frac{f'(\xi)}{g'(z)}\right]\]
+Where $\xi, z \in (a,x)$. 
 \end{proof}\vspace*{5pt}
 
 
@@ -2226,15 +2228,16 @@ Find
 
 As $x \to 2$, the numerator $\to 0$, denominator $\to 0$. Se we use Del'hop: [Notice you could replace $\tan$ with $\sin$ since $\cos \to 1$ as $n \to 2$.]
 
-\[
-\begin{aligned}
-  \lim_{x \to 2} \left[\frac{(x-2)\log(x-1)}{\tan^2\pi x}\right] &= \lim_{n \to 2}\left[\frac{\log(x-1) + \frac{x-2}{x-1}}{2\tan\pi x\cdot \sec^2\pi x\cdot \pi}\right] \\
+\begin{align*}
+  \lim_{x \to 2} \left[\frac{(x-2)\log(x-1)}{\tan^2\pi x}\right] &= \lim_{n \to 2}\left[\frac{\log(x-1) + \frac{x-2}{x-1}}{2\tan\pi x\cdot \sec^2\pi x\cdot \pi}\right]
+  \end{align*}
+\begin{align*}
+ \lim_{n \to 2}\left[\frac{\log(x-1) + \frac{x-2}{x-1}}{2\tan\pi x\cdot \sec^2\pi x\cdot \pi}\right]
   &= \frac{1}{2\pi\sec^22\pi} \lim_{x \to 2} \left[\frac{\log(x-1) + \frac{(x-1)-1}{x-1}}{\tan \pi x}\right]\\
   &= \frac{1}{2\pi \cdot 1}\lim_{x \to 2} \left[\frac{\frac{1}{x-1} + \frac{1}{(x-1)^2}}{\pi\sec^2\pi x}\right]\\
   &= \frac{1}{2\pi}\left[\frac{1 + 1}{\pi}\right]\\
   &= \frac{1}{\pi^2}
-\end{aligned}
-\]	
+\end{align*}
 \end{example}
 
 
@@ -2245,39 +2248,38 @@ i.e. Exponentials ``beat'' powers.
 \end{proposition}
 
 \begin{proof}Using de L'Hopital's rule: 
-\[
-\begin{aligned}
+
+\begin{align*}
   \lim_{x \to \infty}\left[\frac{x^n}{e^{\alpha x}}\right] 
   &= \lim_{x \to \infty} \left[\frac{nx^n}{\alpha e^{\alpha x}}\right]\\
   &= \lim_{x \to \infty}\left[\frac{n(n-1)x^{n-2}}{\alpha^2e^{\alpha x}}\right]\\
-  &= 0
-\end{aligned}
-\]
+  &= 0\qedhere
+\end{align*}
+
 \end{proof}
 \emph{Is this proof OK?}
 
 \begin{proof}[Alternative Proof.]
 Consider 
-\[
-\begin{aligned}
+
+\begin{align*}
   0 \leq \frac{x^n}{e^{\alpha n}} &= \frac{x^n}{1 + \alpha x + \frac{1}{2}\alpha^2x^2 + \dots + \frac{1}{(n+1)!}\alpha^{n+1}x^{n+1}}\\
   &< \frac{x^n}{\frac{1}{(n+1)!}\alpha^{n+1}x^{n+1}}\\
-  &= \frac{A}{x} \to 0 \text{ as } x \to \infty 
-\end{aligned}
-\]
+  &= \frac{A}{x} \to 0 \text{ as } x \to \infty \qedhere
+\end{align*}
 \end{proof}
 
 It follows (see Problem Sheet 2) that: 
 \[\lim_{n \to 0^+} x^{\alpha}(\log x) = 0\]
 (where $\alpha > 0$)
 
-\[\boxed{* \text{ Exponentials ``beat'' powers which ``beats'' logs in any struggle. } *}\]~\\
+\[\boxed{* \text{ Exponentials ``beat'' powers which ``beats'' logs in any struggle. } *}\]\vspace*{5pt}
 
 
 \subsubsektion{Applications of the Mean Value Theorem}
 
-Recall MVT: If $f$ is continuous and differentiable on $[a,b]$, then $\exists \zeta \in (a,b)$ such that
-\[\frac{f(b)-f(a)}{b-a} = f'(\zeta)\]
+Recall MVT: If $f$ is continuous and differentiable on $[a,b]$, then $\exists \xi \in (a,b)$ such that
+\[\frac{f(b)-f(a)}{b-a} = f'(\xi)\]
 
 RHS is unknown. But if $f'$ can be bounded in some way, we can estimate things well.\\
 
@@ -2287,46 +2289,48 @@ What is $\sin^{-1}(0.7)$?
 Use the MVT. Let $f(x) = \sin^{-1}(x)$, $a = 0.7, b = \frac{\sqrt{2}}{2} = 0.7071$. Then $\sin^{-1}(b) = \frac{\pi}{4}$. 
 
 Also $f'(x) = \frac{1}{\sqrt{1-x^2}}$, so the MVT says: 
-\[\frac{\sin^{-1}(\frac{\sqrt{2}}{2}) - \sin^{-1}(0.7)}{\frac{\sqrt{2}}{2} - 0.7} = \frac{1}{\sqrt{1-\zeta^2}}\]
-For $0.7<\zeta < 0.7071$.  
+\[\frac{\sin^{-1}(\frac{\sqrt{2}}{2}) - \sin^{-1}(0.7)}{\frac{\sqrt{2}}{2} - 0.7} = \frac{1}{\sqrt{1-\xi^2}}\]
+For $0.7<\xi < 0.7071$.  
 
 Now $\dfrac{1}{\sqrt{1-x^2}}$ is an increasing function. So 
 \[\frac{1}{\sqrt{1-(0.7)^2}} 
-< \frac{1}{\sqrt{1-\zeta^2}} 
+< \frac{1}{\sqrt{1-\xi^2}} 
 < \frac{1}{\sqrt{1-\frac{1}{\sqrt{2}}^2 }} = \sqrt{2}\]
 
 \[
 \begin{aligned}
-  \frac{\frac{\pi}{4} - \sin^{-1}(0.7)}{\frac{1}{\sqrt{2}}-0.7} = \frac{1}{\sqrt{1-\zeta^2}} < \sqrt{2} 
+  \frac{\frac{\pi}{4} - \sin^{-1}(0.7)}{\frac{1}{\sqrt{2}}-0.7} = \frac{1}{\sqrt{1-\xi^2}} < \sqrt{2} 
 \end{aligned}
 \]
 
 \[\begin{aligned}\implies \frac{\pi}{4}-\sin^{-1}(0.7) &< \sqrt{2}(\textstyle{\frac{1}{\sqrt{2}}} - 0.7)\\
 &= 1 - 0.7\sqrt{2}\\[0.2cm]
 \implies \sin^{-1}(0.7) &> \frac{\pi}{4} -1 + 0.7\sqrt{2}\end{aligned}\]
-\end{example}\vspace*{5pt}
+\end{example}\vspace*{10pt}
 
 \begin{example}
 What is $\sin(1)$?
 
 Let $f(x) = \sin x, a = 1, b = \frac{\pi}{3}$. Then by the MVT: 
 
-\[\frac{\sin(\pi/3) - \sin(1)}{\pi/3 -1} = \cos \zeta < 1\]
+\[\frac{\sin(\pi/3) - \sin(1)}{\pi/3 -1} = \cos \xi < 1\]
 \[\implies -(\frac{\pi}{3}-1) < \frac{\sqrt{3}}{2} - \sin(1) < \frac{\pi}{3} -1\]
 \[\implies \frac{\sqrt{3}}{2} - \frac{\pi}{3} + 1 < \sin(1) < \frac{\sqrt{3}}{2} + \frac{\pi}{3} -1\]	
-\end{example}
-\pagebreak 
+\end{example}\vspace*{5pt}
+
+\pagebreak
 
 \subsektion{Taylor's Theorem}
 \emph{Can we generalise the mean value theorem for functions with many derivative?} \lecturemarker{17}{21/11}
 
 We can write
 \[f(x) = f(a) + (x-a)f'(a) + \frac{1}{2}(x-a)^2f''(a) +  \dots + \frac{1}{n!}(x-a)^nf^{(n)}(a) + E_n\]
-Where $E_n$ is the error after $n+1$ terms of the Taylor series. 
+Where $E_n$ is the error after $n+1$ terms of the Taylor series. \\
+
 
 \begin{theorem}[Taylor's Theorem]
 	The error term in the Taylor Expansion
-	\[E_n = \int_a^x \frac{f^{(n+1)}(t)(x-t)^n}{n!}\,dt = \frac{(x-a)^{n+1}}{(n+1)!}f^{(n+1)}(\zeta)\]
+	\[E_n = \int_a^x \frac{f^{(n+1)}(t)(x-t)^n}{n!}\,dt = \frac{(x-a)^{n+1}}{(n+1)!}f^{(n+1)}(\xi)\]
 \end{theorem}
 
 \begin{proof}
@@ -2351,13 +2355,13 @@ Now by the Intermediate Value Theorem, in the interval $[a,x]$, $f^{(n+1)}$ atta
 \[\implies \int_a^x\frac{m(x-t)^n}{n!} \leq \int_a^x\frac{f^{(n+1)}(t)(x-t)^n}{n!} \leq \int_a^x \frac{M(x-t)^n}{n!}\]\vspace*{5pt}
 \[\implies \frac{m(x-a)^{n+1}}{(n+1)!} \leq \int_a^x\frac{f^{(n+1)}(t)(x-t)^n}{n!} \leq \frac{M(x-a)^{n+1}}{(n+1)!}\]
 
-So for $\zeta \in (a,x)$, we also have \[E_n = \frac{(x-a)^{n+1}}{(n+1)!}f^{(n+1)}(\zeta)\qedhere\]
+So for $\xi \in (a,x)$, we also have \[E_n = \frac{(x-a)^{n+1}}{(n+1)!}f^{(n+1)}(\xi)\qedhere\]
 \end{proof}
 
 
 Note: If $n = 0$, Taylor's theorem becomes the Mean Value Theorem
 
-\[f(x) = f(a) + E_0 = f(a) + \frac{(x-a)}{1!}f'(\zeta)\]
+\[f(x) = f(a) + E_0 = f(a) + \frac{(x-a)}{1!}f'(\xi)\]\vspace*{5pt}
 
 \begin{example}
 \emph{What is $\sinh(1)$}?
@@ -2365,14 +2369,14 @@ Note: If $n = 0$, Taylor's theorem becomes the Mean Value Theorem
 \[\sinh = x + \frac{x^3}{3!} + E\]
 
 By taylor's theorem:
-\[E = \frac{x^5}{5!}(\sinh\zeta)^{(5)} = \frac{x^5}{5!}\cosh \zeta, \quad 0 < \zeta < x\]
+\[E = \frac{x^5}{5!}(\sinh\xi)^{(5)} = \frac{x^5}{5!}\cosh \xi, \quad 0 < \xi < x\]
 
 When $x = 1$
-\[E = \frac{1}{5!}\cos \zeta, \quad 0 < \zeta < x\]
+\[E = \frac{1}{5!}\cos \xi, \quad 0 < \xi < x\]
 
-As $\cosh\zeta = \frac{e^x + e^{-x}}{2}$ is an increasing function, so 
+As $\cosh\xi = \frac{e^x + e^{-x}}{2}$ is an increasing function, so 
 
-\[\cosh\zeta < \frac{e + e^{-1}}{2} < e < 3\]
+\[\cosh\xi < \frac{e + e^{-1}}{2} < e < 3\]
 
 So 
 \[E < \frac{3}{5!} = \frac{3}{120} = \frac{1}{40} = 0.025\]
@@ -2383,16 +2387,13 @@ So
 Improve yesterday's approximation of $\sin(1)$. 
 
 Use Taylor series about $x = \frac{\pi}{3} = a$ in formula: 
-
 \[
 \begin{aligned}
   \sin(1) &= \sin(\pi/3) + (1-\pi/3)\cos(\pi/3) + \frac{1}{2}(1-\pi/3)^2(-\sin(\pi/3))\\
-   &+ \frac{1}{6}(1-\pi/3)^3(-\cos\pi/3) + \frac{1}{4!}(1-\pi/3)^4\sin\zeta
+   &+ \frac{1}{6}(1-\pi/3)^3(-\cos\pi/3) + \frac{1}{4!}(1-\pi/3)^4\sin\xi
 \end{aligned}
 \]
-where $1 < \zeta < \pi/3$. 
-
-So approximately: 
+where $1 < \xi < \pi/3$. So approximately: 
 \[\sin(1) \approx \frac{\sqrt{3}}{2} + \frac{1}{2}(1-\pi/3) + \frac{1}{2}(1-\pi/3)^2(-\frac{\sqrt{3}}{2}) + \frac{1}{6}(1-\pi/3)^3)-\frac{1}{2})\]
 
 Error $< \frac{1}{24}(\frac{1}{20})^4$ since $\frac{\pi}{3} \equiv 1.0472 < 1.05$. 
@@ -2409,7 +2410,7 @@ Let $y = x-a$
 If you are asked for an expansion about $x=1$, say, 
 \[f(x) = c_0 + c_1(x-1) + c_2(x-1)^2 + \mathcal{O}(x-1)^3\]
 
-\emph{Don't write this as} $d_0 + d_1x + d_2x^2 + \mathcal{O}(x-1)^3$
+\emph{Don't write this as} $d_0 + d_1x + d_2x^2 + \mathcal{O}(x-1)^3$; this will lead to confusion over what you're expanding in (which may mislead you to break the golden rule.)
 
 
 \subsektion{Stationary Points}
@@ -2417,15 +2418,8 @@ If you are asked for an expansion about $x=1$, say,
 Most important \lecturemarker{18}{21/11} practical use of differentiation is in finding maxima and minima of functions. Formally\vspace*{5pt}
 
 \begin{definition}
-A \emph{stationary point} of a differentiable function $f(x)$ is a point $(a, f'(a))$ where $f'(a) = 0$. 
+A \emph{stationary point} of a differentiable function $f(x)$ is a point $(a, f'(a))$ where $f'(a) = 0$. Such a point may be maximium, minimum or neither. 
 \end{definition}
-
-Such a point may be 
-\begin{itemize}
-  \item Maximum
-  \item Minimum
-  \item Neither
-\end{itemize}
 
 Near such a point, we can expand (if $f$ is suitably differentiable): 
 \[f(x) = f(a) + (x-a)f'(a) + \frac{1}{2}(x-a)^2f''(a) + \frac{1}{6}(x-a)^3f'''(a) + \dots \]
@@ -2448,9 +2442,7 @@ Hence if
 \end{itemize}
 
 Usually if $f'(a) = 0$, we look at the sign of $f''(a)$ and that would be enough. 
-\end{itemize}\vspace*{5pt}
-
-Use your intelligence... for instance\\
+\end{itemize}\vspace*{10pt}
 
 \begin{example}
 Suppose
@@ -2485,9 +2477,9 @@ extra x ticks={0,1},
 extra x tick labels={$0$,$1$},
 axis y line=middle,
 axis x line=middle,
-width=9cm,height=5cm
+width=7cm,height=4cm
 ]
-\addplot[domain =0: 3,smooth] {x + 1/x};
+\addplot[Blue,domain =0: 3,smooth] {x + 1/x};
 \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -2501,69 +2493,82 @@ So $x = 1$ \emph{must} be a minimum.
 	A point of \emph{inflexion} is where $f''(x) = 0$. It is \emph{not} necessary for $f'(x)$ to also be zero. 
 \end{definition}
 
+%
+%\begin{center}
+%\begin{tikzpicture}[scale = 0.8]
+%\begin{axis}[
+%minor tick num=0,
+%xtick=\empty,
+%ytick=\empty,
+%extra x ticks={0,1},
+%extra x tick labels={$0$,$1$},
+%axis y line=middle,
+%axis x line=middle,
+%width=9cm,height=5cm
+%]
+%\addplot[domain =5: 15,smooth] {(x-10)^3 + 2*(x-10)^2 - 10*(x-10) +100};
+%\node (1000,1000) {$f'' = 0$};
+%\end{axis}
+%\end{tikzpicture}
+%\end{center}
+
 
 \begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-minor tick num=0,
-xtick=\empty,
-ytick=\empty,
-extra x ticks={0,1},
-extra x tick labels={$0$,$1$},
-axis y line=middle,
-axis x line=middle,
-width=9cm,height=5cm
-]
-\addplot[domain =5: 15,smooth] {(x-10)^3 + 2*(x-10)^2 - 10*(x-10) +100};
-\end{axis}
+\begin{tikzpicture}[scale=.8]
+\draw[->] (0,0) -- (7,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,3) node [left] {$y$};	
+\draw [Blue]  plot [smooth, tension=1] coordinates { (0,0) (1,0.5) (2.5,2.5) (4.5,1)  (5.5,4)};
+\node  at (4.2,2.5) {$f'' = 0$};
+\draw[->] (4.2,2.2) -- (3.7,1.6);
 \end{tikzpicture}
 \end{center}
 
 
 By Rolle's Theorem $\exists$ a point where $(f')' = 0$ between the zeros of $f'$. 
 
+%
+%
+%\begin{center}
+%\begin{tikzpicture}
+%\begin{axis}[
+%minor tick num=0,
+%xtick=\empty,
+%ytick=\empty,
+%extra x ticks={0,1},
+%extra x tick labels={$0$,$1$},
+%axis y line=middle,
+%axis x line=middle,
+%width=9cm,height=5cm
+%]
+%\addplot[domain =-5:5,smooth] {1/(x^2 + 1)};
+%\end{axis}
+%\end{tikzpicture}
+%\end{center}
+%
 
-
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-minor tick num=0,
-xtick=\empty,
-ytick=\empty,
-extra x ticks={0,1},
-extra x tick labels={$0$,$1$},
-axis y line=middle,
-axis x line=middle,
-width=9cm,height=5cm
-]
-\addplot[domain =-5:5,smooth] {1/(x^2 + 1)};
-\end{axis}
-\end{tikzpicture}
-\end{center}
-
-\subsubsektion{Curve Plotting} 
+\subsektion{Curve Plotting}
 
 It's very important to be able to give a schematic sketch of a function, i.e. the graph $y = f(x)$. This is \emph{not} the best way of defining a curve. $y = f(x)$ has only one $y$ value for each $x$ value. 
 
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-minor tick num=0,
-xtick=\empty,
-ytick=\empty,
-extra x ticks={0,1},
-extra x tick labels={$0$,$1$},
-axis y line=middle,
-axis x line=middle,
-width=9cm,height=5cm
-]
-\addplot[domain =-5:5,smooth] {1/(x^2 + 1)};
-\end{axis}
-\end{tikzpicture}
-\end{center}
+%\begin{center}
+%\begin{tikzpicture}
+%\begin{axis}[
+%minor tick num=0,
+%xtick=\empty,
+%ytick=\empty,
+%extra x ticks={0,1},
+%extra x tick labels={$0$,$1$},
+%axis y line=middle,
+%axis x line=middle,
+%width=9cm,height=5cm
+%]
+%\addplot[domain =-5:5,smooth] {1/(x^2 + 1)};
+%\end{axis}
+%\end{tikzpicture}
+%\end{center}
+%
 
-
-\subsektion{Parametric Curves}\vspace*{5pt}
+\subsubsektion{Parametric Curves}\vspace*{5pt}
 
 
 \begin{definition}
@@ -2574,22 +2579,30 @@ which defines \emph{any} curve for suitable $f,g$ and parameter $t$.
 \end{definition}\vspace*{5pt}
 
 \begin{example}
-\[\left. x = t-\sin t, y = 1-\cos t\right\} 0 < t\]	
+\[
+\begin{rcases*}
+ x = t-\sin t\\
+ y = 1-\cos t 
+ \end{rcases*}
+  0 < t
+\]	
 
-\emph{What is $\dfrac{dy}{dx}$}? 
+
+\emph{What is $\dfrac{\mathrm{d}y}{\mathrm{d}x}$}? 
 \[
 \begin{aligned}
-  \frac{dy}{dx} &= \frac{dy}{dt} \cdot \frac{dt}{dx} = \frac{dy}{dt} / \frac{dx}{dt}\\
-  &= \frac{\sin t}{1-\cos t}\\
+  \frac{\mathrm{d}y}{\mathrm{d}x} &= \frac{\mathrm{d}y}{dt} \cdot \frac{dt}{\mathrm{d}x} = \frac{\mathrm{d}y}{dt} / \frac{\mathrm{d}x}{dt}\\[.3cm]
+  &= \frac{\sin t}{1-\cos t}\\[.3cm]
   &= \frac{2\sin\frac{t}{2}\cos\frac{t}{2}}{2\sin^2\frac{t}{2}}\\
   &= \cot \frac{t}{2}
 \end{aligned}
 \]
 
-Now $\dfrac{dy}{dx} = \cot\frac{t}{2}$ is infinite at $t = 0$, $0$ at $t = \pi$, infinite at $t = 2\pi$. 
+Now $\dfrac{\mathrm{d}y}{\mathrm{d}x} = \cot\frac{t}{2}$ is infinite at $t = 0$, $0$ at $t = \pi$, infinite at $t = 2\pi$. 
 
 At $t = 0, x = 0, y = 0$. Note that $0 \leq y \leq 2$. 
 
+\begin{center}
 \begin{tikzpicture}
     \begin{axis}[
     minor tick num=0,
@@ -2599,15 +2612,16 @@ extra x ticks={3.14,6.28},
 extra x tick labels={$\pi$,$2\pi$},
 axis y line=middle,
 axis x line=middle,
-width=15cm,height=5cm,
+width=10cm,height=4cm,
 ymax=3,
             ]
     \addplot [domain=0:5*pi,samples=100]({x-sin(deg(x)},{1-cos(deg(x))}); 
     \addplot[domain = 0:15.7, dashed] {2};
     \end{axis}
-    \node at (4,3.5) {$x = t -\sin t$};
-     \node at (4,3) {$y = 1-\cos t$};
+    \node at (10,2) {$x = t -\sin t$};
+     \node at (10,1.5) {$y = 1-\cos t$};
 \end{tikzpicture}
+\end{center}
 
 This plots the path of a point on the circumference of a wheel as it moves down a road - a \emph{cycloid}. 
 
@@ -2615,15 +2629,78 @@ This plots the path of a point on the circumference of a wheel as it moves down 
 
 There \lecturemarker{19}{25/11} are more than one way of parameterising a curve.\\
 
-\begin{example}[Hyperbola]
+\begin{example}[Hyperbola] The rectangular hyperbola is $x^2 - y^2 = 1$. 
+\begin{center}
+\begin{tikzpicture}
+  \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+  \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+ \draw[scale=0.55,domain=-1:1,smooth,variable=\t] plot ({2*sec(\t r)},{1.5*tan(\t r)});
+  \draw[scale=0.55,domain=-1:1,smooth,variable=\t] plot ({-2*sec(\t r)},{1.5*tan(\t r)}); 
+  \draw [dashed] (-1.5,-1.5) -- (1.5,1.5);
+    \draw [dashed] (1.5,-1.5) -- (-1.5,1.5);
+\end{tikzpicture}
+\end{center}
+If we want to parametrise it, we could write 
+\[
+  \begin{rcases*}
+  x =\cosh s\\
+  y= \sinh s	
+  \end{rcases*}
+  \cosh^2 - \sinh^2 = 1
+\]
+\[
+  \implies x^2 - y^2 = 1
+\]
 
-$x^2 - y^2 = 1$. 
+As $\cosh s > 0$, we now get $x < 0$ using this parametrisation:
+\begin{center}
+\begin{tikzpicture}
+  \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+  \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+ \draw[scale=0.55,domain=-1:1,smooth,variable=\t] plot ({2*sec(\t r)},{1.5*tan(\t r)});
+ \draw [->] (1.55,.8) -- (1.56,.81) node at (2.5,1.5) {\small $s \to \infty$};
+  \draw [dashed] (-1.5,-1.5) -- (1.5,1.5);
+    \draw [dashed] (1.5,-1.5) -- (-1.5,1.5);
+\end{tikzpicture}
+\end{center}
 
+Instead we use $\sec^2\theta = 1 + \tan^2\theta$, i.e. write
+\[
+  \begin{rcases*}
+  x = \sec\theta\\
+  y = \tan\theta 	
+  \end{rcases*} 0 \leq \theta \leq 2\pi 
+\]
+This parametrisation captures the whole curve. 
+\begin{center}
+\begin{tikzpicture}
+  \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+  \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+ \draw[scale=0.55,domain=-1:1,smooth,variable=\t] plot ({2*sec(\t r)},{1.5*tan(\t r)});
+  \draw[scale=0.55,domain=-1:1,smooth,variable=\t] plot ({-2*sec(\t r)},{1.5*tan(\t r)}); 
+  \draw [->] (1.55,.8) -- (1.56,.81) node at (2.5,1.5) {\small $\theta  \to \frac{\pi}{2}$};
+  \draw [->] (-1.55,-.81) -- (-1.54,-.8) node at (-2.5,-1.5) {\small $\theta  = \frac{\pi}{2} + \epsilon $};
+  \draw [->] (-1.54,.8) -- (-1.55,.81)  node at (-2.5,1.5) {\small $\theta  \to \frac{3\pi}{2}$};     
+  \draw [->]  (1.55,-.81) -- (1.54,-.8)  node at (2.5,-1.5) {\small $\theta  = \frac{3\pi}{2} + \epsilon$};         
+  \draw [dashed] (-1.5,-1.5) -- (1.5,1.5);
+    \draw [dashed] (1.5,-1.5) -- (-1.5,1.5);
+   \draw (1.1,-.1) -- (1.1,.1) node at (1.5,-.2) {\tiny $\theta = 0$};
+\end{tikzpicture}
+\end{center}
+There are others, such as $x = \sec \alpha^3,\, y = \tan\alpha^3$ for $0 \leq \alpha \leq (2\pi)^{\frac{1}{3}}$, or $\sec(\beta + 3000),\, \tan(\beta + 3000)$. 
 \end{example}
 
-\pagebreak
+If $x = f(\theta)$, $y = g(\theta)$. We can find $\frac{dy}{dx} = \frac{g'}{f'}$ or 
+\begin{align*}
+  \frac{d^2y}{dx^2} &= \frac{d}{dx}\left(\frac{g'}{f'}\right)\\
+  &= \frac{d\theta}{dx}\frac{d}{d\theta}\left(\frac{\theta'}{f'}\right)\\
+  &= \frac{1}{f'}\frac{f'g'' - g'f''}{f'^2}
+\end{align*}
 
-\subsektion{Arc length}
+The second derivative $y''$ is closely related to the \emph{curvature} of a curve.
+
+
+\subsubsektion{Arc length}
 
 If I move along a curve $y = y(x)$, a small distance 
 \[(x,y) \to (x+\delta x, y + \delta x)\]
@@ -2634,40 +2711,35 @@ then the distance moved is $\delta s$ where $\delta s^2 = \delta x^2 + \delta y^
 \begin{tikzpicture}
 \draw [->] (0,0) -- (6,0) node[pos = 1, below] {$x$}; 
 \draw [->] (0,0) -- (0,4) node[pos = 0.9, left] {$y$};	
-\draw[color = blue] (0, 0.2) .. controls (1, 2) and (3, 2.2) .. (5.5, 3.8);
+\draw[color = Blue] (0, 0.2) .. controls (1, 2) and (3, 2.2) .. (5.5, 3.8);
 \fill (2,2) circle (2 pt);
 \fill (3,2.5) circle (2 pt);
-\draw [dashed] (2,2) -- (3,2) node [pos = 0.5,below] {$dx$};
-\draw [dashed] (3,2) -- (3,2.5) node [pos = 0.5, right] {$dy$};
+\draw [dashed] (2,2) -- (3,2) node [pos = 0.5,below] {$\mathrm{d}x$};
+\draw [dashed] (3,2) -- (3,2.5) node [pos = 0.5, right] {$\mathrm{d}y$};
 \draw [thick] (2,2) -- (3,2.5) node [pos = 0.5, above] {$ds$};
 \end{tikzpicture}
 \end{center}
 
 More formally: 
-\[ds^2 = dx^2 + dy^2 \text{ is the limit as } \delta x \to 0\]
+\[ds^2 = \mathrm{d}x^2 + \mathrm{d}y^2 \text{ is the limit as } \delta x \to 0\]
 or
-\[\left(\frac{ds}{dt}\right)^2 = \left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2\]
-\[\lim_{\delta t \to 0}\left(\frac{\delta x}{\delta t}\right) = \frac{dx}{dt}\]
+\[\left(\frac{ds}{dt}\right)^2 = \left(\frac{\mathrm{d}x}{dt}\right)^2 + \left(\frac{\mathrm{d}y}{dt}\right)^2\]
+\[\lim_{\delta t \to 0}\left(\frac{\delta x}{\delta t}\right) = \frac{\mathrm{d}x}{dt}\]
 by definition. 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale =0.6]
 \draw [->] (-0.5,0) -- (9,0) node[pos = 1, below] {$x$}; 
 \draw [->] (0,-0.5) -- (0,5.5) node[pos = 0.9, left] {$y$};	
-\draw[color = blue] (0, 0.6) .. controls (2, 0.5) and (3, 1.5) .. (7, 5.2);
+\draw[color = Blue] (0, 0.6) .. controls (2, 0.5) and (3, 1.5) .. (7, 5.2);
 \fill (2.8,1.5) circle (2 pt);
-\draw [dashed] (2.8,1.5) -- (5,1.5) node [pos = 0.5,below] {\small $1/\sqrt{1+y'^2}$};
-\draw [dashed] (5,1.5) -- (5,3) node [pos = 0.5, right] {\small $|y'|/\sqrt{1+y'^2}$};
+\node at (5.2,2)  {\small $\frac{dy}{dx} = \tan\psi$};
 
-\draw [->] (2.8, 1.5) -- (5,3) node [anchor = south west] {$\hat{v}$};
-\draw [->] (2.8, 1.5) -- (1.5, 3.5) node [anchor = south east] {$\hat{n}$};
+\draw [->] (2.8, 1.5) -- (5,3);
       
-\draw [dashed] (1.5,3.5) -- (1.5, 1.5) node [pos = 0.5, left] {\tiny $1/\sqrt{1+y'^2}$};
-\draw [dashed] (1.5,1.5) -- (2.8,1.5) node [pos = -0.1, below] {\tiny $|y'|/\sqrt{1+y'^2}$};
-
 \end{tikzpicture}
 \end{center}
-\[\tan \psi = \dfrac{dy}{dx}, \cos\psi = \dfrac{dx}{ds}, \sin\psi = \dfrac{dy}{ds}\]
+\[\tan \psi = \dfrac{\mathrm{d}y}{\mathrm{d}x}, \cos\psi = \dfrac{\mathrm{d}x}{ds}, \sin\psi = \dfrac{\mathrm{d}y}{ds}\]
 
 \begin{definition}
 \[\begin{rcases*}
@@ -2686,17 +2758,17 @@ The rate of change of angle with distance along the curve.
 
 \emph{How can we relate this to Cartesian coordinates}? 
 
-\[\tan\psi = \frac{dy}{dx}, \cos\psi = \frac{dx}{ds}, \kappa = \frac{d\psi}{ds} = \frac{d\psi}{dx}\frac{dx}{ds}\]
+\[\tan\psi = \frac{\mathrm{d}y}{\mathrm{d}x}, \cos\psi = \frac{\mathrm{d}x}{ds}, \kappa = \frac{d\psi}{ds} = \frac{d\psi}{\mathrm{d}x}\frac{\mathrm{d}x}{ds}\]
 
 Differentiate $\tan\psi$ with respect to $x$ implicitly
-\[\implies \frac{d^2y}{dx^2} = \frac{d}{Dx}(\tan\psi) = \sec^2\psi\frac{d\psi}{dx}\]
+\[\implies \frac{d^2y}{\mathrm{d}x^2} = \frac{d}{\mathrm{d}x}(\tan\psi) = \sec^2\psi\frac{d\psi}{\mathrm{d}x}\]
 
 Hence 
-\[\kappa = \frac{\cos\psi\frac{d^2y}{dx^2}}{\sec^2\psi} = \frac{y''}{\sec^2\psi}\]
+\[\kappa = \frac{\cos\psi\frac{d^2y}{\mathrm{d}x^2}}{\sec^2\psi} = \frac{y''}{\sec^2\psi}\]
 
-Now $\sec^2\psi = 1 + \tan^2\psi = 1+\left(\frac{dy}{dx}\right)^2$. Hence 
+Now $\sec^2\psi = 1 + \tan^2\psi = 1+\left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2$. Hence 
 \[\boxed{\kappa = \frac{y''}{(1 + (y')^2)^{3/2}}}\]
-where $y' = \frac{dy}{dx}$, $y'' = \frac{d^2y}{dx^2}$.\\
+where $y' = \frac{\mathrm{d}y}{\mathrm{d}x}$, $y'' = \frac{d^2y}{\mathrm{d}x^2}$.\\
 
 \begin{definition}
 We also define the \emph{radius of curvature}. 
@@ -2705,12 +2777,12 @@ We also define the \emph{radius of curvature}.
 
 This is the radius of the osculating circle: 
 \begin{center}
-  \begin{tikzpicture}
+  \begin{tikzpicture}[scale=.8]
     %\draw [->] (0, 0) -- (3, 0) node [right] {$\frac{\Delta \vec{r}}{\Delta t}$};
     %\draw [->] (0, 0) -- (2.2, 0.5) node [above] {$\vec{v}(t)$};
     %\draw [->] (-1.5, -1.5) -- (0, 0) node at (0,-0.5) {$\vec{r}(t)$};
     %\draw [->] (-1.5, -1.5) -- (2, 0) node at (2,-0.5) {$\vec{r}(t+\Delta t)$};
-    \draw[color = blue] (-1.5, -0.5) .. controls (0, 0.3) and (2, 1) .. (4, -2.5);
+    \draw[color = Blue] (-1.5, -0.5) .. controls (0, 0.3) and (2, 1) .. (4, -2.5);
     \draw [dashed] (0.7,-1.65) circle [radius = 1.8];
     \draw (0.7,-1.65) -- (0.9,0.15) node [pos = 0.5, left] {$\rho$};
     \draw [->] (0.95,0.1) -- (0.82,-1.2) node [pos = 0.9, right] {$\hat{n}$};
@@ -2719,14 +2791,11 @@ This is the radius of the osculating circle:
 	%\draw[color = red, ->] (0,0) -- (2,0);
   \end{tikzpicture}
 \end{center}
+\vspace*{5pt}
 
+\subsubsektion{Polar Coordinates}\vspace*{5pt}
 
-
-
-\subsektion{Polar Coordinates}\vspace*{5pt}
-
- \lecturemarker{20}{21/11}
-\begin{definition} Given a point $(x,y)$ we can define 
+\begin{definition}  \lecturemarker{20}{21/11}Given a point $(x,y)$ we can define 
 \[r = \sqrt{x^2 + y^2} \geq 0\]
 and 
 \[
@@ -2769,7 +2838,20 @@ Where $l$ and $e$ are constants. (See \textsc{M1A1 Mechanics})
 \emph{How do we plot such a curve}?
 
 \begin{itemize}
-  \item[(a)] Join the dots. Find points on the curve to get an idea of how it looks.
+  \item[(a)] Join the dots. Find points on the curve to get an idea of how it looks. For $r = \dfrac{1}{1 + e\cos\theta}$, note that $e \geq1$. $1 + e\cos\theta$ may be zero. 
+ \begin{center}
+\begin{tikzpicture}[scale = 1.2]
+  \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+  \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+  \begin{scope}[shift ={(-1.5,0)}]
+ \draw[scale=0.55,domain=-1.2:1.2,smooth,variable=\t] plot ({2*sec(\t r)},{1.5*tan(\t r)});
+ \draw [->] (1.55,.8) -- (1.56,.81) node at (2.5,1.5) {\small $\theta_0$};
+ \end{scope}
+  \draw [dashed] (-1.5,-1.5) -- (1.5,1.5);
+    \draw [dashed] (1.5,-1.5) -- (-1.5,1.5);
+\end{tikzpicture}
+\end{center}
+  
   
   \item[(b)] Regard Polar Coordinates as a parametric definition.
 
@@ -2863,7 +2945,7 @@ Pictorially, we are forming $n+1$ rectangles whose sum resembles the area under 
 We now let $n \to \infty$ in such a manner than $(x_{i+1} - x_i) \to 0$ for all $i$.\\
 
 \begin{definition}If the sequence $S_n$ tends to a limit, and if this limit does not depend on the particular partitions nor the value of $\xi$ we choose, we can write this as the \emph{definite integral} of $f(x)$ between $x=a$ and $x=b$. 
-\[\lim_{n \to \infty} S_n = \int_a^b f(x)\, dx\]
+\[\lim_{n \to \infty} S_n = \int_a^b f(x)\, \mathrm{d}x\]
 
 The function $f(x)$ is the \emph{integrand}.
 \end{definition}
@@ -2871,12 +2953,12 @@ As the integral is a generalisation of a sum, it behaves similarly to one. Vario
 
 \begin{theorem}[Mean Value Theorem for Integrals]
 	Suppose $f$ is integrable in $[a,b]$. Then $\exists \xi \in (a,b)$, such that 
-	 \[\int_a^b f(x)\,dx = (b-a)f(\xi)\]
+	 \[\int_a^b f(x)\,\mathrm{d}x = (b-a)f(\xi)\]
 \end{theorem}
 
 \begin{proof}
 Being integrable, $f$ is bounded by $m \leq f(x) \leq M$, so then 
-\[m(b-a) \leq \int_a^b f(x)\,dx \leq M(b-a)\]
+\[m(b-a) \leq \int_a^b f(x)\,\mathrm{d}x \leq M(b-a)\]
 
 Suppose $m$ and $M$ are the minimum and maximum values attained by a continuous function $f$ over $[a,b]$ then $(b-a)f(x)$ attains every value between $(b-a)m$ and $(b-a)M$ in $[a,b]$. In particular the value equal to the integral.
 \end{proof}
@@ -2885,7 +2967,7 @@ Suppose $m$ and $M$ are the minimum and maximum values attained by a continuous 
 
 \begin{theorem}[Fundamental Theorem of Calculus]
 Differentiation is the reverse of integration:
-	\[\frac{d}{dx}\int_a^x f(t)\, dt = f(x)\]
+	\[\frac{\mathrm{d}}{\mathrm{d}x}\int_a^x f(t)\, dt = f(x)\]
 \end{theorem}
 \begin{proof}
 If we fix the lower limit $a$ then $f(x)$ defines another function:
@@ -2906,14 +2988,14 @@ Thus
 \[\lim_{h \to 0}\left[\frac{F(x+h) - F(x)}{h}\right] = \lim_{h \to 0}f(\xi)\]
 
 As $h \to 0$, $\xi \to x$. Thus the limit on the RHS exists and equals $f(x)$, and so $F(x)$ is differentiable with derivative $f(x)$, so
-\[\frac{d}{dx}\int_a^x f(t)\, dt = f(x)\]
+\[\frac{\mathrm{d}}{\mathrm{d}x}\int_a^x f(t)\, dt = f(x)\qedhere\]
 \end{proof}
 
 
 \emph{What sort of functions are integrable?} 
 
 \begin{itemize}
-  \item[(a)] Continuous functions. $f$ continuous on $[a,b] \implies \int_a^b f(x)\, dx$ exists
+  \item[(a)] Continuous functions. $f$ continuous on $[a,b] \implies \int_a^b f(x)\, \mathrm{d}x$ exists
   \item[(b)] Functions with a single \emph{finite} jump
   \item[(c)] Functions with a finite number of finite jumps
   \item[(d)] If there are an infinite number of discontinuities we're not sure. Integrable.
@@ -2925,26 +3007,26 @@ As $h \to 0$, $\xi \to x$. Thus the limit on the RHS exists and equals $f(x)$, a
 
 \subsektion{Integrals over infinite ranges}
 
-\emph{Does $\int_0^{\infty} f(x)\,dx$ exist?} 
+\emph{Does $\int_0^{\infty} f(x)\,\mathrm{d}x$ exist?} 
 
 Assume $f(x)$ is continuous. 
 
-\[\int_0^{\infty} f(x)\,dx = \lim_{N \to \infty} f(x)\,dx\]
+\[\int_0^{\infty} f(x)\,\mathrm{d}x = \lim_{N \to \infty} f(x)\,\mathrm{d}x\]
 Clearly 
 \begin{itemize}
-  \item[(a)] $f(x) = x$, the limit does not exist $\int_0^N x\,dx = \frac{1}{2}N^2 \to \infty$
+  \item[(a)] $f(x) = x$, the limit does not exist $\int_0^N x\,\mathrm{d}x = \frac{1}{2}N^2 \to \infty$
   \item[(b)] $f(x) = 1$ limit does not exist similarly.
  \item[(c)] $f(x) = \sin x$ 
 \end{itemize}\vspace*{5pt}
 
-We might surmise that a necessary condition for $\int_0^{\infty} f(x)\,dx$ to exist is that $f(x) \to 0$ as $x \to \infty$. In fact this is not true. $\int_0^{\infty} \sin(x^2)\,dx$ does not exist - this is not obvious. 
+We might surmise that a necessary condition for $\int_0^{\infty} f(x)\,\mathrm{d}x$ to exist is that $f(x) \to 0$ as $x \to \infty$. In fact this is not true. $\int_0^{\infty} \sin(x^2)\,\mathrm{d}x$ does not exist - this is not obvious. 
 
 What is true, is that if $\lim_{x \to \infty} f(x) = A \neq 0$, then integral does not exist. 
 
-Suppose $f(x) \to 0$ as $x \to \infty$. In particular, if $f(x) \approx \frac{1}{x^a}$ as $x \to \infty$, then $\int_0^{\infty} f(x)\, dx$ exists iff $\alpha > 1$.\\
+Suppose $f(x) \to 0$ as $x \to \infty$. In particular, if $f(x) \approx \frac{1}{x^a}$ as $x \to \infty$, then $\int_0^{\infty} f(x)\, \mathrm{d}x$ exists iff $\alpha > 1$.\\
 
 \lecturemarker{22}{21/11} 
-\begin{theorem} If $f(x)$ is integrable and $|f(x)| < \frac{A}{x^{\alpha}}$ as $x \to \infty$ if $\alpha > 1$. Then $\int^{\infty} f(x)\, dx$ exists. 
+\begin{theorem} If $f(x)$ is integrable and $|f(x)| < \frac{A}{x^{\alpha}}$ as $x \to \infty$ if $\alpha > 1$. Then $\int^{\infty} f(x)\, \mathrm{d}x$ exists. 
 \end{theorem}
 
 \emph{What if $f(x)$ has an infinite discontinuity}?\\
@@ -2954,7 +3036,7 @@ E.g. \[f(x) = \begin{cases}
  1 & \mbox{ if $x = 0$}	
  \end{cases}
 \]	
-\emph{Does $\displaystyle{\int_{-1}^1 f(x)\,dx}$ exist?}
+\emph{Does $\displaystyle{\int_{-1}^1 f(x)\,\mathrm{d}x}$ exist?}
 
 Look at 
 \[\int_{-1}^{-\delta} + \int_{-\delta}^{\epsilon} + \int_{\epsilon}^1 \mbox{, where $\delta, \epsilon >0$. 
@@ -2963,7 +3045,7 @@ Look at
 So only the behaviour very close to the singularity is important.\\
 
 Consider 
-\[\int_0^! \frac{1}{x^{\alpha}}\,dx \text{, define as }\lim_{\epsilon \to 0^+}\int_{\epsilon}^1 \frac{1}{x^{\alpha}}\,dx\]
+\[\int_0^! \frac{1}{x^{\alpha}}\,\mathrm{d}x \text{, define as }\lim_{\epsilon \to 0^+}\int_{\epsilon}^1 \frac{1}{x^{\alpha}}\,\mathrm{d}x\]
 
 Then we consider
 \[\frac{[x^{1-\alpha}]_{\epsilon}^1}{1-\alpha} = \frac{1-\epsilon^{1-\alpha}}{1-\alpha}\]
@@ -2973,32 +3055,32 @@ Now let $\epsilon \to 0$:
 \begin{itemize}
   \item If $\alpha > 0$. $\epsilon^{1-\alpha} \to \infty \implies$ integral does not exist. 
   \item If $\alpha < 1$, $\epsilon^{1-\alpha} \to 0\implies$ integral does exist. 
-  \item If $\alpha = 1$, we get $\int_{\epsilon}^1 \frac{1}{x}\,dx = \log \epsilon \to \infty$ as $\epsilon \to 0$. 
+  \item If $\alpha = 1$, we get $\int_{\epsilon}^1 \frac{1}{x}\,\mathrm{d}x = \log \epsilon \to \infty$ as $\epsilon \to 0$. 
 \end{itemize}\vspace*{5pt}
 
-So if $f \to \infty$ at $x = 0$ and otherwise continuous, $\int_0^1 f\,dx$ will exist if $f \approx \frac{1}{x^\alpha}$ where $\alpha < 1$ near $x = 0$. Similarly if $f(x)$ has a singularity at $x =c$ say, we need $f \approx \frac{1}{(x-c)^{\alpha}}$ where $\alpha < 1$ near $x=c$ for integral to exist.\\
+So if $f \to \infty$ at $x = 0$ and otherwise continuous, $\int_0^1 f\,\mathrm{d}x$ will exist if $f \approx \frac{1}{x^\alpha}$ where $\alpha < 1$ near $x = 0$. Similarly if $f(x)$ has a singularity at $x =c$ say, we need $f \approx \frac{1}{(x-c)^{\alpha}}$ where $\alpha < 1$ near $x=c$ for integral to exist.\\
 
 \begin{example}
 \[\int_0^x \frac{e^x}{(x-1)^{1/3}}\
-,dx\]	
+,\mathrm{d}x\]	
 
 The only problem is at $x=1$. Near $x=1$, 
-\[\text{Integral} \approx \int\frac{e}{(x-1)^{1/3}}\,dx\]
+\[\text{Integral} \approx \int\frac{e}{(x-1)^{1/3}}\,\mathrm{d}x\]
 The power is $-\frac{1}{3}$ at the singularity, so as $\alpha = \frac{1}{3} < 1 \implies$ integral does exist.
 \end{example}
 
 Functions with a finite number of (``$\alpha < 1$''), ``not too bad'' infinite singularities as integrable.\\
 
 \begin{example}
-%What is $\int_0^{\frac{3\pi}{4}} \sec^2x\,dx$?
+%What is $\int_0^{\frac{3\pi}{4}} \sec^2x\,\mathrm{d}x$?
 \[
 \begin{aligned}
-  \int_0^{\frac{3\pi}{4}} \sec^2x\,dx &= \left[\tan x\right]_0^{\frac{3\pi}{4}}\\
+  \int_0^{\frac{3\pi}{4}} \sec^2x\,\mathrm{d}x &= \left[\tan x\right]_0^{\frac{3\pi}{4}}\\
   &= \tan \frac{3\pi}{4} - \tan 0\\
   &= -1
 \end{aligned}
 \]
-But... $\sec^2x > 0 \implies \int \sec^2x> 0$.\\
+But... $\sec^2x > 0 \implies \int \sec^2x> 0$.
 
 \emph{So what has gone wrong?} $\sec^2x$ has a singularity at $x = \frac{\pi}{2}$: 
 
@@ -3007,7 +3089,7 @@ But... $\sec^2x > 0 \implies \int \sec^2x> 0$.\\
 \begin{tikzpicture}
 \begin{axis}
         [
-    ymin=0,ymax=5,
+        ymin = 0, ymax = 30,
     xmin=0,xmax=3.5,
     %clip=false,
     xtick=\empty,
@@ -3022,14 +3104,12 @@ But... $\sec^2x > 0 \implies \int \sec^2x> 0$.\\
     xlabel=$x$,ylabel=$y$,
     width=8cm,height=5cm
     ]
-    \addplot [black, domain = 0:1.50, smooth] {sec(deg(x))^2};
-      \addplot [black, domain = 2:3.5,smooth] {sec(deg(x))^2};
+    \addplot [black, domain = 0:1.5, smooth] {sec(deg(x))^2};
+      \addplot [black, domain = 1.7:3.5,smooth] {sec(deg(x))^2};
 \end{axis}
 \end{tikzpicture}
 \end{center}
-
-
-
+vc 
 
 \[
 \begin{aligned}
@@ -3041,49 +3121,47 @@ But... $\sec^2x > 0 \implies \int \sec^2x> 0$.\\
 Near $x = \frac{\pi}{2}$, $\sec^2x = \frac{1}{(\frac{\pi}{2}-x)^2}$. So $\alpha = 2 > 1 \implies$  not integrable. 
 
 Hence 
-\[\int_0^{\frac{3\pi}{4}}\sec^2x\,dx = ``\infty" \neq -1\]
+\[\int_0^{\frac{3\pi}{4}}\sec^2x\,\mathrm{d}x = ``\infty" \neq -1\]
 \end{example}
 
 \begin{warning} Important to look at Infinities!! \end{warning}
 
 
 \begin{theorem}[Integration by Substitution]
- \[\int_{\phi(a)}^{\phi(b)} f(x)\,dx = \int_a^b f(\phi(t))\phi'(t)\,dt\]
+ \[\int_{\phi(a)}^{\phi(b)} f(x)\,\mathrm{d}x = \int_a^b f(\phi(t))\phi'(t)\,dt\]
 \end{theorem}
 \begin{proof}
 Using the chain rule: 
 \[
 \begin{aligned}
-  \frac{d}{dx}\left[F(\phi(t))\right] &= F'(\phi(t))\cdot\phi'(t)\\
+  \frac{d}{\mathrm{d}x}\left[F(\phi(t))\right] &= F'(\phi(t))\cdot\phi'(t)\\
   &= f(\phi(t))\cdot\phi'(t)
 \end{aligned}
 \]
 
 Suppose $F(x) = \int^x f(s)\,ds$, then $F'(x) = f(x)$. Now integrating with respect to $t$: 
-\[
-\begin{aligned}
+\begin{align*}
   \int_a^b \frac{d}{dt}\left[F(\phi(t))\right]\,dt &= \int_a^b f(\phi(t))\cdot\phi'(t)\,dt\\
   F(\phi(b)) - F(\phi(a)) &= \int_a^b f(\phi(t))\cdot\phi'(t)\,dt\\
-  \int_{\phi(a)}^{\phi(b)} f(x)\,dx &+ \int_a^b f(\phi(t))\cdot\phi'(t)\,dt
-\end{aligned}
-\]
+  \int_{\phi(a)}^{\phi(b)} f(x)\,\mathrm{d}x &+ \int_a^b f(\phi(t))\cdot\phi'(t)\,dt\qedhere
+\end{align*}
 \end{proof}
 
 So starting with 
-\[ \int_{\phi(a)}^{\phi(b)} f(x)\,dx\]
-we can make a substitution $x = \phi(t)$. Replace $dx$ by $\phi'(t)\,dt$ and replace the limits accordingly. This is very useful for evaluating integrals. But this is even more useful:\\
+\[ \int_{\phi(a)}^{\phi(b)} f(x)\,\mathrm{d}x\]
+we can make a substitution $x = \phi(t)$. Replace $\mathrm{d}x$ by $\phi'(t)\,dt$ and replace the limits accordingly. This is very useful for evaluating integrals. But this is even more useful:\\
 
 \begin{theorem}[Integration by Parts]
-\[\int_a^b uv'\,dx = [uv]_a^b - \int_a^bu'v\,dx\]
+\[\int_a^b uv'\,\mathrm{d}x = [uv]_a^b - \int_a^bu'v\,\mathrm{d}x\]
 \end{theorem}
 \begin{proof}
-	Recall the product rule: $\frac{d}{dx}(uv) = \frac{du}{dx}v + \frac{dv}{dx}u$. 
+	Recall the product rule: $\frac{d}{\mathrm{d}x}(uv) = \frac{du}{\mathrm{d}x}v + \frac{dv}{\mathrm{d}x}u$. 
 	
 	\[
 \begin{aligned}
-  \int_a^b \frac{d}{dx}(uv)\,dx &= \int_a^b \frac{du}{dx}v\,dx + \int_a^b u\frac{du}{dx}\,dx\\
-  [uv]_a^b &= \int_a^b u'v\,dx + \int_a^b uv'dx\\
- \implies \int_a^b uv'\,dx &= [uv]_a^b - \int_a^b u'v\,dx
+  \int_a^b \frac{d}{\mathrm{d}x}(uv)\,\mathrm{d}x &= \int_a^b \frac{du}{\mathrm{d}x}v\,\mathrm{d}x + \int_a^b u\frac{du}{\mathrm{d}x}\,\mathrm{d}x\\
+  [uv]_a^b &= \int_a^b u'v\,\mathrm{d}x + \int_a^b uv'\mathrm{d}x\\
+ \implies \int_a^b uv'\,\mathrm{d}x &= [uv]_a^b - \int_a^b u'v\,\mathrm{d}x
 \end{aligned}
 \]
 \end{proof}
@@ -3091,12 +3169,12 @@ we can make a substitution $x = \phi(t)$. Replace $dx$ by $\phi'(t)\,dt$ and rep
 This enables us to transform an integral into another integral which may be easier to evaluate, for example:\\
 
 \begin{example}\lecturemarker{23}{4/12}
-\[\int_0^1 \tan^{-1}x\,dx = I\]
+\[\int_0^1 \tan^{-1}x\,\mathrm{d}x = I\]
 
 Treat this as $1\cdot\tan^{-1}x$ - $\tan^{-1}x$ is easy to differentiate. 
 \[
 \begin{aligned}
-  I &= [x\tan^{-1}x]_0^1 - \int_0^1 x \frac{1}{1+x^2}\,dx\\
+  I &= [x\tan^{-1}x]_0^1 - \int_0^1 x \frac{1}{1+x^2}\,\mathrm{d}x\\
   &= \pi-0 - \left[\frac{1}{2}\log(1+x^2)\right]_0^1\\
   &= \frac{\pi}{4} - \frac{1}{2}\log 2
 \end{aligned}
@@ -3115,18 +3193,17 @@ Any integral is an answer - it defines a function in its own right. \emph{Some} 
   
   We use partial fractions to express rational fractions as 
   \[\sum_{i=1}^N \frac{A_i}{x-\alpha_i} + \frac{B_ix + c_i}{x^2 + \beta_i + \gamma_i}\text{ etc.}\]
-  
+\end{itemize}
+
   \begin{example}
   \[
 \begin{aligned}
-  \int \frac{dx}{x^3 + 1} &= \int \frac{dx}{(x+1)(x^2-x+1)}\\
-  &= \int \frac{1/3}{x+1} + \frac{-1/3x + 2/3}{x^2-x+1}\,dx
+  \int \frac{\mathrm{d}x}{x^3 + 1} &= \int \frac{\mathrm{d}x}{(x+1)(x^2-x+1)}\\
+  &= \int \frac{1/3}{x+1} + \frac{-1/3x + 2/3}{x^2-x+1}\,\mathrm{d}x
 \end{aligned}
 \]
 	
   \end{example}
-
-\end{itemize}
 
 
 \subsektion{Reduction Formulae}\lecturemarker{24}{5/12}
@@ -3136,17 +3213,604 @@ If we were an integral with a parameter, $n$ (usually an integer), we can someti
 \begin{example}
 \[
 \begin{aligned}
-  I_n &= \int_0^{\frac{\pi}{2}} \sin^nx\,dx \quad n \geq 1 \\
-  &= \int_1^{\frac{\pi}{2}} \sin x \sin^{n-1}x\,dx\\
-  &= [-cos x - \sin^{-1}x_0^{\frac{\pi}{2}} - \int_0^{\frac{\pi}{2}} (-\cos x)(n-1)\sin^{n-2}x\cdot \cos\,dx\\
-  &= \int_0^{\frac{\pi}{2}}(n-1)\cos^2x\sin^{n-2}x\,dx 
+  I_n &= \int_0^{\frac{\pi}{2}} \sin^nx\,\mathrm{d}x \quad n \geq 1 \\
+  &= \int_1^{\frac{\pi}{2}} \sin x \sin^{n-1}x\,\mathrm{d}x\\
+  &= [-\cos x - \sin^{-1}x_0^{\frac{\pi}{2}} - \int_0^{\frac{\pi}{2}} (-\cos x)(n-1)\sin^{n-2}x\cdot \cos\,\mathrm{d}x\\
+  &= \int_0^{\frac{\pi}{2}}(n-1)\cos^2x\sin^{n-2}x\,\mathrm{d}x\\
+  &= \int_0^{\frac{\pi}{2}}(1-\sin^2x)\sin^{n-2}x\,\mathrm{d}x\\
+  &= (n-1)\int_0^{\frac{\pi}{2}} \sin^{n-2}x\,\mathrm{d}x - (n-1)\int_0^{\frac{\pi}{2}}\sin^nx\,\mathrm{d}x\\
+  &= (n-1)I_{n-2} - (n-1)I_n\\[.2cm]
+\implies I_n  &= \frac{(n-1)}{n}I_{n-2}
 \end{aligned}
 \]
-	
+So we end up with a reduction formula. This can be applied repeatedly, i.e. 
+\[
+  I_n = \left(\frac{n-1}{n}\right)I_{n-2} = \left(\frac{n-1}{n}\right)\left(\frac{n-3}{n-2}\right)I_{n-4}
+\]
+So we can say 
+\[
+  I_n =\left(\frac{n-1}{n}\right) \left(\frac{n-3}{n-2}\right)\left(\frac{n-5}{n-4}\right)\dots \begin{cases}
+ \frac{4}{5}\cdot \frac{2}{3} I_1 \mbox{ if $n$ is odd}\\	
+  \frac{4}{4}\cdot \frac{1}{2} I_0 \mbox{ if $n$ is even}\\	
+ \end{cases}
+\]
+Now 
+\[
+  I_1 = \int_0^{\frac{\pi}{2}} (\sin x)^0 \,\mathrm{d}x = \int_0^{\frac{\pi}{2}} 1\,\mathrm{d}x = \frac{\pi}{2}
+\]
+\[
+  I_0= \int_0^{\frac{\pi}{2}} \sin x\,\mathrm{d}x = \left.-\cos x\,\right|^{\frac{\pi}{2}}_0 = 0--1 = 1
+\]
+e.g.
+\[
+  \int_0^{\frac{\pi}{2}} \sin^{10}x\,\mathrm{d}x = \frac{9}{10}\cdot\frac{7}{8}\cdot \frac{5}{6}\cdot\frac{3}{4}\cdot\frac{1}{2}\cdot\frac{\pi}{2}
+\]
+and 
+\[
+  \int_0^{\frac{\pi}{2}} \sin^9x\,\mathrm{d}x = \frac{8}{9}\cdot\frac{6}{7} \cdot \frac{4}{5} \cdot \frac{2}{3} \cdot 1
+\]
+\end{example}\vsp
+
+
+\emph{What about $\int_0^{\frac{\pi}{2}} \cos^{10}x\,\mathrm{d}x$?} Let $y=  \frac{1}{2} -x$, then $I_n = \int_0^{\frac{\pi}{2}} \sin^{10}y\,\mathrm{d}y$, yielding the same formula. 
+
+There are many others, techniques are similar.\\
+
+\begin{example} 
+\[
+  \int_0^{\frac{\pi}{4}} \sec^nx\,\mathrm{d}x,\quad \int_0^{1}x^m(1-x)n\,\mathrm{d}x \text{ etc.} 
+\]
+
+Consider 
+\[
+  \int_0^\infty e^{-\alpha x}\,\mathrm{d}x \quad (\alpha >0) = \left[\frac{e^{-\alpha x}}{-\alpha}\right]^\infty_0 = \frac{1}{\alpha}
+\]
+Then differentiating w.r.t. $\alpha$
+\begin{align*}
+  \frac{1}{\alpha} &= \int_0^\infty e^{-\alpha x}\,\mathrm{d}x \\
+  \implies \frac{-1}{\alpha^2} &= \frac{d}{\mathrm{d}x}\int_0^\infty e^{-\alpha x}\,\mathrm{d}x \\
+  &= \int_0^\infty -xe^{-\alpha x}\,\mathrm{d}x 
+\end{align*}
+Repeating this 
+\begin{align*}
+  \frac{2}{\alpha^3} &= \int_0^\infty (-x)^2e^{-\alpha x}\,\mathrm{d}x \\
+  &\vdots\\
+  (-1)^n \frac{n!}{\alpha^{n+1}} &= \int_0^\infty (-x)^ne^{-\alpha x}\,\mathrm{d}x 
+\end{align*}
+Now put $\alpha = 1$, we get
+\[
+  \boxed{n! = \int_0^\infty x^ne^{-x}\,\mathrm{d}x}
+\]
+%It works! You don't have to trust it.
 \end{example}
+
+Recall that the MVT for integrals is
+\[
+  \int_a^b f(x)\,\mathrm{d}x = (-ba)f(\xi)
+\]
+for some $a < \xi < b$. i.e. 
+\[
+  \int f(\xi)\,\mathrm{d}x = \frac{1}{b-a} \int_a^b f(x)\,\mathrm{d}x
+\]
+So $\xi$ is the \emph{average} of $f(x)$ or the mean value. Hence the name of the theorem.
+
+We can also define average values for functions defined on a line of any shape or an area or volume. 
 
 
 \subsektion{Path Integrals}
+Consider 
+\[
+  \int_c f\,\mathrm{d}s
+\]
+where $\mathrm{d}s$ is the arc length and $f$ is some function defined on the curve.
+\begin{center}
+\begin{tikzpicture}
+		\draw plot [smooth, tension=1] coordinates {(0,0) (0.5,0.6) (2,1) (3.5,1.4) (4,2)};
+		\draw(0.43,0.7) -- (0.58,0.50) node [below] {\small $s_1$};
+		\draw(1,0.85) -- (1.1,0.65) node [below] {\small $s_2$};		
+		\draw(3.5,1.55) -- (3.6,1.35) node [below] {\small $s_{N-1}$};			
+		\fill (4,2) circle (1.5pt) node [above] {$s_N$};
+		\fill (0,0) circle (1.5pt) node [below] {$s_0$};	
+		\node at (2,1.2) {$f$};	
+\end{tikzpicture}
+\end{center}
+\[
+  \int_0^c f\,\mathrm{d}s =  \sum f(s_n)(s_{n+1}-s_n)
+\]
+as before, we can calculate the limit of the sum of small steps. 
+
+\emph{How can we calculate it?}
+\[
+  \int_c f\,\mathrm{d}s  = \int_{x_0}^{x_1} f\frac{ds}{\mathrm{d}x}\,\mathrm{d}x 
+\]
+Now from a right angled triangle, we know that
+\[
+ \left(\frac{\mathrm{d}s}{\mathrm{d}x}\right)^2 = \left(1 + \left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2\right)
+\]
+
+we can then try to find \[\int_{x_0}^{x_1} f\sqrt{1 + \left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2}\,\mathrm{d}x = \mbox{ integral of $f$ along the path defined by $y(x)$}\]
+
+Set $f =1 $ and we get the \emph{length} of any curve. 
+\[
+  L = \int_{0}^{1} f\sqrt{1 + \left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2}\,\mathrm{d}x
+\]
+
+\begin{example}Find the length of the quarter circle $x^2 + y^2 = 1$. 
+\[
+  L = \int_{x_0}^{x_1} f\sqrt{1 + \left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2}\,\mathrm{d}x
+\]
+Now for $y = \sqrt{1 - x^2}$
+\[
+  \frac{\mathrm{d}y}{\mathrm{d}x} = \frac{-x}{\sqrt{1-x^2}}
+\]
+
+Substitute in and evaluate the integral. We expect to get $\frac{\pi}{2}$: 
+\begin{align*}
+  L &= \int_0^1 \sqrt{1 + \frac{x^2}{1-x^2}}\,\mathrm{d}x\\
+  &= \int_0^1 \sqrt{\frac{1-x^2 + x^2}{1-x^2}}\,\mathrm{d}x\\
+  &= \int_0^1 \sqrt{\frac{1}{1-x^2}}\,\mathrm{d}x\\
+  &= \left.\arcsin\right|_0^1 = \frac{\pi}{2}
+\end{align*}
+\end{example}\vsp
+
+The problem with \lecturemarker{25}{9/12} evaluating  $\int x \,ds$ of a half circle is that we have $\pm$ values of $y$... It's better to define the curve parametrically. 
+
+\emph{How do we do this?}
+
+Say let $x = \cos\theta$, $y = \sin\theta$ for $-\frac{\pi}{2} \leq \theta \leq \frac{\pi}{2}$. In general 
+\begin{align*}
+  \frac{ds^2}{d\theta^2} &= \frac{\mathrm{d}x^2}{d\theta^2} + \frac{\mathrm{d}y^2}{d\theta^2}\\[.2cm]
+\implies ds  &= \sqrt{\left(\frac{\mathrm{d}x}{d\theta}\right)^2 + \left(\frac{\mathrm{d}y}{d\theta}\right)^2}\,d\theta 
+\end{align*}
+So 
+\begin{align*}
+  \int_c x\,ds &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos\theta \sqrt{(\sin\theta)^2 + (\cos\theta)^2}\,d\theta\\
+  &=  \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}  \cos\theta\,d\theta \\
+  &= \left.\sin\theta\,\right|_{-\frac{\pi}{2}}^{\frac{\pi}{2}} = 2
+\end{align*}
+
+This is in some sense the ``average" $x$ value over $c$. Divide by the length of the curve $= \int_c 1\,ds = \pi$, so $\frac{2}{\pi}$ is the mean $x$ value of $c$. This is the $x$-coordinate of the \emph{centre of mass} (See \textsc{M1A1 Mechanics} for examples)
+\begin{align*}
+  \int f\,ds &= \int f\sqrt{1 + \left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2}\,\mathrm{d}x \\
+  &= \int f\sqrt{\left(\frac{\mathrm{d}x}{dt}\right)^2 + \left(\frac{\mathrm{d}y}{dt}\right)^2}\,dt
+\end{align*}
+for any parameter $t$. 
+
+The generalisation to $3D$ is easy... Suppose $x,y$ and $z$ are given parametrically in terms of $t$. Then the length of the curve is described by:
+\[
+  \int_{t_0}^{t_1}\sqrt{\left(\frac{\mathrm{d}x}{dt}\right)^2 + \left(\frac{\mathrm{d}y}{dt}\right)^2 + \left(\frac{dz}{dt}\right)^2}\,dt
+\]
+
+\begin{example} If $x = y,\, y= \cos t,\, z = \sin t$ this a helix. The length of a helix is 
+\[
+  \int_{t_0}^{t_1} \sqrt{1 + \sin^2t + \cos^2t}\,dt = \sqrt{2}(t_1 - t_0)
+\]
+\end{example}
+
+
+
+\subsektion{Area of Integrals}
+
+Suppose we have a rectangle in the $x-y$ plane. Divide into many smaller rectangles and evaluate a function $f(x,y)$ in each of the small rectangles and add up the answers. 
+\[
+  \sum_m \sum_n f
+\]
+Take the limit as $m,n \to \infty$. if it works, we define an area integral:
+\[
+  \iint f\,\mathrm{d}x\,\mathrm{d}y= \iint f\,\mathrm{d}A
+\]
+
+\emph{Can we evaluate this area integral easily? }\\
+
+\begin{example} Suppose $D$ is the rectangle bounded by $x = (1,0),\, y= (0,2)$. What is $\iint_D (y^2 = xy)\,\mathrm{d}x\,\mathrm{d}y$?
+
+
+
+\begin{center}
+\begin{tikzpicture}[scale = 0.8]
+\draw[->] (0,0) -- (3,0) node [right] {$x$};
+\draw[->] (0,0) -- (0,2.5) node[left] {$y$};
+\draw (0,0) rectangle (1,2);	
+\node at (1,-.4) {$1$};
+\node at (-.3,2) {$2$};
+\node at (0.5,1) {$D$};
+\end{tikzpicture}
+\end{center}
+
+We argue that we can first treat $x$ as a constant and integrate $\mathrm{d}y$ and then later integrate $\mathrm{d}x$. We are just adding small rectangles in a particular way. 
+
+So keeping $x$ constant and integrating $\mathrm{d}y$ first: 
+\begin{align*}
+    \iint f\,\mathrm{d}x\,\mathrm{d}y &= \int\left(\int f\,\mathrm{d}y\right)\,\mathrm{d}x\\
+    &= \int\left(\int f\,\mathrm{d}x\right)\,\mathrm{d}y
+\end{align*}
+\begin{align*}
+  \implies \iint_D y^2 + xy\,\mathrm{d}x\,\mathrm{d}y &= \int_0^1 \left(\int_0^2 (y^2 + xy)\,\mathrm{d}y\right)\,\mathrm{d}x\\
+  &= \int_0^1 \left[\frac{1}{3}y^3 + \frac{1}{2}xy^2\right]^2_0\,\mathrm{d}x\\
+  &=\int_0^1 (\textstyle{\frac{8}{3}} + 2x)\,\mathrm{d}x\\
+  &=\textstyle{\frac{8}{3}} - 2\\
+  &= -\frac{11}{5}
+\end{align*}
+
+\emph{What if we do it the other way round?}
+
+Then 
+\begin{align*}
+  \iint_D (y^2 + xy)\,\mathrm{d}x\,\mathrm{d}y = \int_0^2 \left(\int_0^1 (y^2 + xy)\,\mathrm{d}x\right)\,\mathrm{d}x = -\frac{11}{5}
+\end{align*}
+\end{example}
+
+
+This works! \emph{Mirabile dicta!} The fact that $D$ was rectangular was very useful because the limits in each integral were constants. What about:\\
+
+\begin{example}
+\[
+  I = \iint_D x\,\mathrm{d}A
+\]
+
+Where $A$ is the triangle bounded by $(0,0), (1,1)$ and $(1,2)$, as in the picture:
+\begin{center}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (3,0) node [right] {$x$};
+\draw[->] (0,0) -- (0,2.5) node[left] {$y$};
+\draw (0,0) -- (2,2.5) -- (2,1) -- (0,0) node at (1.4,1.2) {$D$};
+\node at (1,2) {\small $y = 2x$};
+\node at (1.6,0.4) {\small $y = x$};
+\node at (2.2,2.7) {\small $(2,1)$};
+\node at (2.5,1.1) {\small $(1,1)$};
+\end{tikzpicture}	
+\end{center}
+
+Taking horizontal strips is harder than vertical strips because of the change in limit as we'll see... 
+
+\textsc{Vertical Strips.} Keep $x$ a contant	 and integrate $\mathrm{d}y$: 
+\begin{align*}
+  I &= \int_0^1 \left(\int_x^{2x} x\,\mathrm{d}y\right)\,\mathrm{d}x\\ 
+  &= \int_0^1 \left[xy\right]_x^{2x}\,\mathrm{d}x \\
+  &= \int_0^1 (x^2)\,\mathrm{d}x\\
+  &= \left.\frac{1}{3}x^3\right]_0^1 =  \frac{1}{3}
+\end{align*}
+
+
+\textsc{Horizontal Strips.} Keep $y$ constant: 
+
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0.5) -- (3,0.5);
+\draw (0,0.75) -- (3,0.75);
+\draw [line width = 0.5mm] (0,1) -- (3,1);
+\draw (0,1.25) -- (3,1.25);
+\draw (0,1.5) -- (3,1.5);
+\draw (0,1.75) -- (3,1.75);
+\draw (0,2) -- (3,2);
+\fill[white] (0,0) -- (2,2.5) -- (0,2.5) -- (0,0);
+\fill[white] (0,0) -- (3,0) -- (3,3)-- (2,3) -- (2,1) -- (0,0);
+%\draw[fill = white] (0,0) -- (2.2.5) -- (2,1) -- (0,0);
+\draw[->] (0,0) -- (3,0) node [right] {$x$};
+\draw[->] (0,0) -- (0,2.5) node[left] {$y$};
+\draw (0,0) -- (2,2.5) -- (2,1) -- (0,0);
+\node at (2.2,2.7) {\small $(2,1)$};
+\node at (2.5,1.1) {\small $(1,1)$};
+\node at (2,0.5) {\tiny\mbox{Lower $\triangle$}};
+\node at (1,2) {\tiny\mbox{Upper $\triangle$}};
+\end{tikzpicture}	
+\end{center}
+\begin{align*}
+    I &= \underbrace{\int_0^1 \left(\int_{\frac{y}{2}}^{y} x\,\mathrm{d}x\right)\,\mathrm{d}y}_{\mbox{Lower $\triangle$}} +  \underbrace{\int_1^2 \left(\int_\frac{y}{2}^1 x\,\mathrm{d}x\right)\,\mathrm{d}y}_{\mbox{Upper $\triangle$}}\\[.2cm]
+    &= \int_0^1 \left[\frac{1}{2}x^2\right]_\frac{y}{2}^y\,\mathrm{d}y + \int_1^2 \left(\frac{1}{2}x^2\right)_\frac{y}{2}^1\,\mathrm{d}y\\
+    &= \int_0^1 \frac{3}{8}y^2 \,\mathrm{d}y + \int_1^2 \textstyle{\frac{1}{2} - \frac{1}{8}y^2}\,\mathrm{d}y\\
+    &= \left[\frac{1}{8}y^3\right]_0^1 + \left[\textstyle{\frac{1}{2}y - \frac{1}{24}y^3}\right]_1^2\\
+    &= \textstyle{\frac{1}{8} + 1 - \frac{1}{3} - \frac{1}{2} + \frac{1}{24}}\\
+    &= \frac{8}{24} = \frac{1}{3}
+\end{align*}
+
+\end{example}\vsp
+
+
+Changing \lecturemarker{26}{11/Dec} variables in area integrals is possible but tricky - see \textsc{M2AA2} next year. We can write $\mathrm{d}{A}$ in terms of any variables not just $\mathrm{d}x\,\mathrm{d}y$. The only case we'll consider is polar coordinates. 
+
+\subsubsektion{Polar coordinates}
+
+\begin{center}
+\begin{tikzpicture}[>=latex, scale = 0.6]
+
+% Draw the lines at multiples of pi/12
+\foreach \ang in {0,...,31} {
+  \draw [lightgray] (0,0) -- (\ang * 180 / 16:4);
+}
+
+% Concentric circles and radius labels
+\foreach \s in {0, 1, 2, 3} {
+  %\draw [lightgray] (0,0) circle (\s + 0.5);
+  \draw (0,0) circle (\s);
+  \node [fill=white] at (\s, 0) [below] {\scriptsize $\s$};
+}
+
+% Add the labels at multiples of pi/4
+\foreach \ang/\lab/\dir in {
+  0/0/right,
+  1/{\theta = \pi/4}/{above right},
+  2/{\theta = \pi/2}/above,
+  3/{\theta = 3\pi/4}/{above left},
+  4/{\theta = \pi}/left,
+  5/{\theta = 5\pi/4}/{below left},
+  7/{\theta = 7\pi/4}/{below right},
+  6/{\theta = 3\pi/2}/below} {
+  \draw (0,0) -- (\ang * 180 / 4:4.1);
+  \node [fill=white] at (\ang * 180 / 4:4.2) [\dir] {\scriptsize $\lab$};
+}
+
+% The double-lined circle around the whole diagram
+\draw [style=double] (0,0) circle (4);
+
+%\fill [fill=red!50!black, opacity=0.5] plot [domain=2:3] (xy polar cs:angle=\x r,radius= {\x});
+\draw [thick,color=red,domain=0:2*pi,samples=200,smooth] plot (xy polar cs:angle=\x r,radius= {2});
+\node [fill=white] at (2,1) {constant $r$};
+
+\end{tikzpicture} 	
+\end{center}
+
+We argue that a small area element $\delta A \approx \delta r \times ( r\delta \theta)$ (almost a rectangle.) 
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+\draw (0,0) -- (3,0);	
+\draw [->](0,0) -- (2,1.5) node [right] {$\theta$};
+\draw [->](0,0) -- (1.4,2.2) node [right] {$\theta + \delta \theta$};
+\draw [dashed](1.3,0.6) arc (5:100:0.8cm) node [left] {$r$};
+\draw [dashed](1.6,0.9) arc (5:100:1cm) node[left] {$r + \delta r$};
+\node at (1.5,0.8) {$\delta r$};
+\node at (0.82,0.92) {\small $r \delta \theta$};
+\end{tikzpicture}
+\end{center}
+
+
+This suggests that $\mathrm{d}A = r\,\mathrm{d}r\,\mathrm{d}\theta$. (as well as $\mathrm{d}A = \mathrm{d}x\,\mathrm{d}y$).
+
+
+
+So (for suitable limits)
+\[
+  \iint_D f\,\mathrm{d}A = \iint f\,r\,\mathrm{d}r\,\mathrm{d}\theta
+\]
+
+Polar coordinates are useful if the domain of integration, $D$, has circular boundaries, e.g. $D: r \leq a$: 
+\begin{center}
+\begin{tikzpicture}
+\draw[thick,->] (-3,0) -- (3,0);
+\draw[thick,->] (0,-1.5) -- (0,1.5);
+\draw (0,0) circle (1) node at (1.2,-0.3) {$a$};	
+\end{tikzpicture}
+\end{center}
+
+\begin{example}
+Find \[\int 1\,\mathrm{d}A\] over the unit circle. 
+\begin{align*}
+  \int 1\,\mathrm{d}A &= \int_0^{2\pi}\int_0^a 1\,r\mathrm{d}r\,\mathrm{d}\theta\\
+  &= \int_0^{2\pi} \left(\int_0^a r\,\mathrm{d}r\right)\,\mathrm{d}\theta\\
+  &= \int_0^{2\pi} \frac{1}{2}a^2 \,\mathrm{d}\theta \\
+  &= \frac{1}{2}a^2\left[\theta\right]_0^{2\pi}\\
+  &= \pi a^2
+\end{align*}
+\end{example}\vsp
+
+\begin{example}
+If $f = x^2 + xy$, what is $\iint f\,\mathrm{d}A$ over a circle? 
+
+Use polars. $x = r\cos\theta,\, y = r\sin\theta$, so $f = r^2(\cos^2\theta + \sin\theta\cos\theta)$ and so 
+\begin{align*}
+  I = \iint f\,\mathrm{d}A &= \iint r^2(\cos^2\theta + \sin\theta\cos\theta)r\,\mathrm{d}r\,\mathrm{d}\theta\\
+  &= \int_0^{2\pi}(\cos^2\theta + \sin\theta\cos\theta)\left(\int_0^a r^3\,\mathrm{d}r\right)\mathrm{d}\theta\\
+    &= \int_0^{2\pi} (\cos^2\theta + \sin\theta\cos\theta) \left(\frac{1}{4}a^4\right)\mathrm{d}\theta
+\end{align*}
+\begin{align*}
+ \implies I &= \frac{1}{4}a^4\int_0^{2\pi}(\cos^2\theta - \sin\theta\cos\theta)\,\mathrm{d}\theta\\
+  &= \frac{1}{4}a^4\int_0^{2\pi} \frac{1 + \cos2\theta}{2} - \sin\theta\cos\theta\,\mathrm{d}{\theta}\\
+  &= \frac{1}{4}a^4\left[\frac{\theta}{2} + \frac{1}{4}\sin2\theta + \frac{1}{2}\sin^2\theta\right]_0^{2\pi}\\
+  &= \frac{\pi}{4}a^4
+\end{align*}
+\end{example}
+
+Note in the last example that that $\left.\frac{1}{2}\sin^2\theta\right]_0^{2\pi} = \int xy \,\mathrm{d}A$ is $0$. \emph{Why?} We worked out the integral over a circle, which is an odd function of $x$ and of $y$, so since the domain is symmetric, the term is $0$. 
+
+Also note the integral of $\cos^2$ over a whole period is $\frac{1}{2}$.
+
+\subsektion{Volume Integrals}
+
+We can generalise to 3-D. E.g. If we want to integrate $f(x,y,z)$ over the box $0 < x < 1,\, 0< y< 1,\, 0 < z < 1$, we could write it as
+\[
+  \iiint f\,\mathrm{d}V = \int_0^1 \int_0^1 \int_0^1 f\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z
+\]
+\begin{example}
+E.g. $f = xy$
+\begin{align*}
+  \iint f\,\mathrm{d}V &= \int_0^1 \int_0^1 \int_0^1 xy\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z\\
+  &= \int_0^1 \int_0^1 \left[\frac{1}{2}x^2y\right]_0^1\,\mathrm{d}y\,\mathrm{d}z\\
+  &= \int_0^1 \int_0^1 \frac{1}{2}y\,\mathrm{d}y\,\mathrm{d}z\\
+  &= \int_0^1 \left[\frac{1}{4}y^2\right]_0^1\,\mathrm{d}z\\
+  &= \frac{1}{4}
+\end{align*}
+
+\end{example}
+
+
+Note that 
+\[
+  \iint \,\mathrm{d}A = \iint 1\,\mathrm{d}y\,\mathrm{d}x = \int [y] \,\mathrm{d}x
+\]
+
+So the area under a curve can be derived from a double integral. Likewise, an integral over an area can be interpreted as a value. 
+\begin{align*}
+  \iint f\,\mathrm{d}A &= \text{ Volume between surface}
+\end{align*}
+$z = f(x,y)$ and $z = 0$. 
+
+But volume integrals $\longrightarrow 4$ dimensions is hard.\\
+
+\subsubsektion{Volumes of Revolution}
+
+Suppose the curve $y= f(x)$ is rotated about the $x$-axis through $2\pi$. \emph{What is the volume formed?} 
+
+
+
+\begin{center}
+%%%%%%%% Set function values %%%%%%%
+% Set the x = a and x = b values of the
+% domain here where a <= x <= b.
+\def\aDomain{0}
+\def\bDomain{3.14159}
+% Set the function.
+% The variable must be \x, e.g. \x^2.
+\def\fcn{sin(\x r)}
+%\def\fcn{sqrt(\x)}
+% Set min and max values of the function
+% (c <= f(x) <= d). Used for the y-axis.
+\def\cRange{0}
+\def\dRange{1}
+% Set the color of the back half.
+% This can look good as a different color
+% if it looks like the inside.
+\def\backColor{red!80!black}
+% Set the color of the front half. lightgray looks
+% good for both back and front.
+\def\frontColor{red!80!black}
+% Set the number of shading circles to draw.
+% More gives a more even color. Enter 1 for
+% no shading; a large number makes it slow.
+% Use the following two lines while editing and then
+% change the speed to 100 for the final version.
+%\def\speed{1}
+%\pgfmathsetmacro\xShadingSteps{3* \speed}
+\pgfmathsetmacro\xShadingSteps{300}
+% Set the number of x radius grid circles.
+\def\xGridSteps{8}
+% Set the number of radial grid lines.
+\def\rotationGridSteps{18}
+% Set the viewing elevation angle,
+% which is the angle up from horizontal.
+\def\phi{15}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pgfmathsetmacro\scaleAttempt{3.4/\dRange}
+\begin{tikzpicture}[scale= 1, domain= \aDomain: \bDomain]
+\pgfmathsetmacro\intervalLength{\bDomain - \aDomain}
+\pgfmathsetmacro\xGridStepsize{
+\intervalLength/\xGridSteps}
+\pgfmathsetmacro\xShadingStepsize{
+\intervalLength/\xShadingSteps}
+\pgfmathsetmacro\rotationGridStepsize{
+360/\rotationGridSteps}
+% Draw the shading of the back half.
+% Left half of a circle, rotated right
+% (around y-axis) 90 - \phi degrees and
+% shifted right or left to the correct height.
+\pgfmathsetmacro\nextShadingStep{
+\aDomain + \xShadingStepsize}
+
+%fuckery
+\foreach \x in
+{\aDomain, \nextShadingStep, ..., \bDomain} {
+\pgfmathsetmacro\xsh{(cos(\phi))*(\x)}
+\pgfmathsetmacro\rad{(\fcn)}
+\tikzset{xyplane/.estyle={cm={cos(\phi - 90), 0,0,1, (\xsh, 0)}}}
+\draw[xyplane,\backColor,ultra thick,opacity=.6](0, \rad) arc (90 : 270 : \rad);}
+
+% Back longitude lines.
+% Rotates graph around y-axis,
+% then projects to xy-plane.
+\foreach \theta in
+{0, \rotationGridStepsize, ..., 180} {
+\tikzset{xyplane/.estyle={cm={cos(\phi), 0, sin(\theta)*sin(\phi),
+cos(\theta), (0, 0)}}}
+\draw[xyplane,smooth] plot (\x, \fcn) ;
+}
+% Back latitude lines.
+% Left half of a circle, rotated right
+% (around y-axis) 90 - \phi degrees and
+% shifted right or left to the correct height.
+\pgfmathsetmacro\nextStep{\aDomain + \xGridStepsize}
+\foreach \x in {\aDomain,\nextStep, ...,\bDomain} {
+\pgfmathsetmacro\xsh{(cos(\phi))*(\x)}
+\pgfmathsetmacro\rad{(\fcn)}
+\tikzset{xyplane/.estyle={cm={cos(\phi - 90), 0,0,1,(\xsh, 0)}}}
+\draw[xyplane,black,thin,opacity=1]
+(0, \rad) arc (90 : 270 : \rad);
+}
+% Draw the axis.
+\pgfmathsetmacro\xdim{
+\bDomain + \dRange*sin(\phi) + .5}
+\draw[->] (0, -\dRange - .5) -- (0, \dRange + .5)
+node[above] {$y$};
+% Comment out the next four commands
+% if you don’t want an x-axis, and labels.
+\draw[<->] (\aDomain -.5, 0) -- (\xdim, 0)
+node[right] {$x$};
+\pgfmathsetmacro\xLabel{cos(\phi)*\bDomain}
+\draw (\xLabel, .1) -- (\xLabel, -.1)
+node[below right] {$\pi$};
+\draw (-.1, \dRange) -- (.1, \dRange)
+node[right] {\dRange};
+% Draw the shading of the front half.
+% Right half of a circle, rotated right
+% (around y-axis) 90 - \phi degrees and
+% shifted right or left to the correct height.
+
+%FUckery 2
+\foreach \x in
+{\aDomain, \nextShadingStep, ..., \bDomain} {
+\pgfmathsetmacro\xsh{(cos(\phi))*(\x)}
+\pgfmathsetmacro\rad{(\fcn)}
+\tikzset{xyplane/.estyle={cm={cos(\phi - 90),0,0,1,(\xsh, 0)}}}
+\draw[xyplane,\frontColor,ultra thick,opacity=.6](0, -\rad) arc (-90 : 90 : \rad);}
+
+
+% Front longitude lines.
+\foreach \theta in
+{0, \rotationGridStepsize, ..., 180} {
+\tikzset{xyplane/.estyle={cm={cos(\phi), 0,sin(\theta)*sin(\phi),cos(\theta),(0, 0)}}}
+\draw[xyplane,smooth] plot (\x, \fcn) ;
+}
+% Front latitude lines.
+% Right half of a circle, rotated right
+% (around y-axis) 90 - \phi degrees and
+% shifted right or left to the correct height.
+\foreach \x in {\aDomain, \nextStep, ..., \bDomain}{
+\pgfmathsetmacro\xsh{(cos(\phi))*(\x)}
+\pgfmathsetmacro\rad{(\fcn)}
+\tikzset{xyplane/.estyle={cm={cos(\phi-90),0,0,1, (\xsh, 0)}}}
+\draw[xyplane] (0, -\rad) arc (-90 : 90 : \rad);}
+\end{tikzpicture}
+\end{center}
+
+
+
+We argue that a thin slice of thickness $\delta x$ has a volume $\pi y^2 \delta x$, and hence the total volume is 
+\[
+  \int_a^b \pi y^2 \,\mathrm{d}x
+\]\vsp
+
+\begin{example}
+Take a semicircle $x^2 + y^2 = a^2$ for $y \geq 0$. 
+
+\emph{What is the volume when this is rotated about the $x$-axis?}
+\begin{align*}
+  V &= \int_{-a}^a\pi y^2\,\mathrm{d}x\\
+  &= \int_{-a}^a \pi(a^2 - x^2)\,\mathrm{d}x\\
+  &= \pi\left[a^2 - \frac{1}{3}x^2\right]_{-a}^a\\
+  &= \pi\left[2a^3 - \frac{2}{3}a^3\right]\\
+  &= \frac{4}{3}\pi a^3 \text{ (The volume of a sphere)}
+\end{align*}
+\end{example}
+
+Likewise the surface of revolution can be shown to be 
+\[
+  \int 2\pi y\,\mathrm{d}s = \int_a^b 2\pi y \sqrt{1 + \left(\frac{dy}{dx}\right)^2}\,\mathrm{d}x
+\]
+
+\vspace*{1.5cm}
+
+\begin{center}
+\includegraphics[width = 7cm]{cartoon1.jpg}	
+\end{center}
 
 
 
@@ -3154,16 +3818,301 @@ If we were an integral with a parameter, $n$ (usually an integer), we can someti
 
 
 
+\sektion{Complex Numbers}
+
+\begin{definition}\lecturemarker{26}{12/Dec}
+$i= \sqrt{-1}$.
+\end{definition}
+
+We call $z$ a complex number iff $z = x+iy$, where $x,y$ are real. Call $x = \Re(z),\, y = \Im(z)$. Note that $\Im(z)$ is real (by definition). 
+
+The standard form: $z = x+iy = r(\cos\theta + i\sin\theta)$, the polar form.
+
+Important result: 
+\[e^{i\theta} = \cos\theta + i\sin\theta\]
+
+You \textbf{must} be able to transform from standard form to polar form easily. 
+
+$(x,y) = (r\cos\theta, r\sin\theta) \implies r^2 = x^2 + y^2, r = \sqrt{x^2 + y^2}$.\\
+
+\begin{definition}
+$r = |z|$ is the \emph{modulus}, $\theta = \mathrm{Arg}(z)$, the \emph{argument}, say $-\pi < \theta \leq \pi$. 	
+\end{definition}
+
+Complex numbers allow us to solve more equations.\\
+
+\begin{example} Solve $z^6 - iz^3 -1 = 0$. 
+
+Write as $(z^3)^6 - i(z^3) - 1 = 0$. All the normal rules of algebra apply, but we also have $i^2 = -1$, so 
+\[
+  z^3 = \frac{+i \pm \sqrt{(-i)^2 -4(-1)}}{2} = \frac{i\pm \sqrt{3}}{2}
+ \]
+ 
+ Now write the RHS $\dfrac{i \pm \sqrt{3}}{2}$ in polar form. 
+\begin{align*}
+  re^{i\theta} &= \dfrac{i \pm \sqrt{3}}{2} \\
+  \implies r &= \sqrt{\textstyle{(\frac{1}{2})^2 + (\frac{\sqrt{3}}{2})^2}} = 1 
+\end{align*}
+
+\[
+  \begin{rcases*}
+  \cos\theta = \pm \sqrt{3}/2\\[.2cm]
+  \sin\theta = \frac{1}{2}	
+  \end{rcases*} \implies \theta = \frac{\pi}{6} \text{ or } \frac{5\pi}{6}
+\]
+
+So $z^3 = e^{i\theta}$ where $\theta = \frac{\pi}{6}$ or $\frac{5\pi}{6} \implies z = e^{i\theta/3} = e^{i\pi/18}$ or $e^{5\pi i/18}$ or other solutions:
+
+Recall roots of unity (M1F), $e^{2\pi} = 1$. So $z^3 = e^{i\theta}\cdot e^{2k\pi i}$ for integers $k$. $z = e^{i(\theta + 2k\pi)/3}$ gets different answers for $k = 0,1,2$, i.e. the answers are 
+\begin{align*}
+  z &= e^{i\pi/18},\,  e^{13i\pi/18},\,e^{-11i\pi/18}\\
+  &\text{ or } e^{5i\pi/18},\, e^{17i\pi/18},\, e^{-7i\pi/18}
+\end{align*}
+\end{example}
+
+An $N$'th order polynomial has $N$ roots.
+
+\emph{Aside.}, what happens to $z^{1/N}$ as $N \to \infty$? 
+
+Interpret this as 
+\begin{align*}
+  (e^{\log z})^{1/N} &= e^{\frac{\log z}{N}}\\
+  &\approx 1 + \frac{\log z}{N} + \mathcal{O}(1/N)
+\end{align*}
+as $N \to \infty$, so $N(z^{1/N} -1) \sim \log z$. This suggests we might be interested in logarithms of complex numbers...
+
+\subsektion{Complex Logarithms}
+
+\emph{What is $\log z$?} 
+
+E.g. $\log(2 + 4i)$? Write in polar form: 
+\begin{align*}
+  \log z &= \log(re^{i\theta})\\
+  &= \log r + \log(e^{i\theta})\\
+  &= \log r + \log(e^{i\theta\cdot} e^{2k\pi i})\\
+  &= \log r + i\theta + 2k\pi i 
+\end{align*}
+$\log z$ has infinitely many ``answers", it is a multi-valued function. 
+
+So $\log(2 + 4i) = \log(re^{i\theta})$ where $r = \sqrt{2^2 + 4^2} = \sqrt{20}$. 
+\[
+  \begin{rcases*}
+  r\cos\theta = 2 \implies \cos\theta = \frac{2}{\sqrt{20}} = 1/\sqrt{5}\\
+  r\sin\theta = 4 \implies \sin\theta = \frac{4}{\sqrt{20}} = 2/\sqrt{5}\\	
+  \end{rcases*} \mbox{ defines $\theta$}
+\]
+So $\log(2 + 4i) = \log(\sqrt{20}) + i[\theta + 2k\pi]$. 
+
+Now we can solve many problems...\\
+
+\begin{examples}
+$\sin x = 3$. This has no solutions for $x \iR$, but what about $x \iC$?
+
+(a) ``Express $\sin x$ in exponential form"\\
+
+(1) $e^ix = \cos x + i\sin x$ (even if $x$ is complex)
+
+(2) \begin{align*}
+  e^{-ix} &= \cos(-x) + i\sin(-x)\\
+  &= \cos x - i\sin x
+\end{align*}
+
+(1) and (2) $\implies$ 
+\[\cos x = \frac{1}{2}(e^{ix} + e^{-ix}) \equiv \cosh(ix)\]
+\[\sin x = \frac{1}{2i}(e^{ix} - e^{-ix}) \equiv \frac{\sinh(ix)}{i}\]
+\begin{align*}
+  \sin x = 2 &\iff \frac{1}{2i}(e^{ix} - e^{-ix}) = 2\\
+  &\implies  u - \frac{1}{u} = 4i, \mbox{ where $u = e^{ix}$}\\
+  &\implies u^2 - 4iu -1 = 0\\
+  &\implies u = \frac{4i\pm \sqrt{(4i)^2 + 4}}{2} = \frac{4i \pm \sqrt{-12}}{2}\\
+  & \qquad = \left(2 \pm \frac{\sqrt{12}}{2}\right)i = (2 \pm \sqrt{3})i = e^{ix}
+\end{align*}
+
+So
+\begin{align*}
+  ix = \log u &= \log[(2 \pm \sqrt{3})i]\\
+  &= \log(2 \pm\sqrt{3}) + \log i\\
+  &= \log(2 \pm \sqrt{3}) + \frac{i\pi}{2} + 2k\pi i\\[.2cm]
+  \implies x&= \frac{\pi}{2} + 2k\pi -i\log(2 \pm \sqrt{3})
+\end{align*}
+\end{examples}
+
+
+N.B. \emph{What can we say about $\log(2-\sqrt{3})$ and $\log(2 + \sqrt{3})$?}
+\begin{align*}
+  \log(2 + \sqrt{3}) + \log(2-\sqrt{3}) &= \log[(2+\sqrt{3})(2-\sqrt{3})]\\
+  &= \log(4-3) = \log 1 = 0
+\end{align*}
+So we could write 
+\begin{align*}
+  x = \frac{\pi}{2} + 2k\pi \pm i \log(2 + \sqrt{3})
+\end{align*}
+
+
+\begin{center}
+\begin{tikzpicture}
+\draw[->] (-3,0) -- (3,0) node [right] {$\Re$};
+\draw[->] (0,-1.5) -- (0,1.5) node [left] {$\Im$};	
+\draw (1,-.05) -- (1,.05) node [below] {$\frac{\pi}{2}$};
+\draw (2.2,-.05) -- (2.2,.05) node [below] {$\frac{5\pi}{2}$};
+\node at (1,0.8) {$\times$};
+\node at (-1.5,0.8) {$\times$};
+\node at (1,-0.8) {$\times$};
+\node at (-1.5,-0.8) {$\times$};
+\node at (2.2,0.8) {$\times$};
+\node at (2.2,-0.8) {$\times$};
+\end{tikzpicture}
+\end{center}
+
+\emph{What is the radius of convergence of the power series for the function}
+\[
+  f(x) = \frac{1}{2-\sin x}?
+\]
+
+$f(x)$ has singularities (poles / infinities) when $\sin x = 2$. Which means in the complex plane, the radius of convergence $R$, is 
+\[
+  R^2 = \frac{\pi}{2}^2 + (\log(2 + \sqrt{3}))^2
+\]
 
 
 
+Return to \lecturemarker{27}{16/Dec} $\sin x = 2$. \emph{How else might we solve this?} 
+
+(b) Alternatively, we could write $x = u + iv$, where $u,v$ are real. 
+\[
+  \sin(u + iv)= 2
+\]
+i.e. \begin{align*}
+  \sin u \cos(iv) + \cos u \sin (iv) &= 2\\
+  \sin u \cosh v + i\cos u \sinh v &=2
+\end{align*}
+$u,v$ are real.
+
+Any complex equation is really two encoded real equations: the real parts and the imaginary part must balance. 
+\[
+  \begin{rcases*}
+  \sin u \cosh v &= 2\\
+  \cos u \sinh v &= 0	
+  \end{rcases*}
+\]
+
+$\cos u \sinh v= 0 \implies$ either $\cos u = 0$ or $\sinh v = 0$. 
+
+If $\sinh v = 0 \implies v = 0$, since $\sinh$ is an increasing function $\implies \cosh v= 1 \implies \sin x = 2$. So no solutions for real $x$. 
+
+So we must have $\cos u = 0 \implies u \frac{\pi}{2} + n\pi$ for $n \iZ \implies \sin u \pm 1$, in particular $\sin u = (-1)^n$. The first equation says $\sin u \cosh v = 2 \implies \cosh v = \pm 2 = 2(-1)^n$, which has a solution only if $n$ is even. So we write $n = 2k$. Then $v = \pm \cosh^{-1}2$. Hence \[x = \frac{\pi}{2} + 2k\pi + 2\cosh^{-1}2\]
+
+Compare our earlier answer... It involved $\log$s. 
+
+Recall
+\begin{align*}
+  \cosh^{-1}v &= \log(v + \sqrt{v^2 - 1})\\
+  \sinh^{-1}v &+ \log(v + \sqrt{1 + v^2})
+\end{align*}
+So $\cosh^{-1}2 = \log(2 + \sqrt{3})$, so $x = \frac{\pi}{2} + 2k\pi \pm i \log(2 + \sqrt{3})$ - the same answer as before. 
 
 
+\emph{Aside.} Complex numbers are fantastic as a means for solving real problems, E.g. To solve a cubic 
+\[
+  x^3 + ax^2 + bx + c = 0
+\]
+Write $y=  x+ \d$ so that $a \to 0$, then 
+\[
+  y^3 + By + C = 0
+\]
+Recall that
+\[
+  \cos(3\theta) = ?\cos^3\theta + ?\cos\theta 
+\]
+From de Moivre's Theorem from M1F: $(e^{i\theta})^n = e^{in\theta}$. So
+\[
+  (\cos\theta + i\sin\theta)^n = \cos(n\theta) + i\sin(n\theta)
+\]
+Putting $n =3$ and taking the real part: 
+\begin{align*}
+  \cos(3\theta) &= \cos^3\theta + 3i^2\cos\theta(\sin\theta)^2\\
+  &= \cos^3\theta - 3\cos\theta(1-\cos^2\theta)\\
+  &= 4\cos^3\theta - 3\cos\theta 
+\end{align*}
+So $\cos(3\theta) = 4\cos^3\theta - 3\cos\theta$. Try writing $y = M\cos\theta$:
+\begin{align*}
+  &\implies M^3\cos^3\theta + BM\cos\theta + C = 0\\
+  &\implies 4\cos^3\theta + \frac{4B}{M^2}\cos\theta + \frac{4C}{M^3} = 0
+\end{align*}
+Choose $M$ such that $\frac{4B}{M^2} = -3$ - maybe $M$ is imaginary. Then
+\begin{align*}
+  4\cos^3\theta - 3\cos\theta &= -\frac{4C}{M^3}\\
+  \implies \cos(3\theta) &= -\frac{4C}{M^3}\\
+  \implies \theta &= \dots \implies y = \dots
+\end{align*}
+That is one way to obtain a not very useful formula for the solution to the general cubic - which is not worth knowing. 
+
+\subsektion{Plotting Curves in the Complex Plane}
+Any complex equation may have solutions which may define a curve. If so, we can plot it (maybe). Write $z = x+iy$.\\
+
+\begin{examples}~
+
+(a) $|z-1| = 3$. By geometry, $z-1$ has a fixed length so defines a circle  of centre $(1,0)$ with radius $3$. 
+\begin{center}
+\begin{tikzpicture}
+\draw[thick,->] (-3,0) -- (3,0) node[right] {$\Re$};
+\draw[thick,->] (0,-2) -- (0,2) node[left] {$\Im$};
+\draw [dashed] (1,0) circle (1.5); 
+\draw [->] (1,0) -- (1.45,1.35) node [right] {$z-1$};
+\draw (1,-.1) -- (1,.1) node at (1,-0.3) {$1$};
+\end{tikzpicture}
+\end{center}
+
+Alternatively by algebra, $z = x+iy$, so 
+\begin{align*}
+  |z-1| &= |x+iy -1|\\
+  &= |(x-1) + iy|\\
+  &= \sqrt{(x-1)^2 + y^2} = 3
+\end{align*}
+\[
+  \implies (x-1)^2 + y^2 = 3^3
+\]
 
 
+(b) $\left|\dfrac{z+2}{z-i}\right| = 2$. 
+
+By algebra $z = x+iy$, so 
+\begin{align*}
+  &|x+2+iy|^2 = 4|x+iy-i|^2\\
+  &\implies x^2 + 4x + 4 + y^2 = 4(x^2 + (y-1)^2)\\
+  &\implies x^2 + 4x + 4 + y^2 = 4x^2 + 4y^2 -8y + 4\\\
+  &\implies 0 = 3x^2 - 4x + 3y^2 - 8y\\
+  &\implies 0 = \textstyle{(x-\frac{2}{3})^2 + (y-\frac{4}{3})^2 - \frac{20}{9}}
+\end{align*}
+So we have a circle with centre $(\frac{2}{3},\frac{4}{3})$ and radius $(\frac{2}{3}\sqrt{5})$. \\
 
 
+(c) What about $\mathrm{Arg}\left(\dfrac{z+2}{z-i}\right) = \frac{\pi}{4}$?
 
+
+Geometrically, note that 
+\begin{align*}
+  \mathrm{Arg}\left(\frac{z_1}{z_2}\right) &= \mathrm{Arg}\left(\frac{r_1e^{i\theta_1}}{r_2e^{i\theta_2}}\right)\\
+  &= \mathrm{Arg}\left(\frac{r_1}{r_2}e^{i(\theta_1 + \theta_2)}\right)\\
+  &= \theta_1 - \theta_2\\
+  &= \mathrm{Arg}(z_1) - \mathrm{Arg}(z_2)
+\end{align*}
+So $\mathrm{Arg}(z+2) - \mathrm{Arg}(z-i) = -\frac{\pi}{4}$. So $\mathrm{Arg}(z-i)-\mathrm{Arg}(z+2)  = -\frac{\pi}{4}$, so the curve is the upper part of a circle: 
+
+
+\begin{center}
+\begin{tikzpicture}[scale=.7]
+\draw (0,0) circle (2);
+\draw (-1.58,-1.15) -- (1.6,1.22);	
+\draw (-1.58,-1.15) -- (1.75,-.9);
+\draw (1.75,-.9) -- (1.6,1.22);
+\draw (1.75,-.9) -- (.7,1.86);
+\draw (-1.58,-1.15) -- (.7,1.86);
+\draw (1.75,-.9) -- (-1.78,.8);
+\draw (-1.58,-1.15) -- (-1.78,.8);
+\end{tikzpicture}
+\end{center}
+\end{examples}
 
 
 

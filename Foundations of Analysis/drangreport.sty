@@ -19,6 +19,9 @@
 % Introduced early because it conflicts with amsmath, iirc
 \newcounter{lecture}
 
+% Get Cancel
+\RequirePackage{cancel}
+
 % Define a set of useful symbols
 \RequirePackage{amsmath,units,commath,amsthm}
 
@@ -401,7 +404,7 @@
 
 \thispagestyle{empty}
 
-\textsc{\textcolor{white}{}}\\[1.5cm]
+\textsc{\textcolor{white}{}}\\[-.5cm]
 {\large #1}\\[0.1cm] % Heading for Year
 {\large #2}\\[0.5cm] % Heading for Imperial
 {\large #3}\\[0.5cm] % Heading for Term 
@@ -426,7 +429,7 @@
 	
 	\vspace*{20pt}
 	\begin{centering}
-	\includegraphics[width=0.5\textwidth]{title.jpg}~
+	\includegraphics[width=0.7\textwidth]{title.jpg}~
 	\end{centering}
 	
 	\vfill
@@ -461,21 +464,20 @@
 		
 \newpage}
 
-\newcommand{\NotesSubTitle}[7]{\SubTitlePage
-	{1st Year Mathematics}
-		{Imperial College London}
-		{#2}
-		{{\huge \sffamily\bfseries #3}\\[0.4cm]
-	
+\newcommand{\NotesSubTitle}[7]{
+		\HRule \\[0.3cm]
+		\hspace*{10pt}{{\huge \sffamily\bfseries #3}\hspace*{10pt} \raisebox{-6pt}{\includegraphics[height=1.2cm]{title.jpg}} \\[.3cm]
+		\HRule\\[.1cm]
+		
 		{\large \sffamily\bfseries #7}}
-		{Lectured by:}
-		{#4~\textsc{#5}}
-		{Humbly typed by:}
-		{Karim \textsc{Bacchus}}
+		% #2 - #1 Year Mathematics at Imperial College London.\\
+		Lectured in #2 by #4~\textsc{#5} at Imperial College.\\
+		Humbly typed by Karim \textsc{Bacchus}.
+		
 		{
-			{\ Caveat Lector: unofficial notes, \emph{not} endorsed by Imperial College.}\\[0.1cm]
-			{\ Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}.}\\[0.1cm]
-			{\ Other notes are available at \href{https://wwwf.imperial.ac.uk/~kb514}{\texttt{https://wwwf.imperial.ac.uk/$\sim$kb514}} }
+			Caveat Lector: unofficial notes. 
+			Comments and corrections should be sent to \href{mailto:kb514@ic.ac.uk}{\texttt{kb514@ic.ac.uk}}.
+			Other notes available at \href{https://wwwf.imperial.ac.uk/~kb514}{\texttt{wwwf.imperial.ac.uk/$\sim$kb514}}.
 		}
 		
 		\thispagestyle{empty}
@@ -598,6 +600,7 @@ Printed: \today.}}
 \newcommand{\authorlength}{2in}
 \newcommand{\logolength}{1in}
 
+%\renewcommand{\baselinestretch}{1} 
 
 % Uses roman numerals (i), (ii), (iii) for numbered lists by default,
 % which I prefer
@@ -610,30 +613,33 @@ Printed: \today.}}
 
 
 \DeclareOption{bluelinks}{
-\hypersetup{linkcolor=Blue}
+\hypersetup{linktocpage=true,linkcolor=Blue}
 }
+
+
+ 
 
 % Change the headings pagestyle to show the title if it's an article.
 % See Kopka & Daly C.3.2 and article.cls.
-\ifthenelse{\boolean{@twoside}}{%
-  \renewcommand{\ps@headings}{%
-    \renewcommand*{\@oddfoot}{}%
-    \renewcommand*{\@evenfoot}{}%
-	\renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{{{\sectitle}} $\vert$ 
-		\bfseries{\thepage}}} %
-	\renewcommand*{\@evenhead}{\footnotesize\sffamily{{\bfseries{\thepage}} $\vert$ {{\@shorttitle}} \hfill}} %
-    % \renewcommand*{\@oddhead}{\normalfont\normalsize\hfill\thepage}%
-    % \renewcommand*{\@evenhead}{\normalfont\normalsize\thepage\hfill{\itshape\MakeUppercase{\@shorttitle}}}%
-  }%
-}{%
-  \renewcommand{\ps@headings}{%
-    \renewcommand*{\@oddfoot}{}%
-    \renewcommand*{\@evenfoot}{}%
-    % \renewcommand*{\@oddhead}{\normalfont\normalsize{\itshape\MakeUppercase{\@shorttitle}}\hfill\thepage}%
-	\renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{{{\@shorttitle}} $\vert$ \bfseries{\thepage}}}
-    \renewcommand*{\@evenhead}{\@oddhead}%
-  }%
-}
+%\ifthenelse{\boolean{@twoside}}{%
+%  \renewcommand{\ps@headings}{%
+%    \renewcommand*{\@oddfoot}{}%
+%    \renewcommand*{\@evenfoot}{}%%
+%	\renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{{{\sectitle}} $\vert$ %
+%		\bfseries{\thepage}}} %
+%	\renewcommand*{\@evenhead}{\footnotesize\sffamily{{\bfseries{\thepage}} $\vert$ {{\@shorttitle}} \hfill}} %
+%    % \renewcommand*{\@oddhead}{\normalfont\normalsize\hfill\thepage}%
+%    % \renewcommand*{\@evenhead}{\normalfont\normalsize\thepage\hfill{\itshape\MakeUppercase{\@shorttitle}}}%
+%  }%
+%}{%
+%  \renewcommand{\ps@headings}{%
+%    \renewcommand*{\@oddfoot}{}%
+%    \renewcommand*{\@evenfoot}{}%
+%    % \renewcommand*{\@oddhead}{\normalfont\normalsize{\itshape\MakeUppercase{\@shorttitle}}\hfill\thepage}%%
+%	\renewcommand*{\@oddhead}{\hfill\footnotesize\sffamily{{{\@shorttitle}} $\vert$ \bfseries{\thepage}}}
+%    \renewcommand*{\@evenhead}{\@oddhead}%
+%  }%
+%}
 
 
 
@@ -646,8 +652,11 @@ Printed: \today.}}
 % Placed before font options are executed to allow for wider
 % customisation in the font options.
 \newlength{\uni@sidemargin}
-\setlength{\uni@sidemargin}{1.25in}
+\setlength{\uni@sidemargin}{1.8in}  %CHANGED
 \setlength{\textwidth}{\paperwidth}
+\addtolength{\textheight}{1in}
+\addtolength{\topmargin}{0.3in}
+\addtolength{\headsep}{0.1in}
 \addtolength{\textwidth}{-2\uni@sidemargin}
 \setlength{\oddsidemargin}{\uni@sidemargin}
 \addtolength{\oddsidemargin}{-1in}%         to account for TeX's automatic 1in
@@ -748,15 +757,15 @@ Printed: \today.}}
 % Set the header .5in from top of paper, the footer .5in from bottom
 % of paper, and the top & bottom body margins at 1in. See Kopka &
 % Daly C.3.1.
-\newlength{\uni@hfmargin}
-\setlength{\uni@hfmargin}{.5in}
-\setlength{\headheight}{12bp}%      enough for 1 line of text
-\setlength{\headsep}{24bp}%         \headheight + \headsep = 36bp = .5in
-\setlength{\footskip}{36bp}%        .5 in
-\setlength{\textheight}{\paperheight}
-\addtolength{\textheight}{-2in}%    1in at top + 1in at bottom
-\setlength{\topmargin}{\uni@hfmargin}
-\addtolength{\topmargin}{-1in}%     to account for TeX's automatic 1in
+%\newlength{\uni@hfmargin}
+%\setlength{\uni@hfmargin}{.5in}
+%\setlength{\headheight}{12bp}%      enough for 1 line of text
+%\setlength{\headsep}{24bp}%         \headheight + \headsep = 36bp = .5in
+%\setlength{\footskip}{36bp}%        .5 in
+%\setlength{\textheight}{\paperheight}
+%\addtolength{\textheight}{-2in}%    1in at top + 1in at bottom
+%\setlength{\topmargin}{\uni@hfmargin}
+%\addtolength{\topmargin}{-1in}%     to account for TeX's automatic 1in
 %
 % Create a \@shorttitle variable for the heading. If not defined by the
 % user, with the \shorttitle command, it will default to \@title.
@@ -772,7 +781,15 @@ Printed: \today.}}
 %
 %
 % Use headings for most pages
-\pagestyle{headings}
+
+\RequirePackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\@shorttitle}
+\fancyhead[RE,LO]{\emph{\thepage\quad\sectitle}}
+
+
+%\pagestyle{headings}
+
 %
 % Redefine \maketitle to use san serif fonts, display the company logo
 % (when on a separate title page), and display the \@author and (when on
@@ -870,8 +887,9 @@ Printed: \today.}}
 \newcommand{\sektionu}[1]{\cleardoublepage \section*{#1} \gdef\sectitle{#1}
 						  \addcontentsline{toc}{section}{#1}
 						  \setcounter{footnote}{0}}
-\newcommand{\subsektion}[1]{\subsection*{#1}
-							\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsektion}[1]{\subsection{#1}
+							%\addcontentsline{toc}{subsection}{#1}
+							}
 \newcommand{\subsekktion}[2]{\subsection*{#2}
 							 \addcontentsline{toc}{subsection}{#1}}
 \newcommand{\subsubsektion}[1]{\subsubsection*{#1}
@@ -1015,3 +1033,12 @@ Printed: \today.}}
 \newcommand{\verteq}{\rotatebox{90}{$\,=$}}
 \newcommand{\equalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
 
+
+
+%%% redefine pmatrix so you can get an easy augmented matrix by putting [cc|c] etc. after 
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother

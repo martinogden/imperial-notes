@@ -1,4 +1,4 @@
-\documentclass[twoside]{scrartcl}
+\documentclass[10pt]{scrartcl}
 
 \usepackage[bluelinks]{drangreport}
 % \usepackage[caecilia]{drangreport}
@@ -10,9 +10,8 @@
 \renewcommand{\theequation}{\arabic{equation}}
 
 
-
 \hypersetup{pdfinfo={
-Title={Algebra I Lecture Notes},
+Title={M1P2: Algebra I Lecture Notes},
 Author={Karim Bacchus},
 Keywords ={Algebra I, M1P2, Lecture Notes, Imperial College, Maths},
 }}
@@ -22,22 +21,21 @@ Keywords ={Algebra I, M1P2, Lecture Notes, Imperial College, Maths},
 
 \begin{document}
 
-\NotesTitle{1st}{Spring 2015}{Algebra I}{Prof.~J.}{Britnell}
+\NotesSubTitle{1st}{Spring 2015}{Algebra I}{Dr.~J. R.}{Britnell}
 {
 
 
-\section*{Syllabus}
+\subsection*{Syllabus}
 
 \textit{Introductions to three topics in abstract algebra: The theory of vector spaces and linear
 transformations, the theory of groups and the theory of rings.}
 
 
+\emph{Vector spaces:} Linear maps, rank-nullity theorem, connections with linear equations and matrices.
 
-\subsubsektion{Vector spaces}\vspace*{-5pt} Linear maps, rank-nullity theorem, connections with linear equations and matrices.
+\emph{Groups:} Axioms, examples. Cyclic groups, dihedral groups, symmetric groups. Lagrange’s  theorem and applications.
 
-\subsubsektion{Groups}\vspace*{-5pt} Axioms, examples. Cyclic groups, dihedral groups, symmetric groups. Lagrange’s  theorem and applications.
-
-\subsubsektion{Rings}\vspace*{-5pt}  Polynomial rings, rings of the form Z[$\sqrt{d}$]. Euclid’s algorithm for certain rings. Uniqueness of factorisation for these rings. Applications to Diophantine Equations.
+\emph{Rings:}  Polynomial rings, rings of the form Z[$\sqrt{d}$]. Euclid’s algorithm for certain rings. Uniqueness of factorisation for these rings. Applications to Diophantine Equations.
 
 
 \subsection*{Appropriate books}
@@ -62,7 +60,7 @@ I.~N.~Herstein, \emph{Topics in Algebra}
 \setcounter{lecture}{1}
 \pagebreak
 \addcontentsline{toc}{part}{Linear Algebra}{}
-\setcounter{page}{4}
+\setcounter{page}{3}
 \sektion{Vector Spaces}
 
 \subsektion{Spanning Sets and Bases (M1GLA Review)}
@@ -96,18 +94,17 @@ Suppose that dim $V = n$.
 \end{itemize}\vspace*{5pt}
 
 Every vector space has associated with it a set of \emph{scalars}. E.g. $\mathbb{R}^n$ has the scalar set $\mathbb{R}.$ The scalars come as a structure called a \emph{field} (To be defined in the Ring Theory Section). I'll write $F$ for the field of scalars. It will usually be safe to assume that $F = \mathbb{R}$. Other fields include $\mathbb{C}, \mathbb{Q}$, integers and $(\mathbb{Z}\backslash p \mathbb{Z})^{\times}$.
-\subsektion{More on Subspaces}
+
+\subsektion{More on Subspaces}\vspace*{5pt}
 
 \begin{definition} Let $V$ be a vector space, and let $U$ and $W$ be subspaces of $V$. The \emph{intersection}\index{Intersection} of $U$ and $W$ is $U \cap W = \{v: v \in U \text{ and } v \in W\}$. The \emph{subspace sum}\index{Subspace Sum} (or just \emph{sum}) of $U$ and $W$ is $U + W = \{u + w: u \in U, w \in W\}$
-\end{definition}\vspace*{10pt}
+\end{definition}\vspace*{5pt}
 
 \begin{remark}  Note that $\mathbf{0} \in U$ and $\mathbf{0} \in W$, so if $u \in U$, then $u = \mathbf{0} \in U + W$, and similarly if  $w \in W$, then $w = \mathbf{0} \in U + W$. So $U \subseteq U + W$ and $W \subseteq U + W$. ($U+W$ usually contains many other vectors)
 \end{remark}\vspace*{10pt}
 
-\begin{example} Let $V \in \mathbb{R}^2.$ Let $U = \text{Span}\{(1,0)\}$, and  $W = \text{Span}\{(0,1)\}$. So $U = \{(\lambda, 0): \lambda \in \mathbb{R}\}, ~W = \{(0,\lambda: \lambda \in \mathbb{R}\}$.
-
-We see that $U + W$ contains $(\lambda, \mu)$ for all $\lambda, \mu \in \mathbb{R}$ and so $U + W = V$.
-\end{example}\vspace*{10pt}
+\begin{example} Let $V \in \mathbb{R}^2.$ Let $U = \text{Span}\{(1,0)\}$, and  $W = \text{Span}\{(0,1)\}$. So $U = \{(\lambda, 0): \lambda \in \mathbb{R}\}, ~W = \{(0,\lambda: \lambda \in \mathbb{R}\}$. We see that $U + W$ contains $(\lambda, \mu)$ for all $\lambda, \mu \in \mathbb{R}$ and so $U + W = V$.
+\end{example}\vspace*{5pt}
 
 
 
@@ -133,25 +130,24 @@ Now do $U \cap W$:
 \end{enumerate}
 \end{proof}\vspace*{10pt}
 
-\begin{proposition}Let \lecturemarker{2}{5 oct}
+\begin{proposition}Let {\normalfont\lecturemarker{2}{5 oct}}
  $V$ be a vector space and let $U ~\&~ W$ be subspaces. Suppose that $U = \text{Span}\{u_1,\dots,u_r\}$ and $W = \text{Span}\{w_1,\dots,w_s\}$. Then $U + W = \text{Span}\{u_1,\dots,u_r,w_1,\dots,w_s\}$. 
 \end{proposition}
 \begin{proof}
 By inclusion both ways:
 
-Notice that $u_i \in U \subseteq U + W$ (by Remark 2) and similarly $w_i \in W \subseteq U + W, ~\forall i$. Since $U + W$ is a subspace of $V$, so $U + W$ is closed under linear combinations, so $\text{Span}\{u_1,\dots,u_r,w_1,\dots,w_s\} \subseteq U + W.$\\
+Notice that $u_i \in U \subseteq U + W$ (by Remark 2) and similarly $w_i \in W \subseteq U + W, ~\forall i$. Since $U + W$ is a subspace of $V$, so $U + W$ is closed under linear combinations, so $\text{Span}\{u_1,\dots,u_r,w_1,\dots,w_s\} \subseteq U + W.$
 
-For the reverse inclusion, let $v \in U + W$.\\ Then $v = u + w$ for some $u \in U, w \in W$. Since $U = \text{Span}\{u_1,\dots,u_r\}$, we have $u = \lambda_1u_1 + \dots + \lambda_ru_r$, for some $\lambda_1,\dots,\lambda_r \in F$. Similarly $w = \mu_1w_1 + \dots + \mu_sw_s$, for some $\mu_1,\dots,\mu_s \in F$.\\
+For the reverse inclusion, let $v \in U + W$. Then $v = u + w$ for some $u \in U, w \in W$. Since $U = \text{Span}\{u_1,\dots,u_r\}$, we have $u = \lambda_1u_1 + \dots + \lambda_ru_r$, for some $\lambda_1,\dots,\lambda_r \in F$. Similarly $w = \mu_1w_1 + \dots + \mu_sw_s$, for some $\mu_1,\dots,\mu_s \in F$.
 
 Now $v = \lambda_1u_1 \dots \lambda_ru_r + \mu_1w_1 \dots \mu_sw_s \in \text{Span}\{u_1,\dots,u_r,w_1,\dots,w_s\}$. Hence $U + W \subseteq \text{Span}\{u_1,\dots,u_r,w_1,\dots,w_s\}$.
-\end{proof}
+\end{proof}\vspace*{5pt}
 
 \begin{examples}\item \textbf{Question:} 
- Let $V = \mathbb{R}^4, U = \text{Span}\{(1,1,2,-3),(1,2,0,-3)\}$  and\\ $W = \text{Span}\{(1,0,5,-4),(-1-3,0,5)\}.$ Find a basis for $U + W.$ \\
+ Let $V = \mathbb{R}^4, U = \text{Span}\{(1,1,2,-3),(1,2,0,-3)\}$  and\\ $W = \text{Span}\{(1,0,5,-4),(-1-3,0,5)\}.$ Find a basis for $U + W.$ 
 
-\textbf{Answer:} By Proposition 5, we have:\\
-
- $U + W = \text{Span}\{(1,1,2,-3),(1,2,0,-3),(1,0,5,-4),(-1,-3,0,5)\}$.\\ 
+\textbf{Answer:} By Proposition 5, we have:
+ \[U + W = \text{Span}\{(1,1,2,-3),(1,2,0,-3),(1,0,5,-4),(-1,-3,0,5)\}\] 
  
  We then just row reduce the matrix:
  
@@ -171,11 +167,9 @@ Now $v = \lambda_1u_1 \dots \lambda_ru_r + \mu_1w_1 \dots \mu_sw_s \in \text{Spa
 The three non-zero rows are linearly independent, and have the same span as the original four vectors, so a basis for $U + W$ is:
 \[\{(1,1,2,-3),(0,1,-2,0),(0,0,1,-1)\} \text{ (or just the first 3 vectors).}\]
 
-\item \textbf{Question:} What about a basis for $U \cap W$?\\
+\item \textbf{Question:} What about a basis for $U \cap W$?
 
-\textbf{Answer:} If $v \in U \cap W$, then $v \in U = \text{Span}\{(1,1,2,-3),(1,2,0,-3)\}.$ So $v = a(1,1,2,-3) + b(1,2,0,-3)$ for $a,b \in \mathbb{R}$.\\
-
- And $v \in W = \text{Span}\{(1,0,5,-4),(-1,-3,0,5)\}$. So $v = c(1,0,5,-4) + d(-1,-3,0,5)$. So we have:
+\textbf{Answer:} If $v \in U \cap W$, then $v \in U = \text{Span}\{(1,1,2,-3),(1,2,0,-3)\}.$ So $v = a(1,1,2,-3) + b(1,2,0,-3)$ for $a,b \in \mathbb{R}$. And $v \in W = \text{Span}\{(1,0,5,-4),(-1,-3,0,5)\}$. So $v = c(1,0,5,-4) + d(-1,-3,0,5)$. So we have:
 \[a(1,1,2,-3) + b(1,2,0,-3) -c(1,0,5,-4) -d(-1,3,0,5) = \mathbf{0} ~(*)\]
 
 $(*)$ gives us 4 simultaneous equations, which we can encode as a matrix equation:
@@ -207,10 +201,7 @@ We find the solution space by row reducing:
  0 & 0 & 0 & 0
  \end{pmatrix}  \]
 
-There is one line of solutions, given by $a = 5d, b = -4d, c = 2d.$ So pick $d = 1$, then $a = 5, b = -4, c = 2, d =1$.\\ 
-
-So $v = a(1,1,2,-3) + b(1,2,0,-3) = (5,5,10,-15) - (4,8,0,-12) = (1,-3,10,3).$\\
-
+There is one line of solutions, given by $a = 5d, b = -4d, c = 2d.$ So pick $d = 1$, then $a = 5, b = -4, c = 2, d =1$. So \[v = a(1,1,2,-3) + b(1,2,0,-3) = (5,5,10,-15) - (4,8,0,-12) = (1,-3,10,3)\]
 We can check our solutions with $c,d$: $v = c(1,0,5,-4) + d(-1,-3,0,5) = (1,-3,10,3)$ as expected. So $U \cap W$ is 1-dimensional, and a basis is $\{(1,-3,10,3)\}$.
 \end{examples}
 
@@ -220,12 +211,9 @@ We can check our solutions with $c,d$: $v = c(1,0,5,-4) + d(-1,-3,0,5) = (1,-3,1
 
 
 \begin{proof}
-Let dim $U = r, $ dim $W = s, $ dim $U \cap W = m$. Let $\{v_1, \dots, v_m\}$ be a basis for $U \cap W$.\\
+Let dim $U = r, $ dim $W = s, $ dim $U \cap W = m$. Let $\{v_1, \dots, v_m\}$ be a basis for $U \cap W$. Then $\{v_1,\dots,v_m\}$ is a linearly independent subset of $U$. So it is contained in some basis for $U$. So there exists $u_1,\dots, u_{r-m}$ in $U$ such that $\{v_1,\dots,v_m,u_1,\dots,u_{r-m}\}$ is a basis for $U$. Similarly, there exists $w_1,\dots,w_{s-m}$ such that $\{v_1,\dots,v_m,w_1,\dots,w_{s-m}\}$.
 
-Then $\{v_1,\dots,v_m\}$ is a linearly independent subset of $U$. So it is contained in some basis for $U$. So there exists $u_1,\dots, u_{r-m}$ in $U$ such that $\{v_1,\dots,v_m,u_1,\dots,u_{r-m}\}$ is a basis for $U$. Similarly, there exists $w_1,\dots,w_{s-m}$ such that $\{v_1,\dots,v_m,w_1,\dots,w_{s-m}\}$.\\
-
-
-Now let $B = \{v_1,\dots,v_m,u_1,\dots,u_{r-m},w_1,\dots,w_{s-m}\}$. Then Span $B = U + W$ by Proposition 5.\\
+Now let $B = \{v_1,\dots,v_m,u_1,\dots,u_{r-m},w_1,\dots,w_{s-m}\}$. Then Span $B = U + W$ by Proposition 5.
 
 \textbf{Claim.} $B$ is linearly independent.
 
@@ -247,29 +235,25 @@ But $\{v_1,\dots,v_m,w_1,\dots,w_{s-m}\}$ is linearly independent (being a basis
 \end{proof}\vspace*{10pt}
  
 \begin{example} \textbf{Question:} \lecturemarker{3}{20/01} 
- Let $V = \mathbb{R}^3$, and let $U= \{(x,y,z) \in \mathbb{R}^3: x + y + z = 0\}.$ Similarly let $W = \{(x,y,z) \in \mathbb{R}^3: -x + 2y + z = 0\}.$ Find bases for $U, W, U \cap W, U + W$. \\
+ Let $V = \mathbb{R}^3$, and let $U= \{(x,y,z) \in \mathbb{R}^3: x + y + z = 0\}.$ Similarly let $W = \{(x,y,z) \in \mathbb{R}^3: -x + 2y + z = 0\}.$ Find bases for $U, W, U \cap W, U + W$. 
 
-\textbf{Answer:} A general element of $U$ is $(x,y,-x-y) = x(1,0,-1) + y(0,1,-1) \implies U = \text{Span}\{(1,0,-1),(0,1,-1)\}$. Since this set is clearly linearly independent, it's a basis for $U$.\\
+\textbf{Answer:} A general element of $U$ is $(x,y,-x-y) = x(1,0,-1) + y(0,1,-1) \implies U = \text{Span}\{(1,0,-1),(0,1,-1)\}$. Since this set is clearly linearly independent, it's a basis for $U$. A general element of $W$ is $(x,y,x-2y) = x(1,0,1) + y(0,1,-2) \implies W = \text{Span}\{(1,0,1),(0,1,-2)\}$. Again, clearly linearly independent, so a basis for $W$.
 
-A general element of $W$ is $(x,y,x-2y) = x(1,0,1) + y(0,1,-2) \implies W = \text{Span}\{(1,0,1),(0,1,-2)\}$. Again, clearly linearly independent, so a basis for $W$.\\
-
-Suppose that $v = (x,y,z)$ lies in $U \cap W$. Then $v \in U$, and so $z = -x-y$. But also $v \in W$, and so $z = x - 2y$. Hence $-x-y = x-2y \implies y = 2x$.\\
-
-So a general element of $U \cap W$ is $(x,2x,-3x) = x(1,2,-3) \implies U\cap W = \{(1,2,-3)\} $ is a basis for $U\cap W$.\\
+Suppose that $v = (x,y,z)$ lies in $U \cap W$. Then $v \in U$, and so $z = -x-y$. But also $v \in W$, and so $z = x - 2y$. Hence $-x-y = x-2y \implies y = 2x$. So a general element of $U \cap W$ is $(x,2x,-3x) = x(1,2,-3) \implies U\cap W = \{(1,2,-3)\} $ is a basis for $U\cap W$.
 
 
-As in the proof of theorem 7, we find a basis for $U$, and $W$, each of which contain a basis for $U \cap W$. So any linearly independent subset of $U$ of size 2 is a basis for $U$, i.e. $U = \{(1,2,-3),(1,0,-1)\}$. Similarly $W = \{(1,2,-3),(1,0,1)\} $. So a spanning set for $U + W = \{(1,2,-3),(1,0,-1),(1,0,1)\}$.\\
+As in the proof of theorem 7, we find a basis for $U$, and $W$, each of which contain a basis for $U \cap W$. So any linearly independent subset of $U$ of size 2 is a basis for $U$, i.e. $U = \{(1,2,-3),(1,0,-1)\}$. Similarly $W = \{(1,2,-3),(1,0,1)\} $. So a spanning set for $U + W = \{(1,2,-3),(1,0,-1),(1,0,1)\}$.
 
 By Theorem 7, we know dim $U+W = $ dim $U + $ dim $W - $ dim $U\cap W = 2 + 2 -1 = 3.$ Hence our spanning set is a basis for $U + W$.
-\end{example}~
+\end{example}\vspace*{5pt}
 
 
 \subsektion{Rank of a Matrix}\vspace*{5pt}
 
 \begin{definition}Let $A$ be an $m \times n$ matrix with entries from $F$. Define the \emph{row-span}\index{Row-Span} of $A$ by $\text{RSp}(A) = \text{Span}\{\text{rows of }A\}$. This is a subspace of $F^n$. The \emph{column-span}, $\text{CSp}(A)$ of $A$ is  $\text{Span}\{\text{columns of }A\}$, again a subspace of $F^n$.	
 
-The \emph{row-rank}\index{Row-Rank} of $A$ is dim $\text{RSp}(A)$. The \emph{column-rank} of $A$ is dim $\text{CSp}(A)$ i.e. the number of linearly independent rows / columns.
-\end{definition}
+The \emph{row-rank}\index{Row-Rank} of $A$ is dim $\text{RSp}(A)$.I The \emph{column-rank} of $A$ is dim $\text{CSp}(A)$ i.e. the number of linearly independent rows / columns.
+\end{definition}\vspace*{5pt}
 
 
 \begin{example}
@@ -358,20 +342,17 @@ r_i := \lambda r_i & \text{has inverse ~} r_i := r_i - 1/\lambda r_j \\
 r_i \longleftrightarrow r_j & \text{has inverse ~}  r_i \longleftrightarrow r_j
 \end{cases} \]
 
-So we have $\text{RSp}(A) \subseteq \text{RSp}(A')$, and so the row spaces are equal. It follows that $\text{RSp}(A_{ech}) = \text{RSp}(A)$.\\
+So we have $\text{RSp}(A) \subseteq \text{RSp}(A')$, and so the row spaces are equal. It follows that $\text{RSp}(A_{ech}) = \text{RSp}(A)$.
 
-For (2), consider the form of $A_{ech},$ and denote $r_1,\dots r_k$ as the non-zero rows. Say $r_i$ has it's leading entry in column $c_i$. Suppose that $\lambda_1r_1 + \dots + \lambda_kr_k = \mathbf{0} ~(*).$\\
-  
-  Look at the co-ordinate corresponding to column $c_1$. The only contribution is $\lambda_1r_1$ since all of the other rows have 0 in that co-ordinate. Since $r_1$ has 1 in this co-ordinate $\implies \lambda_1 = 0$.\\
-
-Since $\lambda_1 = 0$, the only contribution to $c_2$ is $\lambda_2r_2$. So $\lambda_2 = 0$. We can continue this argument for $c_2, \dots, c_i, \dots, c_k \implies$ the only solution to $(*)$ is $\lambda_1, \dots, \lambda_k = 0 \implies $ linearly independence of vectors.
+For (2), consider the form of $A_{ech},$ and denote $r_1,\dots r_k$ as the non-zero rows. Say $r_i$ has it's leading entry in column $c_i$. Suppose that \[\lambda_1r_1 + \dots + \lambda_kr_k = \mathbf{0} \tag{$*$}\]
+  Look at the co-ordinate corresponding to column $c_1$. The only contribution is $\lambda_1r_1$ since all of the other rows have 0 in that co-ordinate. Since $r_1$ has 1 in this co-ordinate $\implies \lambda_1 = 0$. Since $\lambda_1 = 0$, the only contribution to $c_2$ is $\lambda_2r_2$. So $\lambda_2 = 0$. We can continue this argument for $c_2, \dots, c_i, \dots, c_k \implies$ the only solution to $(*)$ is $\lambda_1, \dots, \lambda_k = 0 \implies $ linearly independence of vectors.\\
   
 
 \begin{example} \lecturemarker{4}{21 Jan} 
 Find the row-rank of $A = \begin{pmatrix}
  1 & 2 & 5\\ 2 & 1 & 0 \\ -1& 4 & 15
  \end{pmatrix}
-$ \\~\\
+$ \\
 
 \noindent \textbf{Answer:} Reduce $A$ to echelon form: 
 
@@ -388,16 +369,15 @@ Since $A_{ech}$ has two non-zero rows, the row-rank of $A$ is 2. (Note: Scaling 
 
  \textbf{Answer:} Notice that $W = \text{RSp} \begin{pmatrix}
  -1 & 1 & 0 & 1\\ 2 & 3 & 1 & 0\\ 0 & 1 & 2 & 3
- \end{pmatrix} = A$\\
+ \end{pmatrix} = A$
  
- $\implies A_{ech} =  
+ \[\implies A_{ech} =  
  \begin{pmatrix}
  -1 & 1 & 0 & 1 \\ 0 & 5 & 1 & 2 \\ 0 & 0 & 9 & 12
- \end{pmatrix}
- $\\
+ \end{pmatrix}\]
  
-There are 3 non-zero rows in $A_{ech}$, so the row rank is 3.\\ Hence dim $W = 3$.
-\end{example}\vspace*{10pt}
+There are 3 non-zero rows in $A_{ech}$, so the row rank is 3. Hence dim $W = 3$.
+\end{example}\vspace*{5pt}
 
 \begin{proc}The columns of $A$ are the rows of $A^T$. So apply Procedure 11 to the matrix $A^T$. (Alternatively, use column operations to reduce $A$ to ``column echelon form'', and then count the no. of non-zero columns).\end{proc}
 
@@ -442,11 +422,9 @@ There are 3 non-zero rows in $A_{ech}$, so the row rank is 3.\\ Hence dim $W = 3
 \lambda_{m1}b_{1j} + \lambda_{m2}b_{2j} + \dots + \lambda_{mk}b_{kj}\\
 \end{pmatrix}\]~
 
-So every column of $A$ is a linear combination of $(\lambda_{1i},\lambda_{2i},\dots,\lambda_{mi})^T$ for $1 \leq i \leq k$. So the column space of $A$ is spanned by $k$ vectors and so column-rank$(A) \leq k = $ row-rank$(A)$.\\
+So every column of $A$ is a linear combination of $(\lambda_{1i},\lambda_{2i},\dots,\lambda_{mi})^T$ for $1 \leq i \leq k$. So the column space of $A$ is spanned by $k$ vectors and so column-rank$(A) \leq k = $ row-rank$(A)$. But row-rank$(A$) = column-rank($A^T)$, column-rank($A)$ = row-rank($A^T$). 
 
- But row-rank$(A$) = column-rank($A^T)$, column-rank($A)$ = row-rank($A^T$).\\
- 
-  By the argument above, column-rank$(A^T) \leq$ row-rank($A$). So row-rank$(A) \leq$ column-rank($A$). Hence row-rank$(A)$ = column-rank$(A$).
+By the argument above, column-rank$(A^T) \leq$ row-rank($A$). So row-rank$(A) \leq$ column-rank($A$). Hence row-rank$(A)$ = column-rank$(A$).
  \end{proof}\vspace*{5pt}
 
  
@@ -458,16 +436,16 @@ So every column of $A$ is a linear combination of $(\lambda_{1i},\lambda_{2i},\d
  1 & 2 & -1 & 0\\ -1 & 1 & 0 & 1\\ 0 & 3 & -1 & 1
  \end{smallmatrix}\right)$\\
  
- Notice that $r_3 = r_1 + r_2$. So a basis for $RSp(A)$ is $\{(1,2,-1,0),(-1,1,0,1)\}$\\
+ Notice that $r_3 = r_1 + r_2$. So a basis for $RSp(A)$ is $\{(1,2,-1,0),(-1,1,0,1)\}$
  
  Write the rows of $A$ as linear combinations of $\{v_1,v_2\}$:
- \[r_1 = 1v_1 + 0v_2~~~ r_2 = 0v_1 + 1v_2~~~ r_3 = 1v_1 + 1v_2\] (The scalars here are the $\lambda_{ij}$ from the proof of Theorem 16)\\
+ \[r_1 = 1v_1 + 0v_2~~~ r_2 = 0v_1 + 1v_2~~~ r_3 = 1v_1 + 1v_2\] (The scalars here are the $\lambda_{ij}$ from the proof of Theorem 16)
  
  According to the proof, a spanning set of for $CSp(A)$ is given by: \[\{(1,0,1)^T,(0,1,1)^T\}\] We verify this - 
  We have $c_1 = (1,-1,0)^T = w_1 - w_2$. $c_2 = (2,1,3)^T = 2w_1 + w_2$, $c_3 = (-1,0,-1)^T = -w_1$, and $c_4 = (0,1,1)^T = w_2$.
- \end{example}\vspace*{10pt}
+ \end{example}\vspace*{5pt}
 
-\begin{proposition}\lecturemarker{5}{23/01} 
+\begin{proposition} {\normalfont\lecturemarker{5}{23/01} }
  Let $A$ be an $n \times n$ (square) matrix. Then the following statements are equivalent:
 \begin{enumerate}
 \item $rk(A) = n$ (A has ``full rank'')
@@ -490,12 +468,11 @@ So every column of $A$ is a linear combination of $(\lambda_{1i},\lambda_{2i},\d
 (1) $\iff$ (3): The same, using columns instead.\\
 
 (1) $\iff$ (4): 
-\[
-\begin{aligned}
+\begin{align*}
 \text{rk}(A) = n &\iff A_{ech} = I\\
 &\iff A \text{ can be row-reduced to } I\\
-&\iff A \text{ is invertible.}
-\end{aligned}\]
+&\iff A \text{ is invertible.}	\qedhere
+\end{align*}
 \end{proof}
 
 \subsektion{Linear Transformations}
@@ -504,7 +481,7 @@ Suppose that $V$ and $W$ are vector spaces over a field $F$. Let $T: V \to W$ be
 \begin{itemize}
 \item[*] Say that $T$ ``preserves addition'', if whenever $T: V \mapsto W$ and $T: v_2 \mapsto w_2$, we also have $T: v_1 + v_2 \mapsto w_1 + w_2$. (Briefly: $T(v_1 + v_2)=Tv_1 +Tv_2$.)
 \item[*] Say that $T$ ``preserves scalar multiplcation'', if whenever $T: v \mapsto w$ and $\lambda \in F \implies T: \lambda v \mapsto \lambda w$. (Briefly: $T(\lambda v) = \lambda T(v))$
-\end{itemize}
+\end{itemize}\vspace*{5pt}
 
 \begin{definition}The function $T: V \to W$ is a \emph{linear transformation}\index{Linear Transformation} (or \emph{linear map}), if it preserves addition and scalar multiplication. So:
 \[T(v_1 + v_2)=Tv_1 +Tv_2 \text{ and }T(\lambda v) = \lambda(T(v)), \forall v_1,v_2,v \in V ~\&~ \lambda \in F\]
@@ -530,7 +507,7 @@ T(\l(x,y)) = T((\l x,\l y)) = \l x + \l y = \l(x+y) = \l T((x,y))\]
 \item[(b)] $T: \mathbb{R}^2 \to \mathbb{R}, T(x,y) = x+y + 1$. This is not linear. \\
 For example, 2$T$((1,0)) = 4, but $T((2,0)) = 3$, so it doesn't preserve scalar multiplication $\implies$ not a linear map.
 
-\item[(c)] $T: \mathbb{R} \to \mathbb{R}$ $T(x) = \sin(x)$, is not linear.\\
+\item[(c)] $T: \mathbb{R} \to \mathbb{R}$ $T(x) = \sin(x)$, is not linear.
 $2T(\pi/2) = 2$, but $T(2\times \pi/2) = T(\pi) = 0$. Again it doesn't preserve scalar multiplication, so not a linear map.
 
 \item[(d)] Let $V$ be the space of all polynomials in a single variable $x$ with co-efficients from $\mathbb{R}$. Define $T:v \to V$ by $T(f(x)) = \frac{d}{dx}f(x)$. Then $T$ is a linear transformation.
@@ -586,7 +563,7 @@ and so $T$ is a matrix transformation. So Proposition 22 applies.
 \end{examples}\vspace*{10pt}
 
 
-\begin{proposition}\emph{(Basic properties of linear transformations)} \\
+\begin{proposition}\emph{(Basic properties of linear transformations)}
 
 Let $T: V \to W$ be a linear transformation.
 
@@ -598,7 +575,6 @@ Let $T: V \to W$ be a linear transformation.
 
 
 \begin{proof} (i). Since $T$ preserves scalar multiplication, for any $v \in V$, we have $T(0v) = 0Tv$, so $T(\mathbf{0}_v) = \mathbf{0}_w$.
-
 \end{proof}
 
 
@@ -618,42 +594,32 @@ Now a straightforward argument by induction tells us that: \[T(v) = \lambda_1T(v
 
 \begin{example} \textbf{Question:} Find a linear transformation, $T: \mathbb{R}^2 \to \mathbb{R}^3$, which sends $(1,0) \to (1,-1,2)$ and sends $(0,1) \to (0,1,3)$.\\
 
-\textbf{Answer:} Notice that $\{(1,0), (0,1)\}$ is a basis for $\mathbb{R}^2$. So a general element of $\mathbb{R}^2$ is $a(1,0) + b(0,1)$, for $a,b \in \mathbb{R}$. \\
-
-So if $T$ is a solution to the question, then we must have $T(a(1,0) + b(0,1)) = a(1,-1,2) + b(0,1,3)$, by Proposition 24(ii). \\
-
-So we are \emph{forced} to take $T(a,b) = (a,b-a,2a+3b)$. This is indeed a linear transformation, since it is a matrix transformation. And we do have $T(0,1) = (1,-1,2)$ and $T(0,1) = (0,1,3)$ as required. So this is a solution and it is the unique solution.
-\end{example}\vspace*{10pt}
+\textbf{Answer:} Notice that $\{(1,0), (0,1)\}$ is a basis for $\mathbb{R}^2$. So a general element of $\mathbb{R}^2$ is $a(1,0) + b(0,1)$, for $a,b \in \mathbb{R}$. So if $T$ is a solution to the question, then we must have $T(a(1,0) + b(0,1)) = a(1,-1,2) + b(0,1,3)$, by Proposition 24(ii).  So we are \emph{forced} to take $T(a,b) = (a,b-a,2a+3b)$. This is indeed a linear transformation, since it is a matrix transformation. And we do have $T(0,1) = (1,-1,2)$ and $T(0,1) = (0,1,3)$ as required. So this is a solution and it is the unique solution.
+\end{example}\vspace*{5pt}
 
 
 \begin{proposition}Let $V$ and $W$ be vector spaces over $F$. Let $\{v_1,\dots,v_n\}$ be a basis for $V$. Let $\{w_1,\dots,w_n\}$ be any $n$ vectors in $W$. Then there is a unique linear transformation $T: V \to W$ such that $T(v_i) = w_i ~\forall i$.	
-\end{proposition}\vspace*{10pt}
+\end{proposition}\vspace*{5pt}
 
 
 \textit{Remark.} The vectors $w_1, \dots w_n$ don't have to be linearly independent, or even distinct.
 \begin{proof}
-Suppose that $v \in V.$ Then there exists unique scalars $\lambda_1,\dots,\lambda_n$ such that $v = \l_1v_1 + \dots + \l_nv_n$.\\
+Suppose that $v \in V.$ Then there exists unique scalars $\lambda_1,\dots,\lambda_n$ such that $v = \l_1v_1 + \dots + \l_nv_n$. Define $T: V \to W$ by $T(v) = \l_1w_1 + \dots \l_nw_n$. (This makes sense, since the scalars $\l_i$ are uniquely determined by $v$.)
 
-Define $T: V \to W$ by $T(v) = \l_1w_1 + \dots \l_nw_n$. (This makes sense, since the scalars $\l_i$ are uniquely determined by $v$.)\\
-
-Show that $T$ is linear:\\
-Take $u,v \in V$. Write $u = \mu_1v_1 + \dots + \mu_nv_n$, $v = \l_1v_1 + \dots \l_nv_n$. Then $u+v = (\mu_1 + \l_1)v_1 + \dots + (\mu_n + \l_n)v_n$. Now by the definition of $T$, we have:
+Show that $T$ is linear: Take $u,v \in V$. Write $u = \mu_1v_1 + \dots + \mu_nv_n$, $v = \l_1v_1 + \dots \l_nv_n$. Then $u+v = (\mu_1 + \l_1)v_1 + \dots + (\mu_n + \l_n)v_n$. Now by the definition of $T$, we have:
 
 \[T(u) = \mu_1w_1 + \dots + \mu_nw_n \text{ and }T(v) = \l_1w_1 + \dots + \l_nw_n\]
 \[\text{Also }T(u+v) = (\mu_1 + \l_1)w_1 + \dots + (\mu_n + \l_n)w_n\]
 
-So $T(u+v) = T(u) + T(v)$, so $T$ preserves addition.\\
-
-Now let $\pi \in F$. We have $\pi = \pi\l_1v_1 + \dots + \pi\l_nv_n$
-\end{proof}
+So $T(u+v) = T(u) + T(v)$, so $T$ preserves addition. Now let $\pi \in F$. We have $\pi = \pi\l_1v_1 + \dots + \pi\l_nv_n$
+\end{proof}\vspace*{5pt}
 
 \begin{remark} Once we know what a linear transformation does on a basis, we know all about it. This gives a convenient shorter way of defining a linear transformation. 	
-\end{remark}
+\end{remark}\vspace*{5pt}
 
 
-\begin{example} Let $V$ be the vector space of polynomials in a variable $x$ over $\mathbb{R}$ of degree $\leq 2$. A basis for $V$ is $\{1,x,x^2\}$.\\
-
-Pick three ``vectors'' in $V$; $w_1 = 1+x$, $w_2 = x-x^2$, $w_3 = 1+x^2$. By Proposition 26, there should be a unique linear transformation, $T: V\to V$ such that $T(1) = w_1, T(x) = w_2, T(x^2) = w_3$.\\
+\begin{example} Let $V$ be the vector space of polynomials in a variable $x$ over $\mathbb{R}$ of degree $\leq 2$. A basis for $V$ is $\{1,x,x^2\}$.
+Pick three ``vectors'' in $V$; $w_1 = 1+x$, $w_2 = x-x^2$, $w_3 = 1+x^2$. By Proposition 26, there should be a unique linear transformation, $T: V\to V$ such that $T(1) = w_1, T(x) = w_2, T(x^2) = w_3$.
 
 Let's work out what $T$ does to an arbitrary polynomial, $c + bx + ax^2$ from $V$. We must have $c + bx + ax^2 \longmapsto c(1+x) + b(x-x^2) + a(1+x^2) = (a+c) + (b+c)x + (a-b)x^2$.
 \end{example}
@@ -732,42 +698,36 @@ This is $\{v \in \mathbb{R}^3: Av = \mathbf{0}\}$, the solution space of $Av = \
 (In general we write $U \leq V$ to mean that $U$ is a subspace of $V$. So Proposition 31 says Im$(T) \leq W, $ Ker$(T) \leq V$). 
 
 \begin{proof}
-(i) Im$(T) \leq W$: \\
+(i) Im$(T) \leq W$: 
 
-Certainly $T(\mathbf{0}) \in $ Im$(T)$, so Im$(T) \neq \emptyset$.\\
+Certainly $T(\mathbf{0}) \in $ Im$(T)$, so Im$(T) \neq \emptyset$.
 
-Suppose that $w_1, w_2 \in $ Im$(T)$. Then there exists $v_1, v_2 \in V$ such that $Tv_1 = w_1$ and $Tv_2 = w_2$. Now $T(v_1 + v_2) = Tv_1 + Tv_2 = w_1 + w_2$. (Since $T$ preserves addition). So $w_1 + w_2 \in Im ~T$, so Im$(T)$ is closed under addition. \\
+Suppose that $w_1, w_2 \in $ Im$(T)$. Then there exists $v_1, v_2 \in V$ such that $Tv_1 = w_1$ and $Tv_2 = w_2$. Now $T(v_1 + v_2) = Tv_1 + Tv_2 = w_1 + w_2$. (Since $T$ preserves addition). So $w_1 + w_2 \in Im ~T$, so Im$(T)$ is closed under addition. 
 
 Now suppose that $w \in $ Im$T$ and $\lambda \in F$. Then there exists $v \in V$ such that $Tv = w$. Now $T(\lambda v) = \lambda T(v) = \lambda w$. (Since $T$ preserves scalar multiplication). So $\lambda w \in $ Im$(T),$ so Im$(T)$ is closed under scalar multiplication.\\
 
-\noindent (ii) Ker$(T) \leq V$:\\
+\noindent (ii) Ker$(T) \leq V$:
 
-We know that $T(\mathbf{0}) = \mathbf{0}w.$ So $\mathbf{0}v \in Ker~ T \implies Ker~ T \neq \emptyset.$\\
+We know that $T(\mathbf{0}) = \mathbf{0}w.$ So $\mathbf{0}v \in Ker~ T \implies Ker~ T \neq \emptyset.$
 
-Suppose that $v_1, v_2 \in $ Ker$(T)$. So: $Tv_1 = Tv_2 = \mathbf{0}.$ Now $T(v_1 + v_2) = \mathbf{0} + \mathbf{0} = \mathbf{0}$ (Since $T$ preserves addition). So $v_1 + v_2 \in $ Ker$(T)$, and so Ker$(T)$ is closed under addition.\\
+Suppose that $v_1, v_2 \in $ Ker$(T)$. So: $Tv_1 = Tv_2 = \mathbf{0}.$ Now $T(v_1 + v_2) = \mathbf{0} + \mathbf{0} = \mathbf{0}$ (Since $T$ preserves addition). So $v_1 + v_2 \in $ Ker$(T)$, and so Ker$(T)$ is closed under addition.
 
 Now suppose we have $v \in \text{Ker}(T), \lambda \in F.$ Then $Tv = \mathbf{0}.$ Now $T(\lambda v) = \lambda Tv = \lambda \mathbf{0} = \mathbf{0}.$ So $\lambda v \in $ Ker$(T).$ So Ker$(T)$ is closed under scalar muliplication. 
 \end{proof}\vspace*{5pt}
 
-\begin{example} Let $V_n$ be the vector space of polynomials in a variable $x$ over $\mathbb{R}$ of degree $\leq n$.\\
+\begin{example} Let $V_n$ be the vector space of polynomials in a variable $x$ over $\mathbb{R}$ of degree $\leq n$.
 
-We have $V_0 \leq V_1 \leq V_2 \leq \dots$\\
+We have $V_0 \leq V_1 \leq V_2 \leq \dots$. Define $T: V_n \to V_{n-1}$ by $T(f(x)) = \dfrac{d}{dx} f(x)$. 
 
-Define $T: V_n \to V_{n-1}$ by $T(f(x)) = \dfrac{d}{dx} f(x)$. \\
-
-We have Ker$(T) = \{\text{constant polynomials} \} = V_0$.\\
-
-If $g(x) = V_{n-1}$, Let $f(x)$ be the antiderivative (integral) of $g(x)$. Since deg $g(x) \leq n-1$, we have deg $f(x) \leq n$. And $T(f(x)) = \frac{d}{dx}f(x) = g(x)$. \\
-
-So $g(x) \in $ Im$(T)$, and so Im$(T) = V_{n-1}$.
-\end{example}\vspace*{10pt}
+We have Ker$(T) = \{\text{constant polynomials} \} = V_0$. If $g(x) = V_{n-1}$, Let $f(x)$ be the antiderivative (integral) of $g(x)$. Since deg $g(x) \leq n-1$, we have deg $f(x) \leq n$. And $T(f(x)) = \frac{d}{dx}f(x) = g(x)$. So $g(x) \in $ Im$(T)$, and so Im$(T) = V_{n-1}$.
+\end{example}\vspace*{5pt}
 
 \begin{proposition} Let $T : V \to W$ be a linear transformation. Let $v_1, v_2 \in V$. Then $Tv_1 = Tv_2 \iff T(v_1 -v_2) = \mathbf{0}$. $v_1 - v_2 \in $ Ker$(T)$.	
 \end{proposition}
 
 
 \begin{proof}
-$Tv_1 = Tv_2 \iff Tv_1 - Tv_2 = 0 \iff T(v_1 - v_2) = 0$\\ (Since T preserves addition and multiplication by $-1$). 
+$Tv_1 = Tv_2 \iff Tv_1 - Tv_2 = 0 \iff T(v_1 - v_2) = 0$. (Since T preserves addition and multiplication by $-1$). 
 \end{proof} \vspace{10pt}
 
 \begin{proposition} Let $T: V \to W$ be a linear transformation. Suppose that $\{v_1, \dots, v_n\}$ is a basis for $V$. Then Im$(T) = \text{Span}\{Tv_1, \dots, Tv_n\}$.	
@@ -777,14 +737,12 @@ $Tv_1 = Tv_2 \iff Tv_1 - Tv_2 = 0 \iff T(v_1 - v_2) = 0$\\ (Since T preserves ad
 \begin{proof}
 Let $w \in $ Im$(T)$. Then there exists $v \in V$ such that $T(v) = w$. We can write $v$ as a linear combination of basis vectors:\[v = \lambda_1v_1 + \lambda_2v_2 + \dots \lambda_nv_n. \]
 
-Now $Tv_1 = \lambda_1 Tv_1 + \dots \lambda_n Tv_n$ by Proposition 24(ii). So $w = \lambda_1Tv_1 + \dots + \lambda_nTv_n \in \text{Span}\{Tv_1, \dots, Tv_n\} \geq $ Im$(T)$\\
- 
- Since $Tv_i \in $ Im$(T)$ for all $i$, $\text{Span}\{Tv_1, \dots Tv_n\} \leq $ Im$(T)$. So Im$(T) = \text{Span}\{Tv_1, \dots, Tv_n\}.$
+Now $Tv_1 = \lambda_1 Tv_1 + \dots \lambda_n Tv_n$ by Proposition 24(ii). So $w = \lambda_1Tv_1 + \dots + \lambda_nTv_n \in \text{Span}\{Tv_1, \dots, Tv_n\} \geq $ Im$(T)$. Since $Tv_i \in $ Im$(T)$ for all $i$, $\text{Span}\{Tv_1, \dots Tv_n\} \leq $ Im$(T)$. So Im$(T) = \text{Span}\{Tv_1, \dots, Tv_n\}.$
  \end{proof}
 \vspace{10pt}
 
  
-\begin{proposition} \lecturemarker{8}{30/01} Let $A$ be an $m \times n$ matrix. Let $T: \mathbb{R}^n \to \mathbb{R}^m$ be given by $Tx = Ax$. \begin{enumerate}
+\begin{proposition}{\normalfont \lecturemarker{8}{30/01}} Let $A$ be an $m \times n$ matrix. Let $T: \mathbb{R}^n \to \mathbb{R}^m$ be given by $Tx = Ax$. \begin{enumerate}
  \item[(i)] Ker$(T)$ is the solution space to the equation $Ax = \mathbf{0}$. 
  \item[(ii)] Im$(T)$ is the column space $\text{CSp}(A)$.
  \item[(iii)] dim Im$(T)$ is the rank $\text{rk}(A)$.
@@ -824,26 +782,24 @@ Now $Tv_1 = \lambda_1 Tv_1 + \dots \lambda_n Tv_n$ by Proposition 24(ii). So $w 
 1 & 0 & -1 & 0\\ 0 & 1 & 2 & 0\\ 0 & 0 & 0 & 0\\
 \end{amatrix}\]
 
-$\implies x_1 - x_3 = 0; x_2 + 2x_3 = 0$. So we must have $x_1 = x_3, x_2 = -2x_3$\\
-
-So a basis for Ker$(T)$ is $\{(1,-2,1)^T\}$\\
+$\implies x_1 - x_3 = 0; x_2 + 2x_3 = 0$. So we must have $x_1 = x_3, x_2 = -2x_3$. So a basis for Ker$(T)$ is $\{(1,-2,1)^T\}$. 
 
 \noindent For Im$(T)$, we notice from the row-reduced matrix above, that $rk(A) = 2$. So dim Im$(T)$ is 2. Since Im$(T)$ is $CSp(A)$, a basis can be obtained by taking any two lin. indep. columns. So $\{(1,-1,1)^T,(2,0,4)^T\}$ is a basis.
-\end{example}\vspace*{10pt}
+\end{example}\vspace*{5pt}
 
 \begin{theorem}[Rank Nullity Theorem.]\index{Rank Nullity Theorem|idxbf} Let $T: V \to W$ be a linear transformation. Then dim Im$(T) + $ dim Ker$(T) = $ dim$(V)$.
  (rank $T$ = dim Im$(T),$ nullity $ = $ dim Ker$(T)$)
  \end{theorem}
 
 \begin{proof}
-Let $\{u_1,\dots,u_s\}$ be a basis for Ker$(T)$, and $\{w_1,\dots,w_r\}$ be a basis for Im$(T)$. For each $i \in \{1,\dots,r\}$, there exists some $v_i \in V$ such that $T(v_i) = w_i$ (since $w_i \in $ Im$(T)$).\\
+Let $\{u_1,\dots,u_s\}$ be a basis for Ker$(T)$, and $\{w_1,\dots,w_r\}$ be a basis for Im$(T)$. For each $i \in \{1,\dots,r\}$, there exists some $v_i \in V$ such that $T(v_i) = w_i$ (since $w_i \in $ Im$(T)$).
 
-I claim that $B = \{u_1,\dots,u_s\} \cup \{v_1,\dots,v_r\}$ is a basis for $V$.\\
-This needs to be proved:\\
+I claim that $B = \{u_1,\dots,u_s\} \cup \{v_1,\dots,v_r\}$ is a basis for $V$.
+This needs to be proved:
 
-(i) Show that $V = \text{Span}(B)$\\
+(i) Show that $V = \text{Span}(B)$:
 
-Take $v \in V$. Then $Tv \in $ Im$(T)$, and so $Tv = \mu_1w_1 + \dots \mu_rw_r$, for some $\mu_i \in F$. Define $\bar{v} \in V$ by $\mu_1v_1 + \dots \mu_rv_r$. Then $T\bar{v} = \mu_1w_1 + \dots \mu_rw_r = Tv$.\\ So $v - \bar{v} \in $ Ker$(T)$ by Proposition 33. So $v - \bar{v} = \l_1u_1 + \dots + \l_su_s$ for some $\l_i \in F$. Now $v = \bar{v} + \l_1u_1 + \dots \l_su_s = \mu_1v_1 + \dots + \mu_rv_r + \l_1u_1 + \dots + \l_su_s \in \text{Span}(B)$.\\
+Take $v \in V$. Then $Tv \in $ Im$(T)$, and so $Tv = \mu_1w_1 + \dots \mu_rw_r$, for some $\mu_i \in F$. Define $\bar{v} \in V$ by $\mu_1v_1 + \dots \mu_rv_r$. Then $T\bar{v} = \mu_1w_1 + \dots \mu_rw_r = Tv$. So $v - \bar{v} \in $ Ker$(T)$ by Proposition 33. So $v - \bar{v} = \l_1u_1 + \dots + \l_su_s$ for some $\l_i \in F$. Now $v = \bar{v} + \l_1u_1 + \dots \l_su_s = \mu_1v_1 + \dots + \mu_rv_r + \l_1u_1 + \dots + \l_su_s \in \text{Span}(B)$.\\
 
 (ii) Show that $B$ is linearly independent. Suppose that:
  \[\l_1u_1 + \dots \l_1u_s + \mu_1v_1 + \dots + \mu_rv_r = \mathbf{0} ~(*)\]
@@ -851,10 +807,8 @@ Take $v \in V$. Then $Tv \in $ Im$(T)$, and so $Tv = \mu_1w_1 + \dots \mu_rw_r$,
  We want to show that $\l_i = 0$ and $\mu_i = 0$ for all $i$. Apply $T$ to both sides of $(*$). Since $Tu_i = \mathbf{0}$ for all $i$, we get $\mu_1w_1 + \dots + \mu_rw_r = \mathbf{0}$. But $\{w_1,\dots,w_r\}$ is linearly independent (a basis for Im$(T)$). So $\mu_i = 0~~ \forall i$. Now from $(*)$, we have:
 \[\l_1u_1 + \dots \l_su_s = \mathbf{0}\]
 
-But $\{u_1,\dots,u_s\}$ is linearly independent (a basis for Ker$(T)$). So $\l_i = 0$ for all $i$. Hence $B$ is a basis.\\
-
- So dim $V = |B| = r + s = $ dim Im$(T) + $dim Ker$(T)$.
-\end{proof}\vspace*{10pt}
+But $\{u_1,\dots,u_s\}$ is linearly independent (a basis for Ker$(T)$). So $\l_i = 0$ for all $i$. Hence $B$ is a basis. So dim $V = |B| = r + s = $ dim Im$(T) + $dim Ker$(T)$.
+\end{proof}\vspace*{5pt}
 
 
 \begin{corollary} Let $A$ be an $m\times n$ matrix. Let $U$ be the solution space to $Ax = \mathbf{0}$. Then:
@@ -864,10 +818,9 @@ But $\{u_1,\dots,u_s\}$ is linearly independent (a basis for Ker$(T)$). So $\l_i
 
 \begin{proof}
 Let $T$ be the matrix transformation $\mathbb{R}^n \to \mathbb{R}^m$ given by $Tx = Ax$. Then $rk(A) = $dim Im$(T)$, and Ker$(T) = U$. So the result follows by Theorem 37.
-\end{proof}
+\end{proof}\vsp
 
-\subsektion{Matrix of Linear Transformation}\vspace*{5pt}
-
+\subsektion{Matrix of Linear Transformation}
 \begin{definition} \lecturemarker{9}{03/02}
  Let $V$ be a vector space over a field $F.$ Let $B = \{v_1,\dots,v_n\}$ be a basis for $V$. (Actually we should write $(v_1,\dots,v_n)$, because we care about the order of the basis vectors. But that notation could be confusing, so we'll continue to use set brackets).
  
@@ -1034,12 +987,11 @@ So  \[
 \]
 \end{proof}
 
-\pagebreak
 
 \subsektion{Eigenvalues and Eigenvectors}\vspace*{5pt}
 
 \begin{definition}\lecturemarker{10}{04/02} 
- Let $T: V \to V$ be a linear transformation. We say that $v$, is an \emph{eigenvector}\index{Eigenvector} of $T$ if $v \neq \mathbf{0}$, and $Tv = \l v$ for some $\l \in F$. We say that $\l$ is an \emph{eigenvalue}\index{Eigenvalue} of $T$.\end{definition}\vspace*{10pt}
+ Let $T: V \to V$ be a linear transformation. We say that $v$, is an \emph{eigenvector}\index{Eigenvector} of $T$ if $v \neq \mathbf{0}$, and $Tv = \l v$ for some $\l \in F$. We say that $\l$ is an \emph{eigenvalue}\index{Eigenvalue} of $T$.\end{definition}\vspace*{5pt}
 
 \begin{example} Let $V = \mathbb{R}^2$ and let $T\begin{pmatrix}
 x_1 \\ x_2
@@ -1109,9 +1061,7 @@ So these are polynomials $a.1 + 0.x + 0.x^2$, which are the non-zero constant po
 
 
 \begin{proof}
-Let $e_1,\dots,e_n$ be the standard basis vectors, $(1,0,\dots,0)^T, (0,1,\dots,0)^T$ etc. in $F^n$, where $n =$ dim$V$. Let $A$ be an $n \times n$ matrix. Then $A$ is diagonal  if and only if $e_1$ is an eigenvector of $A$ for all $i$.\\
-
- So $[T]_B$ is diagonal if and only if all the $e_i$ are eigenvectors.\\
+Let $e_1,\dots,e_n$ be the standard basis vectors, $(1,0,\dots,0)^T, (0,1,\dots,0)^T$ etc. in $F^n$, where $n =$ dim$V$. Let $A$ be an $n \times n$ matrix. Then $A$ is diagonal  if and only if $e_1$ is an eigenvector of $A$ for all $i$. So $[T]_B$ is diagonal if and only if all the $e_i$ are eigenvectors.
  
  But $e_i = [v_i]_B,$ where $B= \{v_1,\dots,v_n\}$, since $v_i = 0v_1 + 0v_2 + \dots + 1v_i + \dots 0v_n$. So $e_i$ is an eigenvector for $[T]_B$ if and only if $v_i$ is an eigenvector for $T$, by Proposition 46. 
 \end{proof}
@@ -1120,38 +1070,34 @@ Let $e_1,\dots,e_n$ be the standard basis vectors, $(1,0,\dots,0)^T, (0,1,\dots,
 
 
 \begin{examples}\begin{itemize}
-\item[(a)] $V,T$ as in Example 47. $T(f(x)) = f(x+1) - f(x)$.\\
- \emph{Is $T$ diagonalisable?}.\\
+\item[(a)] $V,T$ as in Example 47. $T(f(x)) = f(x+1) - f(x)$. \emph{Is $T$ diagonalisable?}.
  
 We calculated earlier that the eigenvectors of $T$ all lie in $Span\{1 + 0.x + 0.x^2\}$ which is a one-dimensional subspace of $V$. So the eigenvectors do not span $V$, and so there is no basis of $V$ consisting of the eigenvector of $T$. So $T$ is not diagonalisable. 
 
-\item[(b)] $V$ as before (polynomial space of degree $\leq 2$)\\
-Define $T: V\to V$ by $T(f(x)) = f(1-x)$, a basis for $V$.\\ (Exercise: check $T$ is linear).\\ We have $T(1) = 1,~ T(x) = 1-x,~ T(x^2) = (1-x)^2 = 1-2x + x^2.$ So:
+\item[(b)] $V$ as before (polynomial space of degree $\leq 2$)
+Define $T: V\to V$ by $T(f(x)) = f(1-x)$, a basis for $V$. (Exercise: check $T$ is linear).
+
+ We have $T(1) = 1,~ T(x) = 1-x,~ T(x^2) = (1-x)^2 = 1-2x + x^2.$ So:
 \[
 \begin{pmatrix}
 1 & 1 & 1 \\ 0 & -1 & -2 \\ 0 & 0 & 1
 \end{pmatrix}
 \]
 
-The characteristic polynomial is $(\l-1)^2(\l+1)$ [the diagonals are the roots]. So the eigenvalues are 1,-1. \\
-
-We need to know whether there exists two linearly independent eigenvectors with eigenvalue 1. Using M1GLA techniques...
+The characteristic polynomial is $(\l-1)^2(\l+1)$ [the diagonals are the roots]. So the eigenvalues are $1,-1.$ We need to know whether there exists two linearly independent eigenvectors with eigenvalue $1$. Using M1GLA techniques...
 \[
 \left(\begin{smallmatrix}
 1 \\ 0 \\0
 \end{smallmatrix} \right) \text{ and } \left(\begin{smallmatrix}
 0 \\ 1 \\-1
 \end{smallmatrix} \right)\]
-are both eigenvectors with eigenvalue 1. They are linearly independent. We have $\left(\begin{smallmatrix}
+are both eigenvectors with eigenvalue $1$. They are linearly independent. We have $\left(\begin{smallmatrix}
 1 \\ -2 \\0
 \end{smallmatrix} \right)
-$ as an eigenvector with eigenvalue -1.
-\[\text{So } C = \{(1,0,0)^T,(0,1,-1)^T,(1,-2,0)^T\}\] is a basis for $V$, whose elements are eigenvectors of $T.$\\ (Or $C = \{1, x-x^2,1-2x\}$). \\
-
-So $T$ is diagonalisable and $[T]_C = \begin{pmatrix}
+$ as an eigenvector with eigenvalue $-1$.
+\[\text{So } C = \{(1,0,0)^T,(0,1,-1)^T,(1,-2,0)^T\}\] is a basis for $V$, whose elements are eigenvectors of $T.$ (Or $C = \{1, x-x^2,1-2x\}$). So $T$ is diagonalisable and \[[T]_C = \begin{pmatrix}
  1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1
- \end{pmatrix}$
- 
+ \end{pmatrix}\]
  \end{itemize}
  \end{examples}
  
@@ -1181,9 +1127,7 @@ So $T$ is diagonalisable and $[T]_C = \begin{pmatrix}
  \end{proposition}
 
 \begin{proof} (i)
-We know that $[T]_B[v_i]_B = [Tv_i]_B = [w_i]_B$. And  $[T]_B$ is the only matrix with this property. So it is enough to show that $P[v_i]_B = [w_i]_B$.\\
-
-But $[v_i]_B = e_i = (0,\dots,1,\dots,0)^T$ (1 in $i$th row), and so $P[v_i]_B =  Pe_i = i$th column of $P$ is $[w_i]_B$, as above.
+We know that $[T]_B[v_i]_B = [Tv_i]_B = [w_i]_B$. And  $[T]_B$ is the only matrix with this property. So it is enough to show that $P[v_i]_B = [w_i]_B$. But $[v_i]_B = e_i = (0,\dots,1,\dots,0)^T$ (1 in $i$th row), and so $P[v_i]_B =  Pe_i = i$th column of $P$ is $[w_i]_B$, as above.
 \end{proof}
 
 \begin{proof} (ii)
@@ -1196,10 +1140,10 @@ Now if $v \in V$ then we can write $v = a_1w_1 + \dots + a_nw_n, ~a_i \in F.$ No
  &= [a_1w_1 + \dots a_nw_n]_B\qedhere
  \end{aligned}
 \]
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 \begin{definition}The Matrix $P$ as defined above is the \emph{change of basis matrix}\index{Change of Basis Matrix} from $B$ to $C$.	
-\end{definition}\vspace*{10pt}
+\end{definition}\vspace*{5pt}
 
 
 \begin{proposition} Let $V, B, C, P$ be all as above. Let $T: V \to V$ be a linear transformation. 
@@ -1229,7 +1173,7 @@ P^{-1}[T]_BPe_i &= P^{-1}[T]_BP[w_i]_C\\
 \]
 
 So the $i$th column of $P^{-1}[T]_BP$ is the same as the $i$th column of $[T]_C$ for all $i$, and so $P^{-1}[T]_BP = [T]_C$, as required.
-\end{proof} \vspace*{10pt}
+\end{proof}
 
 \begin{example} Let $V = \mathbb{R}^2$, and let $T: V \to V$ be given by:
 \[
@@ -1271,11 +1215,7 @@ The change of basis matrix from $B$ to $C$ is $P = \begin{pmatrix}
  so we have diagonalised $T$. (M1GLA - $D = P^{-1}AP$)
  \end{example}
  
- 
-\begin{center}
-  
-  \textsf{\textbf{- End of Linear Algebra -}}	
-  \end{center}
+
 
 
 
@@ -1286,6 +1226,7 @@ The change of basis matrix from $B$ to $C$ is $P = \begin{pmatrix}
 
  \sektion{Group Theory}
  \subsektion{Groups}   
+ \setcounter{equation}{54}
 
  
  Let \lecturemarker{12}{10/02} $S$ be a set. A \emph{binary operation}\index{Binary Operation} on $S$ is function $S \times S \to S$. $S_{\times}$ takes pairs of elements, $(S_1,S_2)$, to some element $S_1 * S_2$.\\
@@ -1324,21 +1265,22 @@ The change of basis matrix from $B$ to $C$ is $P = \begin{pmatrix}
  \end{enumerate}\end{examples}\vspace*{10pt}
 
 
-Suppose that $S$ is a set with binary operation $*$. Then the expression ``$a * b * c$'' is ambiguous: it could mean $(a*b)*c$ or $a*(b*c)$.\\
+Suppose that $S$ is a set with binary operation $*$. Then the expression ``$a * b * c$'' is ambiguous: it could mean $(a*b)*c$ or $a*(b*c)$.
 
  Example: $S = ,~ a*b =  a-b$. In general $(a-b)-c \neq a - (b-c)$. (except when $c = 0$).\\
 
 
 
 \begin{definition} If $(a*b)*c = a*(b*c)$ for all $a,b,c, \in S$, then we say that $*$ is \emph{associative}\index{Associativity}.	
-\end{definition}\vspace*{10pt}
+\end{definition}\vspace*{5pt}
 
 
 If an operation $*$ is associative, then $a*b*c$ is now unambiguous. So we can omit brackets in expressions of this sort.\\
 
 
-\begin{example} [For motivation]\\
- ~~ \textbf{Question:} Solve $x + 1 = 2, ~~ x \in \Z$\\
+\begin{example} [For motivation]
+
+ ~~ \textbf{Question:} Solve $x + 1 = 2, ~~ x \in \Z$
  
 \textbf{Answer:} (carefully explaining our reasoning) \begin{enumerate}
  \item[(i)] Use the fact that $-1$ in $\Z$. Add it to both sides.
@@ -1358,9 +1300,11 @@ A group is a set with a binary operation $*$ in which equations $x * b = c$ can 
 \end{enumerate}
 \end{definition}
 
-\emph{Notes.}\\
- (i) Most books also list another axiom:\\ \vspace*{5pt}
-~~~0. \textbf{Closure: }If $x,y \in G$ then $x * y \in G$.\\
+\emph{Notes.}
+
+ (i) Most books also list another axiom:
+ 
+ ~~~0. \textbf{Closure: }If $x,y \in G$ then $x * y \in G$.\\
 For us this is implied by the fact that $*$ is a binary operation on $G$.
 
 (ii) The element $e$ from (2) is called the \emph{identity element}\index{Identity} of $G$.
@@ -1382,8 +1326,7 @@ For us this is implied by the fact that $*$ is a binary operation on $G$.
     $(\Q\backslash\{0\},\times)$ & Yes & 1 & $1/x$ & Yes\\ 
     $( \mathbb{R}\backslash\{0\},\times)$ & Yes & 1 & $1/x$ & Yes\\ 
     $(\C \backslash\{0\},\times)$ & Yes & 1 & $1/x$ & Yes\\ 
-    $(\{1,-1,i,-i\}$ & Yes & 1 & $1/x$ & Yes\vspace*{-5pt}\\ 
-   $ ~~~~\subset \C, \times)$ &  & & & 
+    $(\{1,-1,i,-i\},\times)$ & Yes & 1 & $1/x$ & Yes\vspace*{-5pt}
     \end{tabular}
 \end{table}
 }
@@ -1413,7 +1356,7 @@ The two most common notations for groups are:\begin{enumerate}
 \item[(ii)] \textbf{Multiplicative notation:} We write $xy$ for $x*y$. We write $e$ or 1 for the identity. Write $x^{-1}$ for the inverse. Write (for instance) $x^2$ for $x*x$.
 \end{enumerate}
 
-We will usually use multiplicative notation.\\
+We will usually use multiplicative notation.
 
 We say that a group $G$ is \emph{finite} if it has finitely many elements. In this case we say that $|G|$ is the \emph{order}\index{Order} of $G$.\\
 
@@ -1626,10 +1569,10 @@ So $S_3 = \{e, a, a^2, b, ab, a^2b\}$. To work out the group table, it is helpfu
 \]
 
 Notice that every element of the group appears exactly once in each row and each column. (This follows from left and right cancellation laws.)
-\end{example}\vspace*{10pt}
+\end{example}
 
 
-\subsektion{Subgroups}
+\subsektion{Subgroups}\vsp
 
 
 \begin{definition} Let $(G,*)$ be a group. A \emph{subgroup}\index{Subgroup} of $G$ is a subset of $G$ which is itself a group under the operation $*$.	
@@ -1643,7 +1586,7 @@ Notice that every element of the group appears exactly once in each row and each
  \item[(iii)] $\{e\}$ is a subgroup of any group (where $e$ is the identity element). The \emph{trivial} subgroup.
  \item[(iv)] Every group is a subgroup of itself.
   \end{enumerate}
-  \end{examples}\vspace*{10pt}
+  \end{examples}
 
 \emph{Recall:} \lecturemarker{15}{17/02} 
 a subgroup of a group $G$ is a subset of $G$ which is a group under the same operation as $G$.\\
@@ -1691,10 +1634,11 @@ $, so $u_n \in G$, for all $n \in \Z$. Define $U = \{u_n ~:~ n \in \Z\}$. Then $
  \end{itemize}
  \end{proposition}
  
- \emph{Proof omitted.}\\
+ \emph{Proof omitted.}
  
- \noindent \textit{Caution:} It is not generally true that $a^nb^n = (ab)^n$. (Though true for Abelian Group)\\
- 
+\begin{warning} It is not generally true that $a^nb^n = (ab)^n$. (Though true for Abelian Group)	
+\end{warning}
+
 \subsektion{Cyclic Subgroups} 
 \begin{proposition} Let $G$ be a group, and let $g \in G$. Define $\langle g\rangle  = \{g^n : n \in \Z\}$. Then $\langle g\rangle $  is a subgroup of $G$.	
 \end{proposition}
@@ -1730,14 +1674,14 @@ $\langle b\rangle = \{e,b\}$ since $b^2 = e$\\\vspace{5pt}
 $\langle ab \rangle = \{e,ab\}$, since $(ab)^2 = e$\\\vspace{5pt}
 $\langle a^2b \rangle = \{e,a^2b\}$, since $(a^2b)^2 = e$\\
  \end{enumerate}
- \end{examples}\vspace*{10pt}
+ \end{examples}\vspace*{5pt}
  
-\textit{Recall:}  \lecturemarker{16}{18 /02} 
-$\langle g \rangle = \{g^n : n \in \Z\}$\\
+%\textit{Recall:} %$\langle g \rangle = \{g^n : n \in \Z\}$
 
-\begin{definition} A group is \emph{cyclic}\index{Cyclic Group} if $G = \langle g \rangle $ for some $g \in G$. In this case $g$ is a \emph{generator}\index{Generator} for $G$.
+\begin{definition}  \lecturemarker{16}{18 /02} 
+A group is \emph{cyclic}\index{Cyclic Group} if $G = \langle g \rangle $ for some $g \in G$. In this case $g$ is a \emph{generator}\index{Generator} for $G$.
 	
-\end{definition}\vspace*{10pt}
+\end{definition}
 
 \begin{examples}\begin{enumerate}
 \item[(i)] $(\Z,+)$	is cyclic, since $\Z = \langle 1 \rangle$. Another generator is $-1$. There are no other generators.
@@ -1750,7 +1694,7 @@ Since $|\Omega_n| = n$, it follows that there exists a group of order $n$ for $n
  \end{enumerate}
  \end{examples}
  
- \subsektion{The Order of a Group Element}
+ \subsektion{The Order of a Group Element}\vsp
  
 \begin{definition} Let $G$ be a group, and $g \in G$. The \emph{order}\index{Order of Element} of $g$ is the least positive integer $k$, such that $g^k = e$, if such an integer exists. Otherwise $g$ has infinite order. Write ord$(g)$ or o$(g)$ for the order of $g$. Write ord$(g) = \infty$ if $g$ has infinite order.	
 \end{definition}\vspace*{10pt}
@@ -1772,18 +1716,18 @@ Since $|\Omega_n| = n$, it follows that there exists a group of order $n$ for $n
 \item[(iii)] Let $G = (\Z,+)$. We know that ord$(0)$ = 1. Suppose $n \neq 0$. Then since $\underbrace{n + n + \dots n}_{k} = kn \neq 0$ for any positive integer $k$. We must have ord $(n)$ = $\infty$.
 \item[(iv)] $G = GL_2(\C)$. Let $A = \left(\begin{smallmatrix}
 i & 0 \\ 0 & e^{2 \pi i/3} 	
-\end{smallmatrix}\right)$. \emph{What is the order of $A$?}\\
+\end{smallmatrix}\right)$. \emph{What is the order of $A$?}
 
 We see that for $k \in \Z$ we have $A^k = \left(\begin{smallmatrix}
 i^k & 0 \\ 0 & e^{2\pi ik/n}	
 \end{smallmatrix}\right)
 $, which is equal to $\left(\begin{smallmatrix}
 1 & 0 \\ 0 & 1	
-\end{smallmatrix}\right)$ if and only if $i^k = 1$ and $e^{2 \pi ik/n} = 1$.\\
+\end{smallmatrix}\right)$ if and only if $i^k = 1$ and $e^{2 \pi ik/n} = 1$.
 
  Now $i^k = 1$ if and only if $4 ~|~ k$, and $e^{2\pi ik/n} = 1$ if and only if $3 ~|~ k$. So $A^k = I$ if and only if $12 ~|~ k$. Since the smallest positive integer divisible by 12 is 12, we have ord($A$) = 12.
  \end{enumerate}
- \end{examples}\vspace*{10pt}
+ \end{examples}
  
 \begin{proposition} If $G$ is a group and $g \in G$, then $|\langle g \rangle| = $ ord $(g)$. ($\langle g \rangle$ is infinite $\iff$ ord $(g) = \infty$).	
 \end{proposition}
@@ -1862,15 +1806,14 @@ And $(8)$ represents the identity permutation.\\
 Notice that $f =  (1~4~3~6~7)(2~5)$ (where the cycles are multiplied by composition, as elements of $S_8)$. So we have factorised $f$ into cycles. These cycles have no common points $-$ they are disjoint. This is the \emph{disjoint cycle notation}\index{Disjoint Cycles} for $f$.\\
 
 
-\begin{method}To calculate the disjoint cycle notation for a permutation $f \in S_n$.\begin{enumerate}
+\begin{method}To calculate the disjoint cycle notation for a permutation $f \in S_n$.
 
-\item[Step 1.] Pick the least element $i \in \{1,\dots,n\}$ which  we haven't used yet. (Initially, we choose $i=1$.) Open a new cycle with $i$. 
+Step 1. Pick the least element $i \in \{1,\dots,n\}$ which  we haven't used yet. (Initially, we choose $i=1$.) Open a new cycle with $i$. 
 
-\item[Step 2.] Continue the cycle with successive images of $i$ under $f$ until we get back to $i$ again. Then close the cycle.
+Step 2. Continue the cycle with successive images of $i$ under $f$ until we get back to $i$ again. Then close the cycle.
 
-\item[Step 3.] If all $i \in \{1,\dots,n\}$ have appeared, then stop. Otherwise go back to Step 1.
+Step 3. If all $i \in \{1,\dots,n\}$ have appeared, then stop. Otherwise go back to Step 1.
 
-\end{enumerate}
 \end{method}\vspace*{10pt}
 
 \begin{examples}$f = \begin{pmatrix}
@@ -1878,48 +1821,42 @@ Notice that $f =  (1~4~3~6~7)(2~5)$ (where the cycles are multiplied by composit
 3 & 6 & 1 & 7 & 5 & 8 & 2 & 4 & 10 & 9	
 \end{pmatrix}$. \\
 
-Open a cycle with 1. Continue the cycle with $f(1) = 3$. Since $f(3)$ is 1 again, close the cycle. $(1~3)$. \\
-
-Now open a new cycle with 2. Continue it with 6,8,4,7. Since $f(7) = 2$, we then close the cycle. $(2~6~8~4~7)$. \\
-
-Start a cycle with 5. But 5 is a fixed-point of $f$, so close the cycle immediately. $(5)$.\\
-
-Finally, start a cycle with 9. Continue it with $f(9) = 10$. But $f(10) = 9$, so close the cycle. $(9~10)$.\\
+Open a cycle with 1. Continue the cycle with $f(1) = 3$. Since $f(3)$ is 1 again, close the cycle. $(1~3)$. Now open a new cycle with 2. Continue it with 6,8,4,7. Since $f(7) = 2$, we then close the cycle. $(2~6~8~4~7)$. Start a cycle with 5. But 5 is a fixed-point of $f$, so close the cycle immediately. $(5)$. Finally, start a cycle with 9. Continue it with $f(9) = 10$. But $f(10) = 9$, so close the cycle. $(9~10)$.
 
 Now all points have appeared, so we stop. So the disjoint cycle notation for $f$ is $f = (1~3)(2~6~8~4~7)(5)(9~10)$. We usually omit 1-cycles. So $f = (1~3)(2~6~8~4~7)(9~10)$.
-\end{examples}\vspace*{10pt}
+\end{examples}\vspace*{5pt}
 
 \begin{proposition} Method 83 always works. Every permutation in $S_n$ can be written as a product of disjoint cycles.	
 \end{proposition}
 
 
 \begin{proof}
-	First we show that whenever we open a new cycle at Step 1, we are able to close it at Step 2. (We always get back to the starting point eventually.)\\
+	First we show that whenever we open a new cycle at Step 1, we are able to close it at Step 2. (We always get back to the starting point eventually.)
 	
-	Suppose that $x$ is the starting point. Since $n$ is finite, the points $x, f(x), f^2(x),\dots$ cannot be all distinct. So there must exist some least $k$ such that $f^k(x) = f^j(x)$, for some $j < k$. Suppose that $j \neq 0$. Then $f^{-1}f^k(x) = f^{-1}f^j(x),$ and so $f^{k-1}(x) = f^{j-1}(x)$.\\
+	Suppose that $x$ is the starting point. Since $n$ is finite, the points $x, f(x), f^2(x),\dots$ cannot be all distinct. So there must exist some least $k$ such that $f^k(x) = f^j(x)$, for some $j < k$. Suppose that $j \neq 0$. Then $f^{-1}f^k(x) = f^{-1}f^j(x),$ and so $f^{k-1}(x) = f^{j-1}(x)$.
 	
-	 But this contradicts the assumption that $k$ was the \emph{least} to give a repeat. So by contradiction, we must have $j = 0$. So $f^k(x) = f^0(x) = x$. So the first repeated term in the cycle is $x$ itself, and we close the cycle at that point.\\
+	 But this contradicts the assumption that $k$ was the \emph{least} to give a repeat. So by contradiction, we must have $j = 0$. So $f^k(x) = f^0(x) = x$. So the first repeated term in the cycle is $x$ itself, and we close the cycle at that point.
 	 
-	 Next we check that the cycles arising from Method 83. are disjoint. Let $c$ and $d$ be two cycles. Suppose that $c$ starts with $x$ and $d$ starts with $y$. Suppose that $c$ was constructed first. Then $y$ cannot be in the cycle $c$ (since otherwise we would not have used it to start a new cycle.)\\
+	 Next we check that the cycles arising from Method 83. are disjoint. Let $c$ and $d$ be two cycles. Suppose that $c$ starts with $x$ and $d$ starts with $y$. Suppose that $c$ was constructed first. Then $y$ cannot be in the cycle $c$ (since otherwise we would not have used it to start a new cycle.)
 	 
 	 Suppose $z$ is in both $c$ and $d$. So $z = f^i(x) = f^j(y)$ for some $i,j$. But now $f^{i-j}(x) = y$ This implies that $y$ is in the cycle $c$, which is a contradiction. Hence $c$ and $d$ are disjoint.
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 
-\noindent \textbf{Multiplication.} To multiply permutations given in disjoint cycle notation, recall that $fg = f \circ g,$ so $fg(x) = f(g(x))$. Now use Method 83 to get the disjoint cycle notation of $fg$. \\
+\noindent \textbf{Multiplication.} To multiply permutations given in disjoint cycle notation, recall that $fg = f \circ g,$ so $fg(x) = f(g(x))$. Use Method 83 to get the disjoint cycle notation of $fg$. 
 
 \textit{Example:} $f = (1~3~5)(2~4~6)$, $g = (1~2~3~4)(5~6) \in S_6$. Calculate $fg: 1 \mapsto 4 \mapsto 3 \mapsto 6 \mapsto 1\quad $ $2\mapsto 5 \mapsto 2$. Hence $fg = (1~4~3~6)(2~5)$.\\
  
  
- \noindent \textbf{Inverses.} These are very easy~ Just write the cycles backwards.\\ 
+ \noindent \textbf{Inverses.} These are very easy~ Just write the cycles backwards.
  
- If $f = (1~3~5)(2~4~6)$, then $f^{-1} = (5~3~1)(6~4~2) = (1~5~3)(2~6~4)$.\\
+E.g. If $f = (1~3~5)(2~4~6)$, then $f^{-1} = (5~3~1)(6~4~2) = (1~5~3)(2~6~4)$.\\
   
  \noindent \textbf{Non-uniqueness.} \begin{enumerate}
  \item[i.] Order of the cycles doesn't matter.	
  \item[ii.] The choice of starting point in each cycle doesn't matter.
  \item[iii.] We can include or exclude 1-cycles.
- \end{enumerate}~\\
+ \end{enumerate}\vspace*{5pt}
  
 \begin{example}\lecturemarker{18}{24/02} 
  In disjoint cycle notation, the group table for $S_3$ from Example 68 becomes:
@@ -1976,7 +1913,7 @@ Cycle shapes are given by weakly decreasing sequences of positive integers addin
  
  \begin{proof}
  By Euclid's Lemma, we can write $k = xd + y,$ where $x,y \in \Z$ and $0 \leq y < d$. Now $g^k = g^{xd + y} = (g^d)^xg^y = e^xg^y = g^y$. But $y < d$, and so we have $g^y = e \iff y =0 \iff d~|~k$.
- \end{proof}\vspace*{10pt}
+ \end{proof}
  
 \begin{proposition}Let $G$ be a group, and let $a,b\in G$ be elements such that $ab = ba$. Then: \begin{enumerate}
  \item $a^{-1}b = ba^{-1}$
@@ -1985,14 +1922,14 @@ Cycle shapes are given by weakly decreasing sequences of positive integers addin
  \end{enumerate}
  \end{proposition}
  
- \begin{proof}~\\ 
+ \begin{proof}~\\[-.1cm]
  
- 1. We have $ab = ba.$ So $a^{-1}(ab)a^{-1} = a^{-1}(ba)a^{-1}$. Hence $ba^{-1} =  a^{-1}b$.\\
+ (i). We have $ab = ba.$ So $a^{-1}(ab)a^{-1} = a^{-1}(ba)a^{-1}$. Hence $ba^{-1} =  a^{-1}b$.
  
- 2. If $j < 0$, then replace $b$ with $b^{-1}$. We know $ab^{-1} = b^{-1}a$ by 1. In this way, we may assume $j \geq 0$. Now by induction on $j$. [left as exercise.]\\
+ (ii). If $j < 0$, then replace $b$ with $b^{-1}$. We know $ab^{-1} = b^{-1}a$ by 1. In this way, we may assume $j \geq 0$. Now by induction on $j$. [left as exercise.]
  
- 3. If $k < 0$, then write $d = a^{-1},~c = b^{-1}$. Then $(ab)^{-1} = cd$, and so $(ab)^k = (cd)^{-k}$. In this way we may assume $k \geq 0$. Now work by induction on $k$. [left as exercise.]
- \end{proof}\vspace*{10pt}
+ (iii). If $k < 0$, then write $d = a^{-1},~c = b^{-1}$. Then $(ab)^{-1} = cd$, and so $(ab)^k = (cd)^{-k}$. In this way we may assume $k \geq 0$. Now work by induction on $k$. [left as exercise.]
+ \end{proof}\vspace*{5pt}
 
  
  
@@ -2026,9 +1963,9 @@ So ord$(f)$ is the last positive integer divisible by lcm$(r_1,\dots,r_k)$, whic
 \end{examples}\vspace*{10pt}
 
 \textit{Exercise: How many shuffles do you need for a full pack of 52 cards to be shuffled back to its original order?}
-\vspace*{10pt}
+
  
- \subsektion{Lagrange's Theorem}
+ \subsektion{Lagrange's Theorem}\vsp 
  
  
 \begin{theorem}[Lagrange's Theorem]\index{Lagrange's Theorem|idxbf}  Let $G$ be a finite group. Let $H$ be a subgroup of $G$. Then $|H|$ divides $|G|$.	
@@ -2052,31 +1989,31 @@ So ord$(f)$ is the last positive integer divisible by lcm$(r_1,\dots,r_k)$, whic
 
 \begin{proof}
 ord$(g) = |\langle g \rangle|,$ and this divides $G$ by Lagrange's Theorem.	
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 \begin{corollary}Suppose $|G| = n$. Then $g^n = e$, for all $g \in G.$	
 \end{corollary}
 
 \begin{proof}
 We know ord$(g) ~|~ n$ by Corollary 96. So $g^n = e$ by Prop 90.
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 \begin{corollary} If $|G|$ is a prime number, then $G$ is cyclic.	
 \end{corollary}
 
 \begin{proof}
 Let $g \in G$ be such that $g \neq e$. Then ord$(g)\neq 1$, but ord$(g) ~|~ |G|$. So ord$(g) = |G|$ (Since $|G|$ is prime.)	Hence $\langle g \rangle = G$, and so $G$ is cyclic.
-\end{proof}\vspace*{15pt}
+\end{proof}\vspace*{5pt}
 
 
-\textbf{Some ideas for the proof of Lagrange's Theorem.}\\
+\textbf{Some ideas for the proof of Lagrange's Theorem.}
 
 $G$ is a finite group. $H \leq G$ is a subgroup. We shall divide the elements of $G$ into disjoint subsets, so that every element is in exactly one subset, and each subset has the same size as $H$. Now if there are $k$ subsets, then $|G| = k|H|$, and we are finished.\\
 
 \textit{What are these subsets?} One of these will be $H$ itself. Now if $x \in G\backslash H$, we need a subset including $x$. We take $Hx = \{hx : h \in H\}$. Now if $y \in G \backslash(H \cup Hx)$, then we take $Hy$, and keep on going until we have used up all the elements of $G$.\\
 
 \begin{definition}  \lecturemarker{20}{27/02} 
-Let $G$ be a group, and let $H \leq G$. Let $x \in G$. The \emph{right coset}\index{Cosets} $Hx$ is the set $\{hx : h \in H\}$. [The \emph{left coset} $xH$ is the set $\{xh : h \in H\}$.\end{definition}\vspace*{10pt}
+Let $G$ be a group, and let $H \leq G$. Let $x \in G$. The \emph{right coset}\index{Cosets} $Hx$ is the set $\{hx : h \in H\}$. [The \emph{left coset} $xH$ is the set $\{xh : h \in H\}$.\end{definition}\vspace*{5pt}
 
 \begin{claim} $|Hx| = |H|$, for all $x \in G$. 	
 \end{claim}
@@ -2084,7 +2021,7 @@ Let $G$ be a group, and let $H \leq G$. Let $x \in G$. The \emph{right coset}\in
 \begin{proof}
 
 It is enough to show that $h_1x \neq h_2x$, if $h_1 \neq h_2$. But this is true by right cancellation, since $h_1x = h_2x \implies h_1 = h_2$.
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 
 \begin{claim} Let $x,y \in G$. Then either $Hx = Hy$, or else $Hx \cap Hy = \emptyset$. (Two right cosets of $H$ are equal or disjoint.)	
@@ -2092,16 +2029,16 @@ It is enough to show that $h_1x \neq h_2x$, if $h_1 \neq h_2$. But this is true 
 
 \begin{proof}
 	Suppose that $Hx$ and $Hy$ are not disjoint. So there exists $z \in Hx \cap Hy$. So there exists $h_1,h_2 \in H$ such that $z = h_1x = h_2y$. Now $y = h_2^{-1}h_1x$, and so $y \in Hx$. Now any $hy$ in $Hy$ is equal to $hh_2^{-1}h_1x$, which is in $Hx$. So $Hy \subseteq Hx$. By a similar argument, $Hx \subseteq Hy$ and so $Hx = Hy$.
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 \begin{claim} $x \in Hx$ for all $x \in G$.	
 \end{claim}
 
 \begin{proof}
 $e \in H$, and so $x = ex \in Hx$. 	
-\end{proof}\vspace*{10pt}
+\end{proof}
 
-\begin{proof}[\textbf{Proof of Lagrange's Theorem}]~\\
+\begin{proof}[\textbf{Proof of Lagrange's Theorem}]~\\[-.2cm]
 
 	Consider the set $S = \{Hx : x \in G\}$, a set of cosets. \begin{enumerate}
  \item[(i)] Every $x \in G$ is in one member of $S$. (By Claim 102.)
@@ -2112,7 +2049,7 @@ $e \in H$, and so $x = ex \in Hx$.
 
  \end{enumerate}
  Hence $|G| = k|H|,$ where $|S| = k$. So $|H|$ divides $|G|$ as required.
-\end{proof}\vspace*{10pt}
+\end{proof}
 
 \begin{remarks} (Further Properties of cosets) \begin{enumerate}
  \item  $H = Hx \iff x \in H$.\begin{proof}
@@ -2144,29 +2081,25 @@ $Hx = Hy$ if and only if $x \in Hy$, and this occurs if and only if $x = hy$ for
  \item[(ii)] $H = \langle (12) \rangle = \{e,(12)\}$. This time $\frac{|G|}{|H|} = \frac{6}{2} = 3$. So we are looking for two more cosets. We have:\\[-0.3cm]
  
   $H(123) = \{e(123),(12)(123)\} = \{(123),(23)\}$.\\
-   $H(132) = \{(132),(13)\}$.\\[-0.3cm]
- 
- Note that $H(23) = H(123)$, and $H(13) = H(132)$.
+   $H(132) = \{(132),(13)\}$. Note that $H(23) = H(123)$, and $H(13) = H(132)$.
  \end{enumerate}
- \end{examples}\vspace*{10pt}
+ \end{examples}\vspace*{5pt}
  
 \begin{remarks}\begin{enumerate}
 \item[(i)] If $H = \{e\}$ then the right cosets of $H$ in $G$ are just singleton (1-element)	 sets $\{g\}$ for $g \in G$. (These are also the left cosets.) 
 \item[(ii)] If $H = G$ then the only right (or left) coset is $H$ itself.
 \end{enumerate}
-\end{remarks}\vspace*{10pt}
+\end{remarks}\vspace*{5pt}
 
 
 \subsektion{Modular Arithmetic}
 
 
 \textbf{Recall:}  \lecturemarker{21}{03/03} 
-Let $m \in \mathbb{N}$, and $a,b \in \Z$. We say that ``$a$ is congruent to $b$ modulo $m$'' if $a-b$ is divisible by $m$. (Equivalently: $a$ and $b$ give the same remainder when you divide by $b$.)\\
-
-Write $a \equiv b \mod m$.\\
+Let $m \in \mathbb{N}$, and $a,b \in \Z$. We say that ``$a$ is congruent to $b$ modulo $m$'' if $a-b$ is divisible by $m$. (Equivalently: $a$ and $b$ give the same remainder when you divide by $b$.) Write $a \equiv b \mod m$.\\
 
 \begin{definition} Fix $m \in \mathbb{N}$. For $a \in \Z$, define the \emph{residue class}\index{Residue Class} of $a$ modulo $m$, $[a]_m$, by $[a]_m = \{s \in \Z : s \equiv a \pmod{m}\} = \{km + a : k \in \Z\}$.	
-\end{definition}\vspace*{10pt}
+\end{definition}\vspace*{5pt}
 
 
 
@@ -2187,7 +2120,7 @@ To check that $[0]_m$ is a subgroup, check the subgroup criteria:\begin{enumerat
 \end{enumerate}
 
 Now $[r]_m = \{km + r : k \in \Z\} = \{x + r : x \in [0]_m\} = [0]_m + r$, which is the right coset of $[0]_m$ containing $r$. 
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 
 \textbf{Notation} If $m$ is fixed and understood, we then just write $[r]$ for $[r]_m$. We write $\Z _m$ for the set of residue classes modulo $m$. So:\\
@@ -2200,17 +2133,14 @@ Now $[r]_m = \{km + r : k \in \Z\} = \{x + r : x \in [0]_m\} = [0]_m + r$, which
 \end{itemize}
 \end{definition}
 
-We need to make sure that these operations are well defined. Suppose $[a]_m = [a']_m$ and $[b]_m = [b']_m$. Then $a' = a + km$, and similarly $b' = b + lm$, for some $k,l \in \Z$. Now $a' + b' = a + km + b + lm = a +b + (k+l)m$. So $[a'+b']_m = [a+b]_m$.\\
-
- And $a'b' = (a+km)(b + lm) = ab + (al+ bk + klm)m$, so $[a'b']_m = [ab]_m$. So both of these operations are well defined.\\
+We need to make sure that these operations are well defined. Suppose $[a]_m = [a']_m$ and $[b]_m = [b']_m$. Then $a' = a + km$, and similarly $b' = b + lm$, for some $k,l \in \Z$. Now \[a' + b' = a + km + b + lm = a +b + (k+l)m\] So $[a'+b']_m = [a+b]_m$. And \[a'b' = (a+km)(b + lm) = ab + (al+ bk + klm)m\] so $[a'b']_m = [ab]_m$. So both of these operations are well defined.\\
  
  
 \begin{proposition} $(\Z_m,+)$ is a group.	
 \end{proposition}
 
 \begin{proof}
-$([a]_m + [b]_m) + [c]_m = [(a+b) + c]_m = [a+(b+c)]_m = [a]_m + ([b]_m + [c]_m)$. (since + is associative on $\Z$.)\\
- $[0]_m$ is an identity. The inverse of $[a]_m$ is $[-a]_m$.
+$([a]_m + [b]_m) + [c]_m = [(a+b) + c]_m = [a+(b+c)]_m = [a]_m + ([b]_m + [c]_m)$. (since + is associative on $\Z$.) $[0]_m$ is an identity. The inverse of $[a]_m$ is $[-a]_m$.
 \end{proof}
 
 Note that $(\Z_m,\times)$ is \emph{not} a group, if $m > 1$. It is associative, and $[1]_m$ is an identity. But $[0]_m$ has no inverse, unless $[0]_m = [1]_m$. And $[0]_m \neq [1]_m$, unless $m =1 $.\\
@@ -2222,7 +2152,7 @@ Note that $(\Z_m,\times)$ is \emph{not} a group, if $m > 1$. It is associative, 
 
 
 \begin{proof}
-If $m = 1$, then $\Z_m^* = \emptyset$, which is not a group. So suppose $m > 1$.\\ If $m$ is \emph{not} prime, we can write $m = ab$, where $1 < a \leq b < m$. Now $m$ does not divide $a$ or $b$, so $[a]_m \neq [0]_m$ and $[b]_m \neq [0]_m$. So $[a]_m, [b]_m \in \Z_m^*$. But $[a]_m \times [b]_m = [m]_m = [0]_m \notin \Z_m^*$. So $\times$ not a binary operation on $\Z_m^*$. \\
+If $m = 1$, then $\Z_m^* = \emptyset$, which is not a group. So suppose $m > 1$.\\ If $m$ is \emph{not} prime, we can write $m = ab$, where $1 < a \leq b < m$. Now $m$ does not divide $a$ or $b$, so $[a]_m \neq [0]_m$ and $[b]_m \neq [0]_m$. So $[a]_m, [b]_m \in \Z_m^*$. But $[a]_m \times [b]_m = [m]_m = [0]_m \notin \Z_m^*$. So $\times$ not a binary operation on $\Z_m^*$. 
 
 Now suppose $m$ \emph{is} prime. Property of prime numbers: If $p$ is prime, and $p ~|~ ab$, then $p$ divides at least one of $a$ or $b$. Suppose $[a]_m,[b]_m \in \Z_m^*$. Then $m$ does not divide $a$ or $b$. So $m$ does not divide $ab$, by the Property above. Hence $[ab]_m \in \Z_m^*$. So $\times$ is a binary operation on $\Z_m^*$. Then the axioms:\\
 
@@ -2243,10 +2173,11 @@ Now suppose $m$ \emph{is} prime. Property of prime numbers: If $p$ is prime, and
  
  \textbf{Fact:} $\Z_p^*$ is cyclic for any prime $p$.
  \item In $\Z_{31}^*$, what is $[7]^{-1}$?\\
- We need to find $x,y \in \Z$ such that $31x + 7y = 1$. (Then $[y] = [7]^{-1}$)\\ We use Euclid's algorithm:\\
- $31 = 4.7 + 3$\\
-$ 7 = 2.3 + 1$
- 
+ We need to find $x,y \in \Z$ such that $31x + 7y = 1$. (Then $[y] = [7]^{-1}$)\\ We use Euclid's algorithm:
+\begin{align*}
+   31 &= 4.7 + 3\\
+ 7 &= 2.3 + 1
+\end{align*}
  So $1 = 7 - 2.3  = 7-2.(31-4.7) = 9.7 - 2.31$
  
  So $x = -2,y=9$. Hence $[7]^{-1} = [9]$
@@ -2258,7 +2189,7 @@ $ 7 = 2.3 + 1$
 
 \begin{proof}
 If $p$ does not divide $n$, then $[n]_p \in \Z_p^*$	. So ord$[n]_p$ divides $|\Z_p^*| = p-1$ by the Corollary to Lagrange's Theorem. Hence $[n]_p^{p-1} = [1]_p$. 
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 \begin{corollary} (Alternative statement of FLT). Let $p$ be a prime, and let $n \in \Z$. Then $n^p \equiv n \pmod{p}$.
 	
@@ -2266,20 +2197,20 @@ If $p$ does not divide $n$, then $[n]_p \in \Z_p^*$	. So ord$[n]_p$ divides $|\Z
 
 \begin{proof}
 If $p$ does not divide $n$, then by FLT, $n^{p-1} \equiv n \pmod{p}.$  So $n^p \equiv n \mod p.$ If $p$ does divide $n$, then $[n]_p = [0]_p$. So $[n]_p^p = [0]_p^p = [0]_p = [n]_p$.	
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 \begin{example} Find the remainder when $6^{82}$ is divided by $17$.\\
 Answer: Note that $6^{82} = 6^{5.16 + 2} = (6^{16})^5(6^2) \equiv 1^56^2 \equiv 36 \equiv 2 \pmod{17}$, using FLT.
-\end{example}\vspace*{10pt}
+\end{example}\vspace*{5pt}
 
 
 \begin{definition}A \emph{perfect number}\index{Perfect Number} is a natural number $n$ which is the sum of its proper divisors. (i.e. divisors other than $n$ itself.)	
-\end{definition}\vspace*{10pt}
+\end{definition}\vspace*{5pt}
 
 Examples: $6 = 1 + 2 + 3$. Also $28,~496, ~8128,~ 35,550,336,$ etc.\\
 
 \begin{theorem} If $2^m -1$ is a prime number, then $n = 2^{m-1}(2^m -1)$ is perfect. [Euclid] Every even perfect number is of this form. [Euler]	
-\end{theorem}\vspace*{10pt}
+\end{theorem}\vspace*{5pt}
 
 \textit{It is still unknown whether any odd perfect numbers exist. If they do, they are $> 10^{1500}$}\\
 
@@ -2303,7 +2234,7 @@ Examples: $3 = 2^2 -1$, $7 = 2^3 - 1$, $31 = 2^5 -1$, $127 = 2^7 -1$. The larges
 
 \begin{proof}
 Since $q$ divides $n$, we have $q$ divides $2^p-1$. So $2^p \equiv 1 \mod q$.\\ So $[2]_q^p = [1]_q$. So ord$([2]_q)$ divides $p$. Since $p$ is prime, ord$([2]_q)$ is $1$ or $p$.\\ \vspace*{10pt} Now $2 \not\equiv 1 \mod q$, so $[2]_q \neq [1]_q$. So ord$([2]_q) \neq 1$. Hence ord$([2]_q) = p$. So $p$ divides $|\Z_q^*| = q-1$, by the Corollary to Lagrange's Theorem. Hence $q \equiv 1 \pmod{p}$.  	
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 \begin{remark} What this tells us is that when we look for prime divisors of $n = 2^p-1$ (to test primality), we need only test primes which are $\equiv 1\mod p$. (If $p = 57,885,161$, this is a serious saving!)	
 \end{remark}\vspace*{5pt}
@@ -2311,7 +2242,7 @@ Since $q$ divides $n$, we have $q$ divides $2^p-1$. So $2^p \equiv 1 \mod q$.\\ 
 \textbf{Exercise:} Check that in fact, we only need check primes which are $1 \pmod{2p}$. 
 
 
-\subsektion{Dihedral Groups} 
+\subsektion{Dihedral Groups} \vspace*{5pt}
 
 \begin{definition} \lecturemarker{23}{06/03}
  Let $S$ be a subset of $\R^n$. Let $A \in GL_n(\R)$. Write $AS = \{Av : v \in S \}$. If $AS = S$, we say $A$ \emph{preserves} $S$.\end{definition}\vspace*{5pt}
@@ -2337,7 +2268,7 @@ $. The \emph{dihedral group}\index{Dihedral Group} $D_{2n}$ is the symmetry grou
 
 
 \begin{center}   
-\begin{tikzpicture}[dot/.style={draw,fill,circle,inner sep=1pt}]
+\begin{tikzpicture}[dot/.style={draw,fill,circle,inner sep=1pt},scale = 0.8]
   \draw[->] (-5,0) -- (5,0) node[below] {$x$};
   \draw[->] (0,-4) -- (0,4) node[left] {$y$};
   \draw[help lines] (0,0) circle (2);
@@ -2429,9 +2360,9 @@ Here is an axis of symmetry passing through any vertex, and the midpoint of the 
 
 \begin{proof}
 The $2n$ elements, rotation and reflection, constructed in (1) is a complete list.	
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
-\noindent \textit{Remark.} The rotations have determinant $1$, and the reflections have determinant $-1$.\\
+\textit{Remark.} The rotations have determinant $1$, and the reflections have determinant $-1$.\\
 
 \begin{proposition} The set of rotations in $D_{2n}$ is a subgroup, of index 2. The reflections form a coset of this subgroup.	
 \end{proposition}
@@ -2443,13 +2374,11 @@ The $2n$ elements, rotation and reflection, constructed in (1) is a complete lis
 \end{proof}~\\
 
 \begin{example} $D_8$ is the group of symmetries of a square.	
-\vspace*{10pt}
-
 
 \begin{center}   
-\begin{tikzpicture}[dot/.style={draw,fill,circle,inner sep=1pt}]
+\begin{tikzpicture}[scale=.7,dot/.style={draw,fill,circle,inner sep=1pt}]
   \draw[->] (-4,0) -- (4,0) node[below] {$x$};
-  \draw[->] (0,-3) -- (0,3) node[left] {$y$};
+  \draw[->] (0,-2.5) -- (0,3) node[left] {$y$};
   \draw[help lines] (0,0) circle (1.5);
 
   \node[dot,label={below right:$$}] (O) at (0,0) {};
@@ -2472,7 +2401,7 @@ The $2n$ elements, rotation and reflection, constructed in (1) is a complete lis
         \node[dot,label={\i*360/\m-(\i==\m)*45:$(0,-1)$}] (w\i) at (\i*360/\m:1.5) {};
     \draw[->] (O) -- (w\i);
   }
-
+  \draw (-1.5,0) -- (0,1.5) -- (1.5,0) -- (0,-1.5) -- (-1.5,0);
     %\draw[-] (w\i) -- (w\j);
  % \draw[->] (0:.3) arc (0:360/\n:.3);
  % \node at (360/\n/2:.5) {$2\pi/5$};
@@ -2513,22 +2442,24 @@ Reflections: $\begin{pmatrix}  %0
 
 
  
- 
- 
+ \vspace*{2cm}
+
+\begin{center}
+\includegraphics[width = 10cm]{cartoon2.jpg}	
+\end{center}
 
 
  
+
+
  
-
-
-
-%!TEX root = M1P2.tex
+ 
 
   \sektion{Ring Theory}
+    \setcounter{equation}{128}
+    
  Many  \lecturemarker{24}{10/03}
-of the sets we've looked at so far have \emph{two} binary operations, $+$ and $\times$. We may be interested in studying both at the same time.\\
- 
- For instance we might want to look at structures where equations like $x^2 + 1 = 2$, or $y^3 = x^2 + 2$ make sense, which involve both $+$ and $\times$.\\
+of the sets we've looked at so far have \emph{two} binary operations, $+$ and $\times$. We may be interested in studying both at the same time. For instance we might want to look at structures where equations like $x^2 + 1 = 2$, or $y^3 = x^2 + 2$ make sense, which involve both $+$ and $\times$.\\
  
 \begin{definition} A \emph{ring}\index{Ring} is a set $R$ with two binary operations $+$ and $\times$ such that the following axioms hold:
  \begin{enumerate}
@@ -2553,7 +2484,7 @@ $R$ is a \emph{commutative ring} if it also satisfies:\\ \vspace*{-12pt}
  \item A non-commutative ring (so Axiom 5 fails): Let $n >1$ and let $R =$ Mat$_n(\mathbb{R})$, the set of all $n \times n$ real matrices with the usual $+$ and $\times$.	
  \end{enumerate}
  \end{examples}\vspace*{10pt}
- 
+
  
 \begin{remarks}~ \begin{enumerate}
  \item We write $0$ for the identity of $(R,+)$.
@@ -2614,9 +2545,12 @@ Conversely if $f_1(x) = c$, a non-zero constant polynomial, then $f_2(x) = 1/c$ 
  \begin{proof}
 First check that $\times$ gives a binary operation on $R^{\times}$. Suppose that $u_1,u_2 \in R^{\times}$. Then there exists $w_1,w_2 \in R^{\times}$ such that $u_1w_1 = w_1u_1 = 1$ and $u_2w_2 = w_2u_2 = 1$. $(u_1u_2)(w_1w_2) = u_1(u_2w_2)w_1 = u_11w_1 = u_1w_1 = 1$. Also $(w_2w_1)(u_1u_2) = w_2(w_1u_1)u_2 = w_21u_2 = w_2u_2 = 1$. So $w_2w_1$ is an inverse for $u_1u_2$, and so $u_1u_2 \in R^{\times}.$\\
 
-Now check the group axioms:\\
-\textsc{Associativity} is given by the ring axioms.\\
-\textsc{Identity:} 1 is a unit since $1\times 1 = 1$. So we have an identity in $R^{\times}$\\
+Now check the group axioms:
+
+\textsc{Associativity} is given by the ring axioms.
+
+\textsc{Identity:} 1 is a unit since $1\times 1 = 1$. So we have an identity in $R^{\times}$
+
 \textsc{Inverses:} Let $u \in R^{\times}$. Then $u$ has an inverse $w$ in $R$. So $uw = wu = 1$. Now $u$ is an inverse for $w$, and so $w \in R^{\times}$. Hence $u$ has an inverse in $R^{\times}$.
  \end{proof}
  
@@ -2633,9 +2567,8 @@ Now check the group axioms:\\
  
 \begin{definition} A \emph{field}\index{Field} is a commutative ring, $F$, such that $F^* =  F\backslash\{0\}$ (Every non-zero element is a unit.)	
 \end{definition}
-\vspace*{10pt}
  
- \subsektion{Arithmetic of Rings}
+ \subsektion{Arithmetic of Rings}\vsp
 
 \begin{definition} Let $R$ be a ring. Let $a,b \in R$. Say that $a$ \emph{divides} $b$ if there exists $c \in R$ such that $ac = b$. We write $a ~|~ b$ to mean that $a$ divides $b$.	
 \end{definition}\vspace*{10pt}
@@ -2669,7 +2602,7 @@ Now check the group axioms:\\
 \begin{examples}\begin{enumerate}
  \item $\Z,~\Q,~\mathbb{R},~\C,~\Z_p$ ($p$ prime), $F[x]$ (where $F = \Q,~\mathbb{R},~\C)$ are all integral domains.
  \item If $m >1$, and $m$ is not prime, then $\Z_m$ is \emph{not}  an integral domain, since if we have $m = ab$, $1<a<m$, then $[a]_m$ and $[b]_m$ are non-zero, but their product is $[m]_m = [0]_m$, and so $[a]_m$ has a zero-divisor.\\
- \end{enumerate}\end{examples}\vspace*{10pt}
+ \end{enumerate}\end{examples}\vspace*{5pt}
 
 \begin{proposition}A unit in a ring $R$ is not a zero-divisor (unless $R$ is trivial.)	
 \end{proposition}
@@ -2719,9 +2652,11 @@ Suppose that $x-a ~|~ f(x)$. Then $f(x) = (x-a)g(x)$, for some $g(x) \in F[x]$. 
  For the converse, suppose that $f(a) = 0$. Let $f(x) = \alpha_0 + \alpha_1x + \dots + \alpha_nx^n$, where $\alpha_0, \dots, \alpha_n \in F$. Then $f(x) - f(a) = (\alpha_0 - \alpha_0) + (\alpha_1x -  \alpha_1a) + \dots +(\alpha_nx^n - \alpha_na^n)= \alpha_1(x-a) + \alpha_2(x^2 - a^2) + \dots + \alpha_n(x^n -\alpha^n).$ \\
 
 Note that $x^k = a^k = (x-a)(x^{k-1}+ x^{k-2}a + \dots a^{k-1})$. So $x-a$ divides $x^k - a^k$ for all $k \in \mathbb{N}$. Hence $x-a$ divides $f(x) - f(a)$. But $f(a) = 0$ by assumption, and so $x-a$ divides $f(x)$.
-\end{proof}\vspace*{5pt}
+\end{proof}
+
+
 \begin{theorem}[Fundamental Theorem of Algebra] \index{Fundamental Theorem of Algebra} Let $f(x)\in \C[x]$ be a polynomial of degree greater than 0. Then $f(x)$ has a root in $\C$. (So there exists $a \in \C$ such that $f(a) = 0$.)	
-\end{theorem}\vspace*{10pt}
+\end{theorem}\vspace*{5pt}
 
  \textit{Proof. }
 Next year's Complex Analysis course.	\\
@@ -2735,16 +2670,16 @@ First show that $\alpha_1x + \alpha_0$ is irreducible. Suppose that $\alpha_1x +
 Conversely, suppose that $r(x)$ has degree $d$ greater than $1$. Then $r(x)$ has a root $a$ by the Fundamental Theorem. So $r(a) = 0$, and so $x-a$ divides $r(x)$ by Proposition 149. So $r(x) = (x-a)s(x)$ for some $s(x) \in \C[x]$. Now deg $s(x) = $ deg $r(x) -1 = d-1 > 0$, so neither $s(x)$ nor $r(x)$ are units in $\C[x]$. So $r(x)$ is reducible. 
 \end{proof}\vspace*{5pt}
 
- \textit{Exercise:} What are the irreducible elements in the ring $\mathbb{R}[x]$?\\
+ \textit{Exercise:} What are the irreducible elements in the ring $\mathbb{R}[x]$?
+ \pagebreak
 
-\subsektion{The Rings $\Z[\sqrt{d}]$}
+\subsektion{The Rings $\Z[\sqrt{d}]$}\vspace*{5pt}
 
 \begin{definition} Let $d \in \Z$ be a non-square. The ring $\Z[\sqrt{d}]$ is the set $\{x + y\sqrt{d} : x,y \in \Z\} \subseteq \C$, with the usual complex $+$ and $\times$.	
-\end{definition}\vspace*{10pt}
+\end{definition}\vspace*{5pt}
 
-Check that these give binary operations on our set:\vspace*{3pt}\\ We have $(x_1 + y_1\sqrt{d}) + (x_2 + y_2\sqrt{d}) = (x_1 + x_2) + (y_1 + y_2)\sqrt{d} \in \Z[\sqrt{d}]$,\vspace*{3pt}\\
-and $(x_1 + y_1\sqrt{d})(x_2 + y_2\sqrt{d}) = (x_1x_2 + dy_1y_2) + (x_1y_2 + x_2y_1)\sqrt{d} \in \Z[\sqrt{d}]$.\\
-
+Check that these give binary operations on our set:\vspace*{3pt}\\ We have \[(x_1 + y_1\sqrt{d}) + (x_2 + y_2\sqrt{d}) = (x_1 + x_2) + (y_1 + y_2)\sqrt{d} \in \Z[\sqrt{d}]\]
+and \[(x_1 + y_1\sqrt{d})(x_2 + y_2\sqrt{d}) = (x_1x_2 + dy_1y_2) + (x_1y_2 + x_2y_1)\sqrt{d} \in \Z[\sqrt{d}]\]
  The ring axioms are left as an exercise.\\
 
  \textbf{Example:} $\Z[\sqrt{-1}] = \Z[i]$ is the set $\{x + yi : x,y \in \Z\}$, the ring of \emph{Gaussian integers.}\index{Gaussian integers}\\
@@ -2795,7 +2730,7 @@ Let $r = x + y\sqrt{d}$, and suppose that $N(r) = 0$. Then $x^2 - dy^2 = 0$, and
 \textit{Answer:} We have $N(11) = 11^2 = 121$. Suppose that $11 = ab$ in $\Z[\sqrt{-3}]$, where $a$ and $b$ are non-units. $N(a), N(b) \neq \pm 1$. We have $N(a)N(b) = N(11) = 121$. So we must have $N(a) = N(b) = \pm 11$. Since $N$ takes non-negative values on $\Z[\sqrt{-3}]$, we have $N(a) = 11$. Let $a = x + y\sqrt{d}$. Then $x^2 + 3y^2 = 11$. But it is easy to check that no such $x,y$ exist in $\Z$, which is a contradiction. So no such $a,b$ exist. So $11$ is irreducible in $\Z[\sqrt{-3}]$. %+3 harder 
  \end{enumerate}\end{examples}
  
- \subsektion{Highest Common Factor / Greatest Common Divisor}
+ \subsektion{Highest Common Factor / Greatest Common Divisor}\vsp
 \begin{definition} Let $R$ be a ring. Let $a,b,c \in R$. Then $c$ is a \emph{highest common factor}\index{Highest Common Factor} (hcf) or \emph{greatest common divisor} (gcd) for $a$ and $b$ if\begin{enumerate}
 \item[(i)] $c ~|~ a$ and $c ~|~ b$	 ~($c$ is a common factor for $a$ and $b$.)
 \item[(ii)] If $d ~|~ a$ and $d ~|~ b$ then $d ~|~ c$ for $d \in R$.
@@ -2820,10 +2755,11 @@ Let $r = x + y\sqrt{d}$, and suppose that $N(r) = 0$. Then $x^2 - dy^2 = 0$, and
 \begin{lemma} Let $f(x)$ and $g(x)$ be polynomials with coefficients from $F,$ $(\Q,,\C)$, with $g(x) \neq 0$. There exist polynomials $q(x)$ and $r(x) \in F[x]$ such that $f(x) = q(x)g(x) + r(x)$, and either $r(x) =0$ or else deg $r(x) <$ deg $g(x)$. 	
 \end{lemma}
 
- \textbf{Example.} Take $F = \Q$, $f(x) = x^4 + x^3 + 2x + 3$ and $g(x) = x^2 -1$. Dividing $f(x)$ by $g(x)$, we get $f(x) = g(x)(x^2 + x + 1) + (3x+4)$. So here $q(x) = x^2 + x + 1$, and $r(x) = 3x + 4$. Here deg $r(x) = 1 < 2 = $ deg $g(x)$.\\
+ \textbf{Example.} Take $F = \Q$, $f(x) = x^4 + x^3 + 2x + 3$ and $g(x) = x^2 -1$. Dividing $f(x)$ by $g(x)$, we get $f(x) = g(x)(x^2 + x + 1) + (3x+4)$. So here $q(x) = x^2 + x + 1$, and $r(x) = 3x + 4$. Here deg $r(x) = 1 < 2 = $ deg $g(x)$.
 
 \begin{proof}[Proof of Lemma 161.]
-	Take deg $f(x) = m$ and deg $g(x) = n$. If $m < n$, take $q(x) =0$ and $r(x) = f(x)$, and this satisfies the lemma. So we will assume that $m \geq n$. Now we argue by induction on $m = $ deg $f$. The base case is $m = 0$ (and so $n = 0$ too). $f(x) = a$ and $g(x) = b$ for $a,b \in F$, with $b \neq 0$. Take $q(x) = \frac{a}{b}$, $r(x) = 0$, and this satisfies the lemma.\\  
+	Take deg $f(x) = m$ and deg $g(x) = n$. If $m < n$, take $q(x) =0$ and $r(x) = f(x)$, and this satisfies the lemma. So we will assume that $m \geq n$. Now we argue by induction on $m = $ deg $f$. The base case is $m = 0$ (and so $n = 0$ too). $f(x) = a$ and $g(x) = b$ for $a,b \in F$, with $b \neq 0$. Take $q(x) = \frac{a}{b}$, $r(x) = 0$, and this satisfies the lemma.
+	
 	\textit{Inductive step:} Assume the lemma holds for all polynomials $f(x)$ of degree $<m$. Suppose deg $f(x) = m$. Put \[f(x) = a_mx^m + \dots + a_1x + a_0 \text{ and } g(x) = b_nx^n + \dots + b_1x + b_0\] Define $f'(x) = f(x) - \frac{a_m}{b_n}x^{m-n}g(x)$. The coefficient of $x^m$ in $f'(x)$ is $0$, so deg $f'(x) < m$. So the inductive assumption applies to $f'(x)$, and so there exists $q'(x)$ and $r(x)$ such that $f'(x) = q'(x)g(x) + r(x)$, and with $r(x) = 0$ or deg $r(x) <$ deg $g(x)$.\vspace*{5pt}\\ But now $f(x) = f'(x) + \frac{a_m}{b_n}x^{m-n}g(x) = (q'(x) + \frac{a_m}{b_n}x^{m-n})g(x) + r(x).$ So take $q(x) = q'(x) + \frac{a_m}{b_n}x^{m-n}$, and this satisfies the lemma.
 \end{proof}\vspace*{5pt}
 
@@ -2848,7 +2784,7 @@ Conversely, suppose $d$ divides $a$ and $b$. Note that $r = a - bq$. Now $d$ div
 First find $q(x)$ and $r(x)$:\\
 \polylongdiv{x^3 - 2x^2 -5x + 6}{x^2 - 2x -3}~
 
- We have $q(x) = x$, $r(x) = -2x + 6$. Now we look for a hcf of $g(x)$ and $r(x).$ (A ``smaller'' problem than the original.) So applying Euclid's Algorithm again, so now quotient is $-\frac{1}{2}x - \frac{1}{2} ,$ now remainder is $0$. We've shown that $r(x) = -2x + 6$ divides $g(x)$. So $r(x)$ is a hcf for $r(x)$ and $g(x)$. So $r(x)$ is also a hcf for $f(x)$ and $g(x)$ by Proposition 162.\\
+ We have $q(x) = x$, $r(x) = -2x + 6$. Now we look for a hcf of $g(x)$ and $r(x).$ (A ``smaller'' problem than the original.) So applying Euclid's Algorithm again, so now quotient is $-\frac{1}{2}x - \frac{1}{2} ,$ now remainder is $0$. We've shown that $r(x) = -2x + 6$ divides $g(x)$. So $r(x)$ is a hcf for $r(x)$ and $g(x)$. So $r(x)$ is also a hcf for $f(x)$ and $g(x)$ by Proposition 162.
 
 N.B. $-2$ is a unit in $\Q[x]$, with inverse $-\frac{1}{2}$. So $x-3$ is another hcf for $f(x)$ \& $g(x)$.
 \end{example}
@@ -2873,18 +2809,20 @@ N.B. $-2$ is a unit in $\Q[x]$, with inverse $-\frac{1}{2}$. So $x-3$ is another
  \vspace*{5pt}
 
 Euclidean functions are what we need for Euclidean algorithms: \vspace*{5pt}\\
-\begin{algorithm}To find a hcf for $a$ and $b$ in a ring $R$ with a Euclidean function $f$.\begin{itemize}
-\item[\textbf{Step 1.}] Find $q$ and $r$ such that $a = qb + r$ and $r$ is $0$ or $f(r) < f(b)$
-\item[\textbf{Step 2.}]	If $r = 0$ then $b$ is a hcf for $a$ and $b$. Otherwise:
-\item[\textbf{Step 3.}] Start the algorithm again, replacing $a$ with $b$ and $b$ with $r$.
+\begin{algorithm}To find a hcf for $a$ and $b$ in a ring $R$ with a Euclidean function $f$.
+
+\textbf{Step 1.} Find $q$ and $r$ such that $a = qb + r$ and $r$ is $0$ or $f(r) < f(b)$
+
+\textbf{Step 2.}	If $r = 0$ then $b$ is a hcf for $a$ and $b$. Otherwise:
+
+\textbf{Step 3.} Start the algorithm again, replacing $a$ with $b$ and $b$ with $r$.
 
 \textit{Since $f(b) \in \mathbb{N}\cup \{0\}$, this algorithm must eventually terminate.}
-\end{itemize}
-\end{algorithm}\vspace*{10pt}
+\end{algorithm}\vspace*{5pt}
 
 \begin{definition} An integral domain with at least one Euclidean function is called a \emph{Euclidean Domain}\index{Euclidean Domain}.\vspace*{5pt}\\
 It can be very difficult to decide whether an Integral Domain is Euclidean.
-\end{definition}\vspace*{10pt}
+\end{definition}\vspace*{5pt}
 
 Can we find a Euclidean function on $\Z[\sqrt{d}]$? Sometimes!\\
 
@@ -2916,7 +2854,7 @@ For the second condition, let $a = x + y \sqrt{d}$ and $b = v + w\sqrt{d}$, with
  So $N(c) = N(b)N(r)$. But $N(c) = N(b)^2(\alpha-m)^2 - N(b)^2(\beta-n)^2d$. $N(r) = N(b)(\alpha-m)^2 -d(\beta-n)^2).$\\
  
  Now from $(*)$, $|\alpha-m|$ and $|\beta -n| \leq \frac{1}{2}$. So if $-2 \leq d \leq 3$, it is easy to see that $|(\alpha-m)^2 -d(\beta-n)^2| < 1$. So $|N(r)| < |N(b)|$ as required.
-\end{proof}\vspace*{10pt}
+\end{proof}\vspace*{5pt}
 
 
   
@@ -2930,22 +2868,22 @@ a hcf of $a = 4 + \sqrt{2}$ and $b = 2 - 2\sqrt{2}$ in $\Z[\sqrt{2}]$.\\
   Now $r = a - bq = 2-\sqrt{2}$. (Notice $|N(r)| = 4 - 2 = 2$, $|N(b)| = |4 - 8| = 4$). Continue, replacing $a$ with $b$ and $b$ with $r$. In $\C$:
  \[\frac{b}{r} = \frac{2-2\sqrt{2}}{2 -\sqrt{2}} = \sqrt{2}\in \Z[\sqrt{2}]\].
  So $q' = -\sqrt{2},~r' = 0$. So $r = 2-\sqrt{2}$ divices $b = 2-2\sqrt{2}$, and so $r$ is a hcf for $b$ and $r$, hence $r$ is a hcf for $a$ and $b$.
- \end{example}
+ \end{example}\vsp
  
  \begin{lemma} [B\'{e}zout's Lemma] \index{B\'{e}zout's Lemma|idxbf} Let $R$ be a Euclidean domain. Let $a$ and $b$ be elements of $R$ and let $d$ be a hcf for $a$ and $b$. Then there exists $s,t\in R$ such that $as + bt = d$.	
  \end{lemma}
 
  
  \begin{proof}
- 	Define $X = X_{a,b} = \{ax + by : x,y \in R\}$. So $X \subseteq R$. The ring $R$ has a Euclidean function $f$. So if $a$ and $b$ are not both $0$, then $X$ has non-zero elements. So there exists some least $n \in \mathbb{N}\cup\backslash\{0\}$ such that $f(x) = n$ for some $x \in X\backslash\{0\}.$ Let $c$ be some elements of $X \backslash\{0\}$ such that $f(c) = n$. We show that $c$ is a hcf for $a$ and $b$:\\
+ 	Define $X = X_{a,b} = \{ax + by : x,y \in R\}$. So $X \subseteq R$. The ring $R$ has a Euclidean function $f$. So if $a$ and $b$ are not both $0$, then $X$ has non-zero elements. So there exists some least $n \in \mathbb{N}\cup\backslash\{0\}$ such that $f(x) = n$ for some $x \in X\backslash\{0\}.$ Let $c$ be some elements of $X \backslash\{0\}$ such that $f(c) = n$. We show that $c$ is a hcf for $a$ and $b$:
  	
- 	Since $c = ax + by$ for some $x,y$, it is clear that any common factor of $x$ and $y$ must divide $c$.\\
+ 	Since $c = ax + by$ for some $x,y$, it is clear that any common factor of $x$ and $y$ must divide $c$.
  	
- 	We know that there exists $q$ and $r\in R$ such that $a = qc + r$, and either $ r = 0$ or $f(r) < f(c)$. Now $c = ax + by$, so $r = a -qc = a - q(ax + by) = a(1-qx) -b(qy) \in X$. We can't have $f(r) < f(c)$, since $f(c)$ is the smallest possible $f$ for elements of $X$. Hence $r = 0$, and so $c~|~ a$. A similar argument shows that $c ~|~ b$, and so $c$ is a common factor - and hence a hcf - for $a$ and $b$.\\
+ 	We know that there exists $q$ and $r\in R$ such that $a = qc + r$, and either $ r = 0$ or $f(r) < f(c)$. Now $c = ax + by$, so $r = a -qc = a - q(ax + by) = a(1-qx) -b(qy) \in X$. We can't have $f(r) < f(c)$, since $f(c)$ is the smallest possible $f$ for elements of $X$. Hence $r = 0$, and so $c~|~ a$. A similar argument shows that $c ~|~ b$, and so $c$ is a common factor - and hence a hcf - for $a$ and $b$.
  	
  	%Proved for some hcf, not all of them 
  	Now let $d$ be any hcf of $a$ and $b$. Then $d =  cu$ for some unit $u \in R$. Now $d = (ax + by)u = axu + byu$. So put $r = xu$ and $s = yu$, and we're done.
- \end{proof}\vspace*{5pt}
+ \end{proof}
 
  
  \subsektion{Unique Factorisation}\vspace*{5pt}
@@ -2994,10 +2932,10 @@ It follows that $\Z[\sqrt{-5}]$ is not a Euclidean Domain, by Example 174.
 
 \begin{proof}
 If $a$ or $b$ is $0$ or a unit, then the result is clear. So assume otherwise. So by the first UFD property, there exist irreducible elements $q_1,\dots,q_s$, $r_1,\dots,r_t$, such that $a = q_1\dots q_s$, $b= r_1\dots r_t.$ So $ab = q_1\dots q_s r_1 \dots r_t$.\vspace*{5pt}\\ Now $p~|~ ab$, so $ab = pc$ for some $c \in R$. Suppose that $c = p_1\dots p_u$ as a product of irreducibles. Then $ab = pp_1\dots p_u$. Now by the second (uniqueness) property of UFDs, we have $p = q_iw$ or $r_i w$ for some $i$, and some unit, $w$. If $p = q_iw$ then $p~|~ a$, and if $p = r_1w$ then $p ~|~b$, as required.
-\end{proof}
+\end{proof}\vsp
 
 \begin{definition} A non-unit element, $r$, of a ring $R$ is \emph{prime}\index{Prime} if it has the property that whenever $r ~|~ab$ we have either $r~|~ a$ or $r~|~b$.	
-\end{definition}\vspace*{5pt}
+\end{definition}
 
  \textit{In any integral domain, any prime element is irreducible. Why?}
 
@@ -3024,14 +2962,10 @@ In general the converse is not true - we've seen that $2$ is irreducible but not
   \[(m + n\sqrt{-2})^3  = (m^3 -6mn^2) + (3m^2n-2n^3)\sqrt{-2} = x+\sqrt{-2}\]
   So $m^3 - 6mn^2 = x$ and $3m^2n - 2n^3 = 1$. We have $(3m^2 - 2n^3)n = 1$, so $n~|~1$, hence $n = \pm 1$, and $3m^2 - 2n^2 = n$, so $3m^2 - 2 =\pm 1$. So $n = \pm 1, m = \pm 1$. Now we have $x = \pm 5$. So $x^2 + 2 = 27, y = 3$. So the only solutions are $x = \pm 5, y = 3$.\\
   
-  
   \begin{center}
-    \includegraphics[width=5cm]{thatsall.jpg}
-   \vspace*{20pt}
-   
   \textsf{\textbf{- End of Algebra I -}}	
   \end{center}
 
 
  
-\end{document}
+\end{document}title.jpg

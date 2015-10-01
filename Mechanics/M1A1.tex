@@ -1,14 +1,10 @@
-\documentclass[twoside]{scrartcl}
+\documentclass[10pt]{scrartcl}
 
 \usepackage[bluelinks]{drangreport}
 % \usepackage[caecilia]{drangreport}
 
 \usepackage{amsfonts}
 
-
-\usepackage[makeroom]{cancel}
-
-\newcommand{\vsp}{\vspace*{5pt}}
 \usepackage{tikz-3dplot} 
 
 \usepackage{float} 
@@ -30,10 +26,9 @@
                  decorations.markings}
 
 
+%\let\oldhat\hat
+%\renewcommand{\hat}[1]{\,\oldhat{\boldsymbol{\mathbf{#1}}}}
 
-
-\let\oldhat\hat
-\renewcommand{\hat}[1]{\,\oldhat{\boldsymbol{\mathbf{#1}}}}
 
 \renewcommand{\F}{\mathfrak{F}}
 \title{Mechanics}
@@ -41,7 +36,7 @@
 
 
 \hypersetup{pdfinfo={
-Title={Mechanics Lecture Notes},
+Title={M1A1: Mechanics Lecture Notes},
 Author={Karim Bacchus},
 Keywords ={Mechanics, M1A1, Lecture Notes, Imperial College, Maths},
 }}
@@ -50,20 +45,25 @@ Keywords ={Mechanics, M1A1, Lecture Notes, Imperial College, Maths},
 \begin{document}
 
 
-\NotesTitle{1st}{Spring 2015}{Mechanics}{Dr.~E.}{Keaveny}
+\NotesSubTitle{1st}{Spring 2015}{Mechanics}{Dr.~E. E.}{Keaveny}
 {
-\section*{Syllabus} 
+\subsection*{Syllabus} 
 
 \textit{This introductory course on Applied Mathematics is centred on Newtonian mechanics - the consequences of Newton’s laws.}
 
-\subsubsektion{Kinematics of point particles}\vspace*{-5pt} Vectors and vector algebra; position, velocity, and acceleration in three dimensions; polar coordinates; intrinsic coordinates and path curvature.
-\subsubsektion{Newton's Laws}\vspace*{-5pt} Definition of mass, momentum, inertia, and force; Axioms, or Laws of Motion. 
-\subsubsektion{Forces}\vspace*{-5pt} Gravitation; forces that constrain motion: normal force and tension; friction; forces that depend on velocity: drag forces; forces that depend on position: spring forces. 
-\subsubsektion{Oscillators}\vspace*{-5pt} Simple, damped, and forced oscillators; amplitude and phase difference; resonance.
-\subsubsektion{Energy}\vspace*{-5pt} Kinetic and potential energies; conservative forces; stability of and motion about fixed points; potential wells and escape; energy diagrams.
-\subsubsektion{Angular Momentum}\vspace*{-5pt}Central forces; orbital equation; effective potential. Systems of (interacting) particles: Two body systems; centre of mass; moment of inertia; total momentum, angular momentum, and energy for systems; variable mass systems; torque. 
+\emph{Kinematics of point particles:} Vectors and vector algebra; position, velocity, and acceleration in three dimensions; polar coordinates; intrinsic coordinates and path curvature.
 
-\subsubsektion{Rigid Body Motion}\vspace*{-5pt}Rigid body kinematics; continuous mass distributions; rigid body dynamics with rotation about a single axis
+\emph{Newton's Laws:} Definition of mass, momentum, inertia, and force; Axioms, or Laws of Motion. 
+
+\emph{Forces:} Gravitation; forces that constrain motion: normal force and tension; friction; forces that depend on velocity: drag forces; forces that depend on position: spring forces. 
+
+\emph{Oscillators:} Simple, damped, and forced oscillators; amplitude and phase difference; resonance.
+
+\emph{Energy:} Kinetic and potential energies; conservative forces; stability of and motion about fixed points; potential wells and escape; energy diagrams.
+
+\emph{Angular Momentum:} Central forces; orbital equation; effective potential. Systems of (interacting) particles: Two body systems; centre of mass; moment of inertia; total momentum, angular momentum, and energy for systems; variable mass systems; torque. 
+
+\emph{Rigid Body Motion:} Rigid body kinematics; continuous mass distributions; rigid body dynamics with rotation about a single axis
 
 \subsection*{Appropriate books}
 
@@ -81,48 +81,50 @@ T.~W.~B.~Kibble and F.~H.~Berkshire \emph{Classical Mechanics}.
 
 \TableofContents
 %!TEX root = M1A1.tex
-\stepcounter{lecture}
-\setcounter{lecture}{0}
-\pagebreak
-\setcounter{page}{4}
-%\setcounter{section}{-1}
-%\sektion{Introduction}
 
-%Question: \lecturemarker{1}{5 Oct} \emph{Why are we learning mechanics?}
 
-%\begin{enumerate}
-%\item Historical reasons: Much of the mathematics you have been learning about was developed to address mechanical problems
-%\item Practical reasons: For those of you interested in pursuing applied mathematics, a solid background in mechanics is fundamental. It is also necessary for many of the applied math(s!) courses (for example, those in fluid mechanics) offered by our Department.
-%\item For those of you more interested in pure maths: Many current problems in pure mathematics have mechanical origins. Take, for example the Clay millennium prize for Navier-Stokes
-%\item For those of you more interested in probability and statistics: Mechanical systems are a source of randomness - stay tuned!
-%\item For those interested in financial mathematics: Newton eventually became head of the Royal Mint!
-%\item This course gives you an opportunity to use the mathematics you have been learning to describe the world around us. In this sense, M1A1 could be viewed as in introduction to \emph{mathematical modelling}. In this context, it will be different (and richer) than learning mechanics in a physics or engineering department.
-%\end{enumerate}~
+\setcounter{section}{-1}
+\sektion{Introduction}
+\addtocounter{lecture}{-1}
+\setcounter{page}{3}
 
-%\emph{Note - There is a break in the middle of lectures to help with attention during lectures:} 
-%\begin{center}
-%    \begin{tikzpicture}
-%      \draw [domain=0:1] plot ({2*\x}, {4*(cos(45 * \x))^40});
-%      \draw [domain=3:4] plot ({2*\x}, {4*(cos(45 * \x))^40});
-%      \draw [domain=1:3] plot ({2*\x}, {4*(cos(45 * \x+90))^40});
-%      \draw [->] (0, 0) -- (9, 0) node [right] {$t$};
-%      \draw [->] (0, -0.8) -- (0, 5) node [above] {Attention};
-%      \draw [dashed] (0, 4) -- (0, 0) node [below right] {$0$};
-%      \draw [dashed] (8, 4) -- (8, 0) node [below] {$50$ min};
-%      \draw [dashed] (4, 4) -- (4, 0) node [below] {$25$ min};
-%      \draw [dashed] (0, 4) -- (8, 4);      
-%    \end{tikzpicture}
-% \end{center}~
-  
-  
-%What we are after is an \emph{equation of motion} to find the position of an object for all times. Ingredients to an equation of motion:\begin{enumerate}
-%\item[1)] Kinematics - Description of motion 
-%\item[2)] Kinetics - Newton's laws
-%\item[3)] Mathematically Describe Forces - Describe forces in terms of kinematic quantities
-%\end{enumerate}
+\textbf{Question:} \lecturemarker{1}{5 Oct} \emph{Why are we learning mechanics?}
 
-%\pagebreak 
+\begin{enumerate}
+\item Historical reasons: Much of the mathematics you have been learning about was developed to address mechanical problems
+\item Practical reasons: For those of you interested in pursuing applied mathematics, a solid background in mechanics is fundamental. It is also necessary for many of the applied math(s!) courses (for example, those in fluid mechanics) offered by our Department.
+\item For those of you more interested in pure maths: Many current problems in pure mathematics have mechanical origins. Take, for example the Clay millennium prize for Navier-Stokes
+\item For those of you more interested in probability and statistics: Mechanical systems are a source of randomness - stay tuned!
+\item For those interested in financial mathematics: Newton eventually became head of the Royal Mint!
+\item This course gives you an opportunity to use the mathematics you have been learning to describe the world around us. In this sense, M1A1 could be viewed as in introduction to \emph{mathematical modelling}. In this context, it will be different (and richer) than learning mechanics in a physics or engineering department.
+\end{enumerate}~
+
+\emph{Note - There is a break in the middle of lectures to help with attention during lectures:} 
+\begin{center}
+    \begin{tikzpicture}[scale=.7]
+      \draw [domain=0:1] plot ({2*\x}, {4*(cos(45 * \x))^40});
+      \draw [domain=3:4] plot ({2*\x}, {4*(cos(45 * \x))^40});
+      \draw [domain=1:3] plot ({2*\x}, {4*(cos(45 * \x+90))^40});
+      \draw [->] (0, 0) -- (9, 0) node [right] {$t$};
+      \draw [->] (0, -0.8) -- (0, 5) node [above] {Attention};
+      \draw [dashed] (0, 4) -- (0, 0) node [below right] {$0$};
+      \draw [dashed] (8, 4) -- (8, 0) node [below] {$50$ min};
+      \draw [dashed] (4, 4) -- (4, 0) node [below] {$25$ min};
+      \draw [dashed] (0, 4) -- (8, 4);      
+    \end{tikzpicture}
+ \end{center}\vsp
+ 
+ 
+What we are after is an \emph{equation of motion} to find the position of an object for all times. Ingredients to an equation of motion:\begin{enumerate}
+\item[1)] Kinematics - Description of motion 
+\item[2)] Kinetics - Newton's laws
+\item[3)] Mathematically Describe Forces - Describe forces in terms of kinematic quantities
+\end{enumerate}
+
+
+
 \sektion{Kinematics}
+
 
 For a point particle there are three key kinematic quantities.\begin{enumerate}
 \item[1.] Positon: $\vec{r}(t)$
@@ -147,7 +149,7 @@ Consider the path of a particle through space:
 
 \begin{center}
 \tdplotsetmaincoords{70}{110}
-\begin{tikzpicture}[scale=3,tdplot_main_coords]
+\begin{tikzpicture}[scale=2.5,tdplot_main_coords]
 	\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$z$};
 	\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$x$};
 	\draw[thick,->] (0,0,0) -- (0,0,0.85) node[anchor=south]{$y$};
@@ -160,17 +162,17 @@ Consider the path of a particle through space:
 	\draw[-stealth,color=red] (0,0,0) -- (P);
 
 	%draw projection on xy plane, and a connecting line
-	\draw[dashed, color=red] (0.6,-0.05,-0.05) -- (0.6,0.7,-0.05)node at (0.6,0.3,-0.15){$x(t)$};
-	\draw[dashed, color=red] (P) -- (0.6,0.7,-0.05) node at (-0.2,0.6,0.1) {$y(t)$};
-	\draw[dashed, color=red] (0,0.7,0) -- (0.6,0.7,-0.05) node at (0.3,0.85,-0.05) {$z(t)$};
+	\draw[dashed, color=Red] (0.6,-0.05,-0.05) -- (0.6,0.7,-0.05)node at (0.6,0.3,-0.15){$x(t)$};
+	\draw[dashed, color=Red] (P) -- (0.6,0.7,-0.05) node at (-0.2,0.6,0.1) {$y(t)$};
+	\draw[dashed, color=Red] (0,0.7,0) -- (0.6,0.7,-0.05) node at (0.3,0.85,-0.05) {$z(t)$};
 
 	\tdplotsetthetaplanecoords{70}
 
-	\draw[color=blue,thick,->] (0,0,0)
+	\draw[color=Blue,thick,->] (0,0,0)
 		-- (0.3,0,0) node[anchor=south east]{$\hat{k}$};
-	\draw[color=blue,thick,->] (0,0,0)
+	\draw[color=Blue,thick,->] (0,0,0)
 		-- (0,.3,0) node[anchor=south]{$\hat{i}$};
-	\draw[color=blue,thick,->] (0,0,0)
+	\draw[color=Blue,thick,->] (0,0,0)
 		-- (0,0,.3) node[anchor=south east]{$\hat{j}$};
 
 \end{tikzpicture}
@@ -212,9 +214,9 @@ $r$ is the distance from the origin.
     \draw [->] (0, 0) -- (2.2, 0.5) node [above] {$\vec{v}(t)$};
     \draw [->] (-1.5, -1.5) -- (0, 0) node at (0,-0.5) {$\vec{r}(t)$};
     \draw [->] (-1.5, -1.5) -- (2, 0) node at (2,-0.5) {$\vec{r}(t+\Delta t)$};
-    \draw[color = blue] (-1.5, -0.5) .. controls (0, 0.3) and (2, 0.4) .. (4, -0.8);
-    \node[color = red] at (0.7,-0.15) {$\Delta \vec{r}$};
-	\draw[color = red, ->] (0,0) -- (2,0);
+    \draw[color = Blue] (-1.5, -0.5) .. controls (0, 0.3) and (2, 0.4) .. (4, -0.8);
+    \node[color = Red] at (0.7,-0.15) {$\Delta \vec{r}$};
+	\draw[color = Red, ->] (0,0) -- (2,0);
   \end{tikzpicture}
 \end{center}
 
@@ -297,7 +299,7 @@ What allows us to connect the mathematics to the physical world is that these qu
 	Suppose: an object is dropped \emph{from rest} at height $h$ above the ground. Find $\vec{r}(t)$:
 	\vspace*{-5pt}
 	\begin{center}
-	\begin{tikzpicture}[
+	\begin{tikzpicture}[scale=.8,
     media/.style={font={\footnotesize\sffamily}},
     wave/.style={
         decorate,decoration={snake,post length=1.4mm,amplitude=2mm,
@@ -338,9 +340,7 @@ What allows us to connect the mathematics to the physical world is that these qu
 	
 	We know initially ($t=0$) that $y(0) = h \implies v_y(0) = 0$. Integrate twice: \[y(t) = h - \frac{1}{2}gt^2\]
 
-\end{example}
-
-\pagebreak
+\end{example}\vsp
 
 \textbf{Recap:}\lecturemarker{3}{5 Oct}
 \begin{center}
@@ -363,7 +363,7 @@ What allows us to connect the mathematics to the physical world is that these qu
 \begin{example}[Projectile]
 	
 \begin{center}
-	\begin{tikzpicture}[
+	\begin{tikzpicture}[scale=.8,
     media/.style={font={\footnotesize\sffamily}},
     wave/.style={
         decorate,decoration={snake,post length=1.4mm,amplitude=2mm,
@@ -455,7 +455,7 @@ Distance from the origin
 Path is a circle of radius $R$, centred at the origin. 
 
 \begin{center}
-  \begin{tikzpicture}
+  \begin{tikzpicture}[scale=.7]
     \draw circle [radius = 2];
     \node [anchor = north east] {$O$};
     \draw [->] (0, 0) -- (0, 2) node [above] {$\vec{r}(0) = R\hat{j}$};
@@ -620,7 +620,7 @@ Differentiating again
 
 \textbf{Sketch the path:}
 \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=.8]
       \draw [domain=0:4] plot ({2*\x}, {abs(2.7*(cos(45*\x)))});
       \draw [->] (0, 0) -- (9, 0) node [right] {$t$};
       \draw [->] (0, -0.8) -- (0, 3) node [left] {$y$};
@@ -664,7 +664,7 @@ Already \lecturemarker{5}{5 Oct} we have seen vector addition and subtraction ar
 \textbf{(i) Scalar product (dot product)}
 
 \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=.8]
       \draw [->] (0, 0) -- (4, 0) node [right] {$\vec{B}$};
       \draw [->] (0, 0) -- (2.5, 1.875) node [anchor = south west] {$\vec{A}$};
       \draw (0.7, 0) arc (0:36.87:0.7);
@@ -741,7 +741,7 @@ Check that $a_t = \dfrac{dv}{dt}$.
 \]	
 
 \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=.8]
       \draw [->] (0, 0) -- (4, 0) node [right] {$\vec{B}$};
       \draw [->] (0, 0) -- (2.5, 1.875) node [anchor = south west] {$\vec{A}$};
       \draw (0.7, 0) arc (0:36.87:0.7);
@@ -753,14 +753,10 @@ Check that $a_t = \dfrac{dv}{dt}$.
   \end{center}
   \[|\vec{A} \times \vec{B} = |\vec{A}||\vec{B}|\sin\theta\]~
   
-  The direction is given by the ``right hand rule''
-  
-  \begin{figure}[H]
+  The direction is given by the ``right hand rule'':
   \begin{center}
-  \includegraphics[width = 5cm]{right.png}	
-  \caption{Right Hand Rule}
+  \includegraphics[width = 4cm]{right.png}	
   \end{center}
-  \end{figure}
 
   
   \begin{example}
@@ -792,7 +788,7 @@ Check that $a_t = \dfrac{dv}{dt}$.
  
  
  \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=.75]
       \draw [->] (0, 0) -- (9, 0) node [right] {$x$};
       \draw [->] (0, -0.8) -- (0, 5.5) node [left] {$y$};
       \foreach \x in {1,...,8}{
@@ -813,19 +809,15 @@ Check that $a_t = \dfrac{dv}{dt}$.
  $\hat{i}$: Points along lines of constant $y$ in the direction of increasing $x$
  
  $\hat{j}$: Points along lines of constant $x$ in the direction of increasing $y$
-
-
-
-\pagebreak
+ 
 
 \subsektion{Polar Coordinates}
-\begin{itemize}
-\item 2D Motion\lecturemarker{6}{5 Oct} 
-\item Certain systems simplify in these coordinates	
-\end{itemize}
+We consider for 2D Motion. \lecturemarker{6}{5 Oct}  Certain systems simplify in these coordinates	
+
+
 
   \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=.75]
       \draw [->] (0, 0) -- (4, 0) node [right] {$x$};
       \draw [->] (0, 0) -- (0, 3) node [above] {$y$};
       \draw [dashed] (2.5,0) -- (2.5,2.5) node [pos = 0.5, right] {$y$};
@@ -846,7 +838,7 @@ y&= r\sin\theta, \quad \theta = \arctan(y/x)
 
 
  \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=.8]
       \draw [->] (-4, 0) -- (4, 0) node [right] {$x$};
       \draw [->] (0, -3) -- (0, 3) node [above] {$y$};
       \draw [dashed] circle [radius = 2.5];
@@ -866,7 +858,7 @@ y&= r\sin\theta, \quad \theta = \arctan(y/x)
       
     \end{tikzpicture}
   \end{center}
-$\hat{r}$: Unit vector pointing in the direction of increasing $r$ along lines of constant $\theta$.
+$\hat{r}$: Unit vector in the direction of increasing $r$ along lines of constant $\theta$.
 
 $\hat{\theta}$: Points in the direction of increasing $\theta$ tangent to the curves of constant $r$.\\
 
@@ -899,10 +891,12 @@ Consider:
 \]~
 
 \begin{itemize}
-\item They depend on $\theta$
+\item They depend on $\theta$\\
+
 \item $\hat{r} \cdot \hat{\theta} = 0$: \emph{orthonormal}	
 \end{itemize}
 \end{minipage}
+\vspace*{1cm}
 
 \begin{definition}[Kinematic Quantities in Polar Coordinates]~
 
@@ -948,7 +942,7 @@ Thus
  \Aboxed{\vec{a} &= (\ddot{r} - r\dot{\theta}^2)\hat{r} + (2\dot{r}\dot{\theta} + r\ddot{\theta})\hat{\theta}}
 \end{aligned}
 \]
-\end{definition}
+\end{definition}\vsp
 
 
 \begin{examples}
@@ -1003,15 +997,8 @@ Then $\dot{r} = u, \ddot{r} = 0, \dot{\theta} = \Omega, \ddot{\theta} = 0$
 \end{examples}
 
 
-Polar coordinates really come in handy when the forces have certain symmetries, e.g. Central forces: $\vec{F} = F(r)\hat{r}$
+Polar coordinates really come in handy when the forces have certain symmetries, e.g. Central forces: $\vec{F} = F(r)\hat{r}$.
 
-
-
-
-
-
-
-\pagebreak
 
 
 \subsektion{Intrinsic Coordinates}
@@ -1023,9 +1010,9 @@ Coordinates \lecturemarker{7}{5 Oct}
   \begin{tikzpicture}[yscale=1.3]
     \draw [->] (-1.5, -1.5) -- (0, 0) node at (0,-0.5) {$\vec{r}(t)$};
     \draw [->] (-1.5, -1.5) -- (2, 0) node at (2,-0.5) {$\vec{r}(t+\Delta t)$};
-    \draw[color = blue] (-1.5, -0.5) .. controls (0, 0.3) and (2, 0.4) .. (4, -0.8);
-    \node[color = red] at (1.8,0.3) {$\Delta \vec{r} = \vec{r}(t + \Delta t) - \vec{r}(t)$};
-	\draw[color = red, ->] (0,0) -- (2,0);
+    \draw[color = Blue] (-1.5, -0.5) .. controls (0, 0.3) and (2, 0.4) .. (4, -0.8);
+    \node[color = Red] at (1.8,0.3) {$\Delta \vec{r} = \vec{r}(t + \Delta t) - \vec{r}(t)$};
+	\draw[color = Red, ->] (0,0) -- (2,0);
   \end{tikzpicture}
 \end{center}
 
@@ -1087,7 +1074,7 @@ Tangential component of the acceleration $a_t = \vec{a}\cdot\hat{v} = \ddot{s}$
 Normal component of the acceleration $a_n = \vec{a}\cdot\hat{n} = \kappa \dot{s}^2$, where $\kappa \approx 1/R$
 
 \begin{center}
-  \begin{tikzpicture}
+  \begin{tikzpicture}[scale=.8]
     %\draw [->] (0, 0) -- (3, 0) node [right] {$\frac{\Delta \vec{r}}{\Delta t}$};
     %\draw [->] (0, 0) -- (2.2, 0.5) node [above] {$\vec{v}(t)$};
     %\draw [->] (-1.5, -1.5) -- (0, 0) node at (0,-0.5) {$\vec{r}(t)$};
@@ -1178,7 +1165,7 @@ Take the case where our path lies in the $xy-$plane and we know $y(x)$
 \begin{tikzpicture}
 \draw [->] (0,0) -- (6,0) node[pos = 1, below] {$x$}; 
 \draw [->] (0,0) -- (0,4) node[pos = 0.9, left] {$y$};	
-\draw[color = blue] (0, 0.2) .. controls (1, 2) and (3, 2.2) .. (5.5, 3.8);
+\draw[color = Blue] (0, 0.2) .. controls (1, 2) and (3, 2.2) .. (5.5, 3.8);
 \fill (2,2) circle (2 pt);
 \fill (3,2.5) circle (2 pt);
 \draw [dashed] (2,2) -- (3,2) node [pos = 0.5,below] {$dx$};
@@ -1224,10 +1211,10 @@ Curvature and Normal:
 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
 \draw [->] (-0.5,0) -- (9,0) node[pos = 1, below] {$x$}; 
 \draw [->] (0,-0.5) -- (0,5.5) node[pos = 0.9, left] {$y$};	
-\draw[color = blue] (0, 0.6) .. controls (2, 0.5) and (3, 1.5) .. (7, 5.2);
+\draw[color = Blue] (0, 0.6) .. controls (2, 0.5) and (3, 1.5) .. (7, 5.2);
 \fill (2.8,1.5) circle (2 pt);
 \draw [dashed] (2.8,1.5) -- (5,1.5) node [pos = 0.5,below] {\small $1/\sqrt{1+y'^2}$};
 \draw [dashed] (5,1.5) -- (5,3) node [pos = 0.5, right] {\small $|y'|/\sqrt{1+y'^2}$};
@@ -1240,7 +1227,7 @@ Curvature and Normal:
 
 \end{tikzpicture}
 \end{center}
-
+\vspace*{10pt}
 
 
 \begin{example}
@@ -1287,7 +1274,7 @@ Every body has inertia!
 \begin{tikzpicture}
 \draw [->] (0,0) -- (6,0) node[pos = 1, below] {$x$}; 
 \draw [->] (0,0) -- (0,4) node[pos = 0.9, left] {$y$};	
-\draw [dashed, color = blue, yshift = -1cm] plot [smooth, tension=2] coordinates {(-1,2) (0,3) (1,2) (3,2.5) (4,4) (5.5,3.8)};
+\draw [dashed, color = Blue, yshift = -1cm] plot [smooth, tension=2] coordinates {(-1,2) (0,3) (1,2) (3,2.5) (4,4) (5.5,3.8)};
 \fill (2,2) circle (2 pt);
 \fill (3,1.5) rectangle ++(4pt,4pt); 
 \node at (4,1.5) {\small Observer};
@@ -1307,7 +1294,7 @@ Every body has inertia!
 
 If $\dfrac{d^2\vec{R}}{dt^2} \neq 0$, then the object will not be maintaining its state of motion. 
 
-Inertial frame $\dfrac{d^2\vec{R}}{dt^2} = 0$.\\
+Inertial frame $\dfrac{d^2\vec{R}}{dt^2} = 0$.\pagebreak
 
 
 
@@ -1374,7 +1361,7 @@ Kinds \lecturemarker{10}{22 Oct}
 \subsektion{Gravity}
 
   \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale = 0.8]
       \draw plot [smooth cycle] coordinates{(1, 0) (2, -2)  (4, -1)  (5, 0)  (5, 1)  (3, 1)  (2, 2)};
       \draw plot [smooth cycle] coordinates{(-2,0.5) (-1,1) (-0.3,-0.9) (-1.5,-1)};
       \draw [->] (-1.5, -3) -- (-1, -0.2) node [pos =0.5, left] {$\vec{r}_A$};
@@ -1401,9 +1388,7 @@ r_{BA} &= |\vec{r}_{BA}|\\
 \item This is a central force - $\vec{F} = F(r)\hat{r}$
 \end{itemize}
 
-Recall that we said that the acceleration due to gravity is constant! 
-
-$\implies |\vec{F}_g| = mg$
+Recall that we said that the acceleration due to gravity is constant! $\implies |\vec{F}_g| = mg$.
 
 We can say this because the force due to gravity acts from the centre of the earth, and the change in height of our object is small compared to the radius of the earth.
 
@@ -1436,7 +1421,7 @@ The $g = \frac{GM_E}{R^2_E} = 9.8m/s^2$. Rewrite $\vec{F}_g$:
 \[\vec{F}_g = -mg[1 + y/R_E]^{-2}\hat{j}\]
 
 We know that $y/R_E << 1$. This allows us to use a taylor series about $y/R_E = 0$ to approximate $[1 + y/R_E]^{-2}$. Taylor series about $x = 0$:
-\[f(x) = f(0) + f'(0)x + \scriptstyle{\frac{1}{2}f''(0)x^2 + \dots }\]
+\[f(x) = f(0) + f'(0)x + \textstyle{\frac{1}{2}f''(0)x^2 + \dots }\]
 
 In our case $x = y/R_E$
 \[
@@ -1484,7 +1469,7 @@ Force \lecturemarker{11}{22 Oct} that arise only to satisfy or enforce a particu
 
 \begin{example}
 	\begin{center}
-	\begin{tikzpicture}[
+	\begin{tikzpicture}[scale=.8,
     media/.style={font={\footnotesize\sffamily}},
     wave/.style={
         decorate,decoration={snake,post length=1.4mm,amplitude=2mm,
@@ -1519,7 +1504,7 @@ $\vec{N}$ is called the \emph{Normal} or \emph{Reaction} Force.
 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.7]
 \draw (-2,4) .. controls (0,0) and (3,2) .. (4,0);
 \draw (-0.4,2.04) -- (-0.1,2.4) -- (0.5,1.99) -- (0.2,1.63) -- (-0.4,2.04);
 \fill[gray!50]  (-0.4,2.04) -- (-0.1,2.4) -- (0.5,1.99) -- (0.2,1.63) -- (-0.4,2.04);
@@ -1545,7 +1530,7 @@ We can use different coordinate systems to find the normal force:\\
 \begin{enumerate}
 
   \item \leavevmode\vadjust{\vspace{-\baselineskip}}\newline
-  \begin{tikzpicture}
+  \begin{tikzpicture}[scale = 0.7]
   	\draw (0,0) -- (6,0);
   	\draw (1,0) -- (5,0) -- (1,2) -- (1,0);
   	\draw (3.8, 0) arc (180:140:0.75);
@@ -1560,7 +1545,7 @@ We can use different coordinate systems to find the normal force:\\
 
   \item \leavevmode\vadjust{\vspace{-\baselineskip}}\newline
   \hspace*{1cm}
-  \begin{tikzpicture}
+  \begin{tikzpicture}[scale = 0.7]
     \draw [dashed] (0.7,-1.5) -- (2,0) node [pos = 0.5, left] {$R$};
     \draw [->] (0.8, -1.6) -- (1.45, -0.9) node [pos = 1.1, right] {$-\hat{r}$};
     \draw (2.7,-1.85) -- (3,-1.7) -- (2.9,-1.45) -- (2.6, -1.6) -- (2.7,-1.85);
@@ -1571,7 +1556,7 @@ We can use different coordinate systems to find the normal force:\\
  
 \item \leavevmode\vadjust{\vspace{-\baselineskip}}\newline
 \hspace*{1cm}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.7]
 \draw (-1,3) .. controls (0,0) and (2,1) .. (3,0);
 \draw (0.5,1) -- (0.65,1.3) -- (1.15,1.05) -- (1,0.75) -- (0.5,1);
 \fill[gray!50] (0.5,1) -- (0.65,1.3) -- (1.15,1.05) -- (1,0.75) -- (0.5,1);
@@ -1599,7 +1584,7 @@ We can use different coordinate systems to find the normal force:\\
  
  \begin{example}\vspace*{-20pt}
  \begin{center}
- \begin{tikzpicture}
+ \begin{tikzpicture}[scale = 0.8]
   	\draw (0,0) -- (6,0);
   	\draw (1,0) -- (5,0) -- (1,2) -- (1,0);
   	\draw (3.8, 0) arc (180:140:0.75);
@@ -1619,7 +1604,7 @@ We can use different coordinate systems to find the normal force:\\
  Setting up the equations is important! [See: Kleppner \& Kolenkow \S 2.4]
 
 
-Force diagram: 
+Force diagram: \vspace*{-10pt} 
 \begin{center}
 \begin{tikzpicture}
 \draw (0.5,1) -- (0.65,1.3) -- (1.15,1.05) -- (1,0.75) -- (0.5,1);
@@ -1673,7 +1658,6 @@ Substitute this into Newton's Second Law:
 
 Our final unknown is given directly by Newton's II: $a_{mx} = g\sin\phi$, so
 \[\boxed{\vec{a}_m = g\sin\phi \hat{i} + a\sin\phi\hat{j}}\]
-
 The mass will not move relative to the surface if: 
 \[
 \begin{aligned}
@@ -1688,9 +1672,7 @@ If $g\sin\phi < a\cos\phi$ the block slides off the top.
 
 If $g\sin\phi > a\cos\phi$ the block slides down the ramp. 
 
-\end{example}
-\pagebreak
-
+\end{example}\vsp
 
 
 
@@ -1822,9 +1804,7 @@ Using our expression for $\dot{\theta}^2$
   \implies \Aboxed{T = 2mg\cos\theta_0 &-3mg\cos\theta} 
 \end{aligned}
 \]
-\end{example}
-\pagebreak
-
+\end{example}\vsp
 
 
 \begin{example}[Strings]  \lecturemarker{13}{22 Oct}\vspace*{-20 pt}
@@ -1965,17 +1945,17 @@ From Newton's Second Law:
     %\draw[gray](-3,0)--(-3,2);
     
     % Coordinates system
-    \draw[->,line width=1pt] (-3,0) --(4,0) node[above]{$x$};
-    \draw[->,line width=1pt] (-3,0) --(-3,2) node[left]{$y$};
+    \draw[->,thick] (-3,0) --(4,0) node[above]{$x$};
+    \draw[->,thick] (-3,0) --(-3,2) node[left]{$y$};
     
     % Coordinates system
-    \draw[<->,line width=1pt] (-4,1) node[above]{$\hat{i}$}-|(-5,2) node[left]{$\hat{j}$};
+    \draw[<->,thick] (-4,1) node[above]{$\hat{i}$}-|(-5,2) node[left]{$\hat{j}$};
     
         % Coordinates system
-    \draw[->,line width=1pt] (3,2)--(3,1.4) node[right]{$\vec{g}$};
+    \draw[->,thick] (3,2)--(3,1.4) node[right]{$\vec{g}$};
 
         % Coordinates system
-    \draw[->,line width=1pt] (-3,0)--(-2.2,1.4) node[above]{$\vec{v} = \vec{v}_0\hat{v}$};
+    \draw[->,thick] (-3,0)--(-2.2,1.4) node[above]{$\vec{v} = \vec{v}_0\hat{v}$};
 
 
 
@@ -2122,12 +2102,10 @@ Once $|\vec{F}| > \F_{max}$:
 \end{itemize}\vsp
 
 Before reaching $\F_{max}$ the direction opposes the ``would be'' motion.
-\pagebreak
-
 Graphically: \vspace*{-20pt}
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
 \draw [->] (0,0) -- (6,0) node [pos = 1, right] {$|\vec{F}|$};
 \draw [->] (0,0) -- (0,4) node [pos = 1, left] {$|\vec{\F}|$};	
 \draw [dashed] (0,3) -- (6,3) node [pos = 1,right] {$\F_{max}$};
@@ -2233,7 +2211,7 @@ Example \lecturemarker{15}{22 Oct} of a force that depends on the velocity of an
 
 Motion of bodies through fluid. 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale = 0.7]
 	\draw (0,0) circle (1.5cm);
 	\draw [->] (0,0) -- (3,2) node [pos = 1.05, right] {$\vec{v} = v\hat{v}$};
 	\draw [->] (2,2.5) to[out=240,in=0] (1,2);
@@ -2277,7 +2255,7 @@ only a drag force if there's relative motion to the fluid.\\
 \item Changes $C_D = \frac{1}{2}\rho R^2K$
 \item Drag Force is not all of $\vec{F}_{BF}$
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.7]
 \draw [->] (0,0) -- (3,0) node [pos = 1, right] {$\vec{v}$};
 \draw [->] (0,0) -- (0,1) node [pos = 1.1, right] {$\vec{F}_L$: Lift};
 \draw [->, dashed] (0,0) -- (-3,0) node [pos = 1,left] {$\vec{F}_D$};
@@ -2347,7 +2325,7 @@ The ratio $C_D/m$ controls how quickly this limit is reached.
 Taking $\vec{v}_0 = 0$
 \[\vec{v} = -\frac{mg}{C_D}\hat{j}[1 - e^{-C_Dt/m}]\]
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
 \draw [->] (0,0) -- (7,0) node [pos = 1,right] {$t$};
 \draw [->] (0,-2) -- (0,2) node [pos = 1,left] {$v_y$};	
 \draw [dashed] (0,-1.2) -- (7,-1.2) node [pos = 1, right] {$mg/C_D$};
@@ -2363,11 +2341,14 @@ Integrating our general expression to find the position:
 \end{example}
 
 
-\textbf{Projectiles:} $\vec{r}_0 = 0$, $\vec{v}_0 = v_0\cos\alpha\hat{i} + v_0\sin\alpha\hat{j}$\\[0.5cm]
-\hspace*{2cm}\includegraphics[width=8cm]{drag.jpg}
+\textbf{Projectiles:} $\vec{r}_0 = 0$, $\vec{v}_0 = v_0\cos\alpha\hat{i} + v_0\sin\alpha\hat{j}$\\[4cm]
+
+\begin{center}
+\includegraphics[width=4cm]{drag.jpg}
+\end{center}
 
 
-%!TEX root = M1A1.tex
+
 
 \sektion{Oscillators}
 
@@ -2385,7 +2366,7 @@ Integrating our general expression to find the position:
 
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
  \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post
  length=0.3cm,segment length=5}]
  \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum
@@ -2400,7 +2381,7 @@ Integrating our general expression to find the position:
 \end{center}
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
  \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post
  length=0.3cm,segment length=6}]
  \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum
@@ -2416,7 +2397,7 @@ Integrating our general expression to find the position:
 
 \begin{center}
 \hspace*{0.6cm}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
  \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post
  length=0.3cm,segment length=7}]
  \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum
@@ -2434,7 +2415,7 @@ Integrating our general expression to find the position:
 There is a linear relationship between $|\vec{F}|$ and $\Delta x$:
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
 \draw [->] (0,0) -- (6,0) node [pos = 1, right] {$\Delta x$};
 \draw [->] (0,0) -- (0,4) node [pos = 1, left] {$|\vec{F}|$};	
 \draw [dashed] (3,3) -- (3,2) node [pos = 0.5,right] {$k$};
@@ -2459,7 +2440,7 @@ The spring acts in a way to restore its equilibrium length.
 
 \begin{center}
 \hspace*{0.6cm}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
  \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post
  length=0.3cm,segment length=6}]
  \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum
@@ -2479,7 +2460,7 @@ $|\vec{F}_s| = k(x-l_E)$
 
 \begin{center}
 \hspace*{0.6cm}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
  \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.1cm,post
  length=0.1cm,segment length=3}]
  \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum
@@ -2511,7 +2492,7 @@ If $\vec{r}_E = 0$
 
 \begin{center}
 \hspace*{0.6cm}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
  \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post
  length=0.3cm,segment length=6}]
  \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum
@@ -2557,7 +2538,7 @@ Initial conditions:
 So the solution is 
 \[x(t) = x_0\cos\sqrt{\frac{k}{m}}t\vspace*{-10pt}\]
   \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=.7]
       \draw [domain=-2:2] plot ({2*\x}, {-2 * cos(90 * \x)});
       \draw [->] (-4, 0) -- (4.5, 0) node [right] {$t$};
       \draw [->] (-4, -2.5) -- (-4, 2.5) node [above] {$x(t)$};
@@ -2628,7 +2609,7 @@ For a pendulum $\omega_0 = \sqrt{\frac{g}{l}}$.
 \subsektion{Damped Harmonic Oscillator} 
 
 \begin{center}\lecturemarker{17}{22 Oct}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
  \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post
  length=0.3cm,segment length=6}]
  \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum
@@ -2792,7 +2773,7 @@ We see in this case \emph{without} any external forcing that the amplitude and p
 
 \subsektion{Forced, Damped Oscillator} 
 \begin{center}\lecturemarker{18}{22 Oct}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
  \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post
  length=0.3cm,segment length=6}]
  \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum
@@ -2942,7 +2923,7 @@ As $\omega \to \omega_0$, $\tan\phi \to \infty \implies \phi \to \pi/2$.
 As $\omega \to \infty, \tan\phi \to 0 \implies \phi \to \pi$.
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
 \draw [->] (0,0) -- (6,0) node [pos = 1, right] {$\omega$};
 \draw [->] (0,0) -- (0,4) node [pos = 1, left] {$\phi$};	
 \draw [dashed] (3,3) -- (3,2) node [pos = 0.5,right] {$k$};
@@ -3111,7 +3092,7 @@ We need to integrate (5.5) to find the time it takes to go from $x_0$ to $x_1$
 
 Spring: $V = \frac{1}{2}kx^2$
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=.8]
 \draw [->] (0,0) -- (6,0) node [pos = 1, right] {$\omega$};
 \draw [->] (0,0) -- (0,4) node [pos = 1, left] {$\phi$};	
 \draw [dashed] (3,3) -- (3,2) node [pos = 0.5,right] {$k$};
@@ -3125,14 +3106,17 @@ Initially $x(0) = L$, $\dot{x}(0) = 0$
 \[E = \frac{1}{2}m\dot{x}(0) + V(L) = \frac{1}{2}kL^2\]
 Then 
 \setlength{\jot}{10pt}
-\[\begin{aligned}T_{osc} &= 2\int_{-L}^L \frac{dx}{[\frac{2}{m}(\frac{1}{2}kL^2 - \frac{1}{2}kx^2)]^{1/2}}\\
+\begin{align*}T_{osc} &= 2\int_{-L}^L \frac{dx}{[\frac{2}{m}(\frac{1}{2}kL^2 - \frac{1}{2}kx^2)]^{1/2}}\\
 &= 2\sqrt{\frac{m}{k}} \int_{-L}^{L} \frac{dx}{[L^2-x^2]^{1/2}}\\
-&= 2\sqrt{\frac{m}{k}} \int_{-L}^{L} \frac{dx}{L[1-(x/L)^2]^{1/2}}\\
-&u = x/L\\
-&= 2\sqrt{\frac{m}{k}} \int_{-1}^{1} \frac{du}{[1-u^2]^{1/2}}\\
+&= 2\sqrt{\frac{m}{k}} \int_{-L}^{L} \frac{dx}{L[1-(x/L)^2]^{1/2}}
+\end{align*}
+
+Let $u = x/L$, then we have 
+\begin{align*}
+ T_{osc} &= 2\sqrt{\frac{m}{k}} \int_{-1}^{1} \frac{du}{[1-u^2]^{1/2}}\\
 &= 2\sqrt{\frac{m}{k}}  \arcsin u\bigg|_{-1}^1 =  2\pi \sqrt{\frac{m}{k}} 
-\end{aligned}
-\]
+\end{align*}
+
 
 So $T_{osc} =  2\pi \sqrt{\dfrac{m}{k}},~ \omega_0 = \sqrt{\dfrac{k}{m}}$
 	
@@ -3442,7 +3426,6 @@ From the Conservation of Energy
 \[\frac{1}{2}mv^2 + V(r) = E\]
 Since $\vec{v} = \dot{r}\hat{r} + r\dot{\theta}\hat{\theta}$
 \begin{equation}\boxed{E = \frac{1}{2}m[\dot{r}^2 + r^2\dot{\theta}^2] + V(r)}\end{equation}
-\pagebreak
 
 
 \subsektion{Orbital Equation}
@@ -3481,8 +3464,7 @@ u &= c^{-1}\theta^{-2}\\
 	\[\begin{aligned} F(u^{-1}) &= -mh^2u^2(u + 6cu^2)\\ &= -mh^2(u^3 + 6cu^4)\\
 	\implies F(r) &= -mh^2(r^{-3} + 6cr^{-4})\end{aligned}\] 
 \end{example}
-
-\pagebreak 
+ 
 
 
 \subsektion{Kepler's Laws}
@@ -3493,12 +3475,12 @@ u &= c^{-1}\theta^{-2}\\
 	\item[II]Law of Equal Areas: If $\Delta t_1 = \Delta t_2$ then $A_1 = A_2$
 
 	\begin{center}
-	\begin{tikzpicture}
+	\begin{tikzpicture}[scale=.8]
       \draw [rotate around={0:(1.5,0)}] (1.5,0) ellipse (2.5cm and 2cm);
 %
-      \fill (0,0) coordinate (O) circle (2pt) node[below =7pt] {sun};
-      \fill (0,0) coordinate (O) circle (0pt) node[left =10pt] {$A_1$};
-      \fill (1,1.8) coordinate (blah) circle (0pt) node[right =8pt] {$A_2$};
+      \fill (0,0) coordinate (O) circle (2.5pt) node[below =7pt] {sun};
+      \fill (0,0) coordinate (O) circle (0pt) node[left =5pt] {$A_1$};
+      \fill (1.1,1.8) coordinate (blah) circle (0pt) node[right =6pt] {$A_2$};
       %
       \coordinate (A1) at (1.62,2) ;%%
       \coordinate (A2) at (2.15,1.93);%%
@@ -3515,11 +3497,11 @@ u &= c^{-1}\theta^{-2}\\
       \coordinate (C2) at (3.51,-1.18);%%
 %
       \coordinate (P) at (3.42,1.28) ;%%
-      \fill (P) circle (1pt) node[above right] {planet};%
+      \fill (P) circle (1.5pt) node[above right] {planet};%
 %
 %
-      \filldraw[fill=blue,opacity=0.5] (O) -- (A1) -- (A2) --cycle;%
-      \filldraw[fill=blue,opacity=0.5] (O) -- (B1) -- (B2) -- (B3) -- (B4) -- (B5) -- (B6) -- (B7)
+      \filldraw[fill=blue,opacity=0.2] (O) -- (A1) -- (A2) --cycle;%
+      \filldraw[fill=blue,opacity=0.2] (O) -- (B1) -- (B2) -- (B3) -- (B4) -- (B5) -- (B6) -- (B7)
       --cycle;%
 %
 
@@ -3528,7 +3510,6 @@ u &= c^{-1}\theta^{-2}\\
       
       \fill (M) circle (1pt);
    \end{tikzpicture}
-	\vspace*{-4pt}
 	\end{center}
 
 
@@ -3619,7 +3600,7 @@ This parameter $e$ actually allows our solution $r(\theta)$ to describe a whole 
 
 \end{enumerate}
 \end{examples}
-\pagebreak
+
 
 \subsektion{Effective Potential}
 Consider \lecturemarker{25}{22 Oct} the energy 
@@ -3878,7 +3859,7 @@ If $\vec{F}_1^{EXT} = -m_1g\hat{j}$ and $\vec{F}^{EXT}_2 = -m_2g\hat{j}$, then: 
 \begin{example}[Spring]
 \vspace*{50pt}
 
-Speing has a spring constant $k$ and equilibrium lnegth $l$. 
+Spring has a spring constant $k$ and equilibrium length $l$. 
 \[\vec{F}_{12} = -k(x_1 - x_2 - l)\hat{i}\]
 
 Initially $x_1(0) = k,~ \dot{x}_1 = v_0$. $x_2(0) = \dot{x}_2(0) = 0$.
@@ -3935,12 +3916,9 @@ This is the position of particle $i$ relative to the position of the centre of m
 
 
 
+\subsubsektion{Kinetic Energy}
 
-
-
-\subsubsektion{Kinetic Energy\lecturemarker{28}{22 Oct}}
-
-\[T = \sum_i \frac{1}{2}m_iv_i^2\]
+\[T = \sum_i \frac{1}{2}m_iv_i^2\]\lecturemarker{28}{22 Oct}
 We can write $\vec{v}_i = \vec{v}_{cm} + \dfrac{d\vec{R}_i}{dt},~\vec{u}_i = \dfrac{d\vec{R}_i}{dt}$, so $\vec{v}_i = \vec{v}_{cm} + \vec{u}_i$
 
 \[\begin{aligned}T &= \sum_i \frac{1}{2}m_i(\vec{v}_{cm}+\vec{u}_i) \cdot(\vec{v}_{cm}+\vec{u}_i)\\
@@ -3983,7 +3961,7 @@ Write $\vec{F}_i = \vec{F}_i^{EXT} + \sum_j\vec{F}_{ij}$. Then we have
 \begin{equation} \vec{\tau} \frac{d\vec{J}}{dt} = \sum_i\vec{r}_i\times\vec{F}_i^{EXT} + \sum_i\sum_j\vec{r}_i\times\vec{F}_{ij}\end{equation}
 
 
-\begin{theorem}[Conservation of Angular Momentum for a System]
+\begin{theorem}[Conservation of Angular Momentum (System)]
 If there is no net torque, the angular momentum is conserved.
 \end{theorem}
 
@@ -4046,7 +4024,7 @@ The angular speed doubles as a result of the change.
 
 \pagebreak
 
-\subsubsektion{Centre of Mass \lecturemarker{29}{22 Oct} Coordinates}
+\subsubsektion{Centre of Mass Coordinates} \lecturemarker{29}{22 Oct}
 
 
 \[\vec{r}_i = \vec{r}_{cm} + \vec{R}_i\]
@@ -4078,7 +4056,7 @@ We can show (P.S. 4 Problem 9)
 Call
 \[\vec{\tau}_{cm}^{EXT} = \sum_i\vec{R}_i \times \vec{F}_i^{EXT}\]
 
-\subsubsektion{Complete Picture}
+\textbf{Complete Picture}
 \begin{enumerate}
 \item Momentum: \[\vec{p} = M\vec{v}_{cm}\]
 \[\frac{d\vec{p}}{dt} =  M\frac{d\vec{v}_{cm}}{dt} = \vec{F}^{EXT}\]
@@ -4176,26 +4154,26 @@ Equations of motion remain the same.
   \end{center}\end{example}
 
   \begin{center}
-    \begin{tikzpicture}[rotate=-30]
-      \draw [fill = gray] (-3, 0) rectangle (3, -1);
+    \begin{tikzpicture}[scale=.8,rotate=-30]
+      \draw [fill = gray] (-3, 0) rectangle (3, -.2);
       \draw (0, 1) circle [radius=1];
       \draw (0, 1) -- (0.707, 1.707) node [pos=0.5, anchor = south east] {$a$};
       \draw [->] (1.5, 1) -- (2.6, 1) node [right] {$v$};
       \draw (0, 0.7) arc (270:380:0.3) node [anchor = north west] {$\omega$};
       \draw [->] (0.01, 0.7) -- (0, 0.7);
       \draw [dashed] (3, -1) -- (2, -1.577);
-      \draw (2.5, -1) arc (180:210:0.5) node [anchor = south east] {$\alpha$};
+      \draw (2.5, -.2) arc (180:210:0.5) node [anchor = south east] {$\alpha$};
     \end{tikzpicture}
   \end{center}
   
     Alternatively, we may do it in terms of forces and torques,
   \begin{center}
-    \begin{tikzpicture}[rotate=-30]
-      \draw [fill = gray] (-3, 0) rectangle (3, -1);
+    \begin{tikzpicture}[scale=.8,rotate=-30]
+      \draw [fill = gray] (-3, 0) rectangle (3, -.2);
       \draw (0, 1) circle [radius=1];
       \draw [->] (1.5, 1) -- (2.6, 1) node [right] {$v$};
       \draw [dashed] (3, -1) -- (2, -1.577);
-      \draw (2.5, -1) arc (180:210:0.5) node [anchor = south east] {$\alpha$};
+      \draw (2.5, -.2) arc (180:210:0.5) node [anchor = south east] {$\alpha$};
       \draw [->] (0, 0) -- (0, 3) node [above] {$N$};
       \draw [->] (0, -0.1) -- (-0.5, -0.1) node [below] {$F$};
       \draw [->] (0, 1) -- (0.866, -0.5) node [below] {$Mg$};
