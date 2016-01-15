@@ -4,6 +4,7 @@
 % \usepackage[caecilia]{drangreport}
 
 \usepackage{amsfonts}
+\usepackage{enumerate}
 
 \usepackage{tikz-3dplot} 
 
@@ -45,7 +46,7 @@ Keywords ={Mechanics, M1A1, Lecture Notes, Imperial College, Maths},
 \begin{document}
 
 
-\NotesSubTitle{1st}{Spring 2015}{Mechanics}{Dr.~E. E.}{Keaveny}
+\NotesSubTitle{1st}{Spring 2016}{Mechanics}{Dr.~E. E.}{Keaveny}
 {
 \subsection*{Syllabus} 
 
@@ -82,43 +83,17 @@ T.~W.~B.~Kibble and F.~H.~Berkshire \emph{Classical Mechanics}.
 \TableofContents
 %!TEX root = M1A1.tex
 
-
 \setcounter{section}{-1}
-\sektion{Introduction}
 \addtocounter{lecture}{-1}
 \setcounter{page}{3}
 
-\textbf{Question:} \lecturemarker{1}{5 Oct} \emph{Why are we learning mechanics?}
+\sektion{Introduction}
+What we are after is an \emph{equation of motion} to find the position of an object for all times. The Ingredients to an equation of motion are
 
-\begin{enumerate}
-\item Historical reasons: Much of the mathematics you have been learning about was developed to address mechanical problems
-\item Practical reasons: For those of you interested in pursuing applied mathematics, a solid background in mechanics is fundamental. It is also necessary for many of the applied math(s!) courses (for example, those in fluid mechanics) offered by our Department.
-\item For those of you more interested in pure maths: Many current problems in pure mathematics have mechanical origins. Take, for example the Clay millennium prize for Navier-Stokes
-\item For those of you more interested in probability and statistics: Mechanical systems are a source of randomness - stay tuned!
-\item For those interested in financial mathematics: Newton eventually became head of the Royal Mint!
-\item This course gives you an opportunity to use the mathematics you have been learning to describe the world around us. In this sense, M1A1 could be viewed as in introduction to \emph{mathematical modelling}. In this context, it will be different (and richer) than learning mechanics in a physics or engineering department.
-\end{enumerate}~
-
-\emph{Note - There is a break in the middle of lectures to help with attention during lectures:} 
-\begin{center}
-    \begin{tikzpicture}[scale=.7]
-      \draw [domain=0:1] plot ({2*\x}, {4*(cos(45 * \x))^40});
-      \draw [domain=3:4] plot ({2*\x}, {4*(cos(45 * \x))^40});
-      \draw [domain=1:3] plot ({2*\x}, {4*(cos(45 * \x+90))^40});
-      \draw [->] (0, 0) -- (9, 0) node [right] {$t$};
-      \draw [->] (0, -0.8) -- (0, 5) node [above] {Attention};
-      \draw [dashed] (0, 4) -- (0, 0) node [below right] {$0$};
-      \draw [dashed] (8, 4) -- (8, 0) node [below] {$50$ min};
-      \draw [dashed] (4, 4) -- (4, 0) node [below] {$25$ min};
-      \draw [dashed] (0, 4) -- (8, 4);      
-    \end{tikzpicture}
- \end{center}\vsp
- 
- 
-What we are after is an \emph{equation of motion} to find the position of an object for all times. Ingredients to an equation of motion:\begin{enumerate}
-\item[1)] Kinematics - Description of motion 
-\item[2)] Kinetics - Newton's laws
-\item[3)] Mathematically Describe Forces - Describe forces in terms of kinematic quantities
+\begin{enumerate}[1)]
+\item \textbf{Kinematics} - Description of motion 
+\item \textbf{Kinetics} - Newton's laws
+\item \textbf{Mathematically Describe Forces} - How forces can be described in terms of kinematic quantities (\textit{e.g. position, velocity})
 \end{enumerate}
 
 
@@ -126,22 +101,22 @@ What we are after is an \emph{equation of motion} to find the position of an obj
 \sektion{Kinematics}
 
 
-For a point particle there are three key kinematic quantities.\begin{enumerate}
-\item[1.] Positon: $\vec{r}(t)$
-\item[2.] Velocity: $\vec{v}(t)$
-\item[3.] Acceleration: $\vec{a}(t)$
+For a \textbf{point particle} there are \textbf{three} key kinematic quantities.\begin{enumerate}[1)]
+\item Positon: $\vec{r}(t)$
+\item Velocity: $\vec{v}(t)$
+\item Acceleration: $\vec{a}(t)$
 
 In general, $\vec{r}(t),~\vec{v}(t),~\vec{a}(t) \in \mathbb{R}^3$. 
 \end{enumerate}\vspace*{5pt}
 
+\subsektion{Coordinate Systems}
+
 We can use different coordinate systems to describe our quantities:
-\begin{enumerate}
+\begin{enumerate}[1)]
 \item Cartesian
 \item Polar
 \item Intrinsic	
 \end{enumerate}
-
-\subsektion{Cartesian Coordinates} % (fold)
 
 Consider the path of a particle through space:
 
@@ -180,13 +155,13 @@ Consider the path of a particle through space:
 
 %%%%%%%
 
-\begin{definition} We write the \emph{position} at time $t$ as
+\begin{definition}[Cartesian Coordinates] We write the \emph{position} at time $t$ as
 \[\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + z(t)\hat{k}\]
 We can also write this as
-\[[\vec{r}(t)] = \left[\begin{smallmatrix}
+\[\vec{r}(t) = \left[\begin{smallmatrix}
 x(t)\\ y(t) \\ z(t)	
 \end{smallmatrix}
- \right]\text{ so, } \hat{i} =  \left[\begin{smallmatrix}
+ \right]\text{ where, } \hat{i} =  \left[\begin{smallmatrix}
 1\\0\\0
 \end{smallmatrix}
  \right],~ \hat{j} =  \left[\begin{smallmatrix}
@@ -196,17 +171,23 @@ x(t)\\ y(t) \\ z(t)
 0\\0\\1
 \end{smallmatrix}
  \right]\]
+\end{definition}
+\begin{definition}[Polar Coordinates]
  \textit{Magnitude of $\vec{r}$} \[r = |\vec{r}| = \sqrt{x^2 + y^2 + z^2}\]
 $r$ is the distance from the origin.
  
  \textit{Direction of $\vec{r}$} \[\hat{r} = \vec{r}/r = \frac{x}{r}\hat{i} + \frac{y}{r}\hat{j} + \frac{z}{r}\hat{k}\]
- \end{definition}
 
  So, we can write 
  \[\vec{r} = r(t)\hat{r}(t)\]
- This is the starting point for polar coordinates.
+ (This is the starting point for polar coordinates.)
+ \end{definition}
 
- \textbf{Last Time:} \lecturemarker{2}{5 Oct}
+
+
+
+
+ \textbf{Last Time:} \lecturemarker{2}{}
 
 \begin{center}
   \begin{tikzpicture}[yscale=1.3]
