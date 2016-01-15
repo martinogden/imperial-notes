@@ -2,6 +2,7 @@
 
 %\usepackage[blacklinks]{drangreport}
  \usepackage[bluelinks]{drangreport}
+ \usepackage{enumerate}
 
 \usepackage{stmaryrd}
 
@@ -43,7 +44,7 @@ Keywords ={Mathematical Methods II, M1M2, Lecture Notes, Imperial College, Maths
 
 \begin{document}
 
-\NotesSubTitle{1st}{Spring 2015}{Mathematical Methods II}{Prof.~M.}{Barahona}
+\NotesSubTitle{1st}{Spring 2016}{Mathematical Methods II}{Prof.~M.}{Barahona}
 {
 \subsection*{Syllabus}
 
@@ -87,13 +88,18 @@ H.M. Schey, \emph{Div, grad, curl and all that}, Norton and Company
 
 \addcontentsline{toc}{part}{Differential Equations}{}
 
-\sektion{First and Second Order Differential Equations}
+\sektion{ODEs}
+\subsektion{Notation, definitions}
 \vspace*{5pt}
 
 
-For \lecturemarker{1}{5 Oct}
-this section we're only going to consider functions of one variable:
-\[f: \R \to \R \;\text{ or }\; \vec{f}: \R \to \R^n\]	
+For \lecturemarker{1}{14 Jan}
+this section we're only going to consider ordinary (= functions of one variable) differential equations:
+
+\begin{align*}
+&f: \R \to \R & f(x) \in \R\\
+&\vec{f}: \R \to \R^n & \begin{pmatrix}f_1(x)\\\vdots\\f_n(x)\end{pmatrix} \in \R^n
+\end{align*}
 Where $x$ is the \emph{independent variable}. 
 
 We can differentiate these functions up to order $k$ as such:
@@ -101,16 +107,18 @@ We can differentiate these functions up to order $k$ as such:
 \begin{aligned}
   \frac{df}{dx} &= \lim_{\Delta \to 0} \frac{f(x + \Delta) - f(x)}{\Delta} = g(x)\\[0.2cm]
   \frac{dg}{dx} &= \lim_{\Delta \to 0} \frac{g(x + \Delta) - g(x)}{\Delta} = \frac{d^2f}{dx^2}\\
-  \vdots 
+  \vdots
 \end{aligned}
 \]~
 
 
 \begin{definition}
-A \emph{differential equation} is of the form
+An \emph{ordinary differential equation} is of the form
 \[F\left(x,f(x),\frac{df}{dx},\dots,\frac{d^kf}{dx^k}\right) = 0\]
+
+where $x$ is the independent variable.
 \end{definition}
-We want to find $f(x)$ to solve the differential equation.
+We want to find $f(x)$ to such that $F\left(x,f(x),\frac{df}{dx},\dots,\frac{d^kf}{dx^k}\right) = 0$.
 
 
 \begin{itemize}
@@ -124,13 +132,13 @@ e.g. The differential equation \[\dfrac{d^2y}{dx^2} - \left(x + \dfrac{dy}{dx}\r
  has order of $2$ and degree $5$.~\\ 
 
 
-Sources of ODEs:\lecturemarker{2}{5 Oct}
+Sources of ODEs:\lecturemarker{2}{13 Jan}
 
 \begin{enumerate}
   \item Mechanics: 
-  \[\dfrac{dx}{dt} = v_* \text{ or } m\dfrac{d^2x}{dt^2} = F(t,x) \tag{Newton's Laws}\]
+  \[\dfrac{dx}{dt} = v \implies F(t, x) = 0 = \dfrac{dx}{dt} - v \tag{Newton's Laws}\]
   
-  \item Population Dynamics: \[\dfrac{dx}{dt} = Kx\tag{Maltus}\]
+  \item Population Dynamics: \[\dfrac{dx}{dt} = Kx \implies x = x_0e^{kt}\tag{Maltus}\]
   
   \item Chemical Reactions, e.g. Mass-action Kinetics: 
   \[A +A \xrightarrow{k_1} B,\quad  \frac{d[B]}{dt} = k_1[A]^2\]
