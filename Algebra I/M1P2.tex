@@ -1,6 +1,7 @@
 \documentclass[10pt]{scrartcl}
 
 \usepackage[bluelinks]{drangreport}
+\usepackage{enumerate}
 % \usepackage[caecilia]{drangreport}
 
 \def\n{5}
@@ -21,35 +22,41 @@ Keywords ={Algebra I, M1P2, Lecture Notes, Imperial College, Maths},
 
 \begin{document}
 
-\NotesSubTitle{1st}{Spring 2015}{Algebra I}{Dr.~J. R.}{Britnell}
+\NotesSubTitle{1st}{Spring 2016}{Algebra I}{Professor David}{Evans}
 {
 
 
 \subsection*{Syllabus}
 
-\textit{Introductions to three topics in abstract algebra: The theory of vector spaces and linear
+\textit{An introduction to three topics in abstract algebra: The theory of vector spaces and linear
 transformations, the theory of groups and the theory of rings.}
 
 
-\emph{Vector spaces:} Linear maps, rank-nullity theorem, connections with linear equations and matrices.
+\emph{Vector spaces:} Dimension of subspaces, the Modular Law, Linear maps, the rank-nullity theorem, connections with linear equations and matrices.
 
-\emph{Groups:} Axioms, examples. Cyclic groups, dihedral groups, symmetric groups. Lagrange’s  theorem and applications.
+\emph{Groups:} Axioms, examples. Cyclic groups, dihedral groups, the symmetric groups. Lagrange’s  theorem and applications.
 
-\emph{Rings:}  Polynomial rings, rings of the form Z[$\sqrt{d}$]. Euclid’s algorithm for certain rings. Uniqueness of factorisation for these rings. Applications to Diophantine Equations.
-
+\emph{Rings:}  Polynomial rings, rings of the form $\Z[\sqrt{d}]$. Euclid’s algorithm for certain rings. Uniqueness of factorisation for these rings. Applications to Diophantine Equations.
 
 \subsection*{Appropriate books}
 
 {\shortskip
-J.~Fraleigh and R.~Beauregard, \emph{Linear Algebra}
+\begin{enumerate}[1)]
+\item J.~Fraleigh and R.~Beauregard, \emph{Linear Algebra}
 
-S.~Lipschutz and M.~Lipson, \emph{Linear Algebra}
+\item S.~Lipschutz and M.~Lipson, \emph{Linear Algebra}
 
-J.~B.~Fraleigh, \emph{A First Course in Abstract Algebra}
+\item J.~B.~Fraleigh, \emph{A First Course in Abstract Algebra}
 
-R.~Allenby, \emph{Rings, Fields and Groups}
+\item R.~Allenby, \emph{Rings, Fields and Groups}
+\end{enumerate}
 
-I.~N.~Herstein, \emph{Topics in Algebra}
+Here [1, 2] cover the vector spaces part and [3, 4] cover the other parts.
+
+\subsection*{Coursework}
+
+Tests in weeks 18, 20, 24 (i.e. weeks 4, 6, 10 of term) worth 10 percent. There is a not-for-credit coursework due in week 22.
+
 }}
 
 \TableofContents
@@ -63,8 +70,8 @@ I.~N.~Herstein, \emph{Topics in Algebra}
 \setcounter{page}{3}
 \sektion{Vector Spaces}
 
-\subsektion{Spanning Sets and Bases (M1GLA Review)}
-Let \lecturemarker{1}{15 Jan}  $V$ be a vector space, and let $S = \{v_1, \dots, v_k\}$ be a finite subset of $V$. Then the \emph{span}\index{Span} of $S$ is the set $\{\lambda_1v_1 + \lambda_2v_2 + \dots + \lambda_kv_k, \lambda_1,\dots,\lambda_k \text{ scalar}\}.$
+\subsektion{Review of M1GLA}
+Let \lecturemarker{1}{14 Jan}  $V$ be a vector space, and let $S = \{v_1, \dots, v_k\}$ be a finite subset of $V$. Then the \emph{span}\index{Span} of $S$ is the set $\{\lambda_1v_1 + \lambda_2v_2 + \dots + \lambda_kv_k, \lambda_1,\dots,\lambda_k \text{ scalar}\}.$
 
 \begin{itemize}
 \item[*] Span $S$ is a subspace of $V$.
