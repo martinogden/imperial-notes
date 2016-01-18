@@ -94,7 +94,7 @@ H.M. Schey, \emph{Div, grad, curl and all that}, Norton and Company
 
 
 For \lecturemarker{1}{14 Jan}
-this section we're only going to consider ordinary (= functions of one variable) differential equations:
+this section we're only going to consider ordinary ($\equiv$ functions of one variable) differential equations:
 
 \begin{align*}
 &f: \R \to \R & f(x) \in \R\\
@@ -113,13 +113,13 @@ We can differentiate these functions up to order $k$ as such:
 
 
 \begin{definition}
-An \emph{ordinary differential equation} is of the form
+An \emph{ordinary differential equation} of order $k$ is of the form
 \[F\left(x,f(x),\frac{df}{dx},\dots,\frac{d^kf}{dx^k}\right) = 0\]
 
 where $x$ is the independent variable.
 \end{definition}
-We want to find $f(x)$ to such that $F\left(x,f(x),\frac{df}{dx},\dots,\frac{d^kf}{dx^k}\right) = 0$.
 
+We want to find $f(x)$ to such that $F\left(x,f(x),\frac{df}{dx},\dots,\frac{d^kf}{dx^k}\right) = 0$.
 
 \begin{itemize}
 \item \emph{Ordinary differential equations (ODE)} occur when $f: \R \to R$ and $f(x)$ is a function of one variable. Usually $x$ is the independent variable (sometimes $t$). 
@@ -131,9 +131,7 @@ We want to find $f(x)$ to such that $F\left(x,f(x),\frac{df}{dx},\dots,\frac{d^k
 e.g. The differential equation \[\dfrac{d^2y}{dx^2} - \left(x + \dfrac{dy}{dx}\right)^{1/5} = 0\]
  has order of $2$ and degree $5$.~\\ 
 
-
-Sources of ODEs:\lecturemarker{2}{13 Jan}
-
+\begin{example}[Sources of ODEs]
 \begin{enumerate}
   \item Mechanics: 
   \[\dfrac{dx}{dt} = v \implies F(t, x) = 0 = \dfrac{dx}{dt} - v \tag{Newton's Laws}\]
@@ -164,9 +162,10 @@ Sources of ODEs:\lecturemarker{2}{13 Jan}
 Also $C\dfrac{dV}{dt} = \dfrac{dQ}{dt} = I_2$ so \[I_T = \frac{V}{R} + C\frac{dV}{dt}\]
 
 \item Economics \& Game Theory
-\end{enumerate}\vspace*{5pt}
+\end{enumerate}
+\end{example}
 
-{Types of Differential Equations:}
+\subsektion{Types of Differential Equations}
 \begin{enumerate}
   \item ODE: $f: \R \to R$: \[F\left(x,f(x),\frac{df}{dx},\dots\right) = 0\]
  
@@ -184,32 +183,40 @@ f_1(x)\\ \vdots \\ f_d(x)
  \item Partial Differential Equations (PDEs): $f: \R^n \to \R$
 \end{enumerate}~
 
-%Solutions of ODEs: 
 
-%Implicit form of the ODE is: 
-%\[F\left(x,y,\frac{dy}{dx},\dots,\frac{d^ky}{dx^k}\right)= 0\]
+\lecturemarker{2}{18 Jan}
 
-%Explicit form of the ODE:
-%\[\frac{d^ky}{dx^k} = G\left(x,y,\dots,\frac{d^{k-1}y}{dx^{k-1}}\right)\]
+\begin{definition}
+The \textbf{Implicit form} of the ODE is
+\[F\left(x,y,\frac{dy}{dx},\dots,\frac{d^ky}{dx^k}\right)= 0\]
+\end{definition}
+
+\begin{definition}
+The \textbf{Explicit form} of the ODE is
+\[\frac{d^ky}{dx^k} = G\left(x,y,\dots,\frac{d^{k-1}y}{dx^{k-1}}\right)\]
+\end{definition}
 
 \begin{definition}
 $y_{PS}$ is a \emph{particular solution} if 
 \[F\left(x,y_{PS},\frac{dy_{PS}}{dx},\dots,\frac{d^ky_{PS}}{dx^k}\right)= 0\]
 \end{definition}
 
-Proofs about the existence and uniqueness of the solutions are covered next year.\\
+\begin{note}
+Proofs about the existence and uniqueness of the solutions are covered next year. (M2AA2)
+\end{note}
 
 \begin{definition}
-$y_{GS} = f(x; c_1,\dots,c_k)$ is the \emph{general solution	}.
+$y_{GS} = y_{GS}(x;\ c_1,\dots,c_k)$ is the \emph{general solution} for an ODE of order $k$.
 
- The $k$ parameters, $\{c_i\}_{i=1}^k$ define the family of solutions. These parameters can be fixed or obtained from the initial/boundary conditions.
+ The $k$ parameters, $\{c_i\}_{i=1}^k$ are initial / boundary conditions $\equiv$ constants of integration.
+ %define the family of solutions. These parameters can be fixed or obtained from the initial/boundary conditions.
 \end{definition}\vspace*{5pt}
 
 \begin{example}[Velocity]
 \[\frac{dx}{dt} = v_*\]
 This is a first order ODE $\implies \{c_1\}$, so the general solution is:
 \[x(t) = v_*t + c_1\]
-In this case, $c_1$ would be the initial position, $x_0$. 
+In this case, $c_1$ would be the initial position, $x_0$.
 \end{example}
 
 
@@ -217,16 +224,20 @@ In this case, $c_1$ would be the initial position, $x_0$.
 \subsektion{First Order ODEs}
 The explicit form for 1st Order ODEs is
 \[\frac{dx}{dt} = F(x,t)\]
-\subsubsektion{Separable Equations}
+\[x_{GS} = x_{GS}(t)\]
+
+\begin{enumerate}[(1)]
+% todo make into list
+\item \textbf{Separable Equations}
 
 \[
 \begin{aligned}
-  \frac{dx}{dt} &= f(x)g(t)\\
-  \implies \int \frac{dx}{f(x)} &= \int g(t)\,dt + C
+  \frac{dx}{dt} &= F_1(x)F_2(t)\\
+  \implies \int \frac{dx}{F_1(x)} &= \int F_2(t)\,dt + C
 \end{aligned}
 \]~
 
-\begin{example}[Malthus' Equation]
+\begin{example}[Malthus' Equation (population dynamics)]
 \[
 \begin{aligned}
   \frac{dx}{dt} &= Kx\\
@@ -237,7 +248,7 @@ The explicit form for 1st Order ODEs is
 \]
 \end{example}
 
-\subsubsektion{Linear 1st Order ODE}
+\item \textbf{Linear 1st Order ODE}
 
 The general form of a $k$th order linear ODE is: 
 \[\sum_{i=0}^k \alpha_i(x) \frac{d^iy}{dx^i} = \beta (x)\]
@@ -246,8 +257,10 @@ Where $\alpha_i(x)$ are only depend on the independent variable $(x)$.
 So the 1st Order ODE is: 
 \[\frac{dy}{dx} + p(x)y = q(x)\]
 
-We look for an \emph{integrating factor}, $I(x)$, to turn the equation into a separable one: 
-\[\equalto{I(x)[LHS]}{\frac{d(Iy)}{dx}} = I(x)\frac{dy}{dx} + I(x)p(x)y\]
+Solved by finding an \emph{integrating factor}, $I(x)$:
+\begin{equation}
+\label{eqn:intfac}\ I(x)[LHS] = I(x)\left[\frac{dy}{dx} + p(x)y\right] = \frac{d(Iy)}{dx}
+\end{equation}
 
 Once it's in this form, we can integrate and solve as usual: 
 \[
@@ -258,7 +271,7 @@ Once it's in this form, we can integrate and solve as usual:
 \end{aligned}
 \]
 
-Finding $I(x)$: 
+Finding $I(x)$ (by~\ref{eqn:intfac}): 
 \begin{align*}
     \frac{d(Iy)}{dx} &= I\frac{dy}{dx} + y\frac{dI}{dx}\\
     &= I\frac{dy}{dx} + Ip(x)y
@@ -271,14 +284,14 @@ Finding $I(x)$:
 \end{aligned}
 \]
 Then our solution would be
-\[y = \cancel{\frac{k}{k}} e^{-\int p(x)\,dx}\cdot \int e^{\int p\,dx}q(x)\,dx + C\]
-Note that the $k$'s end up cancelling out, so we haven't added to the number of unknown constants in our final solution. It's a good idea to just remember the integrating factor $I(x) = e^{\int p(x)}\,dx$ rather than memorise the full solution of $y$. 
+\[y_{GS} = e^{-\int p(x)\,dx}\cdot \int e^{\int p\,dx}q(x)\,dx + c_1 e^{-\int p(x)\,dx}\]
+Note that the $K$'s end up cancelling out, so we haven't added to the number of unknown constants in our final solution. It's a good idea to just remember the integrating factor $I(x) = e^{\int p(x)}\,dx$ rather than memorise the full solution of $y$. 
 
-\subsubsektion{Dimensionally Homogeneous Equations}
-These are equations of the form: \lecturemarker{3}{20th Jan}
+\item \textbf{(Dimensionally) Homogeneous Equations}
+These are equations of the form:
 \[\frac{dy}{dx} = f\left(\frac{y}{x}\right)\]
 
-We solve them by substituting in $u = \dfrac{y}{x}$, so $y = ux$:
+We solve them by substituting in $u = \dfrac{y}{x}$, so $y = ux$ (\textit{redifine ratio as the independent variable}):
 
 \[
     \frac{dy}{dx} = u + x \frac{du}{dx}
@@ -286,14 +299,15 @@ We solve them by substituting in $u = \dfrac{y}{x}$, so $y = ux$:
 \[
 \begin{aligned}
   \implies u + x\frac{du}{dx} &= f(u)\\
-  \implies \int \frac{du}{-u + f(u)} &= \int \frac{dx}{x} + C
+  \implies \int \frac{du}{f(u) -u} &= \int \frac{dx}{x} + C
 \end{aligned}
 \]
+\begin{note}These are often just called homogeneous equations in the literature.\end{note}
 
 
-\subsubsektion{Bernoulli Equation}
+\item \textbf{Bernoulli Equation}
 
-These are equations of the form: \[\dfrac{dy}{dx} + p(x)y = Q(x)y^n\]
+These are equations of the form: \[\dfrac{dy}{dx} + p(x)y = Q(x)y^n,\ n \in \N\]
 \[\implies \frac{1}{y^n}\frac{dy}{dx} + y^{1-n}p(x) = Q(x)\]
 
 Substitute $u = y^{1-n}$, then $\dfrac{du}{dx} = (1-n)y^{-n}\dfrac{dy}{dx}$, so the equation becomes
@@ -301,18 +315,21 @@ Substitute $u = y^{1-n}$, then $\dfrac{du}{dx} = (1-n)y^{-n}\dfrac{dy}{dx}$, so 
 \[  \frac{du}{dx} + (1-n)p(x)u = (1-n)Q(x)\]
 
 This is a 1st order linear ODE, which we can solve for $u = u(x)$ using an integrating factor. Then we solve for $y = u^{\frac{1}{1-n}}$. 
+\end{enumerate}
 
-
+\lecturemarker{3}{19th Jan}
 \subsektion{Second Order ODEs}
 The implicit form of second order ODE is:
-\[F\left(x,y,\frac{dy}{dx}, \frac{d^2y}{dx^2}\right) = 0\]
+\[F_C\left(x,y,\frac{dy}{dx}, \frac{d^2y}{dx^2}\right) = 0\]
 
 Assume we can find the explicit form: 
 \[\frac{d^2y}{dx^2} = F\left(x,y,\frac{dy}{dx}\right)\]
 
-\subsubsektion{Case (1) - $\dfrac{d^2y}{dx^2} = f(x)$}
+We'll consider several different cases
+\begin{enumerate}[(1)]
+\item $\dfrac{d^2y}{dx^2} = f(x)$
 
-We solve this by double integration. Let $u = \dfrac{dy}{dx}$, then 
+We solve this by double integration. Let $u = \dfrac{dy}{dx}$, then $\dfrac{du}{dx} = F(x)$ and
 \[u = \underbrace{\int f(x)\,dx}_{g(x)} + c_1\]
 Then 
 \[\begin{aligned}\frac{dy}{dx} &= g(x) + c_1\\
@@ -331,7 +348,7 @@ y &= \int g(x)\,dx + c_1x + c_2
 \]
 \end{example}
 
-\subsubsektion{Case (2) - $\dfrac{d^2y}{dx^2} = f\left(x,\dfrac{dy}{dx}\right)$}
+\item $\dfrac{d^2y}{dx^2} = f\left(x,\dfrac{dy}{dx}\right)$
 
 We again use the substitution $u = \dfrac{dy}{dx} \implies \dfrac{du}{dx} = f(x,u).$\\[.2cm]
 
@@ -402,7 +419,7 @@ Letting $k_1 = Rc_1,~ k_2 = Rc_2$ our solution is
 i.e. a circle, as expected to have a constant radius of curvature.	
 \end{example}\vsp
 
-\subsubsektion{Case (3) - $\dfrac{d^2y}{dx^2} = f(y)$} 
+\item $\dfrac{d^2y}{dx^2} = f(y)$
 
 Again, we use the substitution $u = \dfrac{dy}{dx}\implies \dfrac{du}{dx} = f(y)$. Since \[\dfrac{du}{dx} = \dfrac{du}{dy}\dfrac{dy}{dx}
   = u\dfrac{du}{dy}
@@ -462,7 +479,7 @@ Let $u = \dfrac{dx}{dt}$
 \]
 \end{example}
 
-\subsubsektion{Case (4) - $\dfrac{d^2y}{dx^2} = f\left(y,\dfrac{dy}{dx}\right)$}
+\item $\dfrac{d^2y}{dx^2} = f\left(y,\dfrac{dy}{dx}\right)$
 
 \textsc{1st Step:}
 
@@ -492,7 +509,7 @@ Let $\dfrac{dy}{dx} = u(y)$. Integrate and solve:
 \end{aligned}
 \]
 \end{example}
-
+\end{enumerate}
 
 
 \sektion{Linear Equations (ODEs)}
