@@ -227,7 +227,6 @@ The explicit form for 1st Order ODEs is
 \[x_{GS} = x_{GS}(t)\]
 
 \begin{enumerate}[(1)]
-% todo make into list
 \item \textbf{Separable Equations}
 
 \[
@@ -350,13 +349,13 @@ y &= \int g(x)\,dx + c_1x + c_2
 
 \item $\dfrac{d^2y}{dx^2} = f\left(x,\dfrac{dy}{dx}\right)$
 
-We again use the substitution $u = \dfrac{dy}{dx} \implies \dfrac{du}{dx} = f(x,u).$\\[.2cm]
+We again use the substitution $u = \dfrac{dy}{dx} \implies \dfrac{du}{dx} = f(x,u).$ First solve for $u$, then solve for $y.$\\[.2cm]
 
 \begin{example}[Geometry]
 Radius of curvature: 
 \[\rho(x) = \frac{\left[1 + \left(\frac{dy}{dx}\right)^2\right]^{3/2}}{\frac{d^2y}{dx^2}}\]
 
-Find the family of cures with constant radius of curvature: $\rho(x) = R,~\forall x$. 
+Find the family of curves with constant radius of curvature: $\rho(x) = R,~\forall x$. 
 
 \[
 \begin{aligned}
@@ -366,7 +365,7 @@ Find the family of cures with constant radius of curvature: $\rho(x) = R,~\foral
 \]
 
 Let $u = \dfrac{dy}{dx}$. Then we have
-\[R\frac{dy}{dx} = [1 + u^2]^{3/2}\]
+\[R\frac{du}{dx} = [1 + u^2]^{3/2}\]
 
 This is a separable ODE, so we just have to rearrange and integrate: 
 \begin{align*}
@@ -374,10 +373,10 @@ This is a separable ODE, so we just have to rearrange and integrate:
 	&= \left[\frac{x}{R} + c_1\right]
 \end{align*}
 
-\textsc{Step 1:} Let $u = \tan t$, so $1 + u^2 = \frac{1}{\cos^2t}$ and $\mathrm{d}u = \frac{\mathrm{d}t}{\cos^2t}$. Then the LHS becomes
+\textsc{Step 1:} Let $u = \tan t$, so $(1 + u^2)^{\frac{3}{2}} = \frac{1}{\cos^3t}$ and $\mathrm{d}u = \frac{\mathrm{d}t}{\cos^2t}$. Then the LHS becomes
 \[
 \begin{aligned}
-  \int \frac{\frac{1}{\cos^2t}\,dt}{\frac{1}{\cos^2t}} &= \int \cos t\,dt\\
+  \int \frac{\frac{1}{\cos^2t}\,dt}{\frac{1}{\cos^3t}} &= \int \cos t\,dt\\
   &= \sin t\\
   &= \sqrt{1-\cos^2t}\\
   &= \frac{u}{\sqrt{1+u^2}}
@@ -386,7 +385,7 @@ This is a separable ODE, so we just have to rearrange and integrate:
 
 So we are left with
 \[\frac{u}{\sqrt{1+u^2}} = \left[\frac{x}{R}+c_1\right] \tag{$*$}\]
-\textsc{Step 2:} Now let $X = \frac{x}{R} + c_1$. Then $(*)$ becomes
+\textsc{Step 2:} Now let $X = \frac{x}{R} + c_1$, then $\mathrm{d}X = \frac{\mathrm{d}x}{R}$ and $(*)$ becomes
 \setlength{\jot}{8pt}
 \[
 \begin{aligned}
@@ -401,7 +400,7 @@ Recall that $u = \frac{dy}{dx}$, so we have
   u = \frac{X}{\sqrt{1-X^2}} &= \frac{dy}{dx}
 \end{aligned}
   \]
-Also  $\mathrm{d}X = \frac{\mathrm{d}x}{R}$, so 
+So (recall $\mathrm{d}X = \frac{\mathrm{d}x}{R}$) 
 \[
     \frac{1}{R}\frac{dy}{dX} = \frac{X}{\sqrt{1-X^2}}
 \]
@@ -409,7 +408,7 @@ Also  $\mathrm{d}X = \frac{\mathrm{d}x}{R}$, so
 Integrating
   \[\begin{aligned}  
   \frac{1}{R}\int\,dy &= \int \frac{X\,dX}{\sqrt{1-X^2}}\\
-  \implies   \frac{1}{R}\, y &= -\sqrt{1-X^2} + c_2\\
+  \implies   \frac{1}{R}\, y &= -\sqrt{1-X^2} + c_2 &= -\sqrt{1-(\frac{x}{R} + c_1)^2} + c_2\\
 \implies   \left(\frac{y}{R}-c_2\right)^2 &= 1-\left(\frac{x}{R} + c_1\right)^2
 \end{aligned}
 \]
@@ -419,11 +418,13 @@ Letting $k_1 = Rc_1,~ k_2 = Rc_2$ our solution is
 i.e. a circle, as expected to have a constant radius of curvature.	
 \end{example}\vsp
 
-\item $\dfrac{d^2y}{dx^2} = f(y)$
+\item $\dfrac{d^2y}{dx^2} = f(y)$\\ % todo: check panopto for example of this type of eqn
 
-Again, we use the substitution $u = \dfrac{dy}{dx}\implies \dfrac{du}{dx} = f(y)$. Since \[\dfrac{du}{dx} = \dfrac{du}{dy}\dfrac{dy}{dx}
+\begin{note}This is an important substitution / trick. \textbf{Learn it!}\end{note}
+
+Again, we use the substitution $u = \dfrac{dy}{dx}\implies \dfrac{du}{dx} = f(y)$. Rewrite \[\dfrac{du}{dx} = \dfrac{du}{dy}\dfrac{dy}{dx}
   = u\dfrac{du}{dy}
-  =\dfrac{d(u^2/2)}{dy}\]the equation becomes \[\dfrac{d(u^2/2)}{dy} = f(y)\]
+  =\dfrac{d(u^2/2)}{dy}\]then the equation becomes \[\dfrac{d(u^2/2)}{dy} = f(y)\]
 
 \textsc{1st Step:} Integrate the separable equation\[
 \begin{aligned}
@@ -439,44 +440,52 @@ This is not what we were after..\\
   \frac{u^2}{2} &= g(y) + c_1\\
   u^2 &= 2g(y) + 2c_1\\
   \frac{dy}{dx} &= \sqrt{2g(y) + 2c_1}\\
-  \int \frac{dy}{\sqrt{2g(y)+2c_1}} &= \int \,dx + c_1\\
-  x &= g(y)\\
-  y &= g^{-1}(x)
+  \equalto{\underbrace{\int \frac{dy}{\sqrt{2g(y)+2c_1}}}}{h(y),\ say} &= \int \,dx + c_1\\
+  x &= h(y)\\
+  y &= h^{-1}(x)
 \end{aligned}
 \]~\\
 
-\begin{example}[Harmonic Spring]\lecturemarker{4}{5 Oct}
+\begin{example}[Harmonic Spring]
 	Hooke's Law: $F = -kx$
 	
 	\[m\frac{d^2x}{dt^2} = -kx\]
+
+\begin{note}
+  Here, $x$ is the \emph{dependent} variable (the elongation of the spring) and $t$ is the \emph{independent} variable.
+\end{note}
 	
 \textsc{1st Step:}
 Let $u = \dfrac{dx}{dt}$
+
 \[
 \begin{aligned}
   m\frac{d^2x}{dt^2} = m\frac{du}{dt} &= -kx\\
   m\frac{du}{dx}\frac{dx}{dt} &= mu\frac{du}{dx} = m\frac{d(u^2)/2}{dx}
 \end{aligned}
 \]
+So
 \[
 \begin{aligned}
   \frac{d(u^2/2)}{dx} &= -\frac{k}{m}x\\
   \frac{u^2}{2} &= -\frac{k}{m}\int x\,dx = -\frac{k}{2m}x^2 + c_1\\
 \end{aligned}
 \]
-\[\frac{m}{2}u^2 + \frac{k}{2}x^2 = mc_1 \equiv E, \text{ energy}\]
+\[\underbrace{\frac{m}{2}u^2}_{\substack{\text{kinetic energy}}} + \underbrace{\frac{k}{2}x^2}_{\substack{\text{potential energy}}} = mc_1 \equiv E, \text{ energy}\]
 
+Conservative system because $E$ is a \href{https://en.wikipedia.org/wiki/Constant_of_motion}{constant of motion}\\
 \textsc{2nd Step:}
 \[
 \begin{aligned}
   u = \frac{dx}{dt} &= \sqrt{\frac{2E -kx^2}{m}}\\
   \int \frac{dx}{\frac{\sqrt{2E-kx^2}}{m}} &= \int \,dt = t +c\\
-  \frac{1}{\sqrt{\frac{2E}{m}}}\int \frac{dx}{\sqrt{1-\frac{k}{2E}x^2}} &=  \frac{1}{\sqrt{\frac{2E}{m}}} \int \frac{dx\sqrt{\frac{k}{2E}}}{\sqrt{1-\left(\sqrt{\frac{k}{2E}}x\right)^2}}\frac{1}{\sqrt{\frac{k}{2E}}}\\
+  \frac{1}{\sqrt{\frac{2E}{m}}}\int \frac{dx}{\sqrt{1-\frac{k}{2E}x^2}} &=  \frac{1}{\sqrt{\frac{2E}{m}}} \int \frac{dx}{\sqrt{1-\left(\sqrt{\frac{k}{2E}}x\right)^2}}\frac{\sqrt{\frac{k}{2E}}}{\sqrt{\frac{k}{2E}}}\\
   &= \frac{1}{\sqrt{\frac{k}{m}}}\arcsin\left(\sqrt{\frac{k}{2E}}x\right) = t+c\\
-  x(t) &= \sqrt{\frac{2E}{k}}\sin\left(\sqrt{\frac{k}{m}}t + c_2\right)\\
+  \therefore x(t) &= \sqrt{\frac{2E}{k}}\sin\left(\sqrt{\frac{k}{m}}t + c_2\right)\\
   &= A\sin(\omega t + \phi)
 \end{aligned}
 \]
+Here, $A$ = amplitude = $\sqrt{\frac{2E}{k}}$, i.e. depends on Energy ($E$). Also, the period of motion $\omega$ depends on $m$ and $k$. $\phi$ represents the initial position of the system.
 \end{example}
 
 \item $\dfrac{d^2y}{dx^2} = f\left(y,\dfrac{dy}{dx}\right)$
