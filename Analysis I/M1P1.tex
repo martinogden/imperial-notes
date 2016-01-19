@@ -2,6 +2,7 @@
 
 %\usepackage[blacklinks]{drangreport}
 \usepackage[bluelinks]{drangreport}
+\usepackage{enumerate}
 
 %\usepackage{cmbright}
 
@@ -79,9 +80,11 @@ W.~ Rudin, \textit{Principles of Mathematical Analysis} (Cambridge University Pr
 \sektion{Preliminaries}
 
 
-We're \lecturemarker{1}{15 Jan} basically carrying on from M1F. We're going to practice more of that and use that to give rigorous definitions to continuity and differentiation. Analysis involves anything that's infinite, that involves the real numbers rather than the integers. 
+We're \lecturemarker{1}{18 Jan} basically carrying on from M1F. We're going to practice more of that and use that to give rigorous definitions to continuity and differentiation. Analysis involves anything that's infinite, that involves the real numbers rather than the integers. 
 
-It's guaranteed that you averaged 30\% on M1F - that's atrocious - absolutely unforgivable.... You need to get good at this. You're just making your life miserable without doing any work. There's only about three definitions in this course - if you get on top of them now it's going to be so much easier. The tests are there to help you understand this subject better, so take it as such - do not spend all your time thinking about what's going to be on the test. Just try and use it to understand the material. 
+Revision of sup / inf
+
+Bounded set $S \subseteq /R$. (i.e. $\exists M \in \R$ s.t. $|s| < M \forall\,s \in S$ or equivalently $S \subseteq [-M, M]$) need not habe a max / min. Sup / inf are the replacement - they may not lie in $S$.
 
 \begin{itemize}
 \item $\forall$ - for any, \textbf{fix any}, for all, every...
@@ -136,18 +139,33 @@ sequence $(a_n)_{n\geq 1}$ of real (or complex, etc.) numbers is an infinite lis
 	A \emph{sequence} is a function $a:\mathbb{N} \to \mathbb{R}$
 \end{definition}
 
-\textbf{Notation:} We let $a_n \in \mathbb{R}$ denote $a(n)$ for $n \in \mathbb{N}$. The data $(a_n)_{n=1,2,\dots}$ is equivalent to the function $a:\mathbb{N} \to \mathbb{R}$ because a function $a$ is determined by its values $a_n$ over all $n \in \mathbb{N}$. We will denote $a$ by $a_1,~a_2,\dots$ or $(a_n)_{n\in\mathbb{N}}$ or $(a_n)_{n\geq 1}$ or even just $(a_n)$.\vspace*{5pt}
+\textbf{Notation:} We let $a_n \in \mathbb{R}$ denote $a(n)$ for $n \in \mathbb{N}$. The data $(a_n)_{n=1,2,\dots}$ is equivalent to the function $a:\mathbb{N} \to \mathbb{R}$ because a function $a$ is determined by its values $a_n$ over all $n \in \mathbb{N}$. We will denote $a$ by $a_1,~a_2,\dots$ or $(a_n)_{n\in\mathbb{N}}$ or $(a_n)_{n\geq 1}$ or $(a_i)_{i=1}^{\infty}$ or even just $(a_n)$.\vspace*{5pt}
 
+% todo change these to beware!
+\begin{note}
+  $a_{\infty}$ doesn't exist!
+\end{note}
 \begin{remark}
 $a_i$'s could be repeated, so $(a_n)$ is \emph{not} equivalent to the set $\{a_n : n \in \mathbb{N}\}\subset \mathbb{R}$. E.g. $(a_n) = 1,~0,~1,~0,\dots$ is different from $(b_n) = 1,~0,~0,~1,~0,~0,~1,\dots$	
 \end{remark}
 
+\begin{example}
+  $a_i = 1 \forall\,i$ is a sequence for which that set it $\{1\} \subseteq \R$.
+\end{example}
+
 We can describe a sequence in may ways, e.g. formula for $a_n$ as above $a_n = \frac{1-(-1)^n}{2}$, or a recursion e.g. $c_1 = 1 = c_2$, $c_n = c_{n-1} + c_{n-2}$ for $n\geq 3$, or a summation (see next section) e.g. $d_n = \sum_{i=1}^n \frac{1}{i} = 1 + \frac{1}{2} + \frac{1}{3} + \dots +\frac{1}{n}$.
 
 \subsektion{Convergence of Sequences}
-We want to \emph{rigorously} define $a_n \to a \in \mathbb{R}$, or ``$a_n$ converges to $a$ as $n \to \infty$" or ``$a$ is the limit of $(a_n)$". 
+We want to \emph{rigorously} define ``$a_n \to a$ as $n \to \infty$'', or ``$a_n$ converges to $a$ as $n \to \infty$" or ``$a$ is the limit of the sequence $(a_n)_{n \geq 1}$". 
 
-Idea: $a_n$ should get closer and closer to $a$. Not necessarily monotonically, e.g.:
+\textbf{Question}: is ``$a_n$ gets closer and closer to $a$'' a good definition?
+\textbf{No}: e.g. $a_n = \frac{1}{n}$ gets closer and closer to -1 as $n \to \infty$.
+
+\textbf{Question}: Is ``$a_n$ gets arbitrarily close to $a$'' a good definition?
+\textbf{No}: e.g. $(-1)^n$ doesn't converge to 1, but $(-1)^n = 1$ for some n (but doesn't ``stay'' there).
+
+So, we want to say that $a_n$ gets arbitrarily close to $a$ (i.e. ``as close as we like''). So $|a_n - a|$ gets as small as we like \textbf{and} stays that close! Idea of \textbf{arbitrarily small}: you give me any small $\eps > 0$ and I try to see if $|a_n - a|$ is \textbf{eventually} (i.e. beyond some point) smaller than $\eps$.
+
 \[a_n = 
 \begin{cases}
 \frac{1}{n} & n \text{ odd}\\
