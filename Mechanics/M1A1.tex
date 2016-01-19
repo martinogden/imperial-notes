@@ -180,8 +180,10 @@ $r$ is the distance from the origin.
 
  So, we can write 
  \[\vec{r} = r(t)\hat{r}(t)\]
- (This is the starting point for polar coordinates.)
  \end{definition}
+\begin{note}
+     This is the starting point for polar coordinates.
+ \end{note}
 
 
 
@@ -204,14 +206,16 @@ $r$ is the distance from the origin.
 \setlength{\jot}{8pt}% tweak jot length
 
 Position: 
-\[\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + zd(t)\hat{k}\]
+\[\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + z(t)\hat{k}\]
 At $\Delta t$ later
 \[\vec{r}(t + \Delta t) = x(t + \Delta t)\hat{i} + y(t + \Delta t)\hat{j} + z(t + \Delta t)\hat{k}\]
 
 \begin{definition}
-Define $\Delta \vec{r} = \vec{r}(t + \Delta t) - \vec{r}(t)$
+Define the \textbf{Displacement Vector} $\Delta \vec{r} = \vec{r}(t + \Delta t) - \vec{r}(t)$
 
-Define the \emph{velocity} of the particle at time $t$
+\end{definition}
+\begin{definition}
+Define the \textbf{velocity} of the particle at time $t$
 \[\vec{v}(t) = \lim_{\Delta t \to 0} \frac{\Delta \vec{r}}{\Delta t} = \frac{\mathrm{d}\vec{r}}{\mathrm{d}t}\]
 \end{definition}
 
@@ -221,17 +225,25 @@ Since $\hat{i},\hat{j},\hat{k}$ are constant in time
 	&= \frac{\mathrm{d}x}{\mathrm{d}t}\hat{i} + \frac{\mathrm{d}y}{\mathrm{d}t}\hat{j} + \frac{\mathrm{d}z}{\mathrm{d}t}\hat{k}
 \end{aligned}
 \]
-Writing $\dfrac{\mathrm{d}f}{\mathrm{d}t} \equiv \dot{f}$, \[\vec{v}(t) = \dot{x}\hat{i} + \dot{y}\hat{j} + \dot{z}\hat{k} = v_x\hat{i} + v_y\hat{j} + v_z\hat{k}\]
+\textbf{Notation}
+
+Writing $\dfrac{\mathrm{d}f}{\mathrm{d}t} \equiv \dot{f}$ (\emph{dot is shorthand for ``time derivative'' due to Newton})
+
+We can write $\vec{v}(t)$ as \[\vec{v}(t) = \dot{x}\hat{i} + \dot{y}\hat{j} + \dot{z}\hat{k}\]
+
+can also write \[\vec{v}(t) = v_x\hat{i} + v_y\hat{j} + v_z\hat{k}\]
 
 \begin{definition}
 \[v = |\vec{v}| = [v_x^2 + v_y^2 + v_z^2]^{1/2}\]
-is the magnitude of the velocity or \emph{speed} of the particle.
+is the magnitude of the velocity or \textbf{speed} of the particle.
 
-Thus, the \emph{direction} of motion is 
+Thus, the \textbf{direction} of motion is 
 \[\hat{v} = \vec{v}/v,~ |\hat{v}| = 1\]
-$\hat{v}$ is also the unit tangent to the path.
+$\hat{v}$ is also the unit tangent to the path of the object.
+\end{definition}
 
-Define the \emph{acceleration}
+\begin{definition}
+Define the \textbf{acceleration}
 \[\vec{a}(t) = \frac{d\vec{v}}{dt} = \frac{d^2\vec{r}}{dt^2} = \ddot{x}\hat{i} + \ddot{y}\hat{j} + \ddot{z}\hat{k}\]
 \end{definition}
 
@@ -240,39 +252,54 @@ $\vec{a}(t)$ tells us how the velocity is changing at time $t$.
 Recall that we can write $\vec{v} = v(t)\hat{v}(t)$, then
 \[\vec{a} = \frac{d}{dt}(v\hat{v}) = \underbrace{\frac{dv}{dt}\hat{v}}_{\substack{\text{Due to change}\\ \text{in speed}}} + \underbrace{v\frac{d\hat{v}}{dt}}_{\substack{\text{Due to change}\\ \text{in direction}}}\]
 
-%\emph{Question from the audience} 
-%\[\begin{aligned}\vec{r}(t) &= r(t)\vec{r}(t)\\
-%	\vec{v}(t) &= \frac{d\vec{r}}{dt} = \frac{d}{dt}(r\vec{r}) = \frac{dr}{dt}\vec{r} + r\frac{d\hat{r}}{dt}
-%\end{aligned}
-%\]
+\begin{note}
+This is the starting point for \textbf{intrinsic coordinates}.
+\end{note}
 
-%What we have done: started with $\vec{r}$ and we differentiated w.r.t $t$ to find $\vec{v}$ and $\vec{a}$. 
-
-Starting with $\vec{a}$ we can integrate to find $\vec{v}$, then $\vec{r}$. 
-\[\int_{t_0}^{t} \vec{a}dt' = \int_{t_0}^{t} \frac{d\vec{v}}{dt'}\,dt' = \vec{v}(t) = \vec{v}(t_0)
+We've started with $\vec{r}$ and we differentiated w.r.t $t$ to find $\vec{v}$ and $\vec{a}$. But, more usefully (as we often want to find $\vec{r}(t)$) we can start with $\vec{a}$ and integrate to find $\vec{v}$, then $\vec{r}$. 
+\[\int_{t_0}^{t} \vec{a}dt' = \int_{t_0}^{t} \frac{d\vec{v}}{dt'}\,dt' = \vec{v}(t) - \vec{v}(t_0)
 \]
 \[\implies \vec{v}(t) = \vec{v}(t_0) + \int_{t_0}^t \vec{a}\,dt'\]
 
-We can integrate this component. For example 
-\[v_x(t) = v_x(t_0) \int_{t_0}^t a_x\,dt'\]
+We can integrate this component-wise. For example 
+\[v_x(t) = v_x(t_0) + \int_{t_0}^t a_x\,dt'\]
 To determine $\vec{v}(t)$ uniquely, we need to know $\vec{v}(t_0)$ (constant vector). 
 
-Similarly
+Similarly,
 \[\vec{r}(t) = \vec{r}(t_0) + \int_{t_0}^t \vec{v}(t')\,dt'\]
 Thus, starting with $\vec{a}(t)$, we need to know \emph{both} $\vec{r}(t_0)$ and $\vec{v}(t_0)$ to find $\vec{r}(t)$ uniquely! 
 
-What allows us to connect the mathematics to the physical world is that these quantities are measurable. \\
+\begin{center}
+\begin{tikzpicture}[node distance=2cm, auto]
+  \node (P) {};
+  \node (B) [right of=P] {$\vec{v}(t)$};
+  \node (A) [below of=P] {$\vec{v}(t)$};
+  \node (C) [below of=B] {$\vec{a}(t)$};
+  \node (P1)[node distance=0.5cm, left of=P, above of=P] {$\vec{r}(t)$};
+  %\draw[->] (P) to node {$\bar{f}$} (B);
+  %\draw[->] (P) to node [swap] {$\bar{g}$} (A);
+  \draw[->, bend right] (A) to node [swap] {$\dfrac{d}{dt}$} (C);
+  \draw[<-, bend left] (B) to node {$\vec{v}(t_0) + \int_{t_0}^t \vec{a}\,dt'$} (C);
+  \draw[->, bend right] (P1) to node [swap] {$\dfrac{d}{dt}$} (A);
+  \draw[<-, bend left] (P1) to node {$\vec{r}(t_0) + \int_{t_0}^t\vec{v}\,dt'$} (B);
+  %\draw[->, dashed] (P1) to node {$k$} (P);
+\end{tikzpicture}
+\end{center}
+
+What allows us to connect the mathematics to the physical world is that these quantities are measurable. (\emph{e.g. ``It's cold out, it's only 5 degrees'' is meaningless. We need to specify units!})\\
 
 \begin{definition}[SI Units]\begin{itemize}
 \item \emph{Time:} Measured in seconds, s
 
 \item \emph{Distance:} Measured in metres, m
 
-\item \emph{Velocity:} ``Metres per second", m/s or ms$^{-1}$
+\item \emph{Velocity:} ``Metres per second'', m/s or ms$^{-1}$
 	
-\item \emph{Accelerations}: ``Metres per second squared"", m/s$^2$ or ms$^{-2}$
+\item \emph{Acceleration}: ``Metres per second squared'', m/s$^2$ or ms$^{-2}$
 \end{itemize}
 \end{definition}\vsp
+
+Can use units to ``maybe check'' that you've done a problem correctly.\\
 
 \begin{example}
 	Near the surface of the earth, the acceleration due to gravity is constant!
@@ -323,23 +350,7 @@ What allows us to connect the mathematics to the physical world is that these qu
 
 \end{example}\vsp
 
-\textbf{Recap:}\lecturemarker{3}{5 Oct}
-\begin{center}
-\begin{tikzpicture}[node distance=2cm, auto]
-  \node (P) {};
-  \node (B) [right of=P] {$\vec{v}(t)$};
-  \node (A) [below of=P] {$\vec{v}(t)$};
-  \node (C) [below of=B] {$\vec{a}(t)$};
-  \node (P1)[node distance=0.5cm, left of=P, above of=P] {$\vec{r}(t)$};
-  %\draw[->] (P) to node {$\bar{f}$} (B);
-  %\draw[->] (P) to node [swap] {$\bar{g}$} (A);
-  \draw[->, bend right] (A) to node [swap] {$\dfrac{d}{dt}$} (C);
-  \draw[<-, bend left] (B) to node {$\vec{v}(t_0) + \int_{t_0}^t \vec{a}\,dt'$} (C);
-  \draw[->, bend right] (P1) to node [swap] {$\dfrac{d}{dt}$} (A);
-  \draw[<-, bend left] (P1) to node {$\vec{r}(t_0) + \int_{t_0}^t\vec{v}\,dt'$} (B);
-  %\draw[->, dashed] (P1) to node {$k$} (P);
-\end{tikzpicture}
-\end{center}\vsp
+\lecturemarker{3}{5 Oct}
 
 \begin{example}[Projectile]
 	
