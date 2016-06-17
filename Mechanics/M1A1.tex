@@ -47,6 +47,7 @@ Keywords ={Mechanics, M1A1, Lecture Notes, Imperial College, Maths},
 
 
 \NotesSubTitle{1st}{Spring 2016}{Mechanics}{Dr.~E. E.}{Keaveny}
+% \emph{Office Hour: Thursday 4pm room 741}
 {
 \subsection*{Syllabus} 
 
@@ -301,8 +302,10 @@ What allows us to connect the mathematics to the physical world is that these qu
 
 Can use units to ``maybe check'' that you've done a problem correctly.\\
 
-\begin{example}
-	Near the surface of the earth, the acceleration due to gravity is constant!
+\lecturemarker{3}{19 Jan}
+
+\begin{example}[Acceleration due to Gravity]
+	Near the surface of the earth, the acceleration due to gravity is \textbf{constant}
 	\[g = 9.8ms^{-2}\]
 	Suppose: an object is dropped \emph{from rest} at height $h$ above the ground. Find $\vec{r}(t)$:
 	\vspace*{-5pt}
@@ -344,16 +347,19 @@ Can use units to ``maybe check'' that you've done a problem correctly.\\
 \end{tikzpicture}
 	\end{center}
 
-	Align the coordinates such that $\hat{j}$ points upwards. We know that $\vec{a} = -g\hat{j}$. No motion in other directions. Problem is 1D!
+	Choose a coordinate system such that $\hat{j}$ points upwards. Then acceleration due to gravity is \[\vec{a} = -g\hat{j}\] We only have motion in the $\hat{j} \implies$ problem is 1D.
 	
-	We know initially ($t=0$) that $y(0) = h \implies v_y(0) = 0$. Integrate twice: \[y(t) = h - \frac{1}{2}gt^2\]
+	We know initially ($t=0$) that $y(0) = h \implies v_y(0) = 0$. Integrate to find $v_y(t)$
+    \[v_y(t) = \equalto{v_y(0)}{0} - \int_0^t g\, dt' = -gt\]
+
+    Integrate again to find $y(t)$
+    \[y(t) = \equalto{y(0)}{h} - \int_0^t gt\, dt' = h - \frac{1}{2}gt^2\]
 
 \end{example}\vsp
 
-\lecturemarker{3}{5 Oct}
 
-\begin{example}[Projectile]
-	
+\begin{example}[Projectiles]
+Find $\alpha$ that maximises distance thrown ($d$).
 \begin{center}
 	\begin{tikzpicture}[scale=.8,
     media/.style={font={\footnotesize\sffamily}},
@@ -414,7 +420,19 @@ Can use units to ``maybe check'' that you've done a problem correctly.\\
 \end{tikzpicture}
 	\end{center}
 	
-	In this coordinate system $\vec{a} = -g\hat{j}$. Choose that $t = 0$ when the object is released. Based on this: \[\vec{r}(0) = \vec{0},~\vec{v}(0) = \vec{v}_0 = v_0\cos\alpha\hat{i} + v_0\sin\alpha\hat{j}\]
+	In this coordinate system $\vec{a} = -g\hat{j}$. Choose that $t = 0$ when the object is released. Based on this \[\vec{r}(0) = \vec{0}\]
+
+    and from the coordinate system
+    \[\vec{v}(0) = v_0\cos\alpha\hat{i} + v_0\sin\alpha\hat{j} = \vec{v}_0 \implies v_0 = |\vec{v_0}|\]
+
+    Integrate component-wise
+    \[v_x(t) = v_x(0) + \int_0^t a_x(t')\,dt' = v_0\cos(\alpha)\]
+    For $\hat{j}$ direction
+    \[v_y(t) = v_y(0) + \int_0^t a_y(t')\,dt' = v_0\sin(\alpha) - gt\]
+
+    \[\therefore \vec{v}(t) = v_0\cos(\alpha)\hat{i} + (v_0\sin(\alpha) - gt)\hat{j}\]
+
+% todo finish this off
 	Integrate our acceleration to find $\vec{v}(t)$
 	\[\begin{aligned}\vec{v}(t) &= \vec{v}(0) + \int_0^t -g\hat{j}\,dt' = \vec{v}_0 -gt\hat{j} \\ 
 	&= v_0\cos\alpha\hat{i} + (v_0\sin\alpha -gt)\hat{j}
@@ -427,15 +445,17 @@ Can use units to ``maybe check'' that you've done a problem correctly.\\
 \end{aligned}
 \]
 
-Maximise the \emph{range} using $\alpha$ as the control parameter. Finding the time $t_H$ when the object hits the ground. $y(t_H) = 0$ where $y = \vec{r}\cdot\hat{j}$. 
+Now, we want to find $d$, but first need to find the time $t_H$ that the object hits the ground.
+% Maximise the \emph{range} using $\alpha$ as the control parameter. Finding the time $t_H$ when the object hits the ground.
+$y(t_H) = 0$ where $y = \vec{r}\cdot\hat{j}$.
 \[y = \vec{r}\cdot\hat{j}= v_0t_H\sin\alpha -\textstyle{\frac{1}{2}}t_H^2g = 0\]
 Two values of $t_H$:
 \[t_H = 0,~ t_H = \frac{2v_0\sin\alpha}{g}\]
 
-To find the range:
-\[x(t_H) = v_0\cos\alpha\left[\frac{2v_0\sin\alpha}{g}\right] = \frac{v_0^2}{g}\sin 2\alpha\]
+To find $d = x(t_H)$:
+\[d = x(t_H) = v_0\cos\alpha\left[\frac{2v_0\sin\alpha}{g}\right] = \frac{v_0^2}{g}\sin 2\alpha\]
 
-For $0 \leq \alpha \leq \pi/2$, the range is maximum for $\alpha = \pi/4$.
+For $0 \leq \alpha \leq \pi/2$, the max value of $d$ is achieved when $\alpha = \pi/4$.
 \end{example}~\\
 
 \begin{example}[Circular Motion]
@@ -471,9 +491,9 @@ Find the speed: $v = |\vec{v}| = R\Omega$, the speed is constant.
 
 Direction of motion
 \[\hat{v}= \vec{v}/v = \cos \Omega t\hat{i} - \sin\Omega t \hat{j}\]
-At $t = 0$, $\hat{v}(0) = \hat{i}$, so it moves clockwise around the circle!
+At $t = 0$, $\hat{r}(0) = \hat{j}$ and $\hat{v}(0) = \hat{i}$, so it moves clockwise around the circle!\\
 
-\emph{Interpretation of $\Omega$:} Introduce $\theta = -\Omega t + \pi/2$, $\frac{d\theta}{dt} - \Omega$. 
+\emph{Interpretation of $\Omega$:} Introduce $\theta(t) = -\Omega t + \pi/2$ then $\frac{d\theta}{dt} = - \Omega$. ($\frac{\pi}{2}$ is initial angle and $-\Omega$ since we're moving clockwise at rate $\Omega$).
 
 The parameter $\Omega$ is angular speed. Differentiate our $\vec{v}(t)$ we find
 \[\begin{aligned}
@@ -481,7 +501,7 @@ The parameter $\Omega$ is angular speed. Differentiate our $\vec{v}(t)$ we find
 &= -\Omega^2 \vec{r}	
 \end{aligned}
 \]
-Acceleration is pointing in towards the circle. 
+Acceleration is pointing in towards the circle. i.e. in opposite direction to position vector and perpendicular to direction of motion. This is consistent with what we knew because the speed is constant.
 \end{example}
 
 \textbf{Last time:}  \lecturemarker{4}{5 Oct}
@@ -510,11 +530,11 @@ Insert expression for $\theta$
 \end{aligned}
 \]\vsp
 
-\begin{example}[Wheel rolling without slipping]
+\begin{example}[Wheel rolling without slipping ($\Omega, u$ constant)]
 
 Describe the position of a point on the surface of the wheel
 
-\[\vec{r}(t) = \vec{r}_\Omega(t) + \vec{r}_c(t)\]
+\[\vec{r}(t) = \equalto{\vec{r}_\Omega(t)}{\text{motion along a circle}} + \equalto{\vec{r}_c(t)}{\text{translation of the wheel}}\]
 \begin{center}
   \begin{tikzpicture}
     \draw (0, 1) circle [radius=1];
@@ -555,7 +575,7 @@ Then $x_c(y) = ut$ and $\theta = \pi/2 - \Omega t$.
 Here, $u$, and $\Omega$ are still independent of one another. We use ``rolling without slipping'' to connect them:\\
 
 \textbf{Rolling without slipping:}
-
+%todo fix theta to point down in these diagrams
 \begin{center}
   \begin{tikzpicture}
     \draw circle [radius = 1];
@@ -589,16 +609,18 @@ Here, $u$, and $\Omega$ are still independent of one another. We use ``rolling w
 
 
 Rolling without slipping implies that the distance travelled equals the arc length between $A$ and $B$. 
-\[\frac{\Delta x_c}{\Delta t} = -R\frac{(\theta_2 - \theta_1)}{\Delta t}\]
+\[\frac{|\Delta x_c|}{\Delta t} = R\frac{(\theta_2 - \theta_1)}{\Delta t}\]
 
 Taking the limit as $\Delta t \to 0$
-\[\dot{x}_c = -R\dot{\theta}\]
+\[|\dot{x}_c| = R\dot{\theta}\]
 
+By our convention, as $x$ increases, $\theta$ decreases, so
+\[\dot{x}_c = -R\dot{\theta}\]
 For our problem 
 \[\dot{x}_c = u, \quad \dot{\theta} = -\Omega, \quad \boxed{u = R\Omega}\]
 
-with this expression
-\[\vec{r}(t) = R[\Omega t + R\sin(\Omega t)]\hat{i} + R[1 + \cos\Omega t]\hat{j}\]
+with this expression, we can eliminate $u$ and the position becomes
+\[\vec{r}(t) = R[\Omega t + \sin(\Omega t)]\hat{i} + R[1 + \cos\Omega t]\hat{j}\]
 
 Differentiate w.r.t $t$
 \[\vec{v}(t) = R\Omega[1+ cos(\Omega t)]\hat{i} - R\Omega\sin(\Omega t)\hat{j}\]
@@ -606,7 +628,7 @@ Differentiate w.r.t $t$
 Differentiating again
 \[\begin{aligned}
 \vec{a}(t) &= -R\Omega^2[\sin(\Omega t)\hat{i} + \cos(\Omega t)\hat{j}]\\
-&= \vec{a}_\Omega(t)
+&= -\Omega^2\vec{r}_\Omega(t)
 \end{aligned}
 \]
 
@@ -645,13 +667,32 @@ At $x_c = \pi R \implies ut = \pi R$
 
 Already \lecturemarker{5}{5 Oct} we have seen vector addition and subtraction are useful:
 
-\textbf{Addition}: $\vec{r} = \vec{r}_c + \vec{r}_\Omega$
+\textbf{Addition}: Rolling without slipping $\vec{r}(t) = \vec{r}_c(t) + \vec{r}_\Omega(t)$
 
 \textbf{Subtraction}: Velocities relative to a moving observer $\vec{v}_{A,O} = \vec{v}_A - \vec{v}_O$
 
+\begin{note}
+    We can think of velocities relative to a moving observer as the concept of moving origins
+\end{note}
+
+\begin{example}
+    Another way of think about ``rolling without slipping'' is the velocity of the point on the wheel touching the groud has zero velocity relative to the ground.
+
+    \textbf{Recall}: $\vec{v}(t) = \left(u + R\Omega\cos(\Omega t)\right)\hat{i} - r\Omega\sin\Omega t\hat{j}$\\
+
+    This point will touch the ground when $y(t) = 0$.
+    \[
+        y(t) = R(1 + \cos\Omega t) = 0 \implies \cos\Omega t = -1
+    \]
+    Can take $t = \frac{\pi}{\Omega}$
+    \[
+        \vec{v}(\frac{\pi}{\Omega}) = (u - R\Omega)\hat{i}
+    \]
+    since $\vec{v}(\frac{\pi}{\Omega})$ must be zero, $u = R\Omega$.
+\end{example}
 
 \subsubsektion{Vector Products}
- Vector products are also useful and do arise in describing mechanical phenomena: 
+ Vector products are also useful to describe mechanical phenomena: 
 
 \textbf{(i) Scalar product (dot product)}
 
@@ -672,7 +713,7 @@ Already \lecturemarker{5}{5 Oct} we have seen vector addition and subtraction ar
 \end{aligned}
 \]
 
-We can write $|\vec{A}| = (\vec{A}\cdot\vec{A})^{1/2}$
+So we can write $|\vec{A}| = (\vec{A}\cdot\vec{A})^{1/2}$
 
 The dot product can be used to pick out the component of a vector in a particular direction:
 \[\hat{n},~|\hat{n}| = 1 \text{ (Direction)}\]
@@ -699,7 +740,7 @@ Recall:
 \]
 
 Direction tangent to the path:
-\[\frac{\vec{v}}{v} = \hat{v},~|\hat{v}| = 1\]
+\[\frac{\vec{v}}{v} = \hat{v},~|\hat{v}| = 1\ \text{(by construction)}\]
 
 Find: speed
 \[\begin{aligned}
@@ -717,7 +758,14 @@ a_t &= -\frac{R\Omega^2\sin\Omega t}{\sqrt{2(1 + \cos\Omega t)}}
 \]
 
 
-Check that $a_t = \dfrac{dv}{dt}$. 
+\textbf{Recall} (intrinsic coordinates)
+
+\begin{align*}
+% todo fix
+%\vec{a} &= \dfrac{d}{dt}(v(t)\hat{v}(t)) = \dfrac{dv}{dt}\hat{v} + v\dfrac{d\hat{v}}{dt}\\
+%\vec{a}\dot\hat{v} &= \dfrac{dv}{dt}\ (\hat{v}\dot\dfrac{dv}{dt} = 0)
+\end{align*}
+
 \end{example}~
 
 \textbf{(ii) Vector product (cross product)}
@@ -803,7 +851,7 @@ Check that $a_t = \dfrac{dv}{dt}$.
  $\hat{j}$: Points along lines of constant $x$ in the direction of increasing $y$
  
 
-\subsektion{Polar Coordinates}
+\subsektion{Plane Polar Coordinates}
 We consider for 2D Motion. \lecturemarker{6}{5 Oct}  Certain systems simplify in these coordinates	
 
 
@@ -830,6 +878,7 @@ y&= r\sin\theta, \quad \theta = \arctan(y/x)
 
 
  \begin{center}
+ % todo should look more like a spider web with lines of constant theta drawn in
     \begin{tikzpicture}[scale=.8]
       \draw [->] (-4, 0) -- (4, 0) node [right] {$x$};
       \draw [->] (0, -3) -- (0, 3) node [above] {$y$};
@@ -850,9 +899,9 @@ y&= r\sin\theta, \quad \theta = \arctan(y/x)
       
     \end{tikzpicture}
   \end{center}
-$\hat{r}$: Unit vector in the direction of increasing $r$ along lines of constant $\theta$.
+$\hat{r}$: Unit vector in the direction of increasing $r$ along \textit{lines of constant $\theta$}.
 
-$\hat{\theta}$: Points in the direction of increasing $\theta$ tangent to the curves of constant $r$.\\
+$\hat{\theta}$: Points in the direction of increasing $\theta$ tangent to the \textit{circles of constant $r$}.\\
 
 \begin{minipage}[c]{0.45\textwidth}
 Consider: 
@@ -943,18 +992,18 @@ Thus
   
   \[\vec{r}(t) = R\sin\Omega t\hat{i} + R\cos\Omega t \hat{j}\]
   The corresponding expression in polars:
-  \[r = R,\quad \theta(t) = \frac{\pi}{2} - \Omega t\]
+  \[r = R \implies \dot{r} = 0,\quad \theta(t) = \frac{\pi}{2} - \Omega t \implies \dot{\theta} = -\Omega\]
   \[
 \begin{aligned}
   \Aboxed{\vec{r} &= R\hat{r}}\\
-  \vec{v} &= \dot{r}\hat{r} + r\dot{\theta}\hat{\theta}\\
+  \vec{v} &= \equalto{\dot{r}}{0}\hat{r} + r\dot{\theta}\hat{\theta}\\
   \Aboxed{\vec{v} &= -R\Omega\hat{\theta}}\\
   \vec{a} &: \quad \ddot{r} = \ddot{\theta} = 0\\
   \Aboxed{\vec{a} &= -R\Omega^2\hat{r}}
 \end{aligned}
 \]~\\
 
-\item Bead moves outwards with speed $u$ as the wheel turns with angular speed $\Omega$:
+\item (Bead on a bicycle spoke) Bead moves outwards with constant speed $u$ as the wheel turns with constant angular speed $\Omega$:
 \begin{center}
   \begin{tikzpicture}
     \draw circle [radius = 1.2];
@@ -964,19 +1013,20 @@ Thus
     \draw (-0.85,-0.85) -- (0.85,0.85);
     \draw (-0.85,0.85) -- (0.85,-0.85);
     \draw [->] (0.05, 0.2) -- (0.6, 0.75) node [pos = 0.9, left] {$u$};
-    \node at (3,0) {$(u,\Omega >0)$};
+    \node at (3,0) {$(u,\Omega >0$};
     \draw [->] (0.5, 1.2) arc (45:135:0.7) node at (0.8,1.4) {$\Omega$};
   \end{tikzpicture}
 \end{center}
 
+%todo fix this - wanted to add since u... etc comments.
 If at $t=0$:
-\[\begin{aligned}
-r(0) &= 0 \,\text{ \& }\, \theta(0) = 0\\
-\implies r(t) &= ut \,\text{ \& }\, \theta(t) = \Omega t	
-\end{aligned}
-\]
-
-Then $\dot{r} = u, \ddot{r} = 0, \dot{\theta} = \Omega, \ddot{\theta} = 0$
+\[r(0) = 0 \,\text{ \& }\, \theta(0) = 0\]
+Since $u$ is outward velocity
+\[\dot{r} = u\]
+Since $\Omega$ is the angular speed and the wheel is rotating anti-clockwise
+\[\dot{\theta} = \Omega\]
+\[\implies r(t) = ut \,\text{ \& }\, \theta(t) = \Omega t	\]
+\[\ddot{r} = 0, \ddot{\theta} = 0\]
 
 \[
 \begin{aligned}
@@ -996,7 +1046,7 @@ Polar coordinates really come in handy when the forces have certain symmetries, 
 \subsektion{Intrinsic Coordinates}
 
 Coordinates \lecturemarker{7}{5 Oct}
- that are intrinsic to the path of our particle. We know the path!
+ that are intrinsic to the path of our particle. Use ful when we know the path. Restrict our discussion to cases where the object move in one direction.
  
 \begin{center}
   \begin{tikzpicture}[yscale=1.3]
@@ -1017,9 +1067,13 @@ Distance travelled between $t$ and $t + \Delta t$
 
 For $\Delta t << 1$: 
 \[x(t + \Delta t) = x(t) + \Delta t \frac{dx}{dt} + \cal{O}(\Delta t^2)\]
+(Taylor series expansion of $x(t + \Delta t)$)
 
-Doing the same for our other components:
-\[\Delta s = \underbrace{\left|\frac{dx}{dt}\hat{i} + \frac{dy}{dt}\hat{j} + \frac{dz}{dt}\hat{k}\right|}_{\vec{v}}\Delta t + \cal{O}(\Delta t^2)\]
+Doing the same for our other components and substituting:
+\begin{align*}
+\Delta s &= \left|\frac{dx}{dt}\hat{i} + \frac{dy}{dt}\hat{j} + \frac{dz}{dt}\hat{k}\right|\Delta t + \cal{O}(\Delta t^2)\\
+&= \Delta t \equalto{|\vec{v}|}{\text{the speed, }v} + \cal{O}(\Delta t^2)
+\end{align*}
 
 Thus,
 \[\frac{\Delta s}{\Delta t} = v + \cal{O}(\Delta t)\]
@@ -1030,19 +1084,24 @@ Taking $\lim \Delta t \to 0$
 \end{aligned}
 \]
 
-Both $t$ and $s$ are ways of parametrizing our curve (path). Instead of writing $\vec{r}(t)$, we can write $\vec{r}(s)$. \\
+Assuming $s = 0$ when $t = 0$. Both $s$ and $t$ are different parameterisations of the path. Instead of writing $\vec{r}(t)$, we can write $\vec{r}(s)$. \\
 
 \begin{definition} $s$ is what we call the \emph{arc length}. 
 
 \emph{Velocity}:
 \[\vec{v} = \frac{d\vec{r}}{dt} = \frac{d\vec{r}}{ds}\frac{ds}{dt}\]
-But $\displaystyle{\frac{ds}{dt} = v}$. So, $\displaystyle{\frac{d\vec{r}}{ds} = \hat{v}}$, the unit tangent at evert point $s$. Thus
+But $\displaystyle{\frac{ds}{dt} = v}$. Since this is the magnitude of $\hat{v}$, so it must be the case that \[\displaystyle{\frac{d\vec{r}}{ds} = \hat{v}}\] the unit tangent at evert point $s$. Thus, in intrinsic coordinates
 \[\boxed{\vec{v}(s) = \dot{s}\hat{v}}\]
 
 \emph{Acceleration}: \[\begin{aligned}
-	\vec{a} &= \frac{d\vec{v}}{dt}\\ &= \frac{d}{dt}\left(\dot{s}~ \frac{d\vec{r}}{ds}\right)\\
-	&= \ddot{s}\frac{\d\vec{r}}{ds} + \dot{s}\frac{d}{dt}\left(\frac{d\vec{r}}{ds}\right)\\
-	 &= \ddot{s}\hat{v} + \dot{s}\frac{d^2\vec{r}}{ds^2}\frac{ds}{dt}\end{aligned}
+	\vec{a} &= \frac{d\vec{v}}{dt}\\ &= \frac{d}{dt}\left(\dot{s}~ \hat{v}\right)\\
+	&= \ddot{s}\hat{v} + \dot{s}\dfrac{d\hat{v}}{dt}\\
+% todo fix
+%\intertext{But}
+\dfrac{d\hat{v}}{dt} &= \dfrac{d}{dt}\left(\dfrac{d\hat{r}}{ds}\right)\\
+&= \dfrac{d^2\hat{r}}{ds^2}\dfrac{ds}{dt} = \dfrac{d^2\hat{r}}{ds^2}\dot{s}\\
+%\intertext{So, acceleration becomes}
+	\vec{a} &= \ddot{s}\hat{v} + \dot{s}\frac{d^2\vec{r}}{ds^2}\frac{ds}{dt}\end{aligned}
 \]
 
 Writing $\displaystyle{\frac{d^2\vec{r}}{ds^2} = \kappa \hat{n}}$, where $\displaystyle{\kappa =\left|\frac{d^2\vec{r}}{ds^2}\right| }$, $\hat{n} = \displaystyle{\frac{1}{\kappa}\frac{d^2\vec{r}}{ds^2}}$, we have: 
@@ -1050,9 +1109,11 @@ Writing $\displaystyle{\frac{d^2\vec{r}}{ds^2} = \kappa \hat{n}}$, where $\displ
 
 It turns out that $\kappa$ is the \emph{curvature} of the path. What about $\hat{n}$?
 
-Recall: $|\hat{v}| = 1$. So 
+Recall: $|\hat{v}| = 1 $. So 
+% todo \implies \hat{v} \dot \hat{v} = 0
 \[\begin{aligned}\frac{d}{ds}(\hat{v}\cdot\hat{v} = 1)\\
  \implies 2\hat{v}\cdot\frac{d\hat{v}}{ds} = 0\\
+% todo since \dfrac{d\hat{v}}{dt} = \frac{d^2\vec{r}}{ds^2} = \kappa \hat{n}
  \implies 2\kappa(\hat{v}\cdot\hat{n}) = 0	
 \end{aligned}
 \]
@@ -1060,6 +1121,8 @@ Recall: $|\hat{v}| = 1$. So
 So, if $\kappa \neq 0$, then $\hat{v}\cdot \hat{n} = 0$. Thus $\hat{n}$ is the \emph{unit normal} to the path.
 \end{definition}~
 
+% todo missing from notes!
+This is related to the local radius of curvature... TODO!\\
 
 Tangential component of the acceleration $a_t = \vec{a}\cdot\hat{v} = \ddot{s}$
 
@@ -1082,9 +1145,12 @@ Normal component of the acceleration $a_n = \vec{a}\cdot\hat{n} = \kappa \dot{s}
 \end{center}
 
 
-Key things to note: $\hat{v}, \hat{n}, \kappa$ depend only on the path. Knowing $\vec{r}(s)$, we can find these 	quantities. 
+Key things to note:
 
-$\dot{s}$ and $\ddot{s}$ depend on how the particle is moving along the path.
+\begin{enumerate}
+    \item $\hat{v}, \hat{n}, \kappa$ depend only on the path (Knowing $\vec{r}(s)$, we can find these quantities)
+    \item $\dot{s}$ and $\ddot{s}$ depend on how the particle is moving along the path
+\end{enumerate}
 
 \pagebreak
 

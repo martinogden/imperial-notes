@@ -503,14 +503,14 @@ Let $\dfrac{dy}{dx} = u(y)$. Integrate and solve:
 \begin{example}[Spring]
 	\[m\frac{d^2x}{dt^2} = -kx - 2\beta\left(\frac{dx}{dt}\right)^2\]
 	
-	1st Step: 
+	\textsc{1st Step:}
 	\[\frac{d^2u}{dt^2} = \frac{d(u^2/2)}{dx} = -\frac{k}{m}x - 2\frac{\beta}{m}u^2\]
 	
 	Let $U = \dfrac{u^2}{2}$, so 
 	\[\frac{dU}{dx} + 4\frac{\beta}{m}U = -\frac{k}{m}x\]
 	\[\implies U = ce^{-4\frac{\beta}{m}x} - \frac{k}{4\beta}\left(x - \frac{m}{4\beta}\right) = U(x) = \frac{u^2}{2}\]
 
-	2nd Step: 
+	\textsc{2nd Step:} 
 	\[
 \begin{aligned}
   \frac{dx}{dt} = u &= \sqrt{2ce^{-4\frac{\beta}{m}x} - \frac{k}{2\beta}\left(x-\frac{m}{4\beta}\right)}\\
@@ -524,10 +524,16 @@ Let $\dfrac{dy}{dx} = u(y)$. Integrate and solve:
 \sektion{Linear Equations (ODEs)}
 
 
-A linear ODE of order $k$ is:
-\[\sum_{i=0}^k \alpha_i(x) \frac{d^iy}{dx^i} = f(x) \tag{$*$}\]
+For a 1st order linear ODE
+\[\alpha_1(x)\dfrac{dy}{dx} + \alpha_0(x)y = f(x)\]
+the solution is found by an Integrating Factor.\\
 
-For a 1st order linear ODE, the solution is found by an Integrating Factor. 
+A 2nd order linear ODE
+\[\alpha_2(x)\dfrac{d^2y}{dx^2} + \alpha_1(x)\dfrac{dy}{dx} + \alpha_0(x)y = f(x)\]
+is defined by $\alpha_2, \alpha_1, \alpha_0$ and $f(x)$.\\
+
+A linear ODE of order $k$ is:
+\[\sum_{i=0}^k \alpha_i(x) \frac{d^iy}{dx^i} = f(x)\ \text{where $\dfrac{d^0y}{dx^i0} \equiv y$}\tag{$*$}\]
 
 The general structure of the solution of a linear ODE is: 
 \[\frac{d}{dx}[y] = \mathcal{D}[y]\]
@@ -538,10 +544,12 @@ Linearity of $\mathcal{D}$:
 It follows inductively that $\mathcal{D}^i$ is also linear. Back to our linear ODE $(*)$: 
 \[
 \begin{aligned}
-  \sum_{i=0}^k \equalto{\alpha_i(x)}{\mathcal{L}_{\vec{\alpha}}[y]}\mathcal{D}^i[y] &= f(x)\\
+  \mathcal{L}_{\vec{\alpha}}[y] &= \sum_{i=0}^k \alpha_i(x)\mathcal{D}^i[y] = f(x)\\
+  \vec{\alpha} &= (\alpha_0, \dots, \alpha_k)\\
   \implies \mathcal{L}_{\vec{\alpha}}[y_1 + y_2] &= \mathcal{L}_{\vec{\alpha}}[y_1] + \mathcal{L}_{\vec{\alpha}}[y_2]
 \end{aligned}
 \]
+Because $\mathcal{L}_{\vec{\alpha}}$ is a linear operator, the solutions to $\mathcal{L}_{\vec{\alpha}}[y] = 0$ form a vector space of dimension $k$.\\
 
 Implications for the structures of the solutions of ODEs:
 
